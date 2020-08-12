@@ -12,8 +12,8 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import { GlobalStyle } from 'styles/global-styles';
 
-import { HomePage } from './containers/HomePage/Loadable';
-import { NotFoundPage } from './components/NotFoundPage/Loadable';
+import { HomePage } from '../HomePage/Loadable';
+import { NotFoundPage } from '../NotFoundPage/Loadable';
 
 export function App() {
   return (
