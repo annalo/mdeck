@@ -91,7 +91,7 @@ export const componentGenerator: PlopGenerator = {
     if (data.wantTests) {
       actions.push({
         type: 'add',
-        path: `${containerPath}/__tests__/index.test.tsx`,
+        path: `${containerPath}/index.test.tsx`,
         templateFile: './component/index.test.tsx.hbs',
         abortOnFail: true,
       });

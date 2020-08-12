@@ -15,11 +15,11 @@ import * as serviceWorker from 'serviceWorker';
 import 'sanitize.css/sanitize.css';
 
 // Import root app
-import { App } from 'app';
+import { App } from 'containers/App';
 
 import { HelmetProvider } from 'react-helmet-async';
 
-import { configureAppStore } from 'store/configureStore';
+import { configureAppStore } from 'configureStore';
 
 // Initialize languages
 import './locales/i18n';
@@ -47,9 +47,9 @@ if (module.hot) {
   // Hot reloadable translation json files and app
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(['./app', './locales/i18n'], () => {
+  module.hot.accept(['./containers/App', './locales/i18n'], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    const App = require('./app').App;
+    const App = require('./containers/App').App;
     render(App);
   });
 }
