@@ -18,11 +18,11 @@ import { NotFoundPage } from 'containers/NotFoundPage/Loadable';
 export function App() {
   return (
     <BrowserRouter>
-      <Helmet
-        titleTemplate="%s - React Boilerplate"
-        defaultTitle="React Boilerplate"
-      >
-        <meta name="description" content="A React Boilerplate application" />
+      <Helmet titleTemplate="%s - mdeck" defaultTitle="mdeck">
+        <meta
+          name="description"
+          content="A minimal, markdown-based presentation tool."
+        />
       </Helmet>
 
       <Switch>

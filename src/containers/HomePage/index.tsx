@@ -2,7 +2,7 @@ import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import styled from 'styled-components/macro';
 
-import { Editor } from 'containers/Editor/Loadable';
+import { TextEditor } from 'containers/TextEditor/Loadable';
 
 export function HomePage() {
   return (
@@ -16,7 +16,7 @@ export function HomePage() {
       </Helmet>
       <Div>
         mdeck
-        <Editor />
+        <TextEditor />
       </Div>
     </>
   );
