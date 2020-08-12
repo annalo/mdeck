@@ -65,7 +65,9 @@
     "lint:fix": "npm run eslint -- --fix src",
     "lint:css": "stylelint src/**/*.css",
     "generate": "cross-env TS_NODE_PROJECT='./internals/ts-node.tsconfig.json' plop --plopfile internals/generators/plopfile.ts",
-    "prettify": "prettier --write"
+    "prettify": "prettier --write",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
   },
   "browserslist": {
     "production": [
@@ -113,5 +115,16 @@
         "statements": 90
       }
     }
+  },
+  "devDependencies": {
+    "@babel/core": "7.11.1",
+    "@storybook/addon-actions": "6.0.3",
+    "@storybook/addon-essentials": "6.0.3",
+    "@storybook/addon-links": "6.0.3",
+    "@storybook/node-logger": "6.0.3",
+    "@storybook/preset-create-react-app": "3.1.4",
+    "@storybook/react": "6.0.3",
+    "babel-loader": "8.1.0",
+    "react-is": "16.13.1"
   }
 }
