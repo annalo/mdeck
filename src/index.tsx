@@ -19,7 +19,7 @@ import { App } from 'containers/App';
 
 import { HelmetProvider } from 'react-helmet-async';
 
-import { configureAppStore } from 'store/configureStore';
+import { configureAppStore } from 'configureStore';
 
 // Initialize languages
 import './locales/i18n';
