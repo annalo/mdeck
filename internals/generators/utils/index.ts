@@ -9,14 +9,14 @@ import path from 'path';
 
 export function componentExists(component: string) {
   const components = fs.readdirSync(
-    path.join(__dirname, '../../../src/app/components'),
+    path.join(__dirname, '../../../src/components'),
   );
   return components.indexOf(component) >= 0;
 }
 
 export function containerExists(container: string) {
   const containers = fs.readdirSync(
-    path.join(__dirname, '../../../src/app/containers'),
+    path.join(__dirname, '../../../src/containers'),
   );
   return containers.indexOf(container) >= 0;
 }

@@ -24,8 +24,8 @@ const containerGen = plop.getGenerator('container') as PlopGenerator;
 
 const NAMESPACE = 'RbGenerated';
 
-const componentsPath = path.join(process.cwd(), '../../src/app/components');
-const containersPath = path.join(process.cwd(), '../../src/app/containers');
+const componentsPath = path.join(process.cwd(), '../../src/components');
+const containersPath = path.join(process.cwd(), '../../src/containers');
 const rootStatePath = path.join(process.cwd(), '../../src/types/RootState.ts');
 
 function runLinting() {

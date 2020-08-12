@@ -15,7 +15,7 @@ export enum ComponentProptNames {
   'wantLoadable' = 'wantLoadable',
   'wantTests' = 'wantTests',
 }
-const componentsPath = path.join(__dirname, '../../../src/app/components');
+const componentsPath = path.join(__dirname, '../../../src/components');
 
 export const componentGenerator: PlopGenerator = {
   description: 'Add an unconnected component',
