@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import DOMPurify from "dompurify";
 import MarkdownIt from "markdown-it";
 import styled from "styled-components/macro";
 
@@ -8,9 +9,15 @@ import { TextEditor } from "containers/TextEditor/Loadable";
 export const HomePage = () => {
   const [markdown, setMarkdown] = useState("");
 
+  function sanitizeHTML(dirty: string): string {
+    return DOMPurify.sanitize(dirty);
+  }
+
   function parseMarkdown(text: string): string {
     const parser = new MarkdownIt();
-    return parser.render(text);
+    const result = parser.render(text);
+
+    return sanitizeHTML(result);
   }
 
   return (
