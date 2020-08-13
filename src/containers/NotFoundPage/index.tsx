@@ -23,7 +23,7 @@ const Title = styled.div`
   }
 `;
 
-export function NotFoundPage() {
+export const NotFoundPage: React.FC = () => {
   return (
     <>
       <Helmet>
@@ -42,4 +42,4 @@ export function NotFoundPage() {
       </Wrapper>
     </>
   );
-}
+};

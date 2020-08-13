@@ -9,7 +9,7 @@ const Div = styled.div`
   height: 100%;
 `;
 
-export function HomePage() {
+export const HomePage: React.FC = () => {
   const [markdown, setMarkdown] = useState("");
 
   return (
@@ -31,4 +31,4 @@ export function HomePage() {
       </Div>
     </>
   );
-}
+};

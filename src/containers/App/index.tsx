@@ -15,7 +15,7 @@ import { NotFoundPage } from "containers/NotFoundPage/Loadable";
 
 import { GlobalStyle } from "./GlobalStyle";
 
-export function App() {
+export const App: React.FC = () => {
   return (
     <BrowserRouter>
       <Helmet defaultTitle="mdeck" titleTemplate="%s - mdeck">
@@ -32,4 +32,4 @@ export function App() {
       <GlobalStyle />
     </BrowserRouter>
   );
-}
+};
