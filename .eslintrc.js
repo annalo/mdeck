@@ -27,5 +27,12 @@ module.exports = {
         endOfLine: "auto",
       },
     ],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        shorthandFirst: true,
+        reservedFirst: true,
+      },
+    ],
   },
 };
