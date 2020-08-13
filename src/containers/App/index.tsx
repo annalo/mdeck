@@ -10,23 +10,23 @@ import * as React from "react";
 import { Helmet } from "react-helmet-async";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
-import { GlobalStyle } from "styles/global-styles";
-
 import { HomePage } from "containers/HomePage/Loadable";
 import { NotFoundPage } from "containers/NotFoundPage/Loadable";
+
+import { GlobalStyle } from "./GlobalStyle";
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Helmet titleTemplate="%s - mdeck" defaultTitle="mdeck">
+      <Helmet defaultTitle="mdeck" titleTemplate="%s - mdeck">
         <meta
-          name="description"
           content="A minimal, markdown-based presentation tool."
+          name="description"
         />
       </Helmet>
 
       <Switch>
-        <Route exact path="/" component={HomePage} />
+        <Route exact component={HomePage} path="/" />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

@@ -17,7 +17,6 @@ export const HomePage = () => {
         />
       </Helmet>
       <Div>
-        mdeck
         <TextEditor markdown={markdown} setMarkdown={setMarkdown} />
         {markdown}
       </Div>
@@ -25,6 +24,8 @@ export const HomePage = () => {
   );
 };
 
-const Div = styled.div``;
+const Div = styled.div`
+  height: 100%;
+`;
 
 export default HomePage;

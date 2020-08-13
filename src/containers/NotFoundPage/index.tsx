@@ -8,12 +8,12 @@ export const NotFoundPage = () => {
     <>
       <Helmet>
         <title>404 Page Not Found</title>
-        <meta name="description" content="Page not found" />
+        <meta content="Page not found" name="description" />
       </Helmet>
       <Wrapper>
         <Title>
           4
-          <span role="img" aria-label="Crying Face">
+          <span aria-label="Crying Face" role="img">
             😢
           </span>
           4

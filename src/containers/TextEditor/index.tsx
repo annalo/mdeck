@@ -8,15 +8,12 @@ interface Props {
 
 export const TextEditor = memo(({ markdown, setMarkdown }: Props) => {
   return (
-    <Div>
-      <textarea
-        onChange={(e) => setMarkdown(e.target.value)}
-        value={markdown}
-      />
-    </Div>
+    <TextArea onChange={(e) => setMarkdown(e.target.value)} value={markdown} />
   );
 });
 
-const Div = styled.div``;
+const TextArea = styled.textarea`
+  height: 100%;
+`;
 
 export default TextEditor;
