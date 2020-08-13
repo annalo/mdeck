@@ -3,27 +3,6 @@ import styled from "styled-components/macro";
 import { Helmet } from "react-helmet-async";
 import { P } from "./P";
 
-export const NotFoundPage = () => {
-  return (
-    <>
-      <Helmet>
-        <title>404 Page Not Found</title>
-        <meta content="Page not found" name="description" />
-      </Helmet>
-      <Wrapper>
-        <Title>
-          4
-          <span aria-label="Crying Face" role="img">
-            😢
-          </span>
-          4
-        </Title>
-        <P>Page not found.</P>
-      </Wrapper>
-    </>
-  );
-};
-
 const Wrapper = styled.div`
   height: 100vh;
   display: flex;
@@ -44,4 +23,23 @@ const Title = styled.div`
   }
 `;
 
-export default NotFoundPage;
+export function NotFoundPage() {
+  return (
+    <>
+      <Helmet>
+        <title>404 Page Not Found</title>
+        <meta content="Page not found" name="description" />
+      </Helmet>
+      <Wrapper>
+        <Title>
+          4
+          <span aria-label="Crying Face" role="img">
+            😢
+          </span>
+          4
+        </Title>
+        <P>Page not found.</P>
+      </Wrapper>
+    </>
+  );
+}

@@ -11,12 +11,11 @@ import "react-app-polyfill/stable";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as serviceWorker from "serviceWorker";
+import { HelmetProvider } from "react-helmet-async";
 import "sanitize.css/sanitize.css";
 
 // Import root app
-import App from "containers/App";
-
-import { HelmetProvider } from "react-helmet-async";
+import { App } from "containers/App";
 
 const MOUNT_NODE = document.getElementById("root") as HTMLElement;
 

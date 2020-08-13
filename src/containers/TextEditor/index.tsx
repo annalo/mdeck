@@ -6,14 +6,17 @@ interface Props {
   setMarkdown(value: string): void;
 }
 
-export const TextEditor = memo(({ markdown, setMarkdown }: Props) => {
-  return (
-    <TextArea onChange={(e) => setMarkdown(e.target.value)} value={markdown} />
-  );
-});
-
 const TextArea = styled.textarea`
   height: 50%;
 `;
 
-export default TextEditor;
+export const TextEditor: React.FC<Props> = memo(
+  ({ markdown, setMarkdown }: Props) => {
+    return (
+      <TextArea
+        onChange={(e): void => setMarkdown(e.target.value)}
+        value={markdown}
+      />
+    );
+  }
+);

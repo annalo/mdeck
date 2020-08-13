@@ -15,7 +15,7 @@ import { NotFoundPage } from "containers/NotFoundPage/Loadable";
 
 import { GlobalStyle } from "./GlobalStyle";
 
-export default function App() {
+export function App() {
   return (
     <BrowserRouter>
       <Helmet defaultTitle="mdeck" titleTemplate="%s - mdeck">

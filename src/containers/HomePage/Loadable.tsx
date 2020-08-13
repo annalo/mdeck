@@ -8,5 +8,3 @@ export const HomePage = lazyLoad(
   () => import("./index"),
   (module) => module.HomePage
 );
-
-export default HomePage;
