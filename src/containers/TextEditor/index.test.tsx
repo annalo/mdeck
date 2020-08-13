@@ -7,7 +7,7 @@ import { TextEditor } from ".";
 const renderComponent = () =>
   render(
     <HelmetProvider>
-      <TextEditor markdown="markdown text" setMarkdown={() => {}} />
+      <TextEditor handleTextChange={() => {}} markdown="markdown text" />
     </HelmetProvider>
   );
 

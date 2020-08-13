@@ -12,7 +12,13 @@ const Div = styled.div`
 `;
 
 export const HomePage: React.FC = () => {
-  const [markdown, setMarkdown] = useState("");
+  const [markdown, setMarkdown] = useState(""); // may not need this
+  const [htmlString, setHtmlString] = useState("");
+
+  function handleTextChange(text) {
+    setMarkdown(text);
+    setHtmlString(parse(text));
+  }
 
   return (
     <>
@@ -24,8 +30,8 @@ export const HomePage: React.FC = () => {
         />
       </Helmet>
       <Div>
-        <TextEditor markdown={markdown} setMarkdown={setMarkdown} />
-        <Preview html={parse(markdown)} />
+        <TextEditor handleTextChange={handleTextChange} markdown={markdown} />
+        <Preview html={htmlString} />
       </Div>
     </>
   );

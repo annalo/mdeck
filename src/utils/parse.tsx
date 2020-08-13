@@ -7,7 +7,11 @@ function sanitizeHTML(dirty: string): string {
 }
 
 export function parse(text: string): string {
-  const parser = new MarkdownIt().use(MarkdownItTaskLists);
+  const parser = new MarkdownIt({
+    breaks: true,
+    linkify: true,
+    typographer: true,
+  }).use(MarkdownItTaskLists);
   const result = parser.render(text);
 
   return sanitizeHTML(result);

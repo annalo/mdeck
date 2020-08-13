@@ -3,7 +3,7 @@ import styled from "styled-components/macro";
 
 interface Props {
   markdown: string;
-  setMarkdown(value: string): void;
+  handleTextChange(value: string): void;
 }
 
 const Container = styled.div`
@@ -19,11 +19,11 @@ const TextArea = styled.textarea`
 `;
 
 export const TextEditor: React.FC<Props> = memo(
-  ({ markdown, setMarkdown }: Props) => {
+  ({ markdown, handleTextChange }: Props) => {
     return (
       <Container>
         <TextArea
-          onChange={(e): void => setMarkdown(e.target.value)}
+          onChange={(e): void => handleTextChange(e.target.value)}
           value={markdown}
         />
       </Container>
