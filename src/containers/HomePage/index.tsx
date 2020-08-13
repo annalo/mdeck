@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import styled from "styled-components/macro";
+
 import DOMPurify from "dompurify";
 import MarkdownIt from "markdown-it";
-import styled from "styled-components/macro";
+import MarkdownItTaskLists from "markdown-it-task-lists";
 
 import { TextEditor } from "containers/TextEditor/Loadable";
 
@@ -14,7 +16,7 @@ export const HomePage = () => {
   }
 
   function parseMarkdown(text: string): string {
-    const parser = new MarkdownIt();
+    const parser = new MarkdownIt().use(MarkdownItTaskLists);
     const result = parser.render(text);
 
     return sanitizeHTML(result);
