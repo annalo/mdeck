@@ -4,9 +4,11 @@
  *
  */
 
-import { lazyLoad } from 'utils/loadable';
+import { lazyLoad } from "utils/loadable";
 
 export const TextEditor = lazyLoad(
-  () => import('./index'),
-  module => module.TextEditor,
+  () => import("./index"),
+  (module) => module.TextEditor
 );
+
+export default TextEditor;

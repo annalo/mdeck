@@ -14,7 +14,7 @@ import * as serviceWorker from "serviceWorker";
 import "sanitize.css/sanitize.css";
 
 // Import root app
-import { App } from "containers/App";
+import App from "containers/App";
 
 import { HelmetProvider } from "react-helmet-async";
 

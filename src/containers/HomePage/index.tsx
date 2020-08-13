@@ -1,10 +1,10 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import styled from 'styled-components/macro';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import styled from "styled-components/macro";
 
-import { TextEditor } from 'containers/TextEditor/Loadable';
+import { TextEditor } from "containers/TextEditor/Loadable";
 
-export function HomePage() {
+export const HomePage = () => {
   return (
     <>
       <Helmet>
@@ -20,6 +20,8 @@ export function HomePage() {
       </Div>
     </>
   );
-}
+};
 
 const Div = styled.div``;
+
+export default HomePage;
