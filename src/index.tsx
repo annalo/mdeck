@@ -5,20 +5,20 @@
  * code.
  */
 
-import 'react-app-polyfill/ie11';
-import 'react-app-polyfill/stable';
+import "react-app-polyfill/ie11";
+import "react-app-polyfill/stable";
 
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
-import * as serviceWorker from 'serviceWorker';
-import 'sanitize.css/sanitize.css';
+import * as React from "react";
+import * as ReactDOM from "react-dom";
+import * as serviceWorker from "serviceWorker";
+import "sanitize.css/sanitize.css";
 
 // Import root app
-import { App } from 'containers/App';
+import App from "containers/App";
 
-import { HelmetProvider } from 'react-helmet-async';
+import { HelmetProvider } from "react-helmet-async";
 
-const MOUNT_NODE = document.getElementById('root') as HTMLElement;
+const MOUNT_NODE = document.getElementById("root") as HTMLElement;
 
 interface Props {
   Component: typeof App;
@@ -38,10 +38,10 @@ if (module.hot) {
   // Hot reloadable translation json files and app
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(['./containers/App'], () => {
+  module.hot.accept(["./containers/App"], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    const App = require('./containers/App').App;
-    render(App);
+    const AppContainer = require("./containers/App").App; // eslint-disable-line
+    render(AppContainer);
   });
 }
 

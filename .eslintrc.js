@@ -1,25 +1,31 @@
-const fs = require('fs');
-const path = require('path');
-
-const prettierOptions = JSON.parse(
-  fs.readFileSync(path.resolve(__dirname, '.prettierrc'), 'utf8'),
-);
-
 module.exports = {
   extends: [
-    'react-app',
-    'prettier',
-    'prettier/react',
-    'prettier/@typescript-eslint',
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/recommended",
+    "prettier",
+    "prettier/react",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended",
   ],
-  plugins: ['prettier'],
-  rules: {
-    'prettier/prettier': ['error', prettierOptions],
-  },
-  overrides: [
-    {
-      files: ['**/*.ts?(x)'],
-      rules: { 'prettier/prettier': ['warn', prettierOptions] },
+  plugins: ["react", "@typescript-eslint", "jest"],
+  parser: "@typescript-eslint/parser",
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
     },
-  ],
+    ecmaVersion: 2929,
+    sourceType: "module",
+    project: "./tsconfig.json",
+  },
+  rules: {
+    "linebreak-style": "off",
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
+  },
 };

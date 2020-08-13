@@ -1,14 +1,27 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import styled from "styled-components/macro";
 
-export function HomePage() {
+import { TextEditor } from "containers/TextEditor/Loadable";
+
+export const HomePage = () => {
   return (
     <>
       <Helmet>
         <title>Home Page</title>
-        <meta name="description" content="A Boilerplate application homepage" />
+        <meta
+          name="description"
+          content="A minimal, markdown-based presentation tool."
+        />
       </Helmet>
-      <span>HomePage container</span>
+      <Div>
+        mdeck
+        <TextEditor />
+      </Div>
     </>
   );
-}
+};
+
+const Div = styled.div``;
+
+export default HomePage;

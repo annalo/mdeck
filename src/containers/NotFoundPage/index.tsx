@@ -1,9 +1,9 @@
-import React from 'react';
-import styled from 'styled-components/macro';
-import { P } from './P';
-import { Helmet } from 'react-helmet-async';
+import React from "react";
+import styled from "styled-components/macro";
+import { Helmet } from "react-helmet-async";
+import { P } from "./P";
 
-export function NotFoundPage() {
+export const NotFoundPage = () => {
   return (
     <>
       <Helmet>
@@ -22,7 +22,7 @@ export function NotFoundPage() {
       </Wrapper>
     </>
   );
-}
+};
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -43,3 +43,5 @@ const Title = styled.div`
     font-size: 3.125rem;
   }
 `;
+
+export default NotFoundPage;
