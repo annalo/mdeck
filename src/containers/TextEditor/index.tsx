@@ -13,7 +13,7 @@ export const TextEditor = memo(({ markdown, setMarkdown }: Props) => {
 });
 
 const TextArea = styled.textarea`
-  height: 100%;
+  height: 50%;
 `;
 
 export default TextEditor;

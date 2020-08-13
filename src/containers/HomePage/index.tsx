@@ -1,11 +1,17 @@
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
+import MarkdownIt from "markdown-it";
 import styled from "styled-components/macro";
 
 import { TextEditor } from "containers/TextEditor/Loadable";
 
 export const HomePage = () => {
   const [markdown, setMarkdown] = useState("");
+
+  function parseMarkdown(text: string): string {
+    const parser = new MarkdownIt();
+    return parser.render(text);
+  }
 
   return (
     <>
@@ -18,7 +24,11 @@ export const HomePage = () => {
       </Helmet>
       <Div>
         <TextEditor markdown={markdown} setMarkdown={setMarkdown} />
-        {markdown}
+        <div
+          dangerouslySetInnerHTML={{
+            __html: parseMarkdown(markdown),
+          }}
+        />
       </Div>
     </>
   );

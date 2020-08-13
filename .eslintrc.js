@@ -21,6 +21,7 @@ module.exports = {
   },
   rules: {
     "linebreak-style": "off",
+    "no-debugger": "warn",
     "prettier/prettier": [
       "error",
       {
