@@ -6,7 +6,7 @@ function sanitizeHTML(dirty: string): string {
   return DOMPurify.sanitize(dirty);
 }
 
-export function parse(text: string): string {
+export function convertMarkdown(text: string): string {
   const parser = new MarkdownIt({
     breaks: true,
     linkify: true,

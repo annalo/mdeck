@@ -3,7 +3,8 @@ import styled from "styled-components/macro";
 
 import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
-import { parse } from "utils/parse";
+
+const SLIDE_SEPARATOR_REGEX = /\n---\n/;
 
 const Container = styled.div`
   display: flex;
@@ -12,17 +13,21 @@ const Container = styled.div`
 
 export const Editor: React.FC = () => {
   const [markdown, setMarkdown] = useState(""); // may not need this
-  const [htmlString, setHtmlString] = useState("");
+  const [slides, setSlides] = useState([]);
+
+  function convertToSlides(text) {
+    return text === "" ? [] : text.split(SLIDE_SEPARATOR_REGEX);
+  }
 
   function handleTextChange(text) {
     setMarkdown(text);
-    setHtmlString(parse(text));
+    setSlides(convertToSlides(text));
   }
 
   return (
     <Container>
       <TextEditor handleTextChange={handleTextChange} markdown={markdown} />
-      <Preview html={htmlString} />
+      <Preview slides={slides} />
     </Container>
   );
 };

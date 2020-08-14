@@ -3,7 +3,8 @@ import { render } from "@testing-library/react";
 
 import { Preview } from ".";
 
-const renderComponent = () => render(<Preview html="<h3>Heading 3</h3>" />);
+const renderComponent = () =>
+  render(<Preview slides={["# Title", "### Heading 3"]} />);
 
 describe("<Preview />", () => {
   it("should match the snapshot", () => {

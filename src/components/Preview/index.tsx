@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import { Slideshow } from "components/Slideshow";
 
 interface Props {
-  html: string;
+  slides: Array<string>;
 }
 
 const Container = styled.div`
@@ -14,8 +14,8 @@ const Container = styled.div`
   padding: 15px;
 `;
 
-export const Preview: React.FC<Props> = memo(({ html }: Props) => (
+export const Preview: React.FC<Props> = memo(({ slides }: Props) => (
   <Container>
-    <Slideshow html={html} />
+    <Slideshow slides={slides} />
   </Container>
 ));

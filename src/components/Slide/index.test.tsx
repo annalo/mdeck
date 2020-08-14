@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 
 import { Slide } from ".";
 
-const renderComponent = () => render(<Slide />);
+const renderComponent = () => render(<Slide content="### Heading 3" />);
 
 describe("<Slide />", () => {
   it("should match the snapshot", () => {

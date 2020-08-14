@@ -7,6 +7,12 @@
 import React, { memo } from "react";
 import styled from "styled-components/macro";
 
+import { convertMarkdown } from "utils/parser";
+
+interface Props {
+  content: string;
+}
+
 const Container = styled.div`
   position: relative;
   &:before {
@@ -25,6 +31,14 @@ const Container = styled.div`
   }
 `;
 
-export const Slide: React.FC = memo(() => {
-  return <Container />;
+export const Slide: React.FC<Props> = memo(({ content }: Props) => {
+  return (
+    <Container>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: convertMarkdown(content),
+        }}
+      />
+    </Container>
+  );
 });
