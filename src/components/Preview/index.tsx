@@ -11,7 +11,7 @@ const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 15px;
+  padding: 10px;
 `;
 
 export const Preview: React.FC<Props> = memo(({ slides }: Props) => (

@@ -9,6 +9,7 @@ interface Props {
 const Container = styled.div`
   height: 100%;
   overflow: auto;
+
   h1,
   h2,
   h3,

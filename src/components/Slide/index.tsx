@@ -14,11 +14,15 @@ interface Props {
 }
 
 const Container = styled.div`
-  background-color: red;
   height: 0;
+  margin: 10px;
   padding-top: calc((9 / 16) * 100%);
   position: relative;
-  margin: 5px 0;
+
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 6px 1px rgba(207, 205, 207, 0.5);
+  -moz-box-shadow: 0px 0px 6px 1px rgba(207, 205, 207, 0.5);
+  box-shadow: 0px 0px 6px 1px rgba(207, 205, 207, 0.5);
 
   > :first-child {
     position: absolute;
