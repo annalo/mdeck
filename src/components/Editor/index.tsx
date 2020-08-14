@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 
-const SLIDE_SEPARATOR_REGEX = /\n\s*---\s*\n/;
+const SLIDE_DELIMITER_REGEX = /\n\s*---\s*\n/;
 
 const Container = styled.div`
   display: flex;
@@ -16,7 +16,7 @@ export const Editor: React.FC = () => {
   const [slides, setSlides] = useState([]);
 
   function convertToSlides(text) {
-    return text === "" ? [] : text.split(SLIDE_SEPARATOR_REGEX);
+    return text === "" ? [] : text.split(SLIDE_DELIMITER_REGEX);
   }
 
   function handleTextChange(text) {
