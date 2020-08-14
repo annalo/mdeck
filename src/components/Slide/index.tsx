@@ -19,10 +19,12 @@ const Container = styled.div`
   position: relative;
   overflow: hidden;
 
+  margin: 10px;
+
   background-color: white;
-  -webkit-box-shadow: 0px 0px 5px 1px rgba(207, 205, 207, 0.5);
-  -moz-box-shadow: 0px 0px 5px 1px rgba(207, 205, 207, 0.5);
-  box-shadow: 0px 0px 5px 1px rgba(207, 205, 207, 0.5);
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(225, 225, 225, 0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(225, 225, 225, 0.75);
+  box-shadow: 0px 0px 5px 0px rgba(225, 225, 225, 0.75);
 
   > :first-child {
     position: absolute;

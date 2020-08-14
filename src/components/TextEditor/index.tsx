@@ -7,14 +7,14 @@ interface Props {
 }
 
 const Container = styled.div`
-  background-color: #f5f5f5;
+  background-color: #fafafa;
   display: flex;
   flex: 1;
   flex-direction: column;
 `;
 
 const TextArea = styled.textarea`
-  padding: 1em 2em;
+  padding: 1.5em 1.5em;
   border: none;
   background-color: transparent;
   outline: none;
