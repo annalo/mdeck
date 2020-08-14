@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 
-const SLIDE_SEPARATOR_REGEX = /\n---\n/;
+const SLIDE_SEPARATOR_REGEX = /\n\s*---\s*\n/;
 
 const Container = styled.div`
   display: flex;
