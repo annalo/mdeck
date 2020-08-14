@@ -1,12 +1,12 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import { TextBox } from ".";
+import { TextEditor } from ".";
 
 const renderComponent = () =>
-  render(<TextBox handleTextChange={() => {}} markdown="markdown text" />);
+  render(<TextEditor handleTextChange={() => {}} markdown="markdown text" />);
 
-describe("<TextBox />", () => {
+describe("<TextEditor />", () => {
   it("should match the snapshot", () => {
     const component = renderComponent();
     expect(component.container.firstChild).toMatchSnapshot();

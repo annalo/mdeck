@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-import { TextBox } from "components/TextBox/Loadable";
+import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 import { parse } from "utils/parse";
 
@@ -21,7 +21,7 @@ export const Editor: React.FC = () => {
 
   return (
     <Container>
-      <TextBox handleTextChange={handleTextChange} markdown={markdown} />
+      <TextEditor handleTextChange={handleTextChange} markdown={markdown} />
       <Preview html={htmlString} />
     </Container>
   );

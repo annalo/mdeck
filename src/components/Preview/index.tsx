@@ -12,8 +12,8 @@ const Container = styled.div`
   padding: 15px;
 `;
 
-const PreviewBox = styled.div`
-  overflow: scroll;
+const Slideshow = styled.div`
+  overflow: auto;
   h1,
   h2,
   h3,
@@ -35,7 +35,7 @@ const PreviewBox = styled.div`
 
 export const Preview: React.FC<Props> = memo(({ html }: Props) => (
   <Container>
-    <PreviewBox
+    <Slideshow
       dangerouslySetInnerHTML={{
         __html: html,
       }}
