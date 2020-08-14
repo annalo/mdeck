@@ -2,16 +2,16 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { HelmetProvider } from "react-helmet-async";
 
-import { TextEditor } from ".";
+import { Editor } from ".";
 
 const renderComponent = () =>
   render(
     <HelmetProvider>
-      <TextEditor handleTextChange={() => {}} markdown="markdown text" />
+      <Editor />
     </HelmetProvider>
   );
 
-describe("<TextEditor />", () => {
+describe("<Editor />", () => {
   it("should match the snapshot", () => {
     const component = renderComponent();
     expect(component.container.firstChild).toMatchSnapshot();
