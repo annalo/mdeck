@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
-import { TextBox } from "containers/TextBox/Loadable";
-import { Preview } from "containers/Preview/Loadable";
+import { TextBox } from "components/TextBox/Loadable";
+import { Preview } from "components/Preview/Loadable";
 import { parse } from "utils/parse";
 
 const Container = styled.div`

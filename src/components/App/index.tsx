@@ -10,8 +10,8 @@ import * as React from "react";
 import { Helmet } from "react-helmet-async";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
-import { HomePage } from "containers/HomePage/Loadable";
-import { NotFoundPage } from "containers/NotFoundPage/Loadable";
+import { HomePage } from "components/HomePage/Loadable";
+import { NotFoundPage } from "components/NotFoundPage/Loadable";
 
 import { GlobalStyle } from "./GlobalStyle";
 

@@ -15,7 +15,7 @@ import { HelmetProvider } from "react-helmet-async";
 import "sanitize.css/sanitize.css";
 
 // Import root app
-import { App } from "containers/App";
+import { App } from "components/App";
 
 const MOUNT_NODE = document.getElementById("root") as HTMLElement;
 
@@ -37,9 +37,9 @@ if (module.hot) {
   // Hot reloadable translation json files and app
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
-  module.hot.accept(["./containers/App"], () => {
+  module.hot.accept(["./components/App"], () => {
     ReactDOM.unmountComponentAtNode(MOUNT_NODE);
-    const AppContainer = require("./containers/App").App; // eslint-disable-line
+    const AppContainer = require("./components/App").App; // eslint-disable-line
     render(AppContainer);
   });
 }
