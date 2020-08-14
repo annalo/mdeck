@@ -11,10 +11,10 @@ const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 10px;
 `;
 
 const TextArea = styled.textarea`
+  padding: 10px;
   border: none;
   background-color: transparent;
   outline: none;
