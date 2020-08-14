@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Slide /> should match the snapshot 1`] = `
+.c0 {
+  height: 0;
+  padding-top: calc((9 / 16) * 100%);
+  position: relative;
+  overflow: hidden;
+  margin: 10px;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(225,225,225,0.75);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(225,225,225,0.75);
+  box-shadow: 0px 0px 5px 0px rgba(225,225,225,0.75);
+}
+
+.c0 >:first-child {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+}
+
+<div
+  class="c0"
+>
+  <div>
+    <h3>
+      Heading 3
+    </h3>
+    
+
+  </div>
+</div>
+`;
