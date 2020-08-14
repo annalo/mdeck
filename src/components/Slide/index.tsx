@@ -14,20 +14,18 @@ interface Props {
 }
 
 const Container = styled.div`
+  background-color: red;
+  height: 0;
+  padding-top: calc((9 / 16) * 100%);
   position: relative;
-  &:before {
-    background-color: red;
-    display: block;
-    content: "";
-    width: 100%;
-    padding-top: calc((9 / 16) * 100%);
-  }
-  > .inner {
+  margin: 5px 0;
+
+  > :first-child {
     position: absolute;
     top: 0;
-    right: 0;
-    bottom: 0;
     left: 0;
+    height: 100%;
+    width: 100%;
   }
 `;
 
