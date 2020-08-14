@@ -14,7 +14,6 @@ export const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
     width: 100%;
-    padding: 15px;
   }
 
   p,
@@ -27,4 +26,11 @@ export const GlobalStyle = createGlobalStyle`
     font-family: inherit;
     font-size: inherit;
   }
+
+  /* Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 `;
