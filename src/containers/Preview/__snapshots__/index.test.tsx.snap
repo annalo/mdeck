@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Preview /> should match the snapshot 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.c1 {
+  overflow: scroll;
+}
+
+.c1 h1,
+.c1 h2,
+.c1 h3,
+.c1 h4,
+.c1 h5,
+.c1 h6 {
+  text-align: center;
+}
+
+.c1 img {
+  display: block;
+  max-width: 35%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.c1 ul.contains-task-list {
+  list-style-type: none;
+}
+
+<div
+  class="c0"
+>
+  <div
+    class="c1"
+  >
+    <h3>
+      Heading 3
+    </h3>
+  </div>
+</div>
+`;
