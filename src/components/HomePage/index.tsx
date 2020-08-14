@@ -1,5 +1,4 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
 import styled from "styled-components/macro";
 
 import { Editor } from "components/Editor/Loadable";
@@ -9,16 +8,7 @@ const Div = styled.div`
 `;
 
 export const HomePage: React.FC = () => (
-  <>
-    <Helmet>
-      <title>Home Page</title>
-      <meta
-        content="A minimal, markdown-based presentation tool."
-        name="description"
-      />
-    </Helmet>
-    <Div>
-      <Editor />
-    </Div>
-  </>
+  <Div>
+    <Editor />
+  </Div>
 );

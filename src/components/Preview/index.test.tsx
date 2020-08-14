@@ -1,15 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { HelmetProvider } from "react-helmet-async";
 
 import { Preview } from ".";
 
-const renderComponent = () =>
-  render(
-    <HelmetProvider>
-      <Preview html="<h3>Heading 3</h3>" />
-    </HelmetProvider>
-  );
+const renderComponent = () => render(<Preview html="<h3>Heading 3</h3>" />);
 
 describe("<Preview />", () => {
   it("should match the snapshot", () => {

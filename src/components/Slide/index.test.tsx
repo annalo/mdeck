@@ -1,15 +1,9 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { HelmetProvider } from "react-helmet-async";
 
 import { Slide } from ".";
 
-const renderComponent = () =>
-  render(
-    <HelmetProvider>
-      <Slide />
-    </HelmetProvider>
-  );
+const renderComponent = () => render(<Slide />);
 
 describe("<Slide />", () => {
   it("should match the snapshot", () => {

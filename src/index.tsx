@@ -11,7 +11,6 @@ import "react-app-polyfill/stable";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import * as serviceWorker from "serviceWorker";
-import { HelmetProvider } from "react-helmet-async";
 import "sanitize.css/sanitize.css";
 
 // Import root app
@@ -23,11 +22,9 @@ interface Props {
   Component: typeof App;
 }
 const ConnectedApp = ({ Component }: Props) => (
-  <HelmetProvider>
-    <React.StrictMode>
-      <Component />
-    </React.StrictMode>
-  </HelmetProvider>
+  <React.StrictMode>
+    <Component />
+  </React.StrictMode>
 );
 const render = (Component: typeof App) => {
   ReactDOM.render(<ConnectedApp Component={Component} />, MOUNT_NODE);

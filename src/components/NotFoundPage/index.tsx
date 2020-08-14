@@ -1,6 +1,5 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { Helmet } from "react-helmet-async";
 import { P } from "./P";
 
 const Wrapper = styled.div`
@@ -26,10 +25,10 @@ const Title = styled.div`
 export const NotFoundPage: React.FC = () => {
   return (
     <>
-      <Helmet>
+      {/* <Helmet>
         <title>404 Page Not Found</title>
         <meta content="Page not found" name="description" />
-      </Helmet>
+      </Helmet> */}
       <Wrapper>
         <Title>
           4

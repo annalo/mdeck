@@ -7,7 +7,6 @@
  */
 
 import * as React from "react";
-import { Helmet } from "react-helmet-async";
 import { Switch, Route, BrowserRouter } from "react-router-dom";
 
 import { HomePage } from "components/HomePage/Loadable";
@@ -18,12 +17,12 @@ import { GlobalStyle } from "./GlobalStyle";
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
-      <Helmet defaultTitle="mdeck" titleTemplate="%s - mdeck">
+      {/* <Helmet defaultTitle="mdeck" titleTemplate="%s - mdeck">
         <meta
           content="A minimal, markdown-based presentation tool."
           name="description"
         />
-      </Helmet>
+      </Helmet> */}
 
       <Switch>
         <Route exact component={HomePage} path="/" />
