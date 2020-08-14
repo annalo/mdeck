@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 const TextArea = styled.textarea`
-  padding: 10px;
+  padding: 1em 2em;
   border: none;
   background-color: transparent;
   outline: none;
