@@ -12,8 +12,9 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   #root {
-    min-height: 100%;
-    min-width: 100%;
+    height: 100%;
+    width: 100%;
+    padding: 15px;
   }
 
   p,
@@ -27,5 +28,3 @@ export const GlobalStyle = createGlobalStyle`
     font-size: inherit;
   }
 `;
-
-export default GlobalStyle;

@@ -8,5 +8,3 @@ export const NotFoundPage = lazyLoad(
   () => import("./index"),
   (module) => module.NotFoundPage
 );
-
-export default NotFoundPage;
