@@ -1,12 +1,12 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import { Preview } from ".";
+import { Slideshow } from ".";
 
 const renderComponent = () =>
-  render(<Preview slides={["# Title", "### Heading 3"]} />);
+  render(<Slideshow slides={["# Title", "### Heading 3"]} />);
 
-describe("<Preview />", () => {
+describe("<Slideshow />", () => {
   it("should match the snapshot", () => {
     const component = renderComponent();
     expect(component.container.firstChild).toMatchSnapshot();

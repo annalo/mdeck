@@ -2,6 +2,7 @@
 
 exports[`<TextEditor /> should match the snapshot 1`] = `
 .c0 {
+  background-color: #fafafa;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -12,10 +13,13 @@ exports[`<TextEditor /> should match the snapshot 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 15px;
 }
 
 .c1 {
+  padding: 1.5em 1.5em;
+  border: none;
+  background-color: transparent;
+  outline: none;
   height: 100%;
   resize: none;
 }

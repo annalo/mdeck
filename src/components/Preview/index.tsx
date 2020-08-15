@@ -1,44 +1,20 @@
 import React, { memo } from "react";
 import styled from "styled-components/macro";
 
+import { Slideshow } from "components/Slideshow";
+
 interface Props {
-  html: string;
+  slides: Array<string>;
 }
 
 const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 15px;
 `;
 
-const Slideshow = styled.div`
-  overflow: auto;
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    text-align: center;
-  }
-  img {
-    display: block;
-    max-width: 35%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  ul.contains-task-list {
-    list-style-type: none;
-  }
-`;
-
-export const Preview: React.FC<Props> = memo(({ html }: Props) => (
+export const Preview: React.FC<Props> = memo(({ slides }: Props) => (
   <Container>
-    <Slideshow
-      dangerouslySetInnerHTML={{
-        __html: html,
-      }}
-    />
+    <Slideshow slides={slides} />
   </Container>
 ));

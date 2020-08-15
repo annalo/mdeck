@@ -7,13 +7,17 @@ interface Props {
 }
 
 const Container = styled.div`
+  background-color: #fafafa;
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 15px;
 `;
 
 const TextArea = styled.textarea`
+  padding: 1.5em 1.5em;
+  border: none;
+  background-color: transparent;
+  outline: none;
   height: 100%;
   resize: none;
 `;
@@ -23,6 +27,7 @@ export const TextEditor: React.FC<Props> = memo(
     return (
       <Container>
         <TextArea
+          autoFocus
           onChange={(e): void => handleTextChange(e.target.value)}
           value={markdown}
         />
