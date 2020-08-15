@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 import { TextEditor } from ".";
 
 const renderComponent = () =>
-  render(<TextEditor handleTextChange={() => {}} markdown="markdown text" />);
+  render(<TextEditor handleTextChange={() => {}} src="markdown text" />);
 
 describe("<TextEditor />", () => {
   it("should match the snapshot", () => {

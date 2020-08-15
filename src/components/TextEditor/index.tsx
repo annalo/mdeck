@@ -2,7 +2,7 @@ import React, { memo } from "react";
 import styled from "styled-components/macro";
 
 interface Props {
-  markdown: string;
+  src: string;
   handleTextChange(value: string): void;
 }
 
@@ -23,13 +23,13 @@ const TextArea = styled.textarea`
 `;
 
 export const TextEditor: React.FC<Props> = memo(
-  ({ markdown, handleTextChange }: Props) => {
+  ({ src, handleTextChange }: Props) => {
     return (
       <Container>
         <TextArea
           autoFocus
           onChange={(e): void => handleTextChange(e.target.value)}
-          value={markdown}
+          value={src}
         />
       </Container>
     );

@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 export const Editor: React.FC = () => {
-  const [markdown, setMarkdown] = useState(""); // may not need this
+  const [src, setSrc] = useState(""); // may not need this
   const [slides, setSlides] = useState([]);
 
   function convertToSlides(text) {
@@ -20,13 +20,13 @@ export const Editor: React.FC = () => {
   }
 
   function handleTextChange(text) {
-    setMarkdown(text);
+    setSrc(text);
     setSlides(convertToSlides(text));
   }
 
   return (
     <Container>
-      <TextEditor handleTextChange={handleTextChange} markdown={markdown} />
+      <TextEditor handleTextChange={handleTextChange} src={src} />
       <Preview slides={slides} />
     </Container>
   );
