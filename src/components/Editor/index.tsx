@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 
-import { convertMarkdown } from "utils/parser";
+import { parse } from "utils/parse";
 
 const Container = styled.div`
   display: flex;
@@ -13,17 +13,17 @@ const Container = styled.div`
 
 export const Editor: React.FC = () => {
   const [src, setSrc] = useState(""); // may not need this
-  const [html, setHtml] = useState("");
+  const [slides, setSlides] = useState<string[]>([]);
 
   function handleTextChange(markdown: string) {
     setSrc(markdown);
-    setHtml(convertMarkdown(markdown));
+    setSlides(parse(markdown));
   }
 
   return (
     <Container>
       <TextEditor handleTextChange={handleTextChange} src={src} />
-      <Preview html={html} />
+      <Preview slides={slides} />
     </Container>
   );
 };
