@@ -7,6 +7,8 @@
 import React from "react";
 import styled from "styled-components/macro";
 
+import { Parser } from "html-to-react";
+
 interface Props {
   html: string;
 }
@@ -34,13 +36,8 @@ const Container = styled.div`
 `;
 
 export const Slide: React.FC<Props> = ({ html }: Props) => {
-  return (
-    <Container className="slide">
-      <div
-        dangerouslySetInnerHTML={{
-          __html: html,
-        }}
-      />
-    </Container>
-  );
+  const parser = new Parser();
+  const slide = parser.parse(html);
+
+  return <Container className="slide">{slide}</Container>;
 };
