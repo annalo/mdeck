@@ -4,7 +4,7 @@ import { render } from "@testing-library/react";
 import { Slideshow } from ".";
 
 const renderComponent = () =>
-  render(<Slideshow slides={["# Title", "### Heading 3"]} />);
+  render(<Slideshow html="<h1>Title</h1><br/><h3>Heading 3</h3>" />);
 
 describe("<Slideshow />", () => {
   it("should match the snapshot", () => {

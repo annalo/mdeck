@@ -1,10 +1,8 @@
 import React, { memo } from "react";
 import styled from "styled-components/macro";
 
-import { Slide } from "components/Slide";
-
 interface Props {
-  slides: Array<string>;
+  html: string;
 }
 const Container = styled.div`
   height: 100%;
@@ -29,10 +27,12 @@ const Container = styled.div`
   }
 `;
 
-export const Slideshow: React.FC<Props> = memo(({ slides }: Props) => (
+export const Slideshow: React.FC<Props> = memo(({ html }: Props) => (
   <Container>
-    {slides.map((slide, i) => (
-      <Slide key={`slide-${i + 1}`} content={slide} />
-    ))}
+    <div
+      dangerouslySetInnerHTML={{
+        __html: html,
+      }}
+    />
   </Container>
 ));

@@ -1,18 +1,7 @@
-import DOMPurify from "dompurify";
-import MarkdownIt from "markdown-it";
-import MarkdownItTaskLists from "markdown-it-task-lists";
+import { Marpit } from "@marp-team/marpit";
 
-function sanitizeHTML(dirty: string): string {
-  return DOMPurify.sanitize(dirty);
-}
-
-export function convertMarkdown(text: string): string {
-  const parser = new MarkdownIt({
-    breaks: true,
-    linkify: true,
-    typographer: true,
-  }).use(MarkdownItTaskLists);
-  const result = parser.render(text);
-
-  return sanitizeHTML(result);
+export function convertMarkdown(markdown: string): string {
+  const marpit = new Marpit();
+  const { html } = marpit.render(markdown);
+  return html;
 }

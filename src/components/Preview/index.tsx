@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import { Slideshow } from "components/Slideshow";
 
 interface Props {
-  slides: Array<string>;
+  html: string;
 }
 
 const Container = styled.div`
@@ -13,8 +13,8 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Preview: React.FC<Props> = memo(({ slides }: Props) => (
+export const Preview: React.FC<Props> = memo(({ html }: Props) => (
   <Container>
-    <Slideshow slides={slides} />
+    <Slideshow html={html} />
   </Container>
 ));
