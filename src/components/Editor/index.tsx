@@ -12,8 +12,9 @@ const Container = styled.div`
 `;
 
 export const Editor: React.FC = () => {
-  const [src, setSrc] = useState(""); // may not need this
+  const [src, setSrc] = useState<string>(""); // may not need this
   const [slides, setSlides] = useState<string[]>([]);
+  const [lineNumber, setLineNumber] = useState<number>(0);
 
   function handleTextChange(markdown: string) {
     setSrc(markdown);
@@ -22,7 +23,11 @@ export const Editor: React.FC = () => {
 
   return (
     <Container>
-      <TextEditor handleTextChange={handleTextChange} src={src} />
+      <TextEditor
+        handleTextChange={handleTextChange}
+        setLineNumber={setLineNumber}
+        src={src}
+      />
       <Preview slides={slides} />
     </Container>
   );

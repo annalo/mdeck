@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 interface Props {
   src: string;
   handleTextChange(value: string): void;
+  setLineNumber(value: number): void;
 }
 
 const Container = styled.div`
@@ -23,12 +24,29 @@ const TextArea = styled.textarea`
 `;
 
 export const TextEditor: React.FC<Props> = memo(
-  ({ src, handleTextChange }: Props) => {
+  ({ src, handleTextChange, setLineNumber }: Props) => {
+    function handleScroll(e: React.UIEvent<HTMLTextAreaElement>): void {
+      const {
+        value,
+        scrollHeight,
+        scrollTop,
+      } = e.target as HTMLTextAreaElement;
+      const lineCount = value.split("\n").length;
+      // The line number at the top of the textarea can be calculated by multiplying
+      //  the line height (total line count / entire height of element)by scrollTop.
+      const currentLineNumber = Math.floor(
+        (lineCount / scrollHeight) * scrollTop
+      );
+
+      setLineNumber(currentLineNumber);
+    }
+
     return (
       <Container>
         <TextArea
           autoFocus
           onChange={(e): void => handleTextChange(e.target.value)}
+          onScroll={handleScroll}
           value={src}
         />
       </Container>
