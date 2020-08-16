@@ -10,6 +10,7 @@ const Container = styled.div`
   height: 100%;
   overflow: auto;
 
+  /* center image */
   img {
     display: block;
     max-width: 35%;
