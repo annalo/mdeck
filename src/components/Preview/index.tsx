@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 import { Slideshow } from "components/Slideshow";
 
 interface Props {
-  slides: Array<string>;
+  slides: string[];
 }
 
 const Container = styled.div`

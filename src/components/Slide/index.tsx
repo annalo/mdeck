@@ -4,13 +4,13 @@
  *
  */
 
-import React, { memo } from "react";
+import React from "react";
 import styled from "styled-components/macro";
 
-import { convertMarkdown } from "utils/parser";
+import { Parser } from "html-to-react";
 
 interface Props {
-  content: string;
+  html: string;
 }
 
 const Container = styled.div`
@@ -35,14 +35,9 @@ const Container = styled.div`
   }
 `;
 
-export const Slide: React.FC<Props> = memo(({ content }: Props) => {
-  return (
-    <Container>
-      <div
-        dangerouslySetInnerHTML={{
-          __html: convertMarkdown(content),
-        }}
-      />
-    </Container>
-  );
-});
+export const Slide: React.FC<Props> = ({ html }: Props) => {
+  const parser = new Parser();
+  const slide = parser.parse(html);
+
+  return <Container className="slide">{slide}</Container>;
+};
