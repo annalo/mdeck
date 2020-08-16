@@ -17,6 +17,11 @@ const Container = styled.div`
     margin-left: auto;
     margin-right: auto;
   }
+
+  /* remove bullet for checklist */
+  ul.contains-task-list {
+    list-style-type: none;
+  }
 `;
 
 export const Slideshow: React.FC<Props> = memo(({ slides }: Props) => (
