@@ -10,22 +10,11 @@ const Container = styled.div`
   height: 100%;
   overflow: auto;
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    text-align: center;
-  }
   img {
     display: block;
     max-width: 35%;
     margin-left: auto;
     margin-right: auto;
-  }
-  ul.contains-task-list {
-    list-style-type: none;
   }
 `;
 
