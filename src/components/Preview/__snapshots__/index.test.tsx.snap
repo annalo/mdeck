@@ -1,38 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Preview /> should match the snapshot 1`] = `
-.c2 {
-  height: 0;
-  padding-top: calc((9 / 16) * 100%);
-  position: relative;
-  overflow: hidden;
-  margin: 10px;
-  background-color: white;
-  -webkit-box-shadow: 0px 0px 5px 0px rgba(225,225,225,0.75);
-  -moz-box-shadow: 0px 0px 5px 0px rgba(225,225,225,0.75);
-  box-shadow: 0px 0px 5px 0px rgba(225,225,225,0.75);
-}
-
-.c2 >:first-child {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-}
-
 .c1 {
   height: 100%;
   overflow: auto;
-}
-
-.c1 h1,
-.c1 h2,
-.c1 h3,
-.c1 h4,
-.c1 h5,
-.c1 h6 {
-  text-align: center;
 }
 
 .c1 img {
@@ -63,30 +34,7 @@ exports[`<Preview /> should match the snapshot 1`] = `
   class="c0"
 >
   <div
-    class="c1"
-  >
-    <div
-      class="c2"
-    >
-      <div>
-        <h1>
-          Title
-        </h1>
-        
-
-      </div>
-    </div>
-    <div
-      class="c2"
-    >
-      <div>
-        <h3>
-          Heading 3
-        </h3>
-        
-
-      </div>
-    </div>
-  </div>
+    class="c1 slideshow"
+  />
 </div>
 `;

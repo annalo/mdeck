@@ -1,18 +1,16 @@
 import React from "react";
 import { render } from "@testing-library/react";
 
-import { TextEditor } from ".";
+import { SlideElement } from ".";
 
 const renderComponent = () =>
   render(
-    <TextEditor
-      handleTextChange={() => {}}
-      setLineNumber={() => {}}
-      src="markdown text"
-    />
+    <SlideElement lineNumber={0} type="h1">
+      Title
+    </SlideElement>
   );
 
-describe("<TextEditor />", () => {
+describe("<SlideElement />", () => {
   it("should match the snapshot", () => {
     const component = renderComponent();
     expect(component.container.firstChild).toMatchSnapshot();

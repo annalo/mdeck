@@ -21,15 +21,9 @@ exports[`<Slide /> should match the snapshot 1`] = `
   width: 100%;
 }
 
-<div
-  class="c0"
+<section
+  class="c0 slide"
 >
-  <div>
-    <h3>
-      Heading 3
-    </h3>
-    
-
-  </div>
-</div>
+  <div />
+</section>
 `;

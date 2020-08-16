@@ -1,3 +1,4 @@
+/* eslint-disable */
 /**
  *
  * Slide component has an aspect ratio of 16:9
@@ -7,13 +8,11 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { Parser } from "html-to-react";
-
 interface Props {
-  html: string;
+  children: any;
 }
 
-const Container = styled.div`
+const Container = styled.section`
   height: 0;
   padding-top: calc((9 / 16) * 100%);
   position: relative;
@@ -35,9 +34,10 @@ const Container = styled.div`
   }
 `;
 
-export const Slide: React.FC<Props> = ({ html }: Props) => {
-  const parser = new Parser();
-  const slide = parser.parse(html);
-
-  return <Container className="slide">{slide}</Container>;
+export const Slide: React.FC<Props> = ({ children }: Props) => {
+  return (
+    <Container className="slide">
+      <div>{children}</div>
+    </Container>
+  );
 };
