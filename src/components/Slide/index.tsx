@@ -8,13 +8,11 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import { Parser } from "html-to-react";
-
 interface Props {
-  html: string;
+  children: any;
 }
 
-const Container = styled.div`
+const Container = styled.section`
   height: 0;
   padding-top: calc((9 / 16) * 100%);
   position: relative;
@@ -36,11 +34,10 @@ const Container = styled.div`
   }
 `;
 
-export const Slide: React.FC<Props> = ({ html }: Props) => {
-  function parse(htmlString) {
-    const parser = new Parser();
-    return parser.parse(htmlString);
-  }
-
-  return <Container className="slide">{parse(html)}</Container>;
+export const Slide: React.FC<Props> = ({ children }: Props) => {
+  return (
+    <Container className="slide">
+      <div>{children}</div>
+    </Container>
+  );
 };

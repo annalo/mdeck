@@ -13,12 +13,12 @@ const Container = styled.div`
 
 export const Editor: React.FC = () => {
   const [src, setSrc] = useState<string>(""); // may not need this
-  const [slides, setSlides] = useState<string[]>([]);
+  const [html, setHtml] = useState<string>("");
   const [lineNumber, setLineNumber] = useState<number>(0);
 
   function handleTextChange(markdown: string) {
     setSrc(markdown);
-    setSlides(parse(markdown));
+    setHtml(parse(markdown));
   }
 
   return (
@@ -28,7 +28,7 @@ export const Editor: React.FC = () => {
         setLineNumber={setLineNumber}
         src={src}
       />
-      <Preview slides={slides} />
+      <Preview html={html} />
     </Container>
   );
 };

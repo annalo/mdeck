@@ -5,9 +5,7 @@ import { Slideshow } from ".";
 
 const renderComponent = () =>
   render(
-    <Slideshow
-      slides={["<div><h1>Title</h1></div>", "<div><h3>Heading 3</h3></div>"]}
-    />
+    <Slideshow html="<section><h1>Title</h1></section><section><h3>Heading 3</h3></section>" />
   );
 
 describe("<Slideshow />", () => {

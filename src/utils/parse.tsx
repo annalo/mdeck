@@ -21,8 +21,7 @@ function injectLineNumber(md: any) {
       const token = tokens[idx];
 
       if (token.map?.length) {
-        token.attrJoin("class", "src-line");
-        token.attrSet("data-src-line", token.map[0]);
+        token.attrSet("data-line", token.map[0]);
       }
 
       const renderer = original || self.renderToken;
@@ -31,15 +30,13 @@ function injectLineNumber(md: any) {
   });
 }
 
-export function parse(markdown: string): string[] {
+export function parse(markdown: string): string {
   const marpit = new Marpit({
     markdown: { html: true, linkify: true, typographer: true },
   })
     .use(TaskList)
     .use(injectLineNumber);
 
-  const { html = [] }: { html: string[] } = marpit.render(markdown, {
-    htmlAsArray: true,
-  });
+  const { html }: { html: string } = marpit.render(markdown);
   return html;
 }

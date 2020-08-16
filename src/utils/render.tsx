@@ -4,7 +4,7 @@ import HtmlToReact, { Parser } from "html-to-react";
 import { Slide } from "components/Slide/Loadable";
 import { SlideElement } from "components/SlideElement";
 
-export function render(htmlString) {
+export function render(htmlString: string): Array<any> {
   function isValidNode() {
     return true;
   }
