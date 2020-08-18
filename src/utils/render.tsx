@@ -1,3 +1,5 @@
+/* eslint-disable */
+// TODO remove eslint disable
 import React from "react";
 import HtmlToReact, { Parser } from "html-to-react";
 
@@ -10,32 +12,45 @@ export function render(htmlString: string): Array<any> {
   }
   const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
   const processingInstructions = [
-    {
-      // Processes slides
-      shouldProcessNode(node) {
-        return node.name === "section";
-      },
+    // {
+    //   // Processes slides
+    //   shouldProcessNode(node) {
+    //     return node.name === "section";
+    //   },
 
-      processNode(node, children, idx) {
-        return <Slide key={`slide-${idx + 1}`}>{children}</Slide>;
-      },
-    },
-    {
-      // Processes slide elements
-      shouldProcessNode(node) {
-        return node.attribs && node.attribs["data-line"];
-      },
+    //   processNode(node, children, idx) {
+    //     return (
+    //       <Slide key={`slide-${idx + 1}`} {...node.attribs}>
+    //         {children}
+    //       </Slide>
+    //     );
+    //   },
+    // },
+    // {
+    //   // Processes slide elements
+    //   shouldProcessNode(node) {
+    //     return node.attribs && node.attribs["data-line"];
+    //   },
 
+    //   processNode(node, children) {
+    //     return (
+    //       <SlideElement
+    //         key={`slide-element-${node.name}-line-${node.attribs["data-line"]}`}
+    //         lineNumber={node.attribs["data-line"]}
+    //         type={node.name}
+    //       >
+    //         {children}
+    //       </SlideElement>
+    //     );
+    //   },
+    // },
+    {
+      // camelcase foreignObject html tag
+      shouldProcessNode(node) {
+        return node.name === "foreignobject";
+      },
       processNode(node, children) {
-        return (
-          <SlideElement
-            key={`slide-element-${node.name}-line-${node.attribs["data-line"]}`}
-            lineNumber={node.attribs["data-line"]}
-            type={node.name}
-          >
-            {children}
-          </SlideElement>
-        );
+        return <foreignObject {...node.attribs}>{children}</foreignObject>;
       },
     },
     {
