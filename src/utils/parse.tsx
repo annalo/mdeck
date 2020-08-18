@@ -24,7 +24,7 @@ function injectLineNumber(md: any) {
       .find((t) => t.type === "marpit_slide_open");
 
     if (slide.map?.length) {
-      tokens[idx].attrJoin("className", "src-line");
+      tokens[idx].attrJoin("class", "src-line");
       tokens[idx].attrSet("data-line", slide.map[0]);
     }
 
@@ -40,7 +40,7 @@ function injectLineNumber(md: any) {
       const token = tokens[idx];
 
       if (token.map?.length) {
-        token.attrJoin("className", "code-line");
+        token.attrJoin("class", "code-line");
         token.attrSet("data-line", token.map[0]);
       }
 

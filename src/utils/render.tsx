@@ -31,13 +31,14 @@ export function render(htmlString: string): Array<any> {
     //   shouldProcessNode(node) {
     //     return node.attribs && node.attribs["data-line"];
     //   },
-
     //   processNode(node, children) {
     //     return (
     //       <SlideElement
     //         key={`slide-element-${node.name}-line-${node.attribs["data-line"]}`}
-    //         lineNumber={node.attribs["data-line"]}
-    //         type={node.name}
+    //         // TODO camelcase attributes
+    //         contentAttributes={node.attribs}
+    //         elementTag={node.name}
+    //         lineNumber={parseInt(node.attribs["data-line"], 10)}
     //       >
     //         {children}
     //       </SlideElement>
