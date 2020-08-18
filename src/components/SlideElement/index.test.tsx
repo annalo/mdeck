@@ -5,7 +5,11 @@ import { SlideElement } from ".";
 
 const renderComponent = () =>
   render(
-    <SlideElement lineNumber={0} type="h1">
+    <SlideElement
+      contentAttributes={{ key: "value" }}
+      elementTag="h1"
+      lineNumber={0}
+    >
       Title
     </SlideElement>
   );

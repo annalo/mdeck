@@ -1,18 +1,18 @@
-import React from "react";
+/* eslint-disable */
+import React, { useEffect } from "react";
 
 interface Props {
   children: React.ReactNode;
+  contentAttributes: {};
+  elementTag: string;
   lineNumber: number;
-  type: string;
 }
 
 export function SlideElement({
   children,
+  contentAttributes,
+  elementTag,
   lineNumber,
-  type,
-}: Props): React.DOMElement<Record<string, unknown>, Element> {
-  return React.createElement(type, {}, children);
+}) {
+  return React.createElement(elementTag, { ...contentAttributes }, children);
 }
-
-// memo(SlideElement);
-//
