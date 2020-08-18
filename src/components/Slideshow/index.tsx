@@ -24,5 +24,10 @@ const Container = styled.div`
 `;
 
 export const Slideshow: React.FC<Props> = memo(({ html }: Props) => {
-  return <Container className="slideshow">{render(html)}</Container>;
+  console.log(html);
+  return (
+    <Container className="slideshow">
+      <div dangerouslySetInnerHTML={{ __html: html }} />
+    </Container>
+  );
 });
