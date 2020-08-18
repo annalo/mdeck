@@ -12,39 +12,44 @@ export function render(htmlString: string): Array<any> {
   }
   const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
   const processingInstructions = [
-    // {
-    //   // Processes slides
-    //   shouldProcessNode(node) {
-    //     return node.name === "section";
-    //   },
-
-    //   processNode(node, children, idx) {
-    //     return (
-    //       <Slide key={`slide-${idx + 1}`} {...node.attribs}>
-    //         {children}
-    //       </Slide>
-    //     );
-    //   },
-    // },
-    // {
-    //   // Processes slide elements
-    //   shouldProcessNode(node) {
-    //     return node.attribs && node.attribs["data-line"];
-    //   },
-    //   processNode(node, children) {
-    //     return (
-    //       <SlideElement
-    //         key={`slide-element-${node.name}-line-${node.attribs["data-line"]}`}
-    //         // TODO camelcase attributes
-    //         contentAttributes={node.attribs}
-    //         elementTag={node.name}
-    //         lineNumber={parseInt(node.attribs["data-line"], 10)}
-    //       >
-    //         {children}
-    //       </SlideElement>
-    //     );
-    //   },
-    // },
+    {
+      // Processes slides
+      shouldProcessNode(node) {
+        return node.name === "svg";
+      },
+      processNode(node, children, idx) {
+        const attrs = node.attribs;
+        console.log(attrs);
+        return (
+          <Slide
+            className={attrs["class"]}
+            lineNumber={parseInt(attrs["data-line"], 10)}
+            viewBox={attrs["viewbox"]}
+          >
+            {children}
+          </Slide>
+        );
+      },
+    },
+    {
+      // Processes slide elements
+      shouldProcessNode(node) {
+        return node.attribs && node.attribs["data-line"];
+      },
+      processNode(node, children) {
+        return (
+          <SlideElement
+            key={`slide-element-${node.name}-line-${node.attribs["data-line"]}`}
+            // TODO camelcase attributes
+            contentAttributes={node.attribs || {}}
+            elementTag={node.name}
+            lineNumber={parseInt(node.attribs["data-line"], 10)}
+          >
+            {children}
+          </SlideElement>
+        );
+      },
+    },
     {
       // camelcase foreignObject html tag
       shouldProcessNode(node) {

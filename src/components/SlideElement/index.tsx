@@ -1,9 +1,8 @@
-/* eslint-disable */
-import React, { useEffect } from "react";
+import React from "react";
 
 interface Props {
-  children: React.ReactNode;
-  contentAttributes: {};
+  children: React.ReactElement;
+  contentAttributes: { [key: string]: string };
   elementTag: string;
   lineNumber: number;
 }
@@ -13,6 +12,6 @@ export function SlideElement({
   contentAttributes,
   elementTag,
   lineNumber,
-}) {
-  return React.createElement(elementTag, { ...contentAttributes }, children);
+}: Props): React.ReactElement {
+  return React.createElement(elementTag, contentAttributes, children);
 }

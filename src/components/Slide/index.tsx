@@ -1,11 +1,21 @@
-/* eslint-disable */
-// TODO remove eslint disable
 import React from "react";
 
 interface Props {
-  children: any;
+  className: string;
+  children: React.ReactElement;
+  lineNumber: number;
+  viewBox: string;
 }
 
-export const Slide: React.FC<Props> = (props) => {
-  return <svg {...props}>{props.children}</svg>;
+export const Slide: React.FC<Props> = ({
+  children,
+  className,
+  viewBox,
+  lineNumber,
+}: Props) => {
+  return (
+    <svg className={className} data-marpit-svg="" viewBox={viewBox}>
+      {children}
+    </svg>
+  );
 };
