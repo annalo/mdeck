@@ -14,17 +14,16 @@ export function render(htmlString: string): Array<any> {
   const processingInstructions = [
     {
       // Processes slides
-      shouldProcessNode(node) {
-        return node.name === "svg";
+      shouldProcessNode({ name }) {
+        return name === "svg";
       },
-      processNode(node, children, idx) {
-        const attrs = node.attribs;
-        console.log(attrs);
+      processNode({ name, attribs }, children, idx) {
         return (
           <Slide
-            className={attrs["class"]}
-            lineNumber={parseInt(attrs["data-line"], 10)}
-            viewBox={attrs["viewbox"]}
+            key={`slide-${idx + 1}`}
+            className={attribs["class"]}
+            lineNumber={parseInt(attribs["data-line"], 10)}
+            viewBox={attribs["viewbox"]}
           >
             {children}
           </Slide>
@@ -32,18 +31,26 @@ export function render(htmlString: string): Array<any> {
       },
     },
     {
-      // Processes slide elements
-      shouldProcessNode(node) {
-        return node.attribs && node.attribs["data-line"];
+      // camelcase foreignObject html tag
+      shouldProcessNode({ name }) {
+        return name === "foreignobject";
       },
-      processNode(node, children) {
+      processNode({ attribs }, children) {
+        return <foreignObject {...attribs}>{children}</foreignObject>;
+      },
+    },
+    {
+      // Processes slide elements
+      shouldProcessNode({ attribs }) {
+        return attribs && attribs["data-line"];
+      },
+      processNode({ name, attribs }, children) {
         return (
           <SlideElement
-            key={`slide-element-${node.name}-line-${node.attribs["data-line"]}`}
-            // TODO camelcase attributes
-            contentAttributes={node.attribs || {}}
-            elementTag={node.name}
-            lineNumber={parseInt(node.attribs["data-line"], 10)}
+            key={`slide-element-${name}-line-${attribs["data-line"]}`}
+            contentAttributes={attribs}
+            elementTag={name}
+            lineNumber={parseInt(attribs["data-line"], 10)}
           >
             {children}
           </SlideElement>
@@ -51,16 +58,7 @@ export function render(htmlString: string): Array<any> {
       },
     },
     {
-      // camelcase foreignObject html tag
-      shouldProcessNode(node) {
-        return node.name === "foreignobject";
-      },
-      processNode(node, children) {
-        return <foreignObject {...node.attribs}>{children}</foreignObject>;
-      },
-    },
-    {
-      // Anything else
+      // Everything else
       shouldProcessNode() {
         return true;
       },
