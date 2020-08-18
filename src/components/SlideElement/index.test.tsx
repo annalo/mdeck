@@ -8,9 +8,9 @@ const renderComponent = () =>
     <SlideElement
       contentAttributes={{ key: "value" }}
       elementTag="h1"
-      lineNumber={0}
+      lineNumber={2}
     >
-      Title
+      <div>Some Child Element</div>
     </SlideElement>
   );
 
