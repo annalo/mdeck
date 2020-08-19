@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 export const Editor: React.FC = () => {
-  const [src, setSrc] = useState<string>(""); // may not need this
+  const [src, setSrc] = useState<string>(""); // TODO may not need to keep track of src
   const [html, setHtml] = useState<string>("");
   const [lineNumber, setLineNumber] = useState<number>(0);
 
