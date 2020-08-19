@@ -1,16 +1,21 @@
-/* eslint-disable */
+/* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import HtmlToReact, { Parser } from "html-to-react";
 
 import { Slide } from "components/Slide/Loadable";
 import { SlideElement } from "components/SlideElement";
 
+interface Node {
+  name: string;
+  attribs: Record<string, string>;
+}
+
 const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
 function isTableDescendent(parent) {
   return parent && TABLE_TAGS.includes(parent.name);
 }
 
-export function render(htmlString: string): Array<any> {
+export function render(htmlString: string): Array<React.ReactElement> {
   function isValidNode() {
     return true;
   }
@@ -22,13 +27,13 @@ export function render(htmlString: string): Array<any> {
       shouldProcessNode({ name }) {
         return name === "svg";
       },
-      processNode({ name, attribs }, children, idx) {
+      processNode({ attribs }: Node, children, idx) {
         return (
           <Slide
             key={`slide-${idx + 1}`}
-            className={attribs["class"]}
+            className={attribs.class}
             lineNumber={parseInt(attribs["data-line"], 10)}
-            viewBox={attribs["viewbox"]}
+            viewBox={attribs.viewbox}
           >
             {children}
           </Slide>
@@ -37,10 +42,10 @@ export function render(htmlString: string): Array<any> {
     },
     {
       // Processes slide elements
-      shouldProcessNode({ attribs }) {
+      shouldProcessNode({ attribs }: Node) {
         return attribs && attribs["data-line"];
       },
-      processNode({ name, attribs }, children) {
+      processNode({ name, attribs }: Node, children) {
         return (
           <SlideElement
             key={`slide-element-${name}-line-${attribs["data-line"]}`}
@@ -58,7 +63,7 @@ export function render(htmlString: string): Array<any> {
       shouldProcessNode({ name }) {
         return name === "foreignobject";
       },
-      processNode({ attribs }, children, idx) {
+      processNode({ attribs }: Node, children, idx) {
         return (
           <foreignObject key={`foreignobject-${idx + 1}`} {...attribs}>
             {children}
