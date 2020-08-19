@@ -1,15 +1,20 @@
 /* eslint-disable */
-// TODO remove eslint disable
 import React from "react";
 import HtmlToReact, { Parser } from "html-to-react";
 
 import { Slide } from "components/Slide/Loadable";
 import { SlideElement } from "components/SlideElement";
 
+const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
+function isTableDescendent(parent) {
+  return parent && TABLE_TAGS.includes(parent.name);
+}
+
 export function render(htmlString: string): Array<any> {
   function isValidNode() {
     return true;
   }
+
   const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
   const processingInstructions = [
     {
@@ -38,8 +43,8 @@ export function render(htmlString: string): Array<any> {
       processNode({ name, attribs }, children) {
         return (
           <SlideElement
-            attributes={attribs}
             key={`slide-element-${name}-line-${attribs["data-line"]}`}
+            attributes={attribs}
             elementTag={name}
             lineNumber={parseInt(attribs["data-line"], 10)}
           >
@@ -61,9 +66,13 @@ export function render(htmlString: string): Array<any> {
         );
       },
     },
+
     {
       // Everything else
-      shouldProcessNode() {
+      shouldProcessNode({ parent, type }) {
+        if (type === "text" && isTableDescendent(parent)) {
+          return false;
+        }
         return true;
       },
       processNode: processNodeDefinitions.processDefaultNode,

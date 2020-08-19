@@ -14,6 +14,5 @@ export function SlideElement({
   lineNumber,
 }: Props): React.ReactElement {
   const { class: className, ...attrs } = attributes;
-
   return React.createElement(elementTag, { className, ...attrs }, children);
 }
