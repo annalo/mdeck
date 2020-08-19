@@ -35,8 +35,12 @@ export function render(htmlString: string): Array<any> {
       shouldProcessNode({ name }) {
         return name === "foreignobject";
       },
-      processNode({ attribs }, children) {
-        return <foreignObject {...attribs}>{children}</foreignObject>;
+      processNode({ attribs }, children, idx) {
+        return (
+          <foreignObject key={`foreignobject-${idx + 1}`} {...attribs}>
+            {children}
+          </foreignObject>
+        );
       },
     },
     {
@@ -47,8 +51,8 @@ export function render(htmlString: string): Array<any> {
       processNode({ name, attribs }, children) {
         return (
           <SlideElement
+            attributes={attribs}
             key={`slide-element-${name}-line-${attribs["data-line"]}`}
-            contentAttributes={attribs}
             elementTag={name}
             lineNumber={parseInt(attribs["data-line"], 10)}
           >

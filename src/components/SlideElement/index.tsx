@@ -2,16 +2,18 @@ import React from "react";
 
 interface Props {
   children: React.ReactElement;
-  contentAttributes: { [key: string]: string };
+  attributes: { [key: string]: string };
   elementTag: string;
   lineNumber: number;
 }
 
 export function SlideElement({
+  attributes,
   children,
-  contentAttributes,
   elementTag,
   lineNumber,
 }: Props): React.ReactElement {
-  return React.createElement(elementTag, contentAttributes, children);
+  const { class: className, ...attrs } = attributes;
+
+  return React.createElement(elementTag, { className, ...attrs }, children);
 }
