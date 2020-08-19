@@ -1,5 +1,4 @@
-/* eslint-disable no-param-reassign */
-/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable */
 
 const RULES = [
   "blockquote_open",
@@ -22,7 +21,7 @@ export function injectLineNumber(md: Record<string, any>) {
       .find((t) => t.type === "marpit_slide_open");
 
     if (slide.map?.length) {
-      tokens[idx].attrSet("src-line", slide.map[0]);
+      tokens[idx].attrSet("data-line", slide.map[0]);
     }
 
     const renderer = marpit_inline_svg_open || self.renderToken;
@@ -36,7 +35,7 @@ export function injectLineNumber(md: Record<string, any>) {
       const token = tokens[idx];
 
       if (token.map?.length) {
-        token.attrSet("src-line", token.map[0]);
+        token.attrSet("data-line", token.map[0]);
       }
 
       const renderer = original || self.renderToken;

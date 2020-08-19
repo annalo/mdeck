@@ -31,19 +31,6 @@ export function render(htmlString: string): Array<any> {
       },
     },
     {
-      // camelcase foreignObject html tag
-      shouldProcessNode({ name }) {
-        return name === "foreignobject";
-      },
-      processNode({ attribs }, children, idx) {
-        return (
-          <foreignObject key={`foreignobject-${idx + 1}`} {...attribs}>
-            {children}
-          </foreignObject>
-        );
-      },
-    },
-    {
       // Processes slide elements
       shouldProcessNode({ attribs }) {
         return attribs && attribs["data-line"];
@@ -58,6 +45,19 @@ export function render(htmlString: string): Array<any> {
           >
             {children}
           </SlideElement>
+        );
+      },
+    },
+    {
+      // camelcase foreignObject html tag
+      shouldProcessNode({ name }) {
+        return name === "foreignobject";
+      },
+      processNode({ attribs }, children, idx) {
+        return (
+          <foreignObject key={`foreignobject-${idx + 1}`} {...attribs}>
+            {children}
+          </foreignObject>
         );
       },
     },
