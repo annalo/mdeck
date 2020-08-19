@@ -1,18 +1,18 @@
 import React from "react";
 
 interface Props {
-  children: React.ReactNode;
+  children: React.ReactElement;
+  attributes: { [key: string]: string };
+  elementTag: string;
   lineNumber: number;
-  type: string;
 }
 
 export function SlideElement({
+  attributes,
   children,
+  elementTag,
   lineNumber,
-  type,
-}: Props): React.DOMElement<Record<string, unknown>, Element> {
-  return React.createElement(type, {}, children);
+}: Props): React.ReactElement {
+  const { class: className, ...attrs } = attributes;
+  return React.createElement(elementTag, { className, ...attrs }, children);
 }
-
-// memo(SlideElement);
-//

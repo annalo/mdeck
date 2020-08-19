@@ -6,18 +6,18 @@ exports[`<Slideshow /> should match the snapshot 1`] = `
   overflow: auto;
 }
 
-.c0 img {
-  display: block;
-  max-width: 35%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.c0 ul.contains-task-list {
-  list-style-type: none;
-}
-
 <div
   class="c0 slideshow"
-/>
+>
+  <section>
+    <h1>
+      Title
+    </h1>
+  </section>
+  <section>
+    <h3>
+      Heading 3
+    </h3>
+  </section>
+</div>
 `;

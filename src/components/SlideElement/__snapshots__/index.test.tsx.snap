@@ -2,6 +2,8 @@
 
 exports[`<SlideElement /> should match the snapshot 1`] = `
 <h1>
-  Title
+  <div>
+    Some Child Element
+  </div>
 </h1>
 `;

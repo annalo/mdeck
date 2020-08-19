@@ -6,17 +6,6 @@ exports[`<Preview /> should match the snapshot 1`] = `
   overflow: auto;
 }
 
-.c1 img {
-  display: block;
-  max-width: 35%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.c1 ul.contains-task-list {
-  list-style-type: none;
-}
-
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -35,6 +24,17 @@ exports[`<Preview /> should match the snapshot 1`] = `
 >
   <div
     class="c1 slideshow"
-  />
+  >
+    <section>
+      <h1>
+        Title
+      </h1>
+    </section>
+    <section>
+      <h3>
+        Heading 3
+      </h3>
+    </section>
+  </div>
 </div>
 `;
