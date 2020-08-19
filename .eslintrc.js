@@ -37,5 +37,6 @@ module.exports = {
         reservedFirst: true,
       },
     ],
+    "react/no-unused-prop-types": "off",
   },
 };
