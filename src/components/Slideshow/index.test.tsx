@@ -5,7 +5,10 @@ import { Slideshow } from ".";
 
 const renderComponent = () =>
   render(
-    <Slideshow html="<section><h1>Title</h1></section><section><h3>Heading 3</h3></section>" />
+    <Slideshow
+      html="<section><h1>Title</h1></section><section><h3>Heading 3</h3></section>"
+      setLineNumber={() => {}}
+    />
   );
 
 describe("<Slideshow />", () => {

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import styled from "styled-components/macro";
 
 import { TextEditor } from "components/TextEditor/Loadable";
@@ -12,7 +12,7 @@ const Container = styled.div`
 `;
 
 export const Editor: React.FC = () => {
-  const [src, setSrc] = useState<string>(""); // may not need this
+  const [src, setSrc] = useState<string>(""); // TODO may not need to keep track of src
   const [html, setHtml] = useState<string>("");
   const [lineNumber, setLineNumber] = useState<number>(0);
 
@@ -25,10 +25,12 @@ export const Editor: React.FC = () => {
     <Container>
       <TextEditor
         handleTextChange={handleTextChange}
-        setLineNumber={setLineNumber}
+        lineNumber={lineNumber}
         src={src}
       />
-      <Preview html={html} />
+      <Preview html={html} setLineNumber={setLineNumber} />
     </Container>
   );
 };
+
+export default memo(Editor);

@@ -3,6 +3,7 @@
 exports[`<Slide /> should match the snapshot 1`] = `
 <svg
   class="slide"
+  data-line="0"
   data-marpit-svg=""
   viewBox="0 0  1280 720"
 >

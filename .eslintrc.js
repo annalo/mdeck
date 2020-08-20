@@ -20,7 +20,6 @@ module.exports = {
     project: "./tsconfig.json",
   },
   rules: {
-    "import/no-default-export": "error",
     "import/prefer-default-export": "off",
     "linebreak-style": "off",
     "no-debugger": "warn",

@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 import styled from "styled-components/macro";
-
 import { Slideshow } from "components/Slideshow";
 
 interface Props {
   html: string;
+  setLineNumber(value: number): void;
 }
 
 const Container = styled.div`
@@ -13,8 +13,12 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Preview: React.FC<Props> = memo(({ html }: Props) => (
-  <Container>
-    <Slideshow html={html} />
-  </Container>
-));
+export const Preview: React.FC<Props> = ({ html, setLineNumber }: Props) => {
+  return (
+    <Container>
+      <Slideshow html={html} setLineNumber={setLineNumber} />
+    </Container>
+  );
+};
+
+export default memo(Preview);

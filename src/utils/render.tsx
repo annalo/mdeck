@@ -32,7 +32,7 @@ export function render(htmlString: string): Array<React.ReactElement> {
           <Slide
             key={`slide-${idx + 1}`}
             className={attribs.class}
-            lineNumber={parseInt(attribs["data-line"], 10)}
+            srcLine={parseInt(attribs["data-line"], 10)}
             viewBox={attribs.viewbox}
           >
             {children}
@@ -51,7 +51,7 @@ export function render(htmlString: string): Array<React.ReactElement> {
             key={`slide-element-${name}-line-${attribs["data-line"]}`}
             attributes={attribs}
             elementTag={name}
-            lineNumber={parseInt(attribs["data-line"], 10)}
+            srcLine={parseInt(attribs["data-line"], 10)}
           >
             {children}
           </SlideElement>

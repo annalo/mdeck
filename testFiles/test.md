@@ -1,36 +1,17 @@
 # Title Slide
 
----
-
 ```
   code
 ```
 
----
-
 https://google.com
 
 asdfasdfasdf
-
 asdfasdfasdf
 asdfasdfasdf
 asdfasdfasdf
 asdfasdfasdf
 asdfasdfasdf
-asdfasdfasdfasdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-asdfasdfasdf
-
-bottom
 
 ---
 
@@ -96,5 +77,3 @@ see [how to change output](https://github.com/markdown-it/markdown-it-emoji#chan
 
 ![width:50px](https://octodex.github.com/images/minion.png)
 ![100px](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
-
----

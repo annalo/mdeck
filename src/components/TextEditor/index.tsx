@@ -1,10 +1,10 @@
-import React, { memo } from "react";
+import React, { memo, useEffect, useRef } from "react";
 import styled from "styled-components/macro";
 
 interface Props {
   src: string;
   handleTextChange(value: string): void;
-  setLineNumber(value: number): void;
+  lineNumber: number;
 }
 
 const Container = styled.div`
@@ -13,43 +13,49 @@ const Container = styled.div`
   flex: 1;
   flex-direction: column;
 `;
-
 const TextArea = styled.textarea`
-  padding: 1.5em 1.5em;
-  border: none;
   background-color: transparent;
-  outline: none;
+  border: none;
+  font-size: 15px;
   height: 100%;
+  outline: none;
+  padding: 1em;
   resize: none;
 `;
 
-export const TextEditor: React.FC<Props> = memo(
-  ({ src, handleTextChange, setLineNumber }: Props) => {
-    function handleScroll(e: React.UIEvent<HTMLTextAreaElement>): void {
-      const {
-        value,
-        scrollHeight,
-        scrollTop,
-      } = e.target as HTMLTextAreaElement;
-      const lineCount = value.split("\n").length;
-      // The line number at the top of the textarea can be calculated by multiplying
-      //  the line height (total line count / entire height of element)by scrollTop.
-      const currentLineNumber = Math.floor(
-        (lineCount / scrollHeight) * scrollTop
-      );
+function lineCount(text: string): number {
+  return text.split("\n").length;
+}
 
-      setLineNumber(currentLineNumber);
+export const TextEditor: React.FC<Props> = ({
+  src,
+  handleTextChange,
+  lineNumber,
+}: Props) => {
+  const ref = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    // sync text to preview
+    const node = ref.current;
+    if (node) {
+      const { scrollHeight, value } = node;
+      node.scroll({
+        top: (lineNumber / lineCount(value)) * scrollHeight,
+        behavior: "smooth",
+      });
     }
+  });
 
-    return (
-      <Container>
-        <TextArea
-          autoFocus
-          onChange={(e): void => handleTextChange(e.target.value)}
-          onScroll={handleScroll}
-          value={src}
-        />
-      </Container>
-    );
-  }
-);
+  return (
+    <Container>
+      <TextArea
+        ref={ref}
+        autoFocus
+        onChange={(e): void => handleTextChange(e.target.value)}
+        value={src}
+      />
+    </Container>
+  );
+};
+
+export default memo(TextEditor);

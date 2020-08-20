@@ -2,19 +2,24 @@ import React from "react";
 
 interface Props {
   className: string;
+  srcLine: number;
   children: React.ReactElement;
-  lineNumber: number;
   viewBox: string;
 }
 
 export const Slide: React.FC<Props> = ({
   children,
   className,
+  srcLine,
   viewBox,
-  lineNumber,
 }: Props) => {
   return (
-    <svg className={className} data-marpit-svg="" viewBox={viewBox}>
+    <svg
+      className={className}
+      data-line={srcLine}
+      data-marpit-svg=""
+      viewBox={viewBox}
+    >
       {children}
     </svg>
   );
