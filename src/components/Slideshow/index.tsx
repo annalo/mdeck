@@ -22,8 +22,9 @@ export const Slideshow: React.FC<Props> = ({ html, setLineNumber }: Props) => {
       new IntersectionObserver(
         (entries: IntersectionObserverEntry[]) => {
           const topElement: any = entries.find(
-            (entry) => entry.boundingClientRect.top < 10
+            (entry) => entry.boundingClientRect.top < 25
           );
+          console.log(entries);
           if (topElement) {
             setLineNumber(parseInt(topElement.target.dataset.line, 10));
           }
@@ -31,7 +32,7 @@ export const Slideshow: React.FC<Props> = ({ html, setLineNumber }: Props) => {
         {
           root: ref.current,
           rootMargin: "0px",
-          threshold: 1.0,
+          threshold: [0.2, 1.0],
         }
       )
     );

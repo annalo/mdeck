@@ -13,13 +13,13 @@ const Container = styled.div`
   flex: 1;
   flex-direction: column;
 `;
-
 const TextArea = styled.textarea`
-  padding: 1.5em 1.5em;
-  border: none;
   background-color: transparent;
-  outline: none;
+  border: none;
+  font-size: 15px;
   height: 100%;
+  outline: none;
+  padding: 1em;
   resize: none;
 `;
 
