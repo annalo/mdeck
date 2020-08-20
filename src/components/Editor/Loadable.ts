@@ -6,7 +6,4 @@
 
 import { lazyLoad } from "utils/loadable";
 
-export const Editor = lazyLoad(
-  () => import("./index"),
-  (module) => module.Editor
-);
+export const Editor = lazyLoad(() => import("./index"));

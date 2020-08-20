@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { memo, useState } from "react";
 import styled from "styled-components/macro";
 
 import { TextEditor } from "components/TextEditor/Loadable";
@@ -25,10 +25,13 @@ export const Editor: React.FC = () => {
     <Container>
       <TextEditor
         handleTextChange={handleTextChange}
+        lineNumber={lineNumber}
         setLineNumber={setLineNumber}
         src={src}
       />
-      <Preview html={html} />
+      <Preview html={html} setLineNumber={setLineNumber} />
     </Container>
   );
 };
+
+export default memo(Editor);
