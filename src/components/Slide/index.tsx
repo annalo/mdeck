@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { ObserverContext } from "utils/ObserverContext";
 
 interface Props {
   className: string;
@@ -13,8 +14,17 @@ export const Slide: React.FC<Props> = ({
   srcLine,
   viewBox,
 }: Props) => {
+  const ref = useRef<SVGSVGElement>(null);
+  const observer = useContext(ObserverContext);
+
+  useEffect(() => {
+    if (ref.current) {
+      observer?.observe(ref.current);
+    }
+  }, [observer]);
+
   return (
-    <svg className={className} data-marpit-svg="" viewBox={viewBox}>
+    <svg ref={ref} className={className} data-marpit-svg="" viewBox={viewBox}>
       {children}
     </svg>
   );
