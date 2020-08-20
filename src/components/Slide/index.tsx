@@ -20,6 +20,10 @@ export const Slide: React.FC<Props> = ({
   useEffect(() => {
     const node = ref.current;
     if (node) observer?.observe(node);
+
+    return () => {
+      if (node) observer?.unobserve(node);
+    };
   }, [observer]);
 
   return (
