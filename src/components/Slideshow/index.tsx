@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState, useRef } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import styled from "styled-components/macro";
 import { render } from "utils/render";
 import { ObserverContext } from "utils/ObserverContext";
@@ -11,7 +11,7 @@ const Container = styled.div`
   overflow: auto;
 `;
 
-export const Slideshow: React.FC<Props> = memo(({ html }: Props) => {
+export const Slideshow: React.FC<Props> = ({ html }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
 
@@ -47,4 +47,6 @@ export const Slideshow: React.FC<Props> = memo(({ html }: Props) => {
       </Container>
     </ObserverContext.Provider>
   );
-});
+};
+
+export default memo(Slideshow);

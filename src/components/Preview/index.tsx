@@ -12,10 +12,12 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Preview: React.FC<Props> = memo(({ html }: Props) => {
+export const Preview: React.FC<Props> = ({ html }: Props) => {
   return (
     <Container>
       <Slideshow html={html} />
     </Container>
   );
-});
+};
+
+export default memo(Preview);

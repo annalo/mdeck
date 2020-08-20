@@ -6,7 +6,4 @@
 
 import { lazyLoad } from "utils/loadable";
 
-export const Preview = lazyLoad(
-  () => import("./index"),
-  (module) => module.Preview
-);
+export const Preview = lazyLoad(() => import("./index"));
