@@ -1,6 +1,5 @@
 import React, { memo } from "react";
 import styled from "styled-components/macro";
-
 import { Slideshow } from "components/Slideshow";
 
 interface Props {
@@ -13,8 +12,10 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Preview: React.FC<Props> = memo(({ html }: Props) => (
-  <Container>
-    <Slideshow html={html} />
-  </Container>
-));
+export const Preview: React.FC<Props> = memo(({ html }: Props) => {
+  return (
+    <Container>
+      <Slideshow html={html} />
+    </Container>
+  );
+});

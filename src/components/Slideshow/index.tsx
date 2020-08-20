@@ -1,6 +1,7 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useEffect, useState, useRef } from "react";
 import styled from "styled-components/macro";
 import { render } from "utils/render";
+import { ObserverContext } from "utils/ObserverContext";
 
 interface Props {
   html: string;
@@ -12,6 +13,7 @@ const Container = styled.div`
 
 export const Slideshow: React.FC<Props> = memo(({ html }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [observer, setObserver] = useState<IntersectionObserver | null>(null);
 
   const handleCallback = (entries, _observer) => {
     // entries.forEach((entry) => {
@@ -28,17 +30,21 @@ export const Slideshow: React.FC<Props> = memo(({ html }: Props) => {
   };
 
   useEffect(() => {
-    const observer = new IntersectionObserver(handleCallback, {
-      root: ref.current,
-      rootMargin: "0px",
-      threshold: 0.25,
-    });
-    return () => observer.disconnect();
-  });
+    console.log("use effect");
+    setObserver(
+      new IntersectionObserver(handleCallback, {
+        root: ref.current,
+        rootMargin: "0px",
+        threshold: 0.25,
+      })
+    );
+  }, [setObserver]);
 
   return (
-    <Container ref={ref} className="slideshow">
-      {render(html)}
-    </Container>
+    <ObserverContext.Provider value={observer}>
+      <Container ref={ref} className="slideshow">
+        {render(html)}
+      </Container>
+    </ObserverContext.Provider>
   );
 });
