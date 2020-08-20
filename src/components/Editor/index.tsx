@@ -26,7 +26,6 @@ export const Editor: React.FC = () => {
       <TextEditor
         handleTextChange={handleTextChange}
         lineNumber={lineNumber}
-        setLineNumber={setLineNumber}
         src={src}
       />
       <Preview html={html} setLineNumber={setLineNumber} />
