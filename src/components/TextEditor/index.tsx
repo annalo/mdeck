@@ -23,33 +23,33 @@ const TextArea = styled.textarea`
   resize: none;
 `;
 
-export const TextEditor: React.FC<Props> = memo(
-  ({ src, handleTextChange, setLineNumber }: Props) => {
-    function handleScroll(e: React.UIEvent<HTMLTextAreaElement>): void {
-      const {
-        value,
-        scrollHeight,
-        scrollTop,
-      } = e.target as HTMLTextAreaElement;
-      const lineCount = value.split("\n").length;
-      // The line number at the top of the textarea can be calculated by multiplying
-      //  the line height (total line count / entire height of element)by scrollTop.
-      const currentLineNumber = Math.floor(
-        (lineCount / scrollHeight) * scrollTop
-      );
-
-      setLineNumber(currentLineNumber);
-    }
-
-    return (
-      <Container>
-        <TextArea
-          autoFocus
-          onChange={(e): void => handleTextChange(e.target.value)}
-          onScroll={handleScroll}
-          value={src}
-        />
-      </Container>
+export const TextEditor: React.FC<Props> = ({
+  src,
+  handleTextChange,
+  setLineNumber,
+}: Props) => {
+  function handleScroll(e: React.UIEvent<HTMLTextAreaElement>): void {
+    const { value, scrollHeight, scrollTop } = e.target as HTMLTextAreaElement;
+    const lineCount = value.split("\n").length;
+    // The line number at the top of the textarea can be calculated by multiplying
+    //  the line height (total line count / entire height of element)by scrollTop.
+    const currentLineNumber = Math.floor(
+      (lineCount / scrollHeight) * scrollTop
     );
+
+    setLineNumber(currentLineNumber);
   }
-);
+
+  return (
+    <Container>
+      <TextArea
+        autoFocus
+        onChange={(e): void => handleTextChange(e.target.value)}
+        onScroll={handleScroll}
+        value={src}
+      />
+    </Container>
+  );
+};
+
+export default memo(TextEditor);

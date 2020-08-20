@@ -6,7 +6,4 @@
 
 import { lazyLoad } from "utils/loadable";
 
-export const TextEditor = lazyLoad(
-  () => import("./index"),
-  (module) => module.TextEditor
-);
+export const TextEditor = lazyLoad(() => import("./index"));
