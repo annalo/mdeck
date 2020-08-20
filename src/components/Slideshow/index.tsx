@@ -5,40 +5,37 @@ import { ObserverContext } from "utils/ObserverContext";
 
 interface Props {
   html: string;
+  setLineNumber(value: number): void;
 }
 const Container = styled.div`
   height: 100%;
   overflow: auto;
 `;
 
-export const Slideshow: React.FC<Props> = ({ html }: Props) => {
+export const Slideshow: React.FC<Props> = ({ html, setLineNumber }: Props) => {
   const ref = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
 
-  const handleCallback = (entries, _observer) => {
-    // entries.forEach((entry) => {
-    //   // Each entry describes an intersection change for one observed
-    //   // target element:
-    //   //   entry.boundingClientRect
-    //   //   entry.intersectionRatio
-    //   //   entry.intersectionRect
-    //   //   entry.isIntersecting
-    //   //   entry.rootBounds
-    //   //   entry.target
-    //   //   entry.time
-    // });
-  };
-
   useEffect(() => {
-    console.log("use effect");
+    console.log("initializing observer");
     setObserver(
-      new IntersectionObserver(handleCallback, {
-        root: ref.current,
-        rootMargin: "0px",
-        threshold: 0.25,
-      })
+      new IntersectionObserver(
+        (entries: IntersectionObserverEntry[]) => {
+          const topElement: any = entries.find(
+            (entry) => entry.boundingClientRect.top < 10
+          );
+          if (topElement) {
+            setLineNumber(parseInt(topElement.target.dataset.line, 10));
+          }
+        },
+        {
+          root: ref.current,
+          rootMargin: "0px",
+          threshold: 1.0,
+        }
+      )
     );
-  }, [setObserver]);
+  }, [setObserver, setLineNumber]);
 
   return (
     <ObserverContext.Provider value={observer}>

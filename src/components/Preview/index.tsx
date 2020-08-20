@@ -4,6 +4,7 @@ import { Slideshow } from "components/Slideshow";
 
 interface Props {
   html: string;
+  setLineNumber(value: number): void;
 }
 
 const Container = styled.div`
@@ -12,10 +13,10 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-export const Preview: React.FC<Props> = ({ html }: Props) => {
+export const Preview: React.FC<Props> = ({ html, setLineNumber }: Props) => {
   return (
     <Container>
-      <Slideshow html={html} />
+      <Slideshow html={html} setLineNumber={setLineNumber} />
     </Container>
   );
 };
