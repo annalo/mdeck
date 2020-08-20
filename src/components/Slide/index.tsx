@@ -18,13 +18,18 @@ export const Slide: React.FC<Props> = ({
   const observer = useContext(ObserverContext);
 
   useEffect(() => {
-    if (ref.current) {
-      observer?.observe(ref.current);
-    }
+    const node = ref.current;
+    if (node) observer?.observe(node);
   }, [observer]);
 
   return (
-    <svg ref={ref} className={className} data-marpit-svg="" viewBox={viewBox}>
+    <svg
+      ref={ref}
+      className={className}
+      data-line={srcLine}
+      data-marpit-svg=""
+      viewBox={viewBox}
+    >
       {children}
     </svg>
   );
