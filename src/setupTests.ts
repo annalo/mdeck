@@ -8,3 +8,11 @@ import "react-app-polyfill/ie11";
 import "react-app-polyfill/stable";
 
 import "jest-styled-components";
+
+Object.defineProperty(global, "IntersectionObserver", {
+  writable: true,
+  value: jest.fn(() => ({
+    observe: jest.fn(),
+    unobserve: jest.fn(),
+  })),
+});
