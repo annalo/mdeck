@@ -39,8 +39,6 @@ export const TextEditor: React.FC<Props> = ({
     const node = ref.current;
     if (node) {
       const { scrollHeight, value } = node;
-      const scrollTop = (lineNumber / lineCount(value)) * scrollHeight;
-      console.log(scrollTop, lineNumber, lineCount(value), scrollHeight);
       node.scroll({
         top: (lineNumber / lineCount(value)) * scrollHeight,
         behavior: "smooth",
