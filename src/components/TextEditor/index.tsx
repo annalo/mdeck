@@ -1,11 +1,6 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useContext, useEffect, useRef } from "react";
 import styled from "styled-components/macro";
-
-interface Props {
-  src: string;
-  handleTextChange(value: string): void;
-  lineNumber: number;
-}
+import { MarkdownContext } from "contexts/MarkdownContext";
 
 const Container = styled.div`
   background-color: #fafafa;
@@ -27,12 +22,10 @@ function lineCount(text: string): number {
   return text.split("\n").length;
 }
 
-export const TextEditor: React.FC<Props> = ({
-  src,
-  handleTextChange,
-  lineNumber,
-}: Props) => {
+export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
+  const { state, dispatch } = useContext(MarkdownContext);
+  const { lineNumber, md } = state;
 
   useEffect(() => {
     // sync text to preview
@@ -51,8 +44,8 @@ export const TextEditor: React.FC<Props> = ({
       <TextArea
         ref={ref}
         autoFocus
-        onChange={(e): void => handleTextChange(e.target.value)}
-        value={src}
+        onChange={(e): void => dispatch({ type: "setMd", md: e.target.value })}
+        value={md}
       />
     </Container>
   );
