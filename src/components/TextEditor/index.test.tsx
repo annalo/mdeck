@@ -8,6 +8,7 @@ const renderComponent = () =>
     <TextEditor
       handleTextChange={() => {}}
       lineNumber={0}
+      setLineNumber={() => {}}
       src="markdown text"
     />
   );

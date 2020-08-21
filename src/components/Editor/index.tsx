@@ -3,7 +3,6 @@ import styled from "styled-components/macro";
 
 import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
-
 import { parse } from "utils/parse";
 
 const Container = styled.div`
@@ -26,6 +25,7 @@ export const Editor: React.FC = () => {
       <TextEditor
         handleTextChange={handleTextChange}
         lineNumber={lineNumber}
+        setLineNumber={setLineNumber}
         src={src}
       />
       <Preview html={html} setLineNumber={setLineNumber} />

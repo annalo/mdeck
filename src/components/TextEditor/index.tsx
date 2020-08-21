@@ -1,11 +1,14 @@
 import React, { memo, useEffect, useRef } from "react";
 import styled from "styled-components/macro";
-import { useHover } from "utils/useHover";
+
+import { useHover } from "./useHover";
+import { useCurrentSrcLine } from "./useCurrentSrcLine";
 
 interface Props {
-  src: string;
   handleTextChange(value: string): void;
   lineNumber: number;
+  setLineNumber(value: number): void;
+  src: string;
 }
 
 const Container = styled.div`
@@ -29,12 +32,16 @@ function lineCount(text: string): number {
 }
 
 export const TextEditor: React.FC<Props> = ({
-  src,
   handleTextChange,
   lineNumber,
+  setLineNumber,
+  src,
 }: Props) => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const isHovered = useHover(ref);
+  useCurrentSrcLine(ref, setLineNumber);
+
+  console.log(lineNumber);
 
   useEffect(() => {
     if (isHovered) return;
