@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { ObserverContext } from "utils/ObserverContext";
+import { ObserverContext } from "contexts/ObserverContext";
 
 interface Props {
   children: React.ReactElement;

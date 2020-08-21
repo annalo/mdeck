@@ -16,11 +16,12 @@ exports[`<TextEditor /> should match the snapshot 1`] = `
 }
 
 .c1 {
-  padding: 1.5em 1.5em;
-  border: none;
   background-color: transparent;
-  outline: none;
+  border: none;
+  font-size: 15px;
   height: 100%;
+  outline: none;
+  padding: 1em;
   resize: none;
 }
 
@@ -29,8 +30,6 @@ exports[`<TextEditor /> should match the snapshot 1`] = `
 >
   <textarea
     class="c1"
-  >
-    markdown text
-  </textarea>
+  />
 </div>
 `;

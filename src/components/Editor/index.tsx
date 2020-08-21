@@ -1,36 +1,23 @@
-import React, { memo, useState } from "react";
+import React, { memo } from "react";
 import styled from "styled-components/macro";
 
 import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 
-import { parse } from "utils/parse";
+import { MarkdownProvider } from "contexts/MarkdownContext";
 
-const Container = styled.div`
+const Div = styled.div`
   display: flex;
   height: 100%;
 `;
 
-export const Editor: React.FC = () => {
-  const [src, setSrc] = useState<string>(""); // TODO may not need to keep track of src
-  const [html, setHtml] = useState<string>("");
-  const [lineNumber, setLineNumber] = useState<number>(0);
-
-  function handleTextChange(markdown: string) {
-    setSrc(markdown);
-    setHtml(parse(markdown));
-  }
-
-  return (
-    <Container>
-      <TextEditor
-        handleTextChange={handleTextChange}
-        lineNumber={lineNumber}
-        src={src}
-      />
-      <Preview html={html} setLineNumber={setLineNumber} />
-    </Container>
-  );
-};
+export const Editor: React.FC = () => (
+  <Div>
+    <MarkdownProvider>
+      <TextEditor />
+      <Preview />
+    </MarkdownProvider>
+  </Div>
+);
 
 export default memo(Editor);

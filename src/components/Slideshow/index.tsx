@@ -1,33 +1,32 @@
-import React, { memo, useEffect, useRef, useState } from "react";
+import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components/macro";
 import { render } from "utils/render";
-import { ObserverContext } from "utils/ObserverContext";
+import { ObserverProvider } from "contexts/ObserverContext";
+import { MarkdownContext } from "contexts/MarkdownContext";
 
-interface Props {
-  html: string;
-  setLineNumber(value: number): void;
-}
-const Container = styled.div`
+const Div = styled.div`
   height: 100%;
   overflow: auto;
 `;
 
-export const Slideshow: React.FC<Props> = ({ html, setLineNumber }: Props) => {
+export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
+  const { state, dispatch } = useContext(MarkdownContext);
+  const { html } = state;
 
   useEffect(() => {
-    console.log("initializing observer");
     setObserver(
       new IntersectionObserver(
         (entries: IntersectionObserverEntry[]) => {
           const topElement: any = entries.find(
             (entry) => entry.boundingClientRect.top < 25
           );
-          console.log(entries);
-          if (topElement) {
-            setLineNumber(parseInt(topElement.target.dataset.line, 10));
-          }
+          if (topElement)
+            dispatch({
+              type: "setLineNumber",
+              lineNumber: parseInt(topElement.target.dataset.line, 10),
+            });
         },
         {
           root: ref.current,
@@ -36,14 +35,12 @@ export const Slideshow: React.FC<Props> = ({ html, setLineNumber }: Props) => {
         }
       )
     );
-  }, [setObserver, setLineNumber]);
+  }, [setObserver, dispatch]);
 
   return (
-    <ObserverContext.Provider value={observer}>
-      <Container ref={ref} className="slideshow">
-        {render(html)}
-      </Container>
-    </ObserverContext.Provider>
+    <ObserverProvider observer={observer}>
+      <Div className="slideshow">{render(html)}</Div>
+    </ObserverProvider>
   );
 };
 
