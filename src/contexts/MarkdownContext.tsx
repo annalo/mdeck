@@ -1,17 +1,27 @@
 import React, { createContext, useReducer } from "react";
 
 interface MarkdownProviderProps {
-  children: React.ReactElement;
+  children: React.ReactElement[];
+}
+
+interface MarkdownContextInitialState {
+  html: string;
+  lineNumber: number;
+  md: string;
 }
 
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
-  md: "",
   html: "",
   lineNumber: 0,
+  md: "",
 };
 
-export const MarkdownContext = createContext({
+export const MarkdownContext = createContext<{
+  state: MarkdownContextInitialState;
+  dispatch: React.Dispatch<any>;
+}>({
   state: MARKDOWN_CONTEXT_INITIAL_STATE,
+  dispatch: (any) => null,
 });
 
 export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
