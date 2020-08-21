@@ -1,9 +1,9 @@
 import React, { memo, useEffect, useRef, useState } from "react";
 import styled from "styled-components/macro";
 import { render } from "utils/render";
-import { ObserverContext } from "utils/ObserverContext";
+import { ObserverProvider } from "contexts/ObserverContext";
 
-interface Props {
+interface SlideshowProps {
   html: string;
   setLineNumber(value: number): void;
 }
@@ -12,7 +12,10 @@ const Container = styled.div`
   overflow: auto;
 `;
 
-export const Slideshow: React.FC<Props> = ({ html, setLineNumber }: Props) => {
+export const Slideshow: React.FC<SlideshowProps> = ({
+  html,
+  setLineNumber,
+}: SlideshowProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const [observer, setObserver] = useState<IntersectionObserver | null>(null);
 
@@ -24,10 +27,8 @@ export const Slideshow: React.FC<Props> = ({ html, setLineNumber }: Props) => {
           const topElement: any = entries.find(
             (entry) => entry.boundingClientRect.top < 25
           );
-          console.log(entries);
-          if (topElement) {
+          if (topElement)
             setLineNumber(parseInt(topElement.target.dataset.line, 10));
-          }
         },
         {
           root: ref.current,
@@ -39,11 +40,9 @@ export const Slideshow: React.FC<Props> = ({ html, setLineNumber }: Props) => {
   }, [setObserver, setLineNumber]);
 
   return (
-    <ObserverContext.Provider value={observer}>
-      <Container ref={ref} className="slideshow">
-        {render(html)}
-      </Container>
-    </ObserverContext.Provider>
+    <ObserverProvider observer={observer}>
+      <Container className="slideshow">{render(html)}</Container>
+    </ObserverProvider>
   );
 };
 
