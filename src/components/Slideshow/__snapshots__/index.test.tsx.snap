@@ -8,16 +8,5 @@ exports[`<Slideshow /> should match the snapshot 1`] = `
 
 <div
   class="c0 slideshow"
->
-  <section>
-    <h1>
-      Title
-    </h1>
-  </section>
-  <section>
-    <h3>
-      Heading 3
-    </h3>
-  </section>
-</div>
+/>
 `;
