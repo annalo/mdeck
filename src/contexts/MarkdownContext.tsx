@@ -1,4 +1,5 @@
 import React, { createContext, useReducer } from "react";
+import { parse } from "utils/parse";
 
 interface MarkdownProviderProps {
   children: React.ReactElement[];
@@ -27,14 +28,12 @@ export const MarkdownContext = createContext<{
 export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
   children,
 }: MarkdownProviderProps) => {
-  function reducer(state, { type, html, lineNumber, md }) {
+  function reducer(state, { type, lineNumber, md }) {
     switch (type) {
-      case "setHtml":
-        return { ...state, html };
       case "setLineNumber":
         return { ...state, lineNumber };
       case "setMd":
-        return { ...state, md };
+        return { ...state, html: parse(md), md };
       default:
         throw new Error();
     }
