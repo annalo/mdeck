@@ -22,7 +22,7 @@ export const MarkdownContext = createContext<{
   dispatch: React.Dispatch<any>;
 }>({
   state: MARKDOWN_CONTEXT_INITIAL_STATE,
-  dispatch: (any) => null,
+  dispatch: () => null,
 });
 
 export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
