@@ -5,12 +5,13 @@
  *
  */
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import type { RefObject } from "react";
 
-export function useCurrentSrcLine(ref: RefObject<HTMLTextAreaElement>): number {
-  const [srcLine, setSrcLine] = useState(0);
-
+export function useCurrentSrcLine(
+  ref: RefObject<HTMLTextAreaElement>,
+  setLineNumber: (value: number) => void
+): void {
   useEffect(() => {
     const node = ref.current;
 
@@ -19,14 +20,12 @@ export function useCurrentSrcLine(ref: RefObject<HTMLTextAreaElement>): number {
         const { scrollHeight, scrollTop, value } = node;
         const lineHeight = scrollHeight / value.split("\n").length; // height / line count
         // TODO round up or down
-        setSrcLine(scrollTop / lineHeight);
+        setLineNumber(scrollTop / lineHeight);
       }
     };
     // TODO debounce
     node?.addEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);
-  }, [ref]);
-
-  return srcLine;
+  }, [ref, setLineNumber]);
 }
