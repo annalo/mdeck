@@ -6,7 +6,7 @@ import { Preview } from "components/Preview/Loadable";
 
 import { MarkdownProvider } from "contexts/MarkdownContext";
 
-const Container = styled.div`
+const Div = styled.div`
   display: flex;
   height: 100%;
 `;
@@ -16,12 +16,12 @@ export const Editor: React.FC = () => {
   const [lineNumber, setLineNumber] = useState<number>(0);
 
   return (
-    <Container>
+    <Div>
       <MarkdownProvider>
         <TextEditor />
         <Preview html={html} setLineNumber={setLineNumber} />
       </MarkdownProvider>
-    </Container>
+    </Div>
   );
 };
 
