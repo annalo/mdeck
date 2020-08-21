@@ -35,6 +35,8 @@ export const TextEditor: React.FC<Props> = ({
   const ref = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
+    // listen mouseenter / mouseleave events
+
     // sync text to preview
     const node = ref.current;
     if (node) {
@@ -44,7 +46,7 @@ export const TextEditor: React.FC<Props> = ({
         behavior: "smooth",
       });
     }
-  });
+  }, [lineNumber]);
 
   return (
     <Container>
