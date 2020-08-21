@@ -1,5 +1,6 @@
 import React, { memo, useEffect, useRef } from "react";
 import styled from "styled-components/macro";
+import { useHover } from "utils/useHover";
 
 interface Props {
   src: string;
@@ -33,20 +34,21 @@ export const TextEditor: React.FC<Props> = ({
   lineNumber,
 }: Props) => {
   const ref = useRef<HTMLTextAreaElement>(null);
+  const isHovered = useHover(ref);
 
   useEffect(() => {
-    // listen mouseenter / mouseleave events
+    if (isHovered) return;
 
-    // sync text to preview
     const node = ref.current;
     if (node) {
+      // sync text to preview
       const { scrollHeight, value } = node;
       node.scroll({
         top: (lineNumber / lineCount(value)) * scrollHeight,
         behavior: "smooth",
       });
     }
-  }, [lineNumber]);
+  }, [isHovered, lineNumber]);
 
   return (
     <Container>
