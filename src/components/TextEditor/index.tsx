@@ -1,15 +1,9 @@
-import React, { memo, useEffect, useRef } from "react";
+import React, { memo, useContext, useEffect, useRef } from "react";
 import styled from "styled-components/macro";
 
+import { MarkdownContext } from "contexts/MarkdownContext";
 import { useHover } from "./useHover";
 import { useCurrentSrcLine } from "./useCurrentSrcLine";
-
-interface Props {
-  handleTextChange(value: string): void;
-  lineNumber: number;
-  setLineNumber(value: number): void;
-  src: string;
-}
 
 const Container = styled.div`
   background-color: #fafafa;
@@ -31,16 +25,13 @@ function lineCount(text: string): number {
   return text.split("\n").length;
 }
 
-export const TextEditor: React.FC<Props> = ({
-  handleTextChange,
-  lineNumber,
-  setLineNumber,
-  src,
-}: Props) => {
+export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
+  const { state, dispatch } = useContext(MarkdownContext);
+  const { lineNumber, md } = state;
   const isHovered = useHover(ref);
-  useCurrentSrcLine(ref, setLineNumber);
 
+  useCurrentSrcLine(ref, dispatch);
   console.log(lineNumber);
 
   useEffect(() => {
@@ -62,8 +53,8 @@ export const TextEditor: React.FC<Props> = ({
       <TextArea
         ref={ref}
         autoFocus
-        onChange={(e): void => handleTextChange(e.target.value)}
-        value={src}
+        onChange={(e): void => dispatch({ type: "setMd", md: e.target.value })}
+        value={md}
       />
     </Container>
   );

@@ -1,16 +1,16 @@
 /*
  *
- * Register to `scroll` event on TextArea and calculates and
- * returns the source line number at the top of the container.
+ * Register to `scroll` event on TextArea and calculates
+ * the source line number at the top of the container.
  *
  */
 
 import { useEffect } from "react";
-import type { RefObject } from "react";
+import type { Dispatch, RefObject } from "react";
 
 export function useCurrentSrcLine(
   ref: RefObject<HTMLTextAreaElement>,
-  setLineNumber: (value: number) => void
+  dispatch: Dispatch<any>
 ): void {
   useEffect(() => {
     const node = ref.current;
@@ -20,12 +20,12 @@ export function useCurrentSrcLine(
         const { scrollHeight, scrollTop, value } = node;
         const lineHeight = scrollHeight / value.split("\n").length; // height / line count
         // TODO round up or down
-        setLineNumber(scrollTop / lineHeight);
+        dispatch({ type: "setLineNumber", lineNumber: scrollTop / lineHeight });
       }
     };
     // TODO debounce
     node?.addEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);
-  }, [ref, setLineNumber]);
+  }, [dispatch, ref]);
 }

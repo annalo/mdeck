@@ -16,3 +16,9 @@ Object.defineProperty(global, "IntersectionObserver", {
     unobserve: jest.fn(),
   })),
 });
+
+Object.defineProperty(Element.prototype, "scroll", {
+  value: jest.fn(),
+  writable: true,
+  configurable: true,
+});
