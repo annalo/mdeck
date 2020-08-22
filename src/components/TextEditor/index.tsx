@@ -1,9 +1,10 @@
+// TODO cleanup
 import React, { memo, useContext, useEffect, useRef } from "react";
 import styled from "styled-components/macro";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { useHover } from "./useHover";
-import { useCurrentSrcLine } from "./useCurrentSrcLine";
+import { useLineNumberOnScroll } from "./useLineNumberOnScroll";
 
 const Container = styled.div`
   background-color: #fafafa;
@@ -21,17 +22,13 @@ const TextArea = styled.textarea`
   resize: none;
 `;
 
-function lineCount(text: string): number {
-  return text.split("\n").length;
-}
-
 export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
   const { lineNumber, md } = state;
   const isHovered = useHover(ref);
 
-  useCurrentSrcLine(ref, dispatch);
+  useLineNumberOnScroll({ ref, isHovered, dispatch });
   console.log(lineNumber);
 
   useEffect(() => {
@@ -42,7 +39,7 @@ export const TextEditor: React.FC = () => {
       // sync text to preview
       const { scrollHeight, value } = node;
       node.scroll({
-        top: (lineNumber / lineCount(value)) * scrollHeight,
+        top: (lineNumber / value.split("\n").length) * scrollHeight,
         behavior: "smooth",
       });
     }
