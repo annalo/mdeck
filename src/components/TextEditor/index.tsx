@@ -1,9 +1,8 @@
-import React, { memo, useContext, useEffect, useRef } from "react";
+import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components/macro";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { useHover } from "./useHover";
-import { useCurrentSrcLine } from "./useCurrentSrcLine";
+import { useSync } from "./useSync";
 
 const Container = styled.div`
   background-color: #fafafa;
@@ -21,32 +20,13 @@ const TextArea = styled.textarea`
   resize: none;
 `;
 
-function lineCount(text: string): number {
-  return text.split("\n").length;
-}
-
 export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { lineNumber, md } = state;
-  const isHovered = useHover(ref);
+  const { md, previewLineNumber } = state;
+  console.log(previewLineNumber);
 
-  useCurrentSrcLine(ref, dispatch);
-  console.log(lineNumber);
-
-  useEffect(() => {
-    if (isHovered) return;
-
-    const node = ref.current;
-    if (node) {
-      // sync text to preview
-      const { scrollHeight, value } = node;
-      node.scroll({
-        top: (lineNumber / lineCount(value)) * scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  }, [isHovered, lineNumber]);
+  useSync({ dispatch, previewLineNumber, ref });
 
   return (
     <Container>
