@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
-import type { RefObject } from "react";
+import { useEffect } from "react";
+import type { Dispatch, RefObject } from "react";
 
-export function useHover(ref: RefObject<HTMLTextAreaElement>): boolean {
-  const [isHovered, setIsHovered] = useState(false);
+interface UseHoverProps {
+  dispatch: Dispatch<any>;
+  paneName: string;
+  ref: RefObject<HTMLTextAreaElement>;
+}
 
+export function useHover({ dispatch, paneName, ref }: UseHoverProps): void {
   useEffect(() => {
-    const handleMouseEnter = () => setIsHovered(true);
-    const handleMouseLeave = () => setIsHovered(false);
+    const handleMouseEnter = () =>
+      dispatch({ type: "setActivePane", activePane: paneName });
 
     const node = ref.current;
 
     node?.addEventListener("mouseenter", handleMouseEnter);
-    node?.addEventListener("mouseleave", handleMouseLeave);
     return () => {
       node?.removeEventListener("mouseenter", handleMouseEnter);
-      node?.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [ref]);
-
-  return isHovered;
+  }, [dispatch, paneName, ref]);
 }

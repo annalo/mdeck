@@ -15,14 +15,18 @@ import debounce from "lodash/debounce";
 
 interface UseLineNumberOnScrollProps {
   dispatch: Dispatch<any>;
+  isActive: boolean;
   ref: RefObject<HTMLTextAreaElement>;
 }
 
 export function useLineNumberOnScroll({
   dispatch,
+  isActive,
   ref,
 }: UseLineNumberOnScrollProps): void {
   useEffect(() => {
+    console.log("uselinenumber useeffect");
+
     const node = ref.current;
 
     const setLineNumber = (lineNumber) =>
@@ -32,7 +36,7 @@ export function useLineNumberOnScroll({
       });
 
     const handleScrollDebounced = debounce(() => {
-      if (node) {
+      if (isActive && node) {
         const { scrollHeight, scrollTop, value } = node;
         const lineHeight = scrollHeight / value.split("\n").length;
         setLineNumber(Math.floor(scrollTop / lineHeight));
@@ -41,5 +45,5 @@ export function useLineNumberOnScroll({
 
     node?.addEventListener("scroll", handleScrollDebounced);
     return () => node?.removeEventListener("scroll", handleScrollDebounced);
-  }, [dispatch, ref]);
+  }, [dispatch, isActive, ref]);
 }

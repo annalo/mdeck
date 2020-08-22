@@ -2,21 +2,23 @@ import { useEffect } from "react";
 import type { RefObject } from "react";
 
 interface UseSyncProps {
-  isHovered: boolean;
+  isActive: boolean;
   lineNumber: number;
   ref: RefObject<HTMLTextAreaElement>;
 }
 
-export function useSync({ isHovered, lineNumber, ref }: UseSyncProps): void {
+export function useSync({ isActive, lineNumber, ref }: UseSyncProps): void {
   useEffect(() => {
-    if (isHovered) return;
+    if (isActive) return;
 
     const node = ref.current;
     if (node) {
       // sync text to preview
       const { scrollHeight, value } = node;
-      // TODO animate scroll
-      node.scrollTop = (lineNumber / value.split("\n").length) * scrollHeight;
+      node.scroll({
+        top: (lineNumber / value.split("\n").length) * scrollHeight,
+        behavior: "smooth",
+      });
     }
-  }, [isHovered, lineNumber, ref]);
+  }, [isActive, lineNumber, ref]);
 }
