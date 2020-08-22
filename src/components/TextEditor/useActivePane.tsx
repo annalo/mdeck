@@ -1,13 +1,17 @@
 import { useEffect } from "react";
 import type { Dispatch, RefObject } from "react";
 
-interface UseHoverProps {
+interface UseActivePaneProps {
   dispatch: Dispatch<any>;
   paneName: string;
   ref: RefObject<HTMLTextAreaElement>;
 }
 
-export function useHover({ dispatch, paneName, ref }: UseHoverProps): void {
+export function useActivePane({
+  dispatch,
+  paneName,
+  ref,
+}: UseActivePaneProps): void {
   useEffect(() => {
     const handleMouseEnter = () =>
       dispatch({ type: "setActivePane", activePane: paneName });

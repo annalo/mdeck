@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 // import debounce from "lodash/debounce";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { useHover } from "./useHover";
+import { useActivePane } from "./useActivePane";
 import { useLineNumberOnScroll } from "./useLineNumberOnScroll";
 import { useSync } from "./useSync";
 
@@ -43,7 +43,7 @@ export const TextEditor: React.FC = () => {
   //     lineNumber: Math.floor(scrollTop / lineHeight),
   //   });
   // }, 500);
-  useHover({ dispatch, paneName: "text", ref });
+  useActivePane({ dispatch, paneName: "text", ref });
   useLineNumberOnScroll({ dispatch, isActive, ref });
   useSync({ isActive, lineNumber, ref });
   console.log(lineNumber);
