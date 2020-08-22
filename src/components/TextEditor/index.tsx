@@ -3,8 +3,6 @@ import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components/macro";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { useActivePane } from "utils/useActivePane";
-import { useLineNumberOnScroll } from "./useLineNumberOnScroll";
 import { useSync } from "./useSync";
 
 const Container = styled.div`
@@ -26,11 +24,10 @@ const TextArea = styled.textarea`
 export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { activePane, lineNumber, md } = state;
+  const { md, previewLineNumber } = state;
+  console.log(previewLineNumber);
 
-  useActivePane({ paneName: "text", ref });
-  useSync({ dispatch, isActive: activePane === "text", lineNumber, ref });
-  console.log(lineNumber);
+  useSync({ dispatch, previewLineNumber, ref });
 
   return (
     <Container>

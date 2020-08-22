@@ -4,15 +4,13 @@ import debounce from "lodash/debounce";
 
 interface UseSyncProps {
   dispatch: Dispatch<any>;
-  isActive: boolean;
-  lineNumber: number;
+  previewLineNumber: number;
   ref: RefObject<HTMLTextAreaElement>;
 }
 
 export function useSync({
   dispatch,
-  isActive,
-  lineNumber,
+  previewLineNumber,
   ref,
 }: UseSyncProps): void {
   const node = ref.current;
@@ -21,8 +19,8 @@ export function useSync({
       debounce((e) => {
         const { scrollHeight, scrollTop, value } = e.target;
         dispatch({
-          type: "setLineNumber",
-          lineNumber: Math.ceil(
+          type: "setTextLineNumber",
+          textLineNumber: Math.ceil(
             scrollTop / (scrollHeight / value.split("\n").length)
           ),
         });
@@ -38,9 +36,8 @@ export function useSync({
     return () => node?.removeEventListener("scroll", handleScrollDebounced);
   }, [handleScrollDebounced, node]);
 
-  /* Syncs text when lineNumber changes */
+  /* Syncs text when previewLineNumber changes */
   useEffect(() => {
-    if (isActive) return;
     console.log("syncs text");
 
     if (node) {
@@ -48,11 +45,11 @@ export function useSync({
       /* Removes event listener before manipulating */
       node.removeEventListener("scroll", handleScrollDebounced);
       node.scroll({
-        top: (lineNumber / value.split("\n").length) * scrollHeight,
+        top: (previewLineNumber / value.split("\n").length) * scrollHeight,
         behavior: "smooth",
       });
       /* Adds back event listener */
       node.addEventListener("scroll", handleScrollDebounced);
     }
-  }, [handleScrollDebounced, isActive, lineNumber, node]);
+  }, [handleScrollDebounced, node, previewLineNumber]);
 }

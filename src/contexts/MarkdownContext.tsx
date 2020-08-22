@@ -8,6 +8,8 @@ interface MarkdownProviderProps {
 interface MarkdownContextInitialState {
   activePane: string;
   html: string;
+  previewLineNumber: number;
+  textLineNumber: number;
   lineNumber: number;
   md: string;
 }
@@ -15,6 +17,8 @@ interface MarkdownContextInitialState {
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
   activePane: "",
   html: "",
+  previewLineNumber: 0,
+  textLineNumber: 0,
   lineNumber: 0,
   md: "",
 };
@@ -30,10 +34,17 @@ export const MarkdownContext = createContext<{
 export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
   children,
 }: MarkdownProviderProps) => {
-  function reducer(state, { type, activePane, lineNumber, md }) {
+  function reducer(
+    state,
+    { type, activePane, textLineNumber, previewLineNumber, lineNumber, md }
+  ) {
     switch (type) {
       case "setActivePane":
         return { ...state, activePane };
+      case "setTextLineNumber":
+        return { ...state, textLineNumber };
+      case "setPreviewLineNumber":
+        return { ...state, previewLineNumber };
       case "setLineNumber":
         return { ...state, lineNumber };
       case "setMd":

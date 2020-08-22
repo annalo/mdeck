@@ -24,9 +24,10 @@ export const Slideshow: React.FC = () => {
             (entry) => entry.boundingClientRect.top < 25
           );
           if (topElement)
+            // TODO test preview number is set
             dispatch({
-              type: "setLineNumber",
-              lineNumber: parseInt(topElement.target.dataset.line, 10),
+              type: "setPreviewLineNumber",
+              previewLineNumber: parseInt(topElement.target.dataset.line, 10),
             });
         },
         {
