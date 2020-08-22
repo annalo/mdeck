@@ -6,21 +6,17 @@ interface MarkdownProviderProps {
 }
 
 interface MarkdownContextInitialState {
-  activePane: string;
   html: string;
+  md: string;
   previewLineNumber: number;
   textLineNumber: number;
-  lineNumber: number;
-  md: string;
 }
 
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
-  activePane: "",
   html: "",
+  md: "",
   previewLineNumber: 0,
   textLineNumber: 0,
-  lineNumber: 0,
-  md: "",
 };
 
 export const MarkdownContext = createContext<{
@@ -34,21 +30,14 @@ export const MarkdownContext = createContext<{
 export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
   children,
 }: MarkdownProviderProps) => {
-  function reducer(
-    state,
-    { type, activePane, textLineNumber, previewLineNumber, lineNumber, md }
-  ) {
+  function reducer(state, { type, textLineNumber, previewLineNumber, md }) {
     switch (type) {
-      case "setActivePane":
-        return { ...state, activePane };
+      case "setMd":
+        return { ...state, html: parse(md), md };
       case "setTextLineNumber":
         return { ...state, textLineNumber };
       case "setPreviewLineNumber":
         return { ...state, previewLineNumber };
-      case "setLineNumber":
-        return { ...state, lineNumber };
-      case "setMd":
-        return { ...state, html: parse(md), md };
       default:
         throw new Error();
     }
