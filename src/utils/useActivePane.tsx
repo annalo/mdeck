@@ -11,10 +11,9 @@ export function useActivePane({ paneName, ref }: UseActivePaneProps): void {
   const { dispatch } = useContext(MarkdownContext);
 
   useEffect(() => {
+    const node = ref.current;
     const handleMouseEnter = () =>
       dispatch({ type: "setActivePane", activePane: paneName });
-
-    const node = ref.current;
 
     node?.addEventListener("mouseenter", handleMouseEnter);
     return () => {
