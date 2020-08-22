@@ -13,17 +13,15 @@ import { useEffect } from "react";
 import type { Dispatch, RefObject } from "react";
 import debounce from "lodash/debounce";
 
-interface Props {
-  ref: RefObject<HTMLTextAreaElement>;
-  isHovered: boolean;
+interface UseLineNumberOnScrollProps {
   dispatch: Dispatch<any>;
+  ref: RefObject<HTMLTextAreaElement>;
 }
 
 export function useLineNumberOnScroll({
-  ref,
-  isHovered,
   dispatch,
-}: Props): void {
+  ref,
+}: UseLineNumberOnScrollProps): void {
   useEffect(() => {
     const node = ref.current;
 
@@ -34,7 +32,7 @@ export function useLineNumberOnScroll({
       });
 
     const handleScrollDebounced = debounce(() => {
-      if (isHovered && node) {
+      if (node) {
         const { scrollHeight, scrollTop, value } = node;
         const lineHeight = scrollHeight / value.split("\n").length;
         setLineNumber(Math.floor(scrollTop / lineHeight));
@@ -43,5 +41,5 @@ export function useLineNumberOnScroll({
 
     node?.addEventListener("scroll", handleScrollDebounced);
     return () => node?.removeEventListener("scroll", handleScrollDebounced);
-  }, [dispatch, isHovered, ref]);
+  }, [dispatch, ref]);
 }

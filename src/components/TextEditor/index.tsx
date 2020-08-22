@@ -1,10 +1,11 @@
 // TODO cleanup
-import React, { memo, useContext, useEffect, useRef } from "react";
+import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components/macro";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { useHover } from "./useHover";
 import { useLineNumberOnScroll } from "./useLineNumberOnScroll";
+import { useSync } from "./useSync";
 
 const Container = styled.div`
   background-color: #fafafa;
@@ -28,22 +29,9 @@ export const TextEditor: React.FC = () => {
   const { lineNumber, md } = state;
   const isHovered = useHover(ref);
 
-  useLineNumberOnScroll({ ref, isHovered, dispatch });
+  useLineNumberOnScroll({ dispatch, ref });
+  useSync({ isHovered, lineNumber, ref });
   console.log(lineNumber);
-
-  useEffect(() => {
-    if (isHovered) return;
-
-    const node = ref.current;
-    if (node) {
-      // sync text to preview
-      const { scrollHeight, value } = node;
-      node.scroll({
-        top: (lineNumber / value.split("\n").length) * scrollHeight,
-        behavior: "smooth",
-      });
-    }
-  }, [isHovered, lineNumber]);
 
   return (
     <Container>
