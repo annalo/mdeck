@@ -1,17 +1,15 @@
-import { useEffect } from "react";
-import type { Dispatch, RefObject } from "react";
+import { useContext, useEffect } from "react";
+import type { RefObject } from "react";
+import { MarkdownContext } from "contexts/MarkdownContext";
 
 interface UseActivePaneProps {
-  dispatch: Dispatch<any>;
   paneName: string;
-  ref: RefObject<HTMLTextAreaElement>;
+  ref: RefObject<HTMLElement>;
 }
 
-export function useActivePane({
-  dispatch,
-  paneName,
-  ref,
-}: UseActivePaneProps): void {
+export function useActivePane({ paneName, ref }: UseActivePaneProps): void {
+  const { dispatch } = useContext(MarkdownContext);
+
   useEffect(() => {
     const handleMouseEnter = () =>
       dispatch({ type: "setActivePane", activePane: paneName });

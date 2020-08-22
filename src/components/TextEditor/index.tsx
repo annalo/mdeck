@@ -1,10 +1,8 @@
 // TODO cleanup
 import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components/macro";
-// import debounce from "lodash/debounce";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { useActivePane } from "utils/useActivePane";
 import { useLineNumberOnScroll } from "./useLineNumberOnScroll";
 import { useSync } from "./useSync";
 
@@ -27,25 +25,10 @@ const TextArea = styled.textarea`
 export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { activePane, lineNumber, md } = state;
-  const isActive = activePane === "text";
+  const { lineNumber, md } = state;
 
-  // const handleScrollDebounced = debounce(() => {
-  //   console.log("handle textarea scroll");
-  //   const node = ref.current;
-  //   if (!isHovered || !node) return;
-
-  //   const { scrollHeight, scrollTop, value } = node;
-  //   const lineHeight = scrollHeight / value.split("\n").length;
-
-  //   dispatch({
-  //     type: "setLineNumber",
-  //     lineNumber: Math.floor(scrollTop / lineHeight),
-  //   });
-  // }, 500);
-  useActivePane({ dispatch, paneName: "text", ref });
-  useLineNumberOnScroll({ dispatch, isActive, ref });
-  useSync({ isActive, lineNumber, ref });
+  useLineNumberOnScroll({ dispatch, ref });
+  useSync({ lineNumber, ref });
   console.log(lineNumber);
 
   return (
@@ -54,7 +37,6 @@ export const TextEditor: React.FC = () => {
         ref={ref}
         autoFocus
         onChange={(e): void => dispatch({ type: "setMd", md: e.target.value })}
-        // onScroll={handleScrollDebounced}
         value={md}
       />
     </Container>

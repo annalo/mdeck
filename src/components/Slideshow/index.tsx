@@ -1,8 +1,9 @@
 import React, { memo, useContext, useEffect, useRef, useState } from "react";
 import styled from "styled-components/macro";
-import { render } from "utils/render";
+
 import { ObserverProvider } from "contexts/ObserverContext";
 import { MarkdownContext } from "contexts/MarkdownContext";
+import { render } from "utils/render";
 
 const Div = styled.div`
   height: 100%;

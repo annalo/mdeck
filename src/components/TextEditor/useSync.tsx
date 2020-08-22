@@ -2,15 +2,12 @@ import { useEffect } from "react";
 import type { RefObject } from "react";
 
 interface UseSyncProps {
-  isActive: boolean;
   lineNumber: number;
   ref: RefObject<HTMLTextAreaElement>;
 }
 
-export function useSync({ isActive, lineNumber, ref }: UseSyncProps): void {
+export function useSync({ lineNumber, ref }: UseSyncProps): void {
   useEffect(() => {
-    if (isActive) return;
-
     const node = ref.current;
     if (node) {
       // sync text to preview
@@ -20,5 +17,5 @@ export function useSync({ isActive, lineNumber, ref }: UseSyncProps): void {
         behavior: "smooth",
       });
     }
-  }, [isActive, lineNumber, ref]);
+  }, [lineNumber, ref]);
 }
