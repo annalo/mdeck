@@ -1,4 +1,3 @@
-// TODO cleanup
 import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components/macro";
 

@@ -1,6 +1,6 @@
 import { useMemo, useEffect } from "react";
 import type { Dispatch, RefObject } from "react";
-import debounce from "lodash/debounce";
+import throttle from "lodash/throttle";
 
 interface UseSyncProps {
   dispatch: Dispatch<any>;
@@ -14,9 +14,9 @@ export function useSync({
   ref,
 }: UseSyncProps): void {
   const node = ref.current;
-  const handleScrollDebounced = useMemo(
+  const handleScroll = useMemo(
     () =>
-      debounce((e) => {
+      throttle((e) => {
         const { scrollHeight, scrollTop, value } = e.target;
         dispatch({
           type: "setTextLineNumber",
@@ -24,7 +24,7 @@ export function useSync({
             scrollTop / (scrollHeight / value.split("\n").length)
           ),
         });
-      }, 200),
+      }, 50),
     [dispatch]
   );
 
@@ -32,9 +32,9 @@ export function useSync({
   useEffect(() => {
     console.log("initialize listener");
 
-    node?.addEventListener("scroll", handleScrollDebounced);
-    return () => node?.removeEventListener("scroll", handleScrollDebounced);
-  }, [handleScrollDebounced, node]);
+    node?.addEventListener("scroll", handleScroll);
+    return () => node?.removeEventListener("scroll", handleScroll);
+  }, [handleScroll, node]);
 
   /* Syncs text when previewLineNumber changes */
   useEffect(() => {
@@ -43,13 +43,13 @@ export function useSync({
     if (node) {
       const { scrollHeight, value } = node;
       /* Removes event listener before manipulating */
-      node.removeEventListener("scroll", handleScrollDebounced);
+      node.removeEventListener("scroll", handleScroll);
       node.scroll({
         top: (previewLineNumber / value.split("\n").length) * scrollHeight,
         behavior: "smooth",
       });
       /* Adds back event listener */
-      node.addEventListener("scroll", handleScrollDebounced);
+      node.addEventListener("scroll", handleScroll);
     }
-  }, [handleScrollDebounced, node, previewLineNumber]);
+  }, [handleScroll, node, previewLineNumber]);
 }
