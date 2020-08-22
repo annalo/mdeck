@@ -4,7 +4,7 @@ import styled from "styled-components/macro";
 // import debounce from "lodash/debounce";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { useActivePane } from "./useActivePane";
+import { useActivePane } from "utils/useActivePane";
 import { useLineNumberOnScroll } from "./useLineNumberOnScroll";
 import { useSync } from "./useSync";
 
