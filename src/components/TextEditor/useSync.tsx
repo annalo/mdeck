@@ -1,5 +1,6 @@
-import { useCallback, useEffect } from "react";
+import { useMemo, useEffect } from "react";
 import type { Dispatch, RefObject } from "react";
+import debounce from "lodash/debounce";
 
 interface UseSyncProps {
   dispatch: Dispatch<any>;
@@ -15,16 +16,17 @@ export function useSync({
   ref,
 }: UseSyncProps): void {
   const node = ref.current;
-  const handleScrollDebounced = useCallback(
-    (e) => {
-      const { scrollHeight, scrollTop, value } = e.target;
-      dispatch({
-        type: "setLineNumber",
-        lineNumber: Math.ceil(
-          scrollTop / (scrollHeight / value.split("\n").length)
-        ),
-      });
-    },
+  const handleScrollDebounced = useMemo(
+    () =>
+      debounce((e) => {
+        const { scrollHeight, scrollTop, value } = e.target;
+        dispatch({
+          type: "setLineNumber",
+          lineNumber: Math.ceil(
+            scrollTop / (scrollHeight / value.split("\n").length)
+          ),
+        });
+      }, 200),
     [dispatch]
   );
 
