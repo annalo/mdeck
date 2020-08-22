@@ -18,9 +18,10 @@ export function useSync({
     () =>
       throttle((e) => {
         const { scrollHeight, scrollTop, value } = e.target;
+        console.log("set text line number");
         dispatch({
           type: "setTextLineNumber",
-          textLineNumber: Math.ceil(
+          textLineNumber: Math.floor(
             scrollTop / (scrollHeight / value.split("\n").length)
           ),
         });
@@ -42,14 +43,24 @@ export function useSync({
 
     if (node) {
       const { scrollHeight, value } = node;
+      const scrollTop =
+        (previewLineNumber / value.split("\n").length) * scrollHeight;
       /* Removes event listener before manipulating */
       node.removeEventListener("scroll", handleScroll);
+
+      /* Adds back event listener if scroll is complete */
+      const checkScrollEnd = () => {
+        if (node.scrollTop === scrollTop) {
+          node.addEventListener("scroll", handleScroll);
+        }
+        requestAnimationFrame(checkScrollEnd);
+      };
+      requestAnimationFrame(checkScrollEnd);
+      /* set element top to calculated scrollTop position */
       node.scroll({
-        top: (previewLineNumber / value.split("\n").length) * scrollHeight,
+        top: scrollTop,
         behavior: "smooth",
       });
-      /* Adds back event listener */
-      node.addEventListener("scroll", handleScroll);
     }
   }, [handleScroll, node, previewLineNumber]);
 }
