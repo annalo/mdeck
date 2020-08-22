@@ -37,9 +37,12 @@ export const Slideshow: React.FC = () => {
     );
   }, [setObserver, dispatch]);
 
+  // TODO write test to ensure slideshow div is set as root in observer
   return (
     <ObserverProvider observer={observer}>
-      <Div className="slideshow">{render(html)}</Div>
+      <Div ref={ref} className="slideshow">
+        {render(html)}
+      </Div>
     </ObserverProvider>
   );
 };
