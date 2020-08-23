@@ -1,6 +1,7 @@
 import { useMemo, useEffect } from "react";
 import type { Dispatch, RefObject } from "react";
 import throttle from "lodash/throttle";
+import { TEXT_AREA_LINE_HEIGHT } from "components/TextEditor";
 
 interface UseSyncProps {
   dispatch: Dispatch<any>;
@@ -40,9 +41,8 @@ export function useSync({
   useEffect(() => {
     if (node) {
       console.log("sync text to preview");
-      const { scrollHeight, value } = node;
-      const scrollTop =
-        (previewLineNumber / value.split("\n").length) * scrollHeight;
+      const scrollTop = previewLineNumber * TEXT_AREA_LINE_HEIGHT;
+
       /* Removes event listener before manipulating */
       node.removeEventListener("scroll", handleScroll);
 
@@ -50,8 +50,8 @@ export function useSync({
       node.scrollTop = scrollTop;
 
       /* Adds back event listener when scroll is complete */
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
           node.addEventListener("scroll", handleScroll);
         });
       });
