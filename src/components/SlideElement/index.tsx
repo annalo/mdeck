@@ -1,8 +1,7 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { ObserverContext } from "contexts/ObserverContext";
 
 interface Props {
   children: React.ReactElement;
@@ -18,29 +17,18 @@ export function SlideElement({
   srcLine,
 }: Props): React.ReactElement {
   const ref = useRef<SVGSVGElement>(null);
-  const observer = useContext(ObserverContext);
-  const { state } = useContext(MarkdownContext);
+  const { state, dispatch } = useContext(MarkdownContext);
   const { textLineNumber } = state;
 
   useEffect(() => {
     const node = ref.current;
-    if (node) observer?.observe(node);
+    if (!node) return;
 
-    return () => {
-      if (node) observer?.unobserve(node);
-    };
-  }, [observer]);
-
-  useEffect(() => {
-    const node = ref.current;
-    if (srcLine !== textLineNumber || !node || !observer) return;
-
-    observer.unobserve(node);
-    scrollIntoView(node, { block: "start", inline: "nearest" }).then(() => {
-      console.log("done");
-      observer.observe(node);
-    });
-  }, [elementTag, observer, srcLine, textLineNumber]);
+    const boundingClientRectTop = node.getBoundingClientRect().top;
+    if (boundingClientRectTop <= 18) {
+      dispatch({ type: "setPreviewLineNumber", previewLineNumber: srcLine });
+    }
+  }, [dispatch, srcLine]);
 
   const { class: className, ...attrs } = attributes;
   return React.createElement(
