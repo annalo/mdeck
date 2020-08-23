@@ -17,8 +17,8 @@ export function useSync({
   const handleScroll = useMemo(
     () =>
       throttle((e) => {
+        console.log("set text line");
         const { scrollHeight, scrollTop, value } = e.target;
-        console.log("set text line number");
         dispatch({
           type: "setTextLineNumber",
           textLineNumber: Math.floor(
@@ -31,35 +31,29 @@ export function useSync({
 
   /* Initializes event listener on "scroll" */
   useEffect(() => {
-    console.log("initialize listener");
-
     node?.addEventListener("scroll", handleScroll);
     return () => node?.removeEventListener("scroll", handleScroll);
   }, [handleScroll, node]);
 
   /* Syncs text when previewLineNumber changes */
+  // TODO smooth scrolling
   useEffect(() => {
-    console.log("syncs text");
-
     if (node) {
+      console.log("sync text to preview");
       const { scrollHeight, value } = node;
       const scrollTop =
         (previewLineNumber / value.split("\n").length) * scrollHeight;
       /* Removes event listener before manipulating */
       node.removeEventListener("scroll", handleScroll);
 
-      /* Adds back event listener if scroll is complete */
-      const checkScrollEnd = () => {
-        if (node.scrollTop === scrollTop) {
-          node.addEventListener("scroll", handleScroll);
-        }
-        requestAnimationFrame(checkScrollEnd);
-      };
-      requestAnimationFrame(checkScrollEnd);
       /* set element top to calculated scrollTop position */
-      node.scroll({
-        top: scrollTop,
-        behavior: "smooth",
+      node.scrollTop = scrollTop;
+
+      /* Adds back event listener when scroll is complete */
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          node.addEventListener("scroll", handleScroll);
+        });
       });
     }
   }, [handleScroll, node, previewLineNumber]);
