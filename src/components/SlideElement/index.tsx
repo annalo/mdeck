@@ -2,6 +2,7 @@ import React, { useContext, useRef, useEffect } from "react";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
+import { useSlideshowScrollTop } from "components/Slideshow/useSlideshowScrollTop";
 
 interface Props {
   children: React.ReactElement;
@@ -20,6 +21,8 @@ export function SlideElement({
   const { state, dispatch } = useContext(MarkdownContext);
   const { textLineNumber } = state;
 
+  const [slideshowScrollTop] = useSlideshowScrollTop();
+
   useEffect(() => {
     const node = ref.current;
     if (!node) return;
@@ -28,7 +31,7 @@ export function SlideElement({
     if (boundingClientRectTop <= 18) {
       dispatch({ type: "setPreviewLineNumber", previewLineNumber: srcLine });
     }
-  }, [dispatch, srcLine]);
+  }, [dispatch, slideshowScrollTop, srcLine]);
 
   const { class: className, ...attrs } = attributes;
   return React.createElement(

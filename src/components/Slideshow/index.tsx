@@ -4,7 +4,7 @@ import throttle from "lodash/throttle";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { render } from "utils/render";
-import { useSlideshowScrollTop } from "utils/useSlideshowScrollTop";
+import { useSlideshowScrollTop } from "components/Slideshow/useSlideshowScrollTop";
 
 const Div = styled.div`
   height: 100%;
@@ -13,7 +13,7 @@ const Div = styled.div`
 
 export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const [scrollTop, setScrollTop] = useSlideshowScrollTop();
+  const [, setScrollTop] = useSlideshowScrollTop();
   const { state } = useContext(MarkdownContext);
   const { html } = state;
 
@@ -28,8 +28,6 @@ export const Slideshow: React.FC = () => {
     node?.addEventListener("scroll", handleScroll);
     return () => node?.removeEventListener("scroll", handleScroll);
   }, [setScrollTop]);
-
-  console.log(scrollTop);
 
   // TODO write test to ensure slideshow div is set as root in observer
   return (
