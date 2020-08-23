@@ -26,7 +26,7 @@ export function useSync({
             scrollTop / (scrollHeight / value.split("\n").length)
           ),
         });
-      }, 50),
+      }, 500),
     [dispatch]
   );
 
@@ -51,9 +51,9 @@ export function useSync({
 
       /* Adds back event listener when scroll is complete */
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          node.addEventListener("scroll", handleScroll);
-        });
+        requestAnimationFrame(() =>
+          node.addEventListener("scroll", handleScroll)
+        );
       });
     }
   }, [handleScroll, node, previewLineNumber]);

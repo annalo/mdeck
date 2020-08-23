@@ -1,7 +1,7 @@
 import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components/macro";
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { useSync } from "components/TextEditor/useSync";
+import { useSync } from "./useSync";
 
 export const TEXT_AREA_LINE_HEIGHT = 18;
 

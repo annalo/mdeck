@@ -1,4 +1,7 @@
 import React, { useContext, useEffect, useRef } from "react";
+import scrollIntoView from "smooth-scroll-into-view-if-needed";
+
+import { MarkdownContext } from "contexts/MarkdownContext";
 import { ObserverContext } from "contexts/ObserverContext";
 
 interface Props {
@@ -16,6 +19,8 @@ export function SlideElement({
 }: Props): React.ReactElement {
   const ref = useRef<SVGSVGElement>(null);
   const observer = useContext(ObserverContext);
+  const { state } = useContext(MarkdownContext);
+  const { textLineNumber } = state;
 
   useEffect(() => {
     const node = ref.current;
@@ -25,6 +30,17 @@ export function SlideElement({
       if (node) observer?.unobserve(node);
     };
   }, [observer]);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (srcLine !== textLineNumber || !node || !observer) return;
+
+    observer.unobserve(node);
+    scrollIntoView(node, { block: "start", inline: "nearest" }).then(() => {
+      console.log("done");
+      observer.observe(node);
+    });
+  }, [elementTag, observer, srcLine, textLineNumber]);
 
   const { class: className, ...attrs } = attributes;
   return React.createElement(
