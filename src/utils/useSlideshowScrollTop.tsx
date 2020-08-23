@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 type Listener = (number) => void;
 
-const listeners: Array<Listener> = [];
+let listeners: Array<Listener> = [];
 let scrollTop = 0;
 
 const setScrollTop: (number) => void = (newScrollTop: number) => {
@@ -16,6 +16,10 @@ export function useSlideshowScrollTop(): [number, (number) => void] {
   const [, newListener] = useState();
   useEffect(() => {
     listeners.push(newListener);
+    return () => {
+      listeners = listeners.filter((listener) => listener !== newListener);
+    };
   }, []);
+
   return [scrollTop, setScrollTop];
 }
