@@ -1,10 +1,9 @@
 import React, { memo, useContext, useRef, useEffect } from "react";
 import styled from "styled-components/macro";
-import throttle from "lodash/throttle";
-
+import { SlideshowContext } from "contexts/SlideshowContext";
 import { MarkdownContext } from "contexts/MarkdownContext";
+
 import { render } from "utils/render";
-import { useSlideshowScrollTop } from "components/Slideshow/useSlideshowScrollTop";
 
 const Div = styled.div`
   height: 100%;
@@ -13,21 +12,14 @@ const Div = styled.div`
 
 export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const [, setScrollTop] = useSlideshowScrollTop();
   const { state } = useContext(MarkdownContext);
+  const { entries, disconnect } = useContext(SlideshowContext);
+
   const { html } = state;
 
   useEffect(() => {
-    console.log("slideshow add scroll listener");
-    const node = ref.current;
-    const handleScroll = throttle(
-      () => setScrollTop(node ? node.scrollTop : 0),
-      200
-    );
-
-    node?.addEventListener("scroll", handleScroll);
-    return () => node?.removeEventListener("scroll", handleScroll);
-  }, [setScrollTop]);
+    return () => disconnect();
+  }, [html, disconnect]);
 
   // TODO write test to ensure slideshow div is set as root in observer
   return (
