@@ -5,7 +5,7 @@ interface MarkdownProviderProps {
   children: React.ReactElement[];
 }
 
-interface MarkdownContextInitialState {
+interface MarkdownContextState {
   html: string;
   md: string;
   previewLineNumber: number;
@@ -20,7 +20,7 @@ const MARKDOWN_CONTEXT_INITIAL_STATE = {
 };
 
 export const MarkdownContext = createContext<{
-  state: MarkdownContextInitialState;
+  state: MarkdownContextState;
   dispatch: React.Dispatch<any>;
 }>({
   state: MARKDOWN_CONTEXT_INITIAL_STATE,
@@ -44,10 +44,10 @@ export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
   }
 
   const [state, dispatch] = useReducer(reducer, MARKDOWN_CONTEXT_INITIAL_STATE);
-  const context = { state, dispatch };
+  const contextValue = { state, dispatch };
 
   return (
-    <MarkdownContext.Provider value={context}>
+    <MarkdownContext.Provider value={contextValue}>
       {children}
     </MarkdownContext.Provider>
   );
