@@ -30,8 +30,8 @@ export const SlideshowObserverProvider: React.FC<SlideshowProviderProps> = ({
   const disconnect = useCallback(() => setEntries([]), []);
   const observe = useCallback(
     (target: HTMLElement | SVGSVGElement) => {
-      const addEntry = () => setEntries(R.append(target, entries));
-      R.either(R.includes(target, entries), addEntry);
+      const addEntry = (entry) => setEntries(R.append(entry, entries));
+      R.either(R.includes(R.__, entries), addEntry)(target);
     },
     [entries]
   );

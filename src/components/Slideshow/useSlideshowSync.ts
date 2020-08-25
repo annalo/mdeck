@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { useEffect, useMemo } from "react";
 import type { Dispatch, RefObject } from "react";
 import * as R from "ramda";
