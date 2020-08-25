@@ -1,4 +1,5 @@
 import React, { memo, useContext, useRef, useEffect } from "react";
+import * as R from "ramda";
 import styled from "styled-components/macro";
 import { SlideshowContext } from "contexts/SlideshowContext";
 import { MarkdownContext } from "contexts/MarkdownContext";
@@ -12,7 +13,7 @@ const Div = styled.div`
 
 export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const { state } = useContext(MarkdownContext);
+  const { state, dispatch } = useContext(MarkdownContext);
   const { entries, disconnect } = useContext(SlideshowContext);
 
   const { html } = state;
@@ -21,7 +22,31 @@ export const Slideshow: React.FC = () => {
     return () => disconnect();
   }, [html, disconnect]);
 
-  // TODO write test to ensure slideshow div is set as root in observer
+  useEffect(() => {
+    const node = ref.current;
+
+    const handleScroll = () => {
+      const isTopElement = (entry) => {
+        const boundingClientTop = entry.getBoundingClientRect().top;
+        return boundingClientTop >= 0 && boundingClientTop <= 18;
+      };
+      const topElement = R.find(isTopElement, entries);
+
+      const setLineNumber = (entry) => {
+        const lineNumber = parseInt(R.path(["dataset", "line"], entry), 10);
+        dispatch({
+          type: "setPreviewLineNumber",
+          previewLineNumber: lineNumber,
+        });
+      };
+
+      R.either(R.isNil, setLineNumber)(topElement);
+    };
+
+    node?.addEventListener("scroll", handleScroll);
+    return () => node?.removeEventListener("scroll", handleScroll);
+  }, [dispatch, entries]);
+
   return (
     <Div ref={ref} className="slideshow">
       {render(html)}
