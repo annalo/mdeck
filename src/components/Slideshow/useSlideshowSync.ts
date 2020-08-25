@@ -1,8 +1,8 @@
 import { useEffect, useMemo } from "react";
 import type { Dispatch, RefObject } from "react";
+import * as R from "ramda";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 import throttle from "lodash/throttle";
-import * as R from "ramda";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 
@@ -20,7 +20,7 @@ export function useSlideshowSync({
   textLineNumber,
 }: UseSlideshowSyncProps): void {
   const node = ref.current;
-  const isActive = usePaneIsActive(ref);
+  const isActive = usePaneIsActive(ref, false);
 
   /*
    * From the list of elements registerd with the observer (SlideshowContext),
@@ -51,7 +51,7 @@ export function useSlideshowSync({
     [dispatch, entries]
   );
 
-  /* Initializes event listener on "scroll" */
+  /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
     if (isActive) {
       node?.addEventListener("scroll", handleScroll);
@@ -68,11 +68,7 @@ export function useSlideshowSync({
       R.pathEq(["dataset", "line"], `${textLineNumber}`),
       entries
     );
-
-    const scrollTo = (element) => {
-      console.log("sync slideshow to text");
-      scrollIntoView(element, { block: "start" });
-    };
+    const scrollTo = (element) => scrollIntoView(element, { block: "start" });
 
     R.either(R.isNil, scrollTo)(matchingElement);
   }, [entries, handleScroll, node, textLineNumber]);

@@ -18,7 +18,7 @@ export function useTextAreaSync({
   textAreaLineHeight,
 }: UseTextAreaSyncProps): void {
   const node = ref.current;
-  const isActive = usePaneIsActive(ref);
+  const isActive = usePaneIsActive(ref, true);
 
   const handleScroll = useMemo(
     () =>
@@ -35,7 +35,7 @@ export function useTextAreaSync({
     [dispatch]
   );
 
-  /* Initializes event listener on "scroll" */
+  /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
     if (isActive) {
       node?.addEventListener("scroll", handleScroll);
@@ -50,9 +50,7 @@ export function useTextAreaSync({
   // TODO smooth scrolling
   useEffect(() => {
     if (node) {
-      console.log("sync text to slideshow");
-      const scrollTop = slideshowLineNumber * textAreaLineHeight;
-      node.scrollTop = scrollTop;
+      node.scrollTop = slideshowLineNumber * textAreaLineHeight;
     }
   }, [node, slideshowLineNumber, textAreaLineHeight]);
 }
