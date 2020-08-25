@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react";
 import type { Dispatch, RefObject } from "react";
+import * as R from "ramda";
 import throttle from "lodash/throttle";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
@@ -23,12 +24,14 @@ export function useTextAreaSync({
   const handleScroll = useMemo(
     () =>
       throttle((e) => {
-        console.log("set text line");
         const { scrollHeight, scrollTop, value } = e.target;
         dispatch({
           type: "setTextLineNumber",
           textLineNumber: Math.floor(
-            scrollTop / (scrollHeight / value.split("\n").length)
+            R.divide(
+              scrollTop,
+              R.divide(scrollHeight, R.length(R.split("\n", value)))
+            )
           ),
         });
       }, 200),
