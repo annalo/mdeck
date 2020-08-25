@@ -1,7 +1,7 @@
 import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components/macro";
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { useSync } from "./useSync";
+import { useTextAreaSync } from "./useTextAreaSync";
 
 export const TEXT_AREA_LINE_HEIGHT = 18;
 
@@ -27,7 +27,12 @@ export const TextEditor: React.FC = () => {
   const { state, dispatch } = useContext(MarkdownContext);
   const { md, previewLineNumber } = state;
 
-  useSync({ dispatch, previewLineNumber, ref });
+  useTextAreaSync({
+    dispatch,
+    previewLineNumber,
+    ref,
+    textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
+  });
 
   return (
     <Container>

@@ -1,19 +1,20 @@
-import { useMemo, useEffect } from "react";
+import { useEffect, useMemo } from "react";
 import type { Dispatch, RefObject } from "react";
 import throttle from "lodash/throttle";
-import { TEXT_AREA_LINE_HEIGHT } from "components/TextEditor";
 
-interface UseSyncProps {
+interface UseTextAreaSyncProps {
   dispatch: Dispatch<any>;
   previewLineNumber: number;
   ref: RefObject<HTMLTextAreaElement>;
+  textAreaLineHeight: number;
 }
 
-export function useSync({
+export function useTextAreaSync({
   dispatch,
   previewLineNumber,
   ref,
-}: UseSyncProps): void {
+  textAreaLineHeight,
+}: UseTextAreaSyncProps): void {
   const node = ref.current;
   const handleScroll = useMemo(
     () =>
@@ -41,7 +42,7 @@ export function useSync({
   useEffect(() => {
     if (node) {
       console.log("sync text to preview");
-      const scrollTop = previewLineNumber * TEXT_AREA_LINE_HEIGHT;
+      const scrollTop = previewLineNumber * textAreaLineHeight;
 
       /* Removes event listener before manipulating */
       node.removeEventListener("scroll", handleScroll);
@@ -56,5 +57,5 @@ export function useSync({
         );
       });
     }
-  }, [handleScroll, node, previewLineNumber]);
+  }, [handleScroll, node, previewLineNumber, textAreaLineHeight]);
 }
