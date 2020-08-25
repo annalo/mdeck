@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext, useEffect, useRef } from "react";
+import { SlideshowContext } from "contexts/SlideshowContext";
 
 interface Props {
   className: string;
@@ -13,8 +14,17 @@ export const Slide: React.FC<Props> = ({
   srcLine,
   viewBox,
 }: Props) => {
+  const ref = useRef<SVGSVGElement>(null);
+  const { observe } = useContext(SlideshowContext);
+
+  useEffect(() => {
+    const node = ref.current;
+    if (node) observe(node);
+  }, [observe]);
+
   return (
     <svg
+      ref={ref}
       className={className}
       data-line={srcLine}
       data-marpit-svg=""

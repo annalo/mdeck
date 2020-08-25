@@ -1,5 +1,4 @@
-import React, { useContext, useRef, useEffect } from "react";
-
+import React, { useContext, useEffect, useRef } from "react";
 import { SlideshowContext } from "contexts/SlideshowContext";
 
 interface Props {
