@@ -23,6 +23,7 @@ module.exports = {
     "import/prefer-default-export": "off",
     "linebreak-style": "off",
     "no-debugger": "warn",
+    "no-underscore-dangle": "off",
     "prettier/prettier": [
       "error",
       {
