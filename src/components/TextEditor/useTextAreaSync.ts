@@ -27,7 +27,7 @@ export function useTextAreaSync({
             scrollTop / (scrollHeight / value.split("\n").length)
           ),
         });
-      }, 500),
+      }, 200),
     [dispatch]
   );
 
@@ -41,7 +41,7 @@ export function useTextAreaSync({
   // TODO smooth scrolling
   useEffect(() => {
     if (node) {
-      console.log("sync text to preview");
+      console.log("sync text to slideshow");
       const scrollTop = slideshowLineNumber * textAreaLineHeight;
 
       /* Removes event listener before manipulating */

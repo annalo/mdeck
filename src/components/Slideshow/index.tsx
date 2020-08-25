@@ -16,13 +16,13 @@ export const Slideshow: React.FC = () => {
   const { state, dispatch } = useContext(MarkdownContext);
   const { entries, disconnect } = useContext(SlideshowContext);
 
-  const { html } = state;
+  const { html, textLineNumber } = state;
 
   useEffect(() => {
     return () => disconnect();
   }, [html, disconnect]);
 
-  useSlideshowSync({ dispatch, entries, ref });
+  useSlideshowSync({ dispatch, entries, ref, textLineNumber });
 
   return (
     <Div ref={ref} className="slideshow">
