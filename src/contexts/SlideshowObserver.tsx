@@ -1,4 +1,5 @@
 import React, { createContext, useCallback, useState } from "react";
+import * as R from "ramda";
 
 interface SlideshowProviderProps {
   children: React.ReactElement;
@@ -26,14 +27,11 @@ export const SlideshowObserverProvider: React.FC<SlideshowProviderProps> = ({
   const [entries, setEntries] = useState<Array<HTMLElement | SVGSVGElement>>(
     []
   );
-  const disconnect = useCallback(() => {
-    setEntries([]);
-  }, []);
-
+  const disconnect = useCallback(() => setEntries([]), []);
   const observe = useCallback(
     (target: HTMLElement | SVGSVGElement) => {
-      if (entries.includes(target)) return;
-      setEntries([target, ...entries]);
+      const addEntry = () => setEntries(R.append(target, entries));
+      R.either(R.includes(target, entries), addEntry);
     },
     [entries]
   );
