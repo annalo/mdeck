@@ -3,9 +3,8 @@ import styled from "styled-components/macro";
 
 import { SlideshowContext } from "contexts/SlideshowContext";
 import { MarkdownContext } from "contexts/MarkdownContext";
-
 import { render } from "utils/render";
-import { useSync } from "./useSlideshowSync";
+import { useSlideshowSync } from "./useSlideshowSync";
 
 const Div = styled.div`
   height: 100%;
@@ -23,7 +22,7 @@ export const Slideshow: React.FC = () => {
     return () => disconnect();
   }, [html, disconnect]);
 
-  useSync({ dispatch, entries, ref });
+  useSlideshowSync({ dispatch, entries, ref });
 
   return (
     <Div ref={ref} className="slideshow">

@@ -9,7 +9,7 @@ interface UseSlideshowSyncProps {
   ref: RefObject<HTMLDivElement>;
 }
 
-export function useSync({
+export function useSlideshowSync({
   dispatch,
   entries,
   ref,
