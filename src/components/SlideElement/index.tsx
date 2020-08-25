@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { SlideshowContext } from "contexts/SlideshowContext";
+import { SlideshowObserver } from "contexts/SlideshowObserver";
 
 interface Props {
   children: React.ReactElement;
@@ -15,7 +15,7 @@ export function SlideElement({
   srcLine,
 }: Props): React.ReactElement {
   const ref = useRef<SVGSVGElement>(null);
-  const { observe } = useContext(SlideshowContext);
+  const { observe } = useContext(SlideshowObserver);
 
   useEffect(() => {
     const node = ref.current;

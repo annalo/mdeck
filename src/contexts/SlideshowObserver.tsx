@@ -4,7 +4,7 @@ interface SlideshowProviderProps {
   children: React.ReactElement;
 }
 
-interface SlideshowContext {
+interface SlideshowObserver {
   entries: Array<HTMLElement | SVGSVGElement>;
   observe: (target: HTMLElement | SVGSVGElement) => void;
   disconnect: () => void;
@@ -16,11 +16,11 @@ const SLIDESHOW_CONTEXT_INITIAL_STATE = {
   disconnect: () => {},
 };
 
-export const SlideshowContext = createContext<SlideshowContext>(
+export const SlideshowObserver = createContext<SlideshowObserver>(
   SLIDESHOW_CONTEXT_INITIAL_STATE
 );
 
-export const SlideshowProvider: React.FC<SlideshowProviderProps> = ({
+export const SlideshowObserverProvider: React.FC<SlideshowProviderProps> = ({
   children,
 }: SlideshowProviderProps) => {
   const [entries, setEntries] = useState<Array<HTMLElement | SVGSVGElement>>(
@@ -41,8 +41,8 @@ export const SlideshowProvider: React.FC<SlideshowProviderProps> = ({
   const contextValue = { entries, disconnect, observe };
 
   return (
-    <SlideshowContext.Provider value={contextValue}>
+    <SlideshowObserver.Provider value={contextValue}>
       {children}
-    </SlideshowContext.Provider>
+    </SlideshowObserver.Provider>
   );
 };

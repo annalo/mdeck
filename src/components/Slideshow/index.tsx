@@ -1,7 +1,7 @@
 import React, { memo, useContext, useRef, useEffect } from "react";
 import styled from "styled-components/macro";
 
-import { SlideshowContext } from "contexts/SlideshowContext";
+import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { render } from "utils/render";
 import { useSlideshowSync } from "./useSlideshowSync";
@@ -14,7 +14,7 @@ const Div = styled.div`
 export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { entries, disconnect } = useContext(SlideshowContext);
+  const { entries, disconnect } = useContext(SlideshowObserver);
 
   const { html, textLineNumber } = state;
 
