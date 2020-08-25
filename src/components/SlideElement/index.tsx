@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useRef } from "react";
-import { ObserverContext } from "contexts/ObserverContext";
+import { SlideshowObserver } from "contexts/SlideshowObserver";
 
 interface Props {
   children: React.ReactElement;
@@ -15,16 +15,12 @@ export function SlideElement({
   srcLine,
 }: Props): React.ReactElement {
   const ref = useRef<SVGSVGElement>(null);
-  const observer = useContext(ObserverContext);
+  const { observe } = useContext(SlideshowObserver);
 
   useEffect(() => {
     const node = ref.current;
-    if (node) observer?.observe(node);
-
-    return () => {
-      if (node) observer?.unobserve(node);
-    };
-  }, [observer]);
+    if (node) observe(node);
+  }, [observe]);
 
   const { class: className, ...attrs } = attributes;
   return React.createElement(

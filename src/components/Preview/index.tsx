@@ -1,5 +1,6 @@
 import React, { memo } from "react";
 import styled from "styled-components/macro";
+import { SlideshowObserverProvider } from "contexts/SlideshowObserver";
 import { Slideshow } from "components/Slideshow";
 
 const Div = styled.div`
@@ -11,7 +12,9 @@ const Div = styled.div`
 export const Preview: React.FC = () => {
   return (
     <Div>
-      <Slideshow />
+      <SlideshowObserverProvider>
+        <Slideshow />
+      </SlideshowObserverProvider>
     </Div>
   );
 };

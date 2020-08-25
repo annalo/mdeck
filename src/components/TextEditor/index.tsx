@@ -1,7 +1,7 @@
 import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components/macro";
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { useSync } from "components/TextEditor/useSync";
+import { useTextAreaSync } from "./useTextAreaSync";
 
 export const TEXT_AREA_LINE_HEIGHT = 18;
 
@@ -25,9 +25,14 @@ const TextArea = styled.textarea`
 export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { md, previewLineNumber } = state;
+  const { md, slideshowLineNumber } = state;
 
-  useSync({ dispatch, previewLineNumber, ref });
+  useTextAreaSync({
+    dispatch,
+    ref,
+    slideshowLineNumber,
+    textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
+  });
 
   return (
     <Container>

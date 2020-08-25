@@ -1,10 +1,10 @@
-import React, { memo, useContext, useEffect, useRef, useState } from "react";
+import React, { memo, useContext, useRef, useEffect } from "react";
 import styled from "styled-components/macro";
-import throttle from "lodash/throttle";
 
-import { ObserverProvider } from "contexts/ObserverContext";
+import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { render } from "utils/render";
+import { useSlideshowSync } from "./useSlideshowSync";
 
 const Div = styled.div`
   height: 100%;
@@ -13,42 +13,21 @@ const Div = styled.div`
 
 export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const [observer, setObserver] = useState<IntersectionObserver | null>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { html } = state;
+  const { entries, disconnect } = useContext(SlideshowObserver);
+
+  const { html, textLineNumber } = state;
 
   useEffect(() => {
-    const observerCallback = throttle(
-      (entries: IntersectionObserverEntry[]) => {
-        const topElement: any = entries.find(
-          (entry) => entry.boundingClientRect.top < 25
-        );
-        if (topElement) {
-          // TODO test preview number is set
-          dispatch({
-            type: "setPreviewLineNumber",
-            previewLineNumber: parseInt(topElement.target.dataset.line, 10),
-          });
-        }
-      },
-      50
-    );
-    setObserver(
-      new IntersectionObserver(observerCallback, {
-        root: ref.current,
-        rootMargin: "0px",
-        threshold: [0.2, 1.0],
-      })
-    );
-  }, [setObserver, dispatch]);
+    return () => disconnect();
+  }, [html, disconnect]);
 
-  // TODO write test to ensure slideshow div is set as root in observer
+  useSlideshowSync({ dispatch, entries, ref, textLineNumber });
+
   return (
-    <ObserverProvider observer={observer}>
-      <Div ref={ref} className="slideshow">
-        {render(html)}
-      </Div>
-    </ObserverProvider>
+    <Div ref={ref} className="slideshow">
+      {render(html)}
+    </Div>
   );
 };
 

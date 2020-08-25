@@ -5,22 +5,22 @@ interface MarkdownProviderProps {
   children: React.ReactElement[];
 }
 
-interface MarkdownContextInitialState {
+interface MarkdownContextState {
   html: string;
   md: string;
-  previewLineNumber: number;
+  slideshowLineNumber: number;
   textLineNumber: number;
 }
 
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
   html: "",
   md: "",
-  previewLineNumber: 0,
+  slideshowLineNumber: 0,
   textLineNumber: 0,
 };
 
 export const MarkdownContext = createContext<{
-  state: MarkdownContextInitialState;
+  state: MarkdownContextState;
   dispatch: React.Dispatch<any>;
 }>({
   state: MARKDOWN_CONTEXT_INITIAL_STATE,
@@ -30,24 +30,24 @@ export const MarkdownContext = createContext<{
 export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
   children,
 }: MarkdownProviderProps) => {
-  function reducer(state, { type, textLineNumber, previewLineNumber, md }) {
+  function reducer(state, { type, md, slideshowLineNumber, textLineNumber }) {
     switch (type) {
       case "setMd":
         return { ...state, html: parse(md), md };
+      case "setSlideshowLineNumber":
+        return { ...state, slideshowLineNumber };
       case "setTextLineNumber":
         return { ...state, textLineNumber };
-      case "setPreviewLineNumber":
-        return { ...state, previewLineNumber };
       default:
         throw new Error();
     }
   }
 
   const [state, dispatch] = useReducer(reducer, MARKDOWN_CONTEXT_INITIAL_STATE);
-  const context = { state, dispatch };
+  const contextValue = { state, dispatch };
 
   return (
-    <MarkdownContext.Provider value={context}>
+    <MarkdownContext.Provider value={contextValue}>
       {children}
     </MarkdownContext.Provider>
   );
