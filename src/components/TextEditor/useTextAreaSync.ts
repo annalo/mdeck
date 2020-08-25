@@ -4,15 +4,15 @@ import throttle from "lodash/throttle";
 
 interface UseTextAreaSyncProps {
   dispatch: Dispatch<any>;
-  previewLineNumber: number;
   ref: RefObject<HTMLTextAreaElement>;
+  slideshowLineNumber: number;
   textAreaLineHeight: number;
 }
 
 export function useTextAreaSync({
   dispatch,
-  previewLineNumber,
   ref,
+  slideshowLineNumber,
   textAreaLineHeight,
 }: UseTextAreaSyncProps): void {
   const node = ref.current;
@@ -37,12 +37,12 @@ export function useTextAreaSync({
     return () => node?.removeEventListener("scroll", handleScroll);
   }, [handleScroll, node]);
 
-  /* Syncs text when previewLineNumber changes */
+  /* Syncs text when slideshowLineNumber changes */
   // TODO smooth scrolling
   useEffect(() => {
     if (node) {
       console.log("sync text to preview");
-      const scrollTop = previewLineNumber * textAreaLineHeight;
+      const scrollTop = slideshowLineNumber * textAreaLineHeight;
 
       /* Removes event listener before manipulating */
       node.removeEventListener("scroll", handleScroll);
@@ -57,5 +57,5 @@ export function useTextAreaSync({
         );
       });
     }
-  }, [handleScroll, node, previewLineNumber, textAreaLineHeight]);
+  }, [handleScroll, node, slideshowLineNumber, textAreaLineHeight]);
 }

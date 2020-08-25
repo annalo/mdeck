@@ -26,8 +26,8 @@ export function useSlideshowSync({
         const setLineNumber = (entry) => {
           const lineNumber = parseInt(R.path(["dataset", "line"], entry), 10);
           dispatch({
-            type: "setPreviewLineNumber",
-            previewLineNumber: lineNumber,
+            type: "setSlideshowLineNumber",
+            slideshowLineNumber: lineNumber,
           });
         };
 

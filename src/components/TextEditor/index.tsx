@@ -25,12 +25,12 @@ const TextArea = styled.textarea`
 export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { md, previewLineNumber } = state;
+  const { md, slideshowLineNumber } = state;
 
   useTextAreaSync({
     dispatch,
-    previewLineNumber,
     ref,
+    slideshowLineNumber,
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
   });
 

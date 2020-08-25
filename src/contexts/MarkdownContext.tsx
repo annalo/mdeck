@@ -8,14 +8,14 @@ interface MarkdownProviderProps {
 interface MarkdownContextState {
   html: string;
   md: string;
-  previewLineNumber: number;
+  slideshowLineNumber: number;
   textLineNumber: number;
 }
 
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
   html: "",
   md: "",
-  previewLineNumber: 0,
+  slideshowLineNumber: 0,
   textLineNumber: 0,
 };
 
@@ -30,14 +30,14 @@ export const MarkdownContext = createContext<{
 export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
   children,
 }: MarkdownProviderProps) => {
-  function reducer(state, { type, textLineNumber, previewLineNumber, md }) {
+  function reducer(state, { type, md, slideshowLineNumber, textLineNumber }) {
     switch (type) {
       case "setMd":
         return { ...state, html: parse(md), md };
+      case "setSlideshowLineNumber":
+        return { ...state, slideshowLineNumber };
       case "setTextLineNumber":
         return { ...state, textLineNumber };
-      case "setPreviewLineNumber":
-        return { ...state, previewLineNumber };
       default:
         throw new Error();
     }
