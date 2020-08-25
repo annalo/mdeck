@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import type { RefObject } from "react";
 
-export function usePaneIsActive(
+export const usePaneIsActive = (
   ref: RefObject<HTMLElement>,
   initialValue: boolean
-): boolean {
+): boolean => {
   const node = ref.current;
   const [isActive, setIsActive] = useState<boolean>(initialValue);
   const handleMouseEnter = () => setIsActive(true);
@@ -17,4 +17,4 @@ export function usePaneIsActive(
   }, [node, setIsActive]);
 
   return isActive;
-}
+};

@@ -8,12 +8,12 @@ interface Props {
   srcLine: number;
 }
 
-export function SlideElement({
+export const SlideElement = ({
   attributes,
   children,
   elementTag,
   srcLine,
-}: Props): React.ReactElement {
+}: Props): React.ReactElement => {
   const ref = useRef<SVGSVGElement>(null);
   const { observe } = useContext(SlideshowObserver);
 
@@ -28,4 +28,4 @@ export function SlideElement({
     { ref, "data-line": srcLine, className, ...attrs },
     children
   );
-}
+};

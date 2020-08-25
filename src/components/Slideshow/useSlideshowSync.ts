@@ -13,12 +13,12 @@ interface UseSlideshowSyncProps {
   textLineNumber: number;
 }
 
-export function useSlideshowSync({
+export const useSlideshowSync = ({
   dispatch,
   entries,
   ref,
   textLineNumber,
-}: UseSlideshowSyncProps): void {
+}: UseSlideshowSyncProps): void => {
   const node = ref.current;
   const isActive = usePaneIsActive(ref, false);
 
@@ -71,4 +71,4 @@ export function useSlideshowSync({
 
     R.either(R.isNil, scrollTo)(matchingElement);
   }, [entries, handleScroll, node, textLineNumber]);
-}
+};

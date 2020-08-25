@@ -30,7 +30,10 @@ export const MarkdownContext = createContext<{
 export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
   children,
 }: MarkdownProviderProps) => {
-  function reducer(state, { type, md, slideshowLineNumber, textLineNumber }) {
+  const reducer = (
+    state,
+    { type, md, slideshowLineNumber, textLineNumber }
+  ) => {
     switch (type) {
       case "setMd":
         return { ...state, html: parse(md), md };
@@ -41,7 +44,7 @@ export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
       default:
         throw new Error();
     }
-  }
+  };
 
   const [state, dispatch] = useReducer(reducer, MARKDOWN_CONTEXT_INITIAL_STATE);
   const contextValue = { state, dispatch };

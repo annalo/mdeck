@@ -11,14 +11,11 @@ interface Node {
 }
 
 const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
-function isTableDescendent(parent) {
-  return parent && TABLE_TAGS.includes(parent.name);
-}
+const isTableDescendent = (parent) =>
+  parent && TABLE_TAGS.includes(parent.name);
 
-export function render(htmlString: string): Array<React.ReactElement> {
-  function isValidNode() {
-    return true;
-  }
+export const render = (htmlString: string): Array<React.ReactElement> => {
+  const isValidNode = () => true;
 
   const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
   const processingInstructions = [
@@ -89,4 +86,4 @@ export function render(htmlString: string): Array<React.ReactElement> {
     isValidNode,
     processingInstructions
   );
-}
+};

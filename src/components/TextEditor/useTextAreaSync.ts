@@ -12,12 +12,12 @@ interface UseTextAreaSyncProps {
   textAreaLineHeight: number;
 }
 
-export function useTextAreaSync({
+export const useTextAreaSync = ({
   dispatch,
   ref,
   slideshowLineNumber,
   textAreaLineHeight,
-}: UseTextAreaSyncProps): void {
+}: UseTextAreaSyncProps): void => {
   const node = ref.current;
   const isActive = usePaneIsActive(ref, true);
 
@@ -56,4 +56,4 @@ export function useTextAreaSync({
       node.scrollTop = slideshowLineNumber * textAreaLineHeight;
     }
   }, [node, slideshowLineNumber, textAreaLineHeight]);
-}
+};
