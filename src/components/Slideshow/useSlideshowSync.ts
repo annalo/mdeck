@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import { useEffect, useMemo } from "react";
 import type { Dispatch, RefObject } from "react";
 import * as R from "ramda";
@@ -30,12 +31,11 @@ export function useSlideshowSync({
   const handleScroll = useMemo(
     () =>
       throttle(() => {
-        console.log("set slideshow line");
-
-        const isTopElement = (entry) => {
-          const boundingClientTop = entry.getBoundingClientRect().top;
-          return boundingClientTop >= 0 && boundingClientTop <= 18;
-        };
+        const isTopElement = (entry) =>
+          R.both(
+            R.gte(R.__, 0),
+            R.lte(R.__, 18)
+          )(entry.getBoundingClientRect().top);
         const topElement = R.find(isTopElement, entries);
 
         const setLineNumber = (element) => {
