@@ -55,6 +55,7 @@ export const useTextAreaSync = ({
     const setScrollTop = (value, n) => {
       n.scrollTop = value; // eslint-disable-line no-param-reassign
     };
+
     R.pipe(
       getNode,
       R.either(R.isNil, R.pipe(R.curry(setScrollTop)(scrollTop)))
