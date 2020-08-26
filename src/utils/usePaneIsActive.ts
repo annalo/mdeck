@@ -13,7 +13,11 @@ export const usePaneIsActive = (
   useEffect(() => {
     node?.addEventListener("mouseenter", handleMouseEnter);
     node?.addEventListener("mouseleave", handleMouseLeave);
-    return () => {};
+
+    return () => {
+      node?.removeEventListener("mouseenter", handleMouseEnter);
+      node?.removeEventListener("mouseleave", handleMouseLeave);
+    };
   }, [node, setIsActive]);
 
   return isActive;
