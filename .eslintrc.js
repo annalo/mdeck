@@ -11,12 +11,12 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   plugins: ["react", "@typescript-eslint", "jest"],
-  overrides: [
-    {
-      files: ["**/*.ts", "**/*.tsx"],
-      extends: ["plugin:@typescript-eslint/recommended"],
-    },
-  ],
+  // overrides: [
+  //   {
+  //     files: ["**/*.ts", "**/*.tsx"],
+  //     extends: ["plugin:@typescript-eslint/recommended"],
+  //   },
+  // ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
