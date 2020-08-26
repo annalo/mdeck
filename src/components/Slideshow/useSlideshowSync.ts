@@ -30,22 +30,22 @@ export const useSlideshowSync = ({
   const handleScroll = useMemo(
     () =>
       throttle(() => {
+        const withinTopBounds = R.both(R.gte(R.__, 0), R.lte(R.__, 18));
         const isTopElement = (entry) =>
-          R.both(
-            R.gte(R.__, 0),
-            R.lte(R.__, 18)
-          )(entry.getBoundingClientRect().top);
-        const topElement = R.find(isTopElement, entries);
+          withinTopBounds(entry.getBoundingClientRect().top);
 
-        const setLineNumber = (element) => {
-          const lineNumber = parseInt(R.path(["dataset", "line"], element), 10);
+        const getLineNumber = R.pipe(R.path(["dataset", "line"]), parseInt);
+        const setLineNumber = (lineNumber) => {
           dispatch({
             type: "setSlideshowLineNumber",
             slideshowLineNumber: lineNumber,
           });
         };
 
-        R.either(R.isNil, setLineNumber)(topElement);
+        R.pipe(
+          R.find(isTopElement),
+          R.either(R.isNil, R.pipe(getLineNumber, setLineNumber))
+        )(entries);
       }, 100),
     [dispatch, entries]
   );
