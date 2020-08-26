@@ -18,42 +18,44 @@ export const useTextAreaSync = ({
   slideshowLineNumber,
   textAreaLineHeight,
 }: UseTextAreaSyncProps): void => {
-  const node = ref.current;
   const isActive = usePaneIsActive(ref, true);
 
   const handleScroll = useMemo(
     () =>
       throttle((e) => {
-        const { scrollHeight, scrollTop, value } = e.target;
-        dispatch({
-          type: "setTextLineNumber",
-          textLineNumber: Math.floor(
-            R.divide(
-              scrollTop,
-              R.divide(scrollHeight, R.length(R.split("\n", value)))
-            )
-          ),
-        });
+        const getScrollTop = R.path(["target", "scrollTop"]);
+        const calculateLineNumber = R.divide(R.__, textAreaLineHeight);
+        const textLineNumber = R.pipe(
+          getScrollTop,
+          calculateLineNumber,
+          Math.floor
+        )(e);
+
+        dispatch({ type: "setTextLineNumber", textLineNumber });
       }, 200),
-    [dispatch]
+    [dispatch, textAreaLineHeight]
   );
 
   /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
-    if (isActive) {
-      node?.addEventListener("scroll", handleScroll);
-    } else {
-      node?.removeEventListener("scroll", handleScroll);
-    }
+    const node = ref.current;
+
+    isActive
+      ? node?.addEventListener("scroll", handleScroll)
+      : node?.removeEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);
-  }, [isActive, handleScroll, node]);
+  }, [isActive, handleScroll, ref]);
 
   /* Syncs text when slideshowLineNumber changes */
-  // TODO smooth scrolling
   useEffect(() => {
-    if (node) {
-      node.scrollTop = slideshowLineNumber * textAreaLineHeight;
-    }
-  }, [node, slideshowLineNumber, textAreaLineHeight]);
+    const calculateScrollTop = R.multiply(textAreaLineHeight);
+    const scrollTop = calculateScrollTop(slideshowLineNumber);
+    // TODO smooth scrolling
+    const setScrollTop = (node) => {
+      node.scrollTop = scrollTop; // eslint-disable-line no-param-reassign
+    };
+
+    R.either(R.isNil, setScrollTop)(R.prop("current", ref));
+  }, [ref, slideshowLineNumber, textAreaLineHeight]);
 };
