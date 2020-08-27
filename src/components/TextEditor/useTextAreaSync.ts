@@ -41,7 +41,7 @@ export const useTextAreaSync = ({
     const node = ref.current;
 
     isActive
-      ? node?.addEventListener("scroll", handleScroll)
+      ? node?.addEventListener("scroll", handleScroll, { passive: true })
       : node?.removeEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);

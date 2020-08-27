@@ -51,7 +51,7 @@ export const useSlideshowSync = ({
   /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
     isActive
-      ? node?.addEventListener("scroll", handleScroll)
+      ? node?.addEventListener("scroll", handleScroll, { passive: true })
       : node?.removeEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);
