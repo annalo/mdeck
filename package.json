@@ -2,10 +2,71 @@
   "name": "mdeck",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "npm": ">=6.4.1",
+    "node": ">=10.13.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "start:prod": "build && serve -s build",
+    "checkTs": "tsc --noEmit",
+    "eslint": "eslint --ext js,jsx,ts,tsx",
+    "lint": "yarn eslint src",
+    "lint:fix": "yarn eslint --fix src",
+    "lint:css": "stylelint src/**/*.css",
+    "format": "prettier --write src/**/*.ts{,x}",
+    "storybook": "start-storybook -p 6006 -s public",
+    "build-storybook": "build-storybook -s public"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "yarn eslint -- --fix"
+    ],
+    "*.{md,json}": [
+      "yarn prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn checkTs && lint-staged"
+    }
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx,ts,tsx}",
+      "!src/**/*/*.d.ts",
+      "!src/**/*/Loadable.{js,jsx,ts,tsx}",
+      "!src/**/*/types.ts",
+      "!src/index.tsx",
+      "!src/serviceWorker.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    }
+  },
   "dependencies": {
     "@marp-team/marpit": "1.6.2",
     "fontfaceobserver": "2.1.0",
-    "fp-ts": "2.8.2",
     "html-to-react": "1.4.3",
     "lodash": "4.17.20",
     "markdown-it-task-lists": "2.1.1",
@@ -65,67 +126,5 @@
     "stylelint-config-recommended": "3.0.0",
     "stylelint-config-styled-components": "0.1.1",
     "stylelint-processor-styled-components": "1.10.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "start:prod": "build && serve -s build",
-    "checkTs": "tsc --noEmit",
-    "eslint": "eslint --ext js,jsx,ts,tsx",
-    "lint": "yarn eslint src",
-    "lint:fix": "yarn eslint --fix src",
-    "lint:css": "stylelint src/**/*.css",
-    "format": "prettier --write src/**/*.ts{,x}",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "engines": {
-    "npm": ">=6.4.1",
-    "node": ">=10.13.0"
-  },
-  "lint-staged": {
-    "*.{ts,tsx,js,jsx}": [
-      "yarn eslint -- --fix"
-    ],
-    "*.{md,json}": [
-      "yarn prettier --write"
-    ]
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn checkTs && lint-staged"
-    }
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,ts,tsx}",
-      "!src/**/*/*.d.ts",
-      "!src/**/*/Loadable.{js,jsx,ts,tsx}",
-      "!src/**/*/types.ts",
-      "!src/index.tsx",
-      "!src/serviceWorker.ts"
-    ],
-    "coverageThreshold": {
-      "global": {
-        "branches": 90,
-        "functions": 90,
-        "lines": 90,
-        "statements": 90
-      }
-    }
   }
 }
