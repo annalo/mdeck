@@ -52,13 +52,10 @@ export const useTextAreaSync = ({
     const getNode = R.prop("current");
     const scrollTop = R.multiply(textAreaLineHeight, slideshowLineNumber);
     // TODO smooth scrolling
-    const setScrollTop = (value, n) => {
+    const setScrollTop = R.curry((value, n) => {
       n.scrollTop = value; // eslint-disable-line no-param-reassign
-    };
+    });
 
-    R.pipe(
-      getNode,
-      R.either(R.isNil, R.pipe(R.curry(setScrollTop)(scrollTop)))
-    )(ref);
+    R.pipe(getNode, R.either(R.isNil, setScrollTop(scrollTop)))(ref);
   }, [ref, slideshowLineNumber, textAreaLineHeight]);
 };
