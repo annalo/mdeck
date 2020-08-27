@@ -34,14 +34,12 @@ export const TextEditor: React.FC = () => {
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
   });
 
+  const handleInputChange = (e) =>
+    dispatch({ type: "setMd", md: e.target.value });
+
   return (
     <Container>
-      <TextArea
-        ref={ref}
-        autoFocus
-        onChange={(e): void => dispatch({ type: "setMd", md: e.target.value })}
-        value={md}
-      />
+      <TextArea ref={ref} autoFocus onChange={handleInputChange} value={md} />
     </Container>
   );
 };
