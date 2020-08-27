@@ -13,7 +13,6 @@ interface Node {
 const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
 
 const getName = R.prop("name");
-
 const isTableDescendent = R.both(
   R.has("parent"),
   R.pipe(R.path(["parent", "name"]), R.includes(R.__, TABLE_TAGS))
@@ -29,13 +28,17 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
       shouldProcessNode(node) {
         return R.pipe(getName, R.equals("svg"))(node);
       },
-      processNode({ attribs }: Node, children, idx) {
+      processNode(node: Node, children, idx) {
+        const { class: className, "data-line": dataLine, viewbox } = R.prop(
+          "attribs",
+          node
+        );
         return (
           <Slide
             key={`slide-${idx + 1}`}
-            className={attribs.class}
-            srcLine={parseInt(attribs["data-line"], 10)}
-            viewBox={attribs.viewbox}
+            className={className}
+            srcLine={parseInt(dataLine, 10)}
+            viewBox={viewbox}
           >
             {children}
           </Slide>
@@ -45,15 +48,17 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
     {
       // Processes slide elements
       shouldProcessNode(node: Node) {
-        return R.path(["attribs", "data-line"])(node);
+        return R.hasPath(["attribs", "data-line"])(node);
       },
-      processNode({ name, attribs }: Node, children) {
+      processNode(node: Node, children) {
+        const { attribs, name } = R.pick(["name", "attribs"], node);
+        const dataLine = R.pipe(R.prop("data-line"), parseInt)(attribs);
         return (
           <SlideElement
-            key={`slide-element-${name}-line-${attribs["data-line"]}`}
+            key={`slide-element-${name}-line-${dataLine}`}
             attributes={attribs}
             elementTag={name}
-            srcLine={parseInt(attribs["data-line"], 10)}
+            srcLine={dataLine}
           >
             {children}
           </SlideElement>
@@ -65,9 +70,10 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
       shouldProcessNode(node) {
         return R.pipe(getName, R.equals("foreignobject"))(node);
       },
-      processNode({ attribs }: Node, children, idx) {
+      processNode(node: Node, children, idx) {
+        const attr = R.prop("attribs", node);
         return (
-          <foreignObject key={`foreignobject-${idx + 1}`} {...attribs}>
+          <foreignObject key={`foreignobject-${idx + 1}`} {...attr}>
             {children}
           </foreignObject>
         );
