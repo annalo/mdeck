@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 import { useEffect, useMemo } from "react";
 import type { Dispatch, RefObject } from "react";
 import * as R from "ramda";
@@ -14,12 +13,12 @@ interface UseSlideshowSyncProps {
   textLineNumber: number;
 }
 
-export function useSlideshowSync({
+export const useSlideshowSync = ({
   dispatch,
   entries,
   ref,
   textLineNumber,
-}: UseSlideshowSyncProps): void {
+}: UseSlideshowSyncProps): void => {
   const node = ref.current;
   const isActive = usePaneIsActive(ref, false);
 
@@ -31,45 +30,44 @@ export function useSlideshowSync({
   const handleScroll = useMemo(
     () =>
       throttle(() => {
-        const isTopElement = (entry) =>
-          R.both(
-            R.gte(R.__, 0),
-            R.lte(R.__, 18)
-          )(entry.getBoundingClientRect().top);
-        const topElement = R.find(isTopElement, entries);
-
-        const setLineNumber = (element) => {
-          const lineNumber = parseInt(R.path(["dataset", "line"], element), 10);
+        const withinBounds = R.both(R.gte(R.__, 0), R.lte(R.__, 18));
+        const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
+        const getLineNumber = R.pipe(R.path(["dataset", "line"]), parseInt);
+        const setLineNumber = (lineNumber) => {
           dispatch({
             type: "setSlideshowLineNumber",
             slideshowLineNumber: lineNumber,
           });
         };
 
-        R.either(R.isNil, setLineNumber)(topElement);
+        R.pipe(
+          R.find(isTopElement),
+          R.either(R.isNil, R.pipe(getLineNumber, setLineNumber))
+        )(entries);
       }, 100),
     [dispatch, entries]
   );
 
   /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
-    if (isActive) {
-      node?.addEventListener("scroll", handleScroll);
-    } else {
-      node?.removeEventListener("scroll", handleScroll);
-    }
+    isActive
+      ? node?.addEventListener("scroll", handleScroll, { passive: true })
+      : node?.removeEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);
   }, [isActive, handleScroll, node]);
 
   /* Syncs slideshow when textLineNumber changes */
   useEffect(() => {
-    const matchingElement = R.find(
-      R.pathEq(["dataset", "line"], `${textLineNumber}`),
-      entries
+    const isMatchingElement = R.pathEq(
+      ["dataset", "line"],
+      `${textLineNumber}`
     );
-    const scrollTo = (element) => scrollIntoView(element, { block: "start" });
+    const scrollToElement = (e) => scrollIntoView(e, { block: "start" });
 
-    R.either(R.isNil, scrollTo)(matchingElement);
+    R.pipe(
+      R.find(isMatchingElement),
+      R.either(R.isNil, scrollToElement)
+    )(entries);
   }, [entries, handleScroll, node, textLineNumber]);
-}
+};

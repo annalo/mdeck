@@ -12,7 +12,7 @@ const RULES = [
   "table_open",
 ];
 
-export function injectLineNumber(md: Record<string, any>) {
+export const injectLineNumber = (md: Record<string, any>) => {
   const { marpit_inline_svg_open } = md.renderer.rules;
   // Enable line sync by per slides
   md.renderer.rules.marpit_inline_svg_open = (tokens, idx, opts, env, self) => {
@@ -38,4 +38,4 @@ export function injectLineNumber(md: Record<string, any>) {
       return renderer.call(self, tokens, idx, options, env, self);
     };
   });
-}
+};

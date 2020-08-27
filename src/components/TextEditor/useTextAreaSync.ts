@@ -12,48 +12,50 @@ interface UseTextAreaSyncProps {
   textAreaLineHeight: number;
 }
 
-export function useTextAreaSync({
+export const useTextAreaSync = ({
   dispatch,
   ref,
   slideshowLineNumber,
   textAreaLineHeight,
-}: UseTextAreaSyncProps): void {
-  const node = ref.current;
+}: UseTextAreaSyncProps): void => {
   const isActive = usePaneIsActive(ref, true);
 
   const handleScroll = useMemo(
     () =>
       throttle((e) => {
-        const { scrollHeight, scrollTop, value } = e.target;
-        dispatch({
-          type: "setTextLineNumber",
-          textLineNumber: Math.floor(
-            R.divide(
-              scrollTop,
-              R.divide(scrollHeight, R.length(R.split("\n", value)))
-            )
-          ),
-        });
+        const getScrollTop = R.path(["target", "scrollTop"]);
+        const calculateLineNumber = R.divide(R.__, textAreaLineHeight);
+        const textLineNumber = R.pipe(
+          getScrollTop,
+          calculateLineNumber,
+          Math.floor
+        )(e);
+
+        dispatch({ type: "setTextLineNumber", textLineNumber });
       }, 200),
-    [dispatch]
+    [dispatch, textAreaLineHeight]
   );
 
   /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
-    if (isActive) {
-      node?.addEventListener("scroll", handleScroll);
-    } else {
-      node?.removeEventListener("scroll", handleScroll);
-    }
+    const node = ref.current;
+
+    isActive
+      ? node?.addEventListener("scroll", handleScroll, { passive: true })
+      : node?.removeEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);
-  }, [isActive, handleScroll, node]);
+  }, [isActive, handleScroll, ref]);
 
   /* Syncs text when slideshowLineNumber changes */
-  // TODO smooth scrolling
   useEffect(() => {
-    if (node) {
-      node.scrollTop = slideshowLineNumber * textAreaLineHeight;
-    }
-  }, [node, slideshowLineNumber, textAreaLineHeight]);
-}
+    const getNode = R.prop("current");
+    const scrollTop = R.multiply(textAreaLineHeight, slideshowLineNumber);
+    // TODO smooth scrolling
+    const setScrollTop = R.curry((value, n) => {
+      n.scrollTop = value; // eslint-disable-line no-param-reassign
+    });
+
+    R.pipe(getNode, R.either(R.isNil, setScrollTop(scrollTop)))(ref);
+  }, [ref, slideshowLineNumber, textAreaLineHeight]);
+};

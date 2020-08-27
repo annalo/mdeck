@@ -1,4 +1,5 @@
 module.exports = {
+  parser: "@typescript-eslint/parser",
   extends: [
     "airbnb-typescript",
     "airbnb/hooks",
@@ -10,19 +11,33 @@ module.exports = {
     "plugin:prettier/recommended",
   ],
   plugins: ["react", "@typescript-eslint", "jest"],
-  parser: "@typescript-eslint/parser",
+  // overrides: [
+  //   {
+  //     files: ["**/*.ts", "**/*.tsx"],
+  //     extends: ["plugin:@typescript-eslint/recommended"],
+  //   },
+  // ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 2929,
+    ecmaVersion: 2020,
     sourceType: "module",
     project: "./tsconfig.json",
   },
   rules: {
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        allowShortCircuit: true,
+        allowTernary: true,
+      },
+    ],
     "import/prefer-default-export": "off",
     "linebreak-style": "off",
     "no-debugger": "warn",
+    "no-underscore-dangle": "off",
+    "no-unused-expressions": "off",
     "prettier/prettier": [
       "error",
       {
