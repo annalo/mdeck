@@ -11,8 +11,6 @@ interface Node {
 }
 
 const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
-
-const getName = R.prop("name");
 const isTableDescendent = R.both(
   R.has("parent"),
   R.pipe(R.path(["parent", "name"]), R.includes(R.__, TABLE_TAGS))
@@ -26,7 +24,7 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
     {
       // Processes slides
       shouldProcessNode(node) {
-        return R.pipe(getName, R.equals("svg"))(node);
+        return R.propEq("name", "svg")(node);
       },
       processNode(node: Node, children, idx) {
         const { class: className, "data-line": dataLine, viewbox } = R.prop(
@@ -68,7 +66,7 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
     {
       // camelcase foreignObject html tag
       shouldProcessNode(node) {
-        return R.pipe(getName, R.equals("foreignobject"))(node);
+        return R.propEq("name", "foreignobject")(node);
       },
       processNode(node: Node, children, idx) {
         const attr = R.prop("attribs", node);
