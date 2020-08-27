@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import HtmlToReact, { Parser } from "html-to-react";
-
+import * as R from "ramda";
 import { Slide } from "components/Slide/Loadable";
 import { SlideElement } from "components/SlideElement";
 
@@ -11,8 +11,13 @@ interface Node {
 }
 
 const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
-const isTableDescendent = (parent) =>
-  parent && TABLE_TAGS.includes(parent.name);
+
+const getName = R.prop("name");
+
+const isTableDescendent = R.both(
+  R.has("parent"),
+  R.pipe(R.path(["parent", "name"]), R.includes(R.__, TABLE_TAGS))
+);
 
 export const render = (htmlString: string): Array<React.ReactElement> => {
   const isValidNode = () => true;
@@ -21,8 +26,8 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
   const processingInstructions = [
     {
       // Processes slides
-      shouldProcessNode({ name }) {
-        return name === "svg";
+      shouldProcessNode(node) {
+        return R.pipe(getName, R.equals("svg"))(node);
       },
       processNode({ attribs }: Node, children, idx) {
         return (
@@ -39,8 +44,8 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
     },
     {
       // Processes slide elements
-      shouldProcessNode({ attribs }: Node) {
-        return attribs && attribs["data-line"];
+      shouldProcessNode(node: Node) {
+        return R.path(["attribs", "data-line"])(node);
       },
       processNode({ name, attribs }: Node, children) {
         return (
@@ -57,8 +62,8 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
     },
     {
       // camelcase foreignObject html tag
-      shouldProcessNode({ name }) {
-        return name === "foreignobject";
+      shouldProcessNode(node) {
+        return R.pipe(getName, R.equals("foreignobject"))(node);
       },
       processNode({ attribs }: Node, children, idx) {
         return (
@@ -71,11 +76,9 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
 
     {
       // Everything else
-      shouldProcessNode({ parent, type }) {
-        if (type === "text" && isTableDescendent(parent)) {
-          return false;
-        }
-        return true;
+      shouldProcessNode(node) {
+        // Skip processing whitespace text for table elements
+        return !R.both(R.propEq("type", "text"), isTableDescendent)(node);
       },
       processNode: processNodeDefinitions.processDefaultNode,
     },
