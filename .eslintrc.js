@@ -1,7 +1,7 @@
 module.exports = {
   env: {
-    "browser": true,
-    "es2020": true
+    browser: true,
+    es2020: true,
   },
   extends: [
     "plugin:react/recommended",
@@ -48,7 +48,15 @@ module.exports = {
     //     reservedFirst: true,
     //   },
     // ],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".ts", "tsx"] }],
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".ts", "tsx"] }],
     "react/prop-types": "off",
+  },
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".ts", ".tsx"],
+        paths: ["src"],
+      },
+    },
   },
 };
