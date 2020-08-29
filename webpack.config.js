@@ -25,10 +25,6 @@ module.exports = (env) => {
           use: "ts-loader",
         },
         {
-          test: /\.html$/,
-          use: "html-loader",
-        },
-        {
           test: /\.css$/i,
           use: ["style-loader", "css-loader"],
         },
@@ -41,7 +37,11 @@ module.exports = (env) => {
     resolve: {
       extensions: [".tsx", ".ts", ".js"],
     },
-    plugins: [new HtmlWebpackPlugin()],
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: path.resolve(__dirname, "public", "index.html"),
+      }),
+    ],
     devServer: {
       contentBase: path.resolve(__dirname, "public"),
       compress: true,
