@@ -20,6 +20,7 @@
   "dependencies": {
     "@marp-team/marpit": "^1.6.2",
     "cross-env": "^7.0.2",
+    "html-to-react": "^1.4.3",
     "lodash": "^4.17.20",
     "markdown-it-task-lists": "^2.1.1",
     "ramda": "^0.27.1",
