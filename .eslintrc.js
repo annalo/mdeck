@@ -41,6 +41,13 @@ module.exports = {
         tsx: "never",
       },
     ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        devDependencies: ["**/setupTests.ts", "**/*.test.ts", "**/*.test.tsx"],
+      },
+    ],
+
     "import/prefer-default-export": "off",
     // "linebreak-style": "off",
     // "no-debugger": "warn",
