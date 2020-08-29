@@ -1,30 +1,24 @@
 module.exports = {
+  "env": {
+    "browser": true,
+    "es2020": true
+},
+extends: [
+  "plugin:react/recommended",
+  "airbnb",
+  "plugin:prettier/recommended",
+  "plugin:@typescript-eslint/eslint-recommended",
+  "plugin:@typescript-eslint/recommended"
+],
   parser: "@typescript-eslint/parser",
-  extends: [
-    "airbnb-typescript",
-    "airbnb/hooks",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:jest/recommended",
-    "prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
-  ],
-  plugins: ["react", "@typescript-eslint", "jest"],
-  // overrides: [
-  //   {
-  //     files: ["**/*.ts", "**/*.tsx"],
-  //     extends: ["plugin:@typescript-eslint/recommended"],
-  //   },
-  // ],
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2020,
     sourceType: "module",
-    project: "./tsconfig.json",
   },
+  plugins: ["react", "@typescript-eslint"],
   rules: {
     "@typescript-eslint/no-unused-expressions": [
       "error",
@@ -34,16 +28,16 @@ module.exports = {
       },
     ],
     "import/prefer-default-export": "off",
-    "linebreak-style": "off",
-    "no-debugger": "warn",
-    "no-underscore-dangle": "off",
+    // "linebreak-style": "off",
+    // "no-debugger": "warn",
+    // "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        endOfLine: "auto",
-      },
-    ],
+    // "prettier/prettier": [
+    //   "error",
+    //   {
+    //     endOfLine: "auto",
+    //   },
+    // ],
     "react/jsx-sort-props": [
       "error",
       {
@@ -51,6 +45,6 @@ module.exports = {
         reservedFirst: true,
       },
     ],
-    "react/no-unused-prop-types": "off",
+    "react/prop-types": "off",
   },
 };
