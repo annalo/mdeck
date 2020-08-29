@@ -13,9 +13,12 @@
     "eslint": "eslint --ext js,ts,tsx",
     "lint": "yarn eslint src",
     "lint:fix": "yarn eslint --fix src",
-    "format": "prettier --write src/**/*.ts{,x}"
+    "format": "prettier --write src/**/*.ts{,x}",
+    "test": "cross-env NODE_ENV=test jest --coverage",
+    "test:watch": "cross-env NODE_ENV=test jest --watchAll"
   },
   "dependencies": {
+    "cross-env": "^7.0.2",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-router-dom": "^5.2.0",
@@ -54,6 +57,7 @@
     "eslint-plugin-react-hooks": "4.1.0",
     "fork-ts-checker-webpack-plugin": "^5.1.0",
     "html-webpack-plugin": "4.3.0",
+    "jest-cli": "^26.4.2",
     "jest-styled-components": "^7.0.3",
     "prettier": "^2.1.1",
     "react-test-renderer": "^16.13.1",
