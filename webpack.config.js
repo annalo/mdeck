@@ -66,6 +66,12 @@ module.exports = (env) => {
       }),
       new HtmlWebpackPlugin({
         template: path.resolve(__dirname, "public", "index.html"),
+        typescript: {
+          diagnosticOptions: {
+            semantic: true,
+            syntactic: true,
+          },
+        },
       }),
     ],
     devServer: {
