@@ -13,6 +13,7 @@ module.exports = (env) => {
       filename: "bundle.js",
       publicPath: "/",
     },
+    mode: isProduction ? "production" : "development",
     module: {
       rules: [
         {
@@ -50,7 +51,11 @@ module.exports = (env) => {
     optimization: {
       removeAvailableModules: false,
       removeEmptyChunks: false,
-      splitChunks: false,
+      splitChunks: {
+        cacheGroups: {
+          default: false,
+        },
+      },
     },
     plugins: [
       new ForkTsCheckerWebpackPlugin({
@@ -70,9 +75,9 @@ module.exports = (env) => {
       port: 3000,
       stats: "minimal",
       watchOptions: {
-        ignored: path.resolve(__dirname, "node_modules"),
+        ignored: /node_modules/,
       },
     },
-    devtool: isProduction ? "source-map" : "inline-source-map",
+    devtool: isProduction ? "source-map" : "inline-cheap-source-map",
   };
 };
