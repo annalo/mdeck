@@ -6,6 +6,10 @@
     "npm": ">=6.14.7",
     "node": ">=12.18.3"
   },
+  "scripts": {
+    "build:dev": "webpack --mode development --env=development",
+    "build:prod": "webpack --mode production --env=production"
+  },
   "dependencies": {
     "react": "16.13.1",
     "react-dom": "16.13.1"
