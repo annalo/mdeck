@@ -1,18 +1,18 @@
 module.exports = {
-  "env": {
+  env: {
     "browser": true,
     "es2020": true
-},
-extends: [
-  "plugin:react/recommended",
-  "airbnb-typescript",
-  "airbnb/hooks",
-  "plugin:@typescript-eslint/recommended",
-  // "plugin:jest/recommended",
-  "prettier",
-  // "prettier/react",
-  "prettier/@typescript-eslint",
-],
+  },
+  extends: [
+    "plugin:react/recommended",
+    "airbnb",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    // "plugin:jest/recommended",
+    "prettier",
+    // "prettier/react",
+    "prettier/@typescript-eslint",
+  ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
@@ -48,6 +48,7 @@ extends: [
     //     reservedFirst: true,
     //   },
     // ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".ts", "tsx"] }],
     "react/prop-types": "off",
   },
 };
