@@ -1,6 +1,6 @@
-const path = require("path");
-const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+import * as path from "path";
+import ForkTsCheckerWebpackPlugin from "fork-ts-checker-webpack-plugin";
+import HtmlWebpackPlugin from "html-webpack-plugin";
 
 module.exports = (env) => {
   console.log(env);
@@ -38,6 +38,7 @@ module.exports = (env) => {
       extensions: [".tsx", ".ts", ".js"],
       alias: {
         components: path.resolve(__dirname, "src/components/"),
+        utils: path.resolve(__dirname, "src/utils/"),
       },
     },
     plugins: [
