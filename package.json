@@ -18,7 +18,9 @@
     "test:watch": "cross-env NODE_ENV=test jest --watchAll"
   },
   "dependencies": {
+    "@marp-team/marpit": "^1.6.2",
     "cross-env": "^7.0.2",
+    "markdown-it-task-lists": "^2.1.1",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-router-dom": "^5.2.0",
