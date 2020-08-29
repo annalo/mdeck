@@ -12,7 +12,7 @@ import { Switch, Route, BrowserRouter } from "react-router-dom";
 import { HomePage } from "components/HomePage/Loadable";
 import { NotFoundPage } from "components/NotFoundPage/Loadable";
 
-// import { GlobalStyle } from "./GlobalStyle";
+import { GlobalStyle } from "./GlobalStyle";
 
 export const App: React.FC = () => {
   return (
@@ -28,7 +28,7 @@ export const App: React.FC = () => {
         <Route exact component={HomePage} path="/" />
         <Route component={NotFoundPage} />
       </Switch>
-      {/* <GlobalStyle /> */}
+      <GlobalStyle />
     </BrowserRouter>
   );
 };
