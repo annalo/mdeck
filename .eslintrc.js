@@ -5,10 +5,13 @@ module.exports = {
 },
 extends: [
   "plugin:react/recommended",
-  "airbnb",
-  "plugin:prettier/recommended",
-  "plugin:@typescript-eslint/eslint-recommended",
-  "plugin:@typescript-eslint/recommended"
+  "airbnb-typescript",
+  "airbnb/hooks",
+  "plugin:@typescript-eslint/recommended",
+  // "plugin:jest/recommended",
+  "prettier",
+  // "prettier/react",
+  "prettier/@typescript-eslint",
 ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -38,13 +41,13 @@ extends: [
     //     endOfLine: "auto",
     //   },
     // ],
-    "react/jsx-sort-props": [
-      "error",
-      {
-        shorthandFirst: true,
-        reservedFirst: true,
-      },
-    ],
+    // "react/jsx-sort-props": [
+    //   "error",
+    //   {
+    //     shorthandFirst: true,
+    //     reservedFirst: true,
+    //   },
+    // ],
     "react/prop-types": "off",
   },
 };
