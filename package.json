@@ -14,8 +14,22 @@
     "lint": "yarn eslint src",
     "lint:fix": "yarn eslint --fix src",
     "format": "prettier --write src/**/*.ts{,x}",
+    "typecheck": "tsc --noEmit",
     "test": "cross-env NODE_ENV=test jest --coverage",
     "test:watch": "cross-env NODE_ENV=test jest --watchAll"
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "yarn eslint -- --fix"
+    ],
+    "*.{md,json}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npx lint-staged && yarn run typecheck"
+    }
   },
   "dependencies": {
     "@marp-team/marpit": "^1.6.2",
@@ -63,8 +77,10 @@
     "eslint-plugin-react-hooks": "4.1.0",
     "fork-ts-checker-webpack-plugin": "^5.1.0",
     "html-webpack-plugin": "4.3.0",
+    "husky": "^4.2.5",
     "jest-cli": "^26.4.2",
     "jest-styled-components": "^7.0.3",
+    "lint-staged": "^10.2.13",
     "prettier": "^2.1.1",
     "react-test-renderer": "^16.13.1",
     "style-loader": "1.2.1",
