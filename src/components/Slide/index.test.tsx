@@ -16,12 +16,9 @@ describe("<Slide />", () => {
 
   test("renders an svg element with viewBox and data-line attributes", () => {
     render(component);
-
     const svg = screen.getByRole("img");
-    screen.debug(svg);
+
     expect(svg).toHaveAttribute("viewBox");
     expect(svg).toHaveAttribute("data-line");
   });
-
-  // test("observes itself with SlideshowObserver");
 });
