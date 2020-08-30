@@ -1,13 +1,13 @@
 import React from "react";
 import { createRenderer } from "react-test-renderer/shallow";
 
-import { HomePage } from "./index";
+import { Home } from "./index";
 
 const renderer = createRenderer();
 
-describe("<HomePage />", () => {
+describe("<Home />", () => {
   it("should render and match the snapshot", () => {
-    renderer.render(<HomePage />);
+    renderer.render(<Home />);
     const renderedOutput = renderer.getRenderOutput();
     expect(renderedOutput).toMatchSnapshot();
   });
