@@ -20,6 +20,7 @@ exports[`<TextEditor /> should match the snapshot 1`] = `
   border: none;
   font-size: 15px;
   height: 100%;
+  line-height: 18px;
   outline: none;
   padding: 1em;
   resize: none;
