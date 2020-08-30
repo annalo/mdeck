@@ -1,5 +1,5 @@
 import React, { memo, useContext, useRef } from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { useTextAreaSync } from "./useTextAreaSync";
 

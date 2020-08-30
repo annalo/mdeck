@@ -67,7 +67,7 @@ export const useSlideshowSync = ({
 
     R.pipe(
       R.find(isMatchingElement),
-      R.either(R.isNil, scrollToElement)
+      R.unless(R.isNil, scrollToElement)
     )(entries);
   }, [entries, handleScroll, node, textLineNumber]);
 };

@@ -56,6 +56,6 @@ export const useTextAreaSync = ({
       n.scrollTop = value; // eslint-disable-line no-param-reassign
     });
 
-    R.pipe(getNode, R.either(R.isNil, setScrollTop(scrollTop)))(ref);
+    R.pipe(getNode, R.unless(R.isNil, setScrollTop(scrollTop)))(ref);
   }, [ref, slideshowLineNumber, textAreaLineHeight]);
 };

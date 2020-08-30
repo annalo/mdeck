@@ -1,6 +1,5 @@
 import React from "react";
-import styled from "styled-components/macro";
-import { P } from "./P";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -20,6 +19,13 @@ const Title = styled.div`
   span {
     font-size: 3.125rem;
   }
+`;
+
+export const P = styled.p`
+  font-size: 1rem;
+  line-height: 1.5;
+  color: black;
+  margin: 0.625rem 0 1.5rem 0;
 `;
 
 export const NotFoundPage: React.FC = () => {

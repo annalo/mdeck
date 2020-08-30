@@ -1,30 +1,26 @@
 module.exports = {
-  parser: "@typescript-eslint/parser",
+  env: {
+    browser: true,
+    es2020: true,
+  },
   extends: [
-    "airbnb-typescript",
+    "airbnb",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
-    "plugin:jest/recommended",
     "prettier",
-    "prettier/react",
     "prettier/@typescript-eslint",
-    "plugin:prettier/recommended",
+    "prettier/react",
+    "plugin:jest/recommended",
   ],
-  plugins: ["react", "@typescript-eslint", "jest"],
-  // overrides: [
-  //   {
-  //     files: ["**/*.ts", "**/*.tsx"],
-  //     extends: ["plugin:@typescript-eslint/recommended"],
-  //   },
-  // ],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
       jsx: true,
     },
     ecmaVersion: 2020,
     sourceType: "module",
-    project: "./tsconfig.json",
   },
+  plugins: ["react", "@typescript-eslint", "jest"],
   rules: {
     "@typescript-eslint/no-unused-expressions": [
       "error",
@@ -33,17 +29,28 @@ module.exports = {
         allowTernary: true,
       },
     ],
+    "@typescript-eslint/no-var-requires": "warn",
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        js: "never",
+        jsx: "never",
+        ts: "never",
+        tsx: "never",
+      },
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        devDependencies: ["**/setupTests.ts", "**/*.test.ts", "**/*.test.tsx"],
+      },
+    ],
+
     "import/prefer-default-export": "off",
-    "linebreak-style": "off",
     "no-debugger": "warn",
     "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
-    "prettier/prettier": [
-      "error",
-      {
-        endOfLine: "auto",
-      },
-    ],
     "react/jsx-sort-props": [
       "error",
       {
@@ -51,6 +58,15 @@ module.exports = {
         reservedFirst: true,
       },
     ],
-    "react/no-unused-prop-types": "off",
+    "react/jsx-filename-extension": [1, { extensions: [".js", ".ts", "tsx"] }],
+    "react/prop-types": "off",
+  },
+  settings: {
+    "import/resolver": {
+      node: {
+        extensions: [".js", ".ts", ".tsx"],
+        paths: ["src"],
+      },
+    },
   },
 };

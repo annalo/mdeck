@@ -13,8 +13,8 @@ interface SlideshowObserver {
 
 const SLIDESHOW_CONTEXT_INITIAL_STATE = {
   entries: [],
-  observe: () => {},
-  disconnect: () => {},
+  observe: (): void => undefined,
+  disconnect: (): void => undefined,
 };
 
 export const SlideshowObserver = createContext<SlideshowObserver>(
@@ -31,8 +31,10 @@ export const SlideshowObserverProvider: React.FC<SlideshowProviderProps> = ({
   const observe = useCallback(
     (target: HTMLElement | SVGSVGElement) => {
       const includesEntry = R.includes(R.__, entries);
-      const addEntry = (e) => R.pipe(R.append(e), setEntries)(entries);
-      R.either(includesEntry, addEntry)(target);
+      const addEntry = (e: HTMLElement | SVGSVGElement) =>
+        R.pipe(R.append(e), setEntries)(entries);
+
+      R.unless(includesEntry, addEntry)(target);
     },
     [entries]
   );

@@ -1,5 +1,5 @@
 import React, { memo, useContext, useRef, useEffect } from "react";
-import styled from "styled-components/macro";
+import styled from "styled-components";
 
 import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
