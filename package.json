@@ -24,11 +24,12 @@
     ],
     "*.{md,json}": [
       "prettier --write"
-    ]
+    ],
+    "*.js": "eslint --cache --fix"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx lint-staged && yarn run typecheck"
+      "pre-commit": "lint-staged && yarn typecheck"
     }
   },
   "dependencies": {
