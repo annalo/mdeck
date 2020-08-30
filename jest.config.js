@@ -7,6 +7,7 @@ module.exports = {
   ],
   moduleNameMapper: {
     "^components(.*)$": "<rootDir>/src/components$1",
+    "^contexts(.*)$": "<rootDir>/src/contexts$1",
     "^utils(.*)$": "<rootDir>/src/utils$1",
   },
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
