@@ -4,13 +4,10 @@ exports[`<App /> should render and match the snapshot 1`] = `
 <BrowserRouter>
   <Switch>
     <Route
-      component={[Function]}
-      exact={true}
       path="/"
-    />
-    <Route
-      component={[Function]}
-    />
+    >
+      <Unknown />
+    </Route>
   </Switch>
   <Memo(GlobalStyleComponent) />
 </BrowserRouter>

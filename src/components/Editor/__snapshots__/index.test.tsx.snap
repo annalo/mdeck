@@ -1,7 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Editor /> should match the snapshot 1`] = `
-.c0 {
+exports[`<Editor /> should render and match the snapshot 1`] = `
+<DocumentFragment>
+  .c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -10,6 +11,7 @@ exports[`<Editor /> should match the snapshot 1`] = `
 }
 
 <div
-  class="c0"
-/>
+    class="c0"
+  />
+</DocumentFragment>
 `;

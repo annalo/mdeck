@@ -1,9 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`<Home /> should render and match the snapshot 1`] = `
-<styled.div
-  className="main"
->
-  <Unknown />
-</styled.div>
+<DocumentFragment>
+  .c0 {
+  height: 100%;
+}
+
+<div
+    class="c0 main"
+  />
+</DocumentFragment>
 `;
