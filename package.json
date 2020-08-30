@@ -28,6 +28,7 @@
     "react-dom": "16.13.1",
     "react-router-dom": "^5.2.0",
     "sanitize.css": "^12.0.1",
+    "smooth-scroll-into-view-if-needed": "^1.1.28",
     "styled-components": "^5.1.1"
   },
   "devDependencies": {
