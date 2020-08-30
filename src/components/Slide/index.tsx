@@ -3,6 +3,7 @@ import { SlideshowObserver } from "contexts/SlideshowObserver";
 
 interface Props {
   className: string;
+  index;
   srcLine: number;
   children: React.ReactElement;
   viewBox: string;
@@ -11,6 +12,7 @@ interface Props {
 export const Slide: React.FC<Props> = ({
   children,
   className,
+  index,
   srcLine,
   viewBox,
 }: Props) => {
@@ -30,6 +32,7 @@ export const Slide: React.FC<Props> = ({
       data-marpit-svg=""
       viewBox={viewBox}
     >
+      <title>{`Slide ${index + 1}`}</title>
       {children}
     </svg>
   );
