@@ -64,6 +64,10 @@ module.exports = {
       eslint: {
         files: "./src/**/*.{ts,tsx,js,jsx}",
       },
+      formatter: {
+        type: "codeframe",
+        options: { highlightCode: true, linesAbove: 0, linesBelow: 0 },
+      },
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "public", "index.html"),
@@ -78,6 +82,7 @@ module.exports = {
   devServer: {
     compress: true,
     contentBase: path.resolve(__dirname, "public"),
+    clientLogLevel: "silent",
     hot: true,
     port: 3000,
     stats: "minimal",
