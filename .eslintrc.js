@@ -4,14 +4,13 @@ module.exports = {
     es2020: true,
   },
   extends: [
-    "plugin:react/recommended",
     "airbnb",
     "airbnb/hooks",
     "plugin:@typescript-eslint/recommended",
-    "plugin:jest/recommended",
     "prettier",
-    "prettier/react",
     "prettier/@typescript-eslint",
+    "prettier/react",
+    "plugin:jest/recommended",
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
@@ -49,23 +48,16 @@ module.exports = {
     ],
 
     "import/prefer-default-export": "off",
-    // "linebreak-style": "off",
-    // "no-debugger": "warn",
+    "no-debugger": "warn",
     "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
-    // "prettier/prettier": [
-    //   "error",
-    //   {
-    //     endOfLine: "auto",
-    //   },
-    // ],
-    // "react/jsx-sort-props": [
-    //   "error",
-    //   {
-    //     shorthandFirst: true,
-    //     reservedFirst: true,
-    //   },
-    // ],
+    "react/jsx-sort-props": [
+      "error",
+      {
+        shorthandFirst: true,
+        reservedFirst: true,
+      },
+    ],
     "react/jsx-filename-extension": [1, { extensions: [".js", ".ts", "tsx"] }],
     "react/prop-types": "off",
   },

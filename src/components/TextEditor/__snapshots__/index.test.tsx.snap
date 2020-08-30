@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<TextEditor /> should match the snapshot 1`] = `
+.c0 {
+  background-color: #fafafa;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  height: 100%;
+  outline: none;
+  padding: 1em;
+  resize: none;
+}
+
+<div
+  class="c0"
+>
+  <textarea
+    class="c1"
+  />
+</div>
+`;
