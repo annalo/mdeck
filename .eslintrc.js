@@ -51,7 +51,7 @@ module.exports = {
     "import/prefer-default-export": "off",
     // "linebreak-style": "off",
     // "no-debugger": "warn",
-    // "no-underscore-dangle": "off",
+    "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
     // "prettier/prettier": [
     //   "error",
