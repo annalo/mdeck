@@ -27,12 +27,12 @@ export const Slide: React.FC<Props> = ({
   return (
     <svg
       ref={ref}
+      aria-label={`slide-${index + 1}`}
       className={className}
       data-line={srcLine}
-      data-marpit-svg=""
+      role="img"
       viewBox={viewBox}
     >
-      <title>{`Slide ${index + 1}`}</title>
       {children}
     </svg>
   );
