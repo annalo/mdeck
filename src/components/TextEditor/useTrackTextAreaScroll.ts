@@ -5,19 +5,17 @@ import throttle from "lodash/throttle";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 
-interface UseTextAreaSyncProps {
+interface UseTrackTextAreaScrollProps {
   dispatch: Dispatch<any>;
   ref: RefObject<HTMLTextAreaElement>;
-  slideshowLineNumber: number;
   textAreaLineHeight: number;
 }
 
-export const useTextAreaSync = ({
+export const useTrackTextAreaScroll = ({
   dispatch,
   ref,
-  slideshowLineNumber,
   textAreaLineHeight,
-}: UseTextAreaSyncProps): void => {
+}: UseTrackTextAreaScrollProps): void => {
   const isActive = usePaneIsActive(ref, true);
 
   const handleScroll = useMemo(
@@ -46,16 +44,4 @@ export const useTextAreaSync = ({
 
     return () => node?.removeEventListener("scroll", handleScroll);
   }, [isActive, handleScroll, ref]);
-
-  /* Syncs text when slideshowLineNumber changes */
-  useEffect(() => {
-    const getNode = R.prop("current");
-    const scrollTop = R.multiply(textAreaLineHeight, slideshowLineNumber);
-    // TODO smooth scrolling
-    const setScrollTop = R.curry((value, n) => {
-      n.scrollTop = value; // eslint-disable-line no-param-reassign
-    });
-
-    R.pipe(getNode, R.unless(R.isNil, setScrollTop(scrollTop)))(ref);
-  }, [ref, slideshowLineNumber, textAreaLineHeight]);
 };
