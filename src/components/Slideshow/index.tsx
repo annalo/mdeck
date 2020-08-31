@@ -1,10 +1,12 @@
-import React, { memo, useContext, useRef, useEffect } from "react";
+import React, { memo, useContext, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { render } from "utils/render";
-import { useSlideshowSync } from "./useSlideshowSync";
+
+import { useTrackScroll } from "./useTrackScroll";
+import { useSyncSlideshow } from "./useSyncSlideshow";
 
 const Div = styled.div`
   height: 100%;
@@ -22,7 +24,8 @@ export const Slideshow: React.FC = () => {
     return () => disconnect();
   }, [html, disconnect]);
 
-  useSlideshowSync({ dispatch, entries, ref, textLineNumber });
+  useTrackScroll({ dispatch, entries, ref });
+  useSyncSlideshow({ entries, ref, textLineNumber });
 
   return (
     <Div ref={ref} className="slideshow">
