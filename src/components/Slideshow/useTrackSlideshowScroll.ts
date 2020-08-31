@@ -5,17 +5,17 @@ import throttle from "lodash/throttle";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 
-interface UseTrackScrollProps {
+interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<any>;
   entries: Array<HTMLElement | SVGSVGElement>;
   ref: RefObject<HTMLDivElement>;
 }
 
-export const useTrackScroll = ({
+export const useTrackSlideshowScroll = ({
   dispatch,
   entries,
   ref,
-}: UseTrackScrollProps): void => {
+}: UseTrackSlideshowScrollProps): void => {
   const node = ref.current;
   const isActive = usePaneIsActive(ref, false);
 

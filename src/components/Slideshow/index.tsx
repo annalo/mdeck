@@ -5,7 +5,7 @@ import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { render } from "utils/render";
 
-import { useTrackScroll } from "./useTrackScroll";
+import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 
 const Div = styled.div`
@@ -24,7 +24,7 @@ export const Slideshow: React.FC = () => {
     return () => disconnect();
   }, [html, disconnect]);
 
-  useTrackScroll({ dispatch, entries, ref });
+  useTrackSlideshowScroll({ dispatch, entries, ref });
   useSyncSlideshow({ entries, ref, textLineNumber });
 
   return (
