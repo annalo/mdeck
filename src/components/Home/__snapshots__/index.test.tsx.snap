@@ -7,7 +7,8 @@ exports[`<Home /> should render and match the snapshot 1`] = `
 }
 
 <div
-    class="c0 main"
+    class="c0"
+    id="main"
   />
 </DocumentFragment>
 `;
