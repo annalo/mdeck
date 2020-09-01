@@ -4,7 +4,7 @@ import * as R from "ramda";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 interface UseSyncSlideshowProps {
-  entries: Array<HTMLElement | SVGSVGElement>;
+  entries: Array<Element>;
   ref: RefObject<HTMLDivElement>;
   textLineNumber: number;
 }

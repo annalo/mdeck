@@ -7,7 +7,7 @@ import { usePaneIsActive } from "utils/usePaneIsActive";
 
 interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<any>;
-  entries: Array<HTMLElement | SVGSVGElement>;
+  entries: Array<Element>;
   ref: RefObject<HTMLDivElement>;
 }
 
