@@ -21,7 +21,7 @@ export const Slideshow: React.FC = () => {
   const { html, textLineNumber } = state;
 
   useDisconnect({ disconnect, html });
-  useSyncSlideshow({ entries, ref, textLineNumber });
+  useSyncSlideshow({ entries, textLineNumber });
   useTrackSlideshowScroll({ dispatch, entries, ref });
 
   return (
