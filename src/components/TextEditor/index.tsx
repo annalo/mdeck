@@ -28,7 +28,7 @@ const TextArea = styled.textarea`
 export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { md, slideshowLineNumber } = state;
+  const { slideshowLineNumber } = state;
 
   useTrackTextAreaScroll({
     dispatch,
@@ -41,12 +41,13 @@ export const TextEditor: React.FC = () => {
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
   });
 
-  const handleInputChange = (e) =>
+  const handleInputChange = (e) => {
     dispatch({ type: "setMd", md: e.target.value });
+  };
 
   return (
     <Container>
-      <TextArea ref={ref} autoFocus onChange={handleInputChange} value={md} />
+      <TextArea ref={ref} autoFocus onChange={handleInputChange} />
     </Container>
   );
 };
