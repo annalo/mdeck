@@ -32,7 +32,8 @@ describe("<Slideshow />", () => {
     );
 
     act(() => {
-      result.current.observe(1);
+      const el = document.createElement("div");
+      result.current.observe(el);
     });
 
     html = "new";
