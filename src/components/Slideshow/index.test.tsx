@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import { render } from "@testing-library/react";
 import { renderHook, act } from "@testing-library/react-hooks";
 
@@ -16,29 +16,33 @@ describe("<Slideshow />", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test("should disconnect all observed entries on unmount", async () => {
-    let html = "test";
-    const wrapper = ({ children }) => (
-      <SlideshowObserverProvider>{children}</SlideshowObserverProvider>
-    );
+  describe("useDisconnect", () => {
+    test("should disconnect all observed entries on unmount", async () => {
+      let html = "test";
+      const wrapper = ({ children }) => (
+        <SlideshowObserverProvider>{children}</SlideshowObserverProvider>
+      );
 
-    const { result, rerender } = renderHook(
-      () => {
-        const { entries, disconnect, observe } = useContext(SlideshowObserver);
-        useDisconnect({ disconnect, html });
-        return { entries, disconnect, observe };
-      },
-      { wrapper }
-    );
+      const { result, rerender } = renderHook(
+        () => {
+          const { entries, disconnect, observe } = useContext(
+            SlideshowObserver
+          );
+          useDisconnect({ disconnect, html });
+          return { entries, disconnect, observe };
+        },
+        { wrapper }
+      );
 
-    act(() => {
-      const el = document.createElement("div");
-      result.current.observe(el);
+      act(() => {
+        const el = document.createElement("div");
+        result.current.observe(el);
+      });
+
+      html = "new";
+      rerender();
+
+      expect(result.current.entries).toHaveLength(0);
     });
-
-    html = "new";
-    rerender();
-
-    expect(result.current.entries).toHaveLength(0);
   });
 });
