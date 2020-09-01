@@ -25,7 +25,7 @@ export const Slideshow: React.FC = () => {
   useTrackSlideshowScroll({ dispatch, entries, ref });
 
   return (
-    <Div ref={ref} className="slideshow">
+    <Div ref={ref} id="slideshow">
       {render(html)}
     </Div>
   );

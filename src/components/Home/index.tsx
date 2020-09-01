@@ -8,7 +8,7 @@ const Div = styled.div`
 `;
 
 export const Home: React.FC = () => (
-  <Div className="main">
+  <Div id="main">
     <Editor />
   </Div>
 );
