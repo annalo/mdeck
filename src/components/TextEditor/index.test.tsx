@@ -2,6 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import { MarkdownProvider } from "contexts/MarkdownContext";
 import { TextEditor } from ".";
 
 describe("<TextEditor />", () => {
@@ -11,7 +12,11 @@ describe("<TextEditor />", () => {
   });
 
   test("should set md on textarea change", async () => {
-    render(<TextEditor />);
+    render(
+      <MarkdownProvider>
+        <TextEditor />
+      </MarkdownProvider>
+    );
     const textarea = screen.getByRole("textbox");
 
     expect(textarea.textContent).toBe("");
