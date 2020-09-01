@@ -9,7 +9,7 @@ import { useDisconnect } from "./useDisconnect";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 
-const Div = styled.div`
+const Article = styled.article`
   height: 100%;
   overflow: auto;
 `;
@@ -25,9 +25,9 @@ export const Slideshow: React.FC = () => {
   useTrackSlideshowScroll({ dispatch, entries, ref });
 
   return (
-    <Div ref={ref} id="slideshow">
+    <Article ref={ref} id="slideshow">
       {render(html)}
-    </Div>
+    </Article>
   );
 };
 
