@@ -2,7 +2,7 @@ import React, { createContext, useCallback, useState } from "react";
 import * as R from "ramda";
 
 interface SlideshowProviderProps {
-  children: React.ReactElement;
+  children: React.ReactNode;
 }
 
 interface SlideshowObserver {

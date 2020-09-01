@@ -5,7 +5,7 @@ interface Props {
   className: string;
   index;
   srcLine: number;
-  children: React.ReactElement;
+  children: React.ReactNode;
   viewBox: string;
 }
 

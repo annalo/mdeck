@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef } from "react";
 import { SlideshowObserver } from "contexts/SlideshowObserver";
 
 interface Props {
-  children: React.ReactElement;
+  children: React.ReactNode;
   attributes: { [key: string]: string };
   elementTag: string;
   srcLine: number;
