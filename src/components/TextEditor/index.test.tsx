@@ -6,7 +6,7 @@ import { MarkdownContextProvider } from "contexts/MarkdownContext";
 import { TextEditor } from ".";
 
 describe("<TextEditor />", () => {
-  it("should render and match the snapshot", () => {
+  test("should render and match the snapshot", () => {
     const { asFragment } = render(<TextEditor />);
     expect(asFragment()).toMatchSnapshot();
   });

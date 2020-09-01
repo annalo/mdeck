@@ -13,7 +13,7 @@ const component = (
   </SlideElement>
 );
 describe("<SlideElement />", () => {
-  it("should render and match the snapshot", () => {
+  test("should render and match the snapshot", () => {
     const { asFragment } = render(component);
     expect(asFragment()).toMatchSnapshot();
   });
