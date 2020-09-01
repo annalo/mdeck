@@ -27,7 +27,7 @@ export const MarkdownContext = createContext<{
   dispatch: () => null,
 });
 
-export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
+export const MarkdownContextProvider: React.FC<MarkdownProviderProps> = ({
   children,
 }: MarkdownProviderProps) => {
   const reducer = (

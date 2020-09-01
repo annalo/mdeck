@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import { MarkdownProvider } from "contexts/MarkdownContext";
+import { MarkdownContextProvider } from "contexts/MarkdownContext";
 import { TextEditor } from ".";
 
 describe("<TextEditor />", () => {
@@ -11,16 +11,16 @@ describe("<TextEditor />", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test("should set md on textarea change", async () => {
+  test("should set md on textarea change", () => {
     render(
-      <MarkdownProvider>
+      <MarkdownContextProvider>
         <TextEditor />
-      </MarkdownProvider>
+      </MarkdownContextProvider>
     );
     const textarea = screen.getByRole("textbox");
 
     expect(textarea.textContent).toBe("");
-    await userEvent.type(textarea, "# Hello World!");
+    userEvent.type(textarea, "# Hello World!");
     expect(textarea).toHaveValue("# Hello World!");
   });
 });
