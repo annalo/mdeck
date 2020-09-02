@@ -36,7 +36,7 @@ export const MarkdownContextProvider: React.FC<MarkdownProviderProps> = ({
   ) => {
     switch (type) {
       case "setMd":
-        return { ...state, html: parse(md), md };
+        return { ...state, md };
       case "setSlideshowLineNumber":
         return { ...state, slideshowLineNumber };
       case "setTextLineNumber":
