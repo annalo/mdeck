@@ -35,6 +35,7 @@ export const render = (htmlString: string): Array<React.ReactElement> => {
           <Slide
             key={`slide-${idx + 1}`}
             className={className}
+            index={idx}
             srcLine={parseInt(dataLine, 10)}
             viewBox={viewbox}
           >

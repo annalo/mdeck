@@ -1,26 +1,23 @@
 import { useEffect, useMemo } from "react";
 import type { Dispatch, RefObject } from "react";
 import * as R from "ramda";
-import scrollIntoView from "smooth-scroll-into-view-if-needed";
 import throttle from "lodash/throttle";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 
-interface UseSlideshowSyncProps {
+interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<any>;
-  entries: Array<HTMLElement | SVGSVGElement>;
+  entries: Array<Element>;
   ref: RefObject<HTMLDivElement>;
-  textLineNumber: number;
 }
 
-export const useSlideshowSync = ({
+export const useTrackSlideshowScroll = ({
   dispatch,
   entries,
   ref,
-  textLineNumber,
-}: UseSlideshowSyncProps): void => {
+}: UseTrackSlideshowScrollProps): void => {
   const node = ref.current;
-  const isActive = usePaneIsActive(ref, false);
+  const isActive = usePaneIsActive({ ref, initialValue: false });
 
   /*
    * From the list of elements registerd with the observer (SlideshowObserver),
@@ -56,18 +53,4 @@ export const useSlideshowSync = ({
 
     return () => node?.removeEventListener("scroll", handleScroll);
   }, [isActive, handleScroll, node]);
-
-  /* Syncs slideshow when textLineNumber changes */
-  useEffect(() => {
-    const isMatchingElement = R.pathEq(
-      ["dataset", "line"],
-      `${textLineNumber}`
-    );
-    const scrollToElement = (e) => scrollIntoView(e, { block: "start" });
-
-    R.pipe(
-      R.find(isMatchingElement),
-      R.unless(R.isNil, scrollToElement)
-    )(entries);
-  }, [entries, handleScroll, node, textLineNumber]);
 };

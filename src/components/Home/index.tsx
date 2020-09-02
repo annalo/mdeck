@@ -7,8 +7,8 @@ const Div = styled.div`
   height: 100%;
 `;
 
-export const HomePage: React.FC = () => (
-  <Div className="main">
+export const Home: React.FC = () => (
+  <Div id="main">
     <Editor />
   </Div>
 );

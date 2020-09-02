@@ -1,7 +1,10 @@
 import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components";
+
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { useTextAreaSync } from "./useTextAreaSync";
+
+import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
+import { useSyncTextArea } from "./useSyncTextArea";
 
 export const TEXT_AREA_LINE_HEIGHT = 18;
 
@@ -27,15 +30,20 @@ export const TextEditor: React.FC = () => {
   const { state, dispatch } = useContext(MarkdownContext);
   const { md, slideshowLineNumber } = state;
 
-  useTextAreaSync({
+  useTrackTextAreaScroll({
     dispatch,
+    ref,
+    textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
+  });
+  useSyncTextArea({
     ref,
     slideshowLineNumber,
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
   });
 
-  const handleInputChange = (e) =>
+  const handleInputChange = (e) => {
     dispatch({ type: "setMd", md: e.target.value });
+  };
 
   return (
     <Container>

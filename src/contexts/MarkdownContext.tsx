@@ -2,7 +2,7 @@ import React, { createContext, useReducer } from "react";
 import { parse } from "utils/parse";
 
 interface MarkdownProviderProps {
-  children: React.ReactElement[];
+  children: React.ReactNode;
 }
 
 interface MarkdownContextState {
@@ -27,7 +27,7 @@ export const MarkdownContext = createContext<{
   dispatch: () => null,
 });
 
-export const MarkdownProvider: React.FC<MarkdownProviderProps> = ({
+export const MarkdownContextProvider: React.FC<MarkdownProviderProps> = ({
   children,
 }: MarkdownProviderProps) => {
   const reducer = (

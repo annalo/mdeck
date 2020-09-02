@@ -1,10 +1,10 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import { Preview } from ".";
+import { Home } from "./index";
 
-describe("<Preview />", () => {
+describe("<Home />", () => {
   test("should render and match the snapshot", () => {
-    const { asFragment } = render(<Preview />);
+    const { asFragment } = render(<Home />);
     expect(asFragment()).toMatchSnapshot();
   });
 });

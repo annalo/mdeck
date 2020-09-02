@@ -1,14 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<Slide /> should match the snapshot 1`] = `
-<svg
-  class="slide"
-  data-line="0"
-  data-marpit-svg=""
-  viewBox="0 0  1280 720"
->
-  <div>
-    Some Child Element
-  </div>
-</svg>
+exports[`<Slide /> should render and match the snapshot 1`] = `
+<DocumentFragment>
+  <svg
+    aria-label="slide-1"
+    class="slide"
+    data-line="0"
+    role="img"
+    viewBox="0 0 1280 720"
+  >
+    <div>
+      Some Child Element
+    </div>
+  </svg>
+</DocumentFragment>
 `;

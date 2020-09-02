@@ -1,12 +1,15 @@
-import React, { memo, useContext, useRef, useEffect } from "react";
+import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components";
 
 import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { render } from "utils/render";
-import { useSlideshowSync } from "./useSlideshowSync";
 
-const Div = styled.div`
+import { useDisconnect } from "./useDisconnect";
+import { useSyncSlideshow } from "./useSyncSlideshow";
+import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
+
+const Article = styled.article`
   height: 100%;
   overflow: auto;
 `;
@@ -15,19 +18,16 @@ export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
   const { entries, disconnect } = useContext(SlideshowObserver);
-
   const { html, textLineNumber } = state;
 
-  useEffect(() => {
-    return () => disconnect();
-  }, [html, disconnect]);
-
-  useSlideshowSync({ dispatch, entries, ref, textLineNumber });
+  useDisconnect({ disconnect, html });
+  useSyncSlideshow({ entries, textLineNumber });
+  useTrackSlideshowScroll({ dispatch, entries, ref });
 
   return (
-    <Div ref={ref} className="slideshow">
+    <Article ref={ref} id="slideshow">
       {render(html)}
-    </Div>
+    </Article>
   );
 };
 

@@ -83,6 +83,7 @@ module.exports = {
     compress: true,
     contentBase: path.resolve(__dirname, "public"),
     clientLogLevel: "silent",
+    historyApiFallback: true,
     hot: true,
     port: 3000,
     stats: "minimal",
