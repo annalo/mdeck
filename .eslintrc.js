@@ -22,6 +22,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "jest"],
   rules: {
+    "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/no-unused-expressions": [
       "error",
       {
