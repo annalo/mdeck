@@ -18,7 +18,7 @@ describe("<Slideshow />", () => {
 
   describe("useDisconnect", () => {
     test("should disconnect all observed entries on unmount", async () => {
-      let html = "test";
+      let md = "test";
       const wrapper = ({ children }) => (
         <SlideshowObserverProvider>{children}</SlideshowObserverProvider>
       );
@@ -28,7 +28,7 @@ describe("<Slideshow />", () => {
           const { entries, disconnect, observe } = useContext(
             SlideshowObserver
           );
-          useDisconnect({ disconnect, html });
+          useDisconnect({ disconnect, md });
           return { entries, disconnect, observe };
         },
         { wrapper }
@@ -39,7 +39,7 @@ describe("<Slideshow />", () => {
         result.current.observe(el);
       });
 
-      html = "new";
+      md = "new";
       rerender();
 
       expect(result.current.entries).toHaveLength(0);
