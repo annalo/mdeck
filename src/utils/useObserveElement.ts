@@ -6,7 +6,7 @@ interface UseObserveElementProps {
   ref: RefObject<Element>;
 }
 
-export const useObserveElement = ({ ref }: UseObserveElementProps) => {
+export const useObserveElement = ({ ref }: UseObserveElementProps): void => {
   const { observe } = useContext(SlideshowObserver);
 
   useEffect(() => {
