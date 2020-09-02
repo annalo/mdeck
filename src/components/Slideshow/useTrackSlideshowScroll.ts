@@ -17,7 +17,7 @@ export const useTrackSlideshowScroll = ({
   ref,
 }: UseTrackSlideshowScrollProps): void => {
   const node = ref.current;
-  const isActive = usePaneIsActive(ref, false);
+  const isActive = usePaneIsActive({ ref, initialValue: false });
 
   /*
    * From the list of elements registerd with the observer (SlideshowObserver),

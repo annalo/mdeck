@@ -2,10 +2,15 @@ import { useEffect, useState } from "react";
 import type { RefObject } from "react";
 import debounce from "lodash/debounce";
 
-export const usePaneIsActive = (
-  ref: RefObject<HTMLElement>,
-  initialValue: boolean
-): boolean => {
+interface UsePaneIsActiveProps {
+  ref: RefObject<HTMLElement>;
+  initialValue: boolean;
+}
+
+export const usePaneIsActive = ({
+  ref,
+  initialValue,
+}: UsePaneIsActiveProps): boolean => {
   const node = ref.current;
   const [isActive, setIsActive] = useState<boolean>(initialValue);
 

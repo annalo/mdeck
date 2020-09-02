@@ -16,7 +16,7 @@ export const useTrackTextAreaScroll = ({
   ref,
   textAreaLineHeight,
 }: UseTrackTextAreaScrollProps): void => {
-  const isActive = usePaneIsActive(ref, true);
+  const isActive = usePaneIsActive({ ref, initialValue: true });
 
   const handleScroll = useMemo(
     () =>
