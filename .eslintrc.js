@@ -47,7 +47,6 @@ module.exports = {
         devDependencies: ["**/setupTests.ts", "**/*.test.ts", "**/*.test.tsx"],
       },
     ],
-
     "import/prefer-default-export": "off",
     "no-debugger": "warn",
     "no-underscore-dangle": "off",
