@@ -3,7 +3,7 @@ import type { RefObject } from "react";
 import { SlideshowObserver } from "contexts/SlideshowObserver";
 
 interface UseObserveElementProps {
-  ref: RefObject<Element | SVGSVGElement>;
+  ref: RefObject<Element>;
 }
 
 export const useObserveElement = ({ ref }: UseObserveElementProps) => {

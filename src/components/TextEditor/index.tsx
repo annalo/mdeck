@@ -37,7 +37,6 @@ export const TextEditor: React.FC = () => {
   });
   useSyncTextArea({
     ref,
-
     slideshowLineNumber,
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
   });
