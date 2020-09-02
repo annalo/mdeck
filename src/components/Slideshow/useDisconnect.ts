@@ -2,14 +2,11 @@ import { useEffect } from "react";
 
 interface UseDisconnectProps {
   disconnect: () => void;
-  html: string;
+  md: string;
 }
 
-export const useDisconnect = ({
-  disconnect,
-  html,
-}: UseDisconnectProps): void => {
+export const useDisconnect = ({ disconnect, md }: UseDisconnectProps): void => {
   useEffect(() => {
     return () => disconnect();
-  }, [html, disconnect]);
+  }, [md, disconnect]);
 };

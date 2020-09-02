@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { render } from "utils/render";
 
 import { useDisconnect } from "./useDisconnect";
 import { useSyncSlideshow } from "./useSyncSlideshow";
@@ -18,17 +17,13 @@ export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
   const { entries, disconnect } = useContext(SlideshowObserver);
-  const { html, textLineNumber } = state;
+  const { md, textLineNumber } = state;
 
-  useDisconnect({ disconnect, html });
+  useDisconnect({ disconnect, md });
   useSyncSlideshow({ entries, textLineNumber });
   useTrackSlideshowScroll({ dispatch, entries, ref });
 
-  return (
-    <Article ref={ref} id="slideshow">
-      {render(html)}
-    </Article>
-  );
+  return <Article ref={ref} id="slideshow" />;
 };
 
 export default memo(Slideshow);
