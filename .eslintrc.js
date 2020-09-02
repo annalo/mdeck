@@ -51,6 +51,7 @@ module.exports = {
     "no-debugger": "warn",
     "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
+    "no-useless-constructor": "off",
     "react/jsx-sort-props": [
       "error",
       {

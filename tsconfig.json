@@ -15,6 +15,7 @@
     "skipLibCheck": true,
     "strict": true,
     "target": "es6",
+    "types": ["jest", "webpack-env"],
     "typeRoots": ["**/*.d.ts"]
   },
   "include": ["src"],
