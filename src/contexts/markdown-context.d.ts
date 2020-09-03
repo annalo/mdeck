@@ -10,25 +10,21 @@ declare namespace MarkdownContext {
     textLineNumber: number;
   }
 
-  const enum ReducerActionType {
-    SetHtmlString = "SET_HTML_STRING",
-    SetMd = "SET_MD",
-    SetSlideshowLineNumber = "SET_SLIDESHOW_LINE_NUMBER",
-    SetTextLineNumber = "SET_TEXT_LINE_NUMBER",
-  }
-
   declare type ReducerAction =
     | {
-        type: ReducerActionType.SetHtmlString;
+        type: import("./markdown-context-reducer-action-type").SetHtmlString;
         htmlString: string;
       }
-    | { type: ReducerActionType.SetMd; md: string }
     | {
-        type: ReducerActionType.SetSlideshowLineNumber;
+        type: import("./markdown-context-reducer-action-type").SetMd;
+        md: string;
+      }
+    | {
+        type: import("./markdown-context-reducer-action-type").SetSlideshowLineNumber;
         slideshowLineNumber: number;
       }
     | {
-        type: ReducerActionType.SetTextLineNumber;
+        type: import("./markdown-context-reducer-action-type").SetTextLineNumber;
         textLineNumber: number;
       };
 }
