@@ -41,7 +41,7 @@ export const TextEditor: React.FC = () => {
   });
 
   const handleInputChange = (e) => {
-    dispatch({ type: "setMd", md: e.target.value });
+    dispatch({ type: "SET_MD", md: e.target.value });
   };
 
   return (

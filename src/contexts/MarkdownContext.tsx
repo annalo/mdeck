@@ -23,13 +23,13 @@ export const MarkdownContextProvider: React.FC<MarkdownContext.ProviderProps> = 
     { type, htmlString, md, slideshowLineNumber, textLineNumber }
   ) => {
     switch (type) {
-      case "setHtmlString":
+      case "SET_HTML_STRING":
         return { ...state, htmlString };
-      case "setMd":
+      case "SET_MD":
         return { ...state, md };
-      case "setSlideshowLineNumber":
+      case "SET_SLIDESHOW_LINE_NUMBER":
         return { ...state, slideshowLineNumber };
-      case "setTextLineNumber":
+      case "SET_TEXT_LINE_NUMBER":
         return { ...state, textLineNumber };
       default:
         throw new Error();

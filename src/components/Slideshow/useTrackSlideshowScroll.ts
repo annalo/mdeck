@@ -32,7 +32,7 @@ export const useTrackSlideshowScroll = ({
         const getLineNumber = R.pipe(R.path(["dataset", "line"]), parseInt);
         const setLineNumber = (lineNumber) => {
           dispatch({
-            type: "setSlideshowLineNumber",
+            type: "SET_SLIDESHOW_LINE_NUMBER",
             slideshowLineNumber: lineNumber,
           });
         };

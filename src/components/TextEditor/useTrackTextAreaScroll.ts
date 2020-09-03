@@ -29,7 +29,7 @@ export const useTrackTextAreaScroll = ({
           Math.floor
         )(e);
 
-        dispatch({ type: "setTextLineNumber", textLineNumber });
+        dispatch({ type: "SET_TEXT_LINE_NUMBER", textLineNumber });
       }, 200),
     [dispatch, textAreaLineHeight]
   );
