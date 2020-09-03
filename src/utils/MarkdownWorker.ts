@@ -1,13 +1,12 @@
 import Worker from "worker-loader!./Worker"; // eslint-disable-line
+import type { Dispatch } from "react";
 
 export class MarkdownWorker {
   private readonly worker: Worker;
 
-  constructor() {
+  constructor(dispatch: Dispatch<any>) {
     this.worker = new Worker();
-    this.worker.onmessage = ({ data }) => {
-      console.log("MarkdownWorker instance", data);
-    };
+    this.worker.onmessage = ({ data }) => dispatch(data);
   }
 
   postMessage(data) {
@@ -16,5 +15,13 @@ export class MarkdownWorker {
 
   parse(md) {
     this.worker.postMessage({ action: "PARSE", md });
+  }
+
+  render(htmlString) {
+    this.worker.postMessage({ action: "RENDER", htmlString });
+  }
+
+  terminate() {
+    if (this.worker) this.worker.terminate();
   }
 }
