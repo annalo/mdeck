@@ -1,19 +1,18 @@
 import React, { createContext, useReducer } from "react";
-import { parse } from "utils/parse";
 
 interface MarkdownProviderProps {
   children: React.ReactNode;
 }
 
 interface MarkdownContextState {
-  html: string;
+  htmlString: string;
   md: string;
   slideshowLineNumber: number;
   textLineNumber: number;
 }
 
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
-  html: "",
+  htmlString: "",
   md: "",
   slideshowLineNumber: 0,
   textLineNumber: 0,
@@ -32,9 +31,11 @@ export const MarkdownContextProvider: React.FC<MarkdownProviderProps> = ({
 }: MarkdownProviderProps) => {
   const reducer = (
     state,
-    { type, md, slideshowLineNumber, textLineNumber }
+    { type, htmlString, md, slideshowLineNumber, textLineNumber }
   ) => {
     switch (type) {
+      case "setHtmlString":
+        return { ...state, htmlString };
       case "setMd":
         return { ...state, md };
       case "setSlideshowLineNumber":
