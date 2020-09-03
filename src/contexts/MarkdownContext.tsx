@@ -7,6 +7,7 @@ import type {
 import { MarkdownContextReducerActionType } from "types/markdown-context";
 
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
+  elementTree: null,
   htmlString: "",
   md: "",
   slideshowLineNumber: 0,
@@ -29,6 +30,8 @@ export const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = (
     action: MarkdownContextReducerAction
   ) => {
     switch (action.type) {
+      case MarkdownContextReducerActionType.SetElementTree:
+        return { ...state, elementTree: action.elementTree };
       case MarkdownContextReducerActionType.SetHtmlString:
         return { ...state, htmlString: action.htmlString };
       case MarkdownContextReducerActionType.SetMd:
