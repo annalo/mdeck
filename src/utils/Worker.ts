@@ -10,7 +10,7 @@ ctx.onmessage = ({ data }) => {
   switch (action) {
     case "PARSE":
       // @ts-ignore https://github.com/Microsoft/TypeScript/issues/24239
-      postMessage({ type: "setHtmlString", htmlString: parse(md) });
+      postMessage({ type: "SET_HTML_STRING", htmlString: parse(md) });
       break;
 
     default:
