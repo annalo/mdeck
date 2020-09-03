@@ -1,16 +1,5 @@
 import React, { createContext, useReducer } from "react";
 
-interface MarkdownProviderProps {
-  children: React.ReactNode;
-}
-
-interface MarkdownContextState {
-  htmlString: string;
-  md: string;
-  slideshowLineNumber: number;
-  textLineNumber: number;
-}
-
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
   htmlString: "",
   md: "",
@@ -19,16 +8,16 @@ const MARKDOWN_CONTEXT_INITIAL_STATE = {
 };
 
 export const MarkdownContext = createContext<{
-  state: MarkdownContextState;
+  state: MarkdownContext.State;
   dispatch: React.Dispatch<any>;
 }>({
   state: MARKDOWN_CONTEXT_INITIAL_STATE,
   dispatch: () => null,
 });
 
-export const MarkdownContextProvider: React.FC<MarkdownProviderProps> = ({
+export const MarkdownContextProvider: React.FC<MarkdownContext.ProviderProps> = ({
   children,
-}: MarkdownProviderProps) => {
+}: MarkdownContext.ProviderProps) => {
   const reducer = (
     state,
     { type, htmlString, md, slideshowLineNumber, textLineNumber }
