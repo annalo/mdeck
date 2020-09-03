@@ -1,17 +1,22 @@
-type MarkdownContextReducerActionType = import("./enums").MarkdownContextReducerActionType;
-console.log(MarkdownContextReducerActionType);
-declare interface MarkdownContextProviderProps {
+export declare interface MarkdownContextProviderProps {
   children: React.ReactNode;
 }
 
-declare interface MarkdownContextState {
+export declare interface MarkdownContextState {
   htmlString: string;
   md: string;
   slideshowLineNumber: number;
   textLineNumber: number;
 }
 
-declare type MarkdownContextReducerAction =
+export const enum MarkdownContextReducerActionType {
+  SetHtmlString = "SET_HTML_STRING",
+  SetMd = "SET_MD",
+  SetSlideshowLineNumber = "SET_SLIDESHOW_LINE_NUMBER",
+  SetTextLineNumber = "SET_TEXT_LINE_NUMBER",
+}
+
+export declare type MarkdownContextReducerAction =
   | {
       type: MarkdownContextReducerActionType.SetHtmlString;
       htmlString: string;
