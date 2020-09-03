@@ -9,7 +9,7 @@ interface UseWorkerProps {
   md: string;
 }
 
-export const useWorker = ({ dispatch, md }: UseWorkerProps) => {
+export const useWorker = ({ dispatch, md }: UseWorkerProps): void => {
   const workerRef = useRef<any>(null);
 
   useEffect(() => {

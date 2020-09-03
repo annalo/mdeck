@@ -5,7 +5,6 @@ const ctx: Worker = self as any; // eslint-disable-line
 console.log("Start worker thread, wait for postMessage: ");
 
 ctx.onmessage = ({ data }) => {
-  console.log("worker thread onmessage", data);
   const { action, md } = data;
   // TODO do heavy parsing and rendering
   switch (action) {

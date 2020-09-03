@@ -11,19 +11,14 @@ export class MarkdownWorker {
       data,
     }: {
       data: MarkdownContextReducerAction;
-    }) => dispatch(data);
+    }) => {
+      console.log("markdown worker on message", data);
+      dispatch(data);
+    };
   }
 
-  postMessage(data) {
-    this.worker.postMessage(data);
-  }
-
-  parse(md) {
+  parse(md: string): void {
     this.worker.postMessage({ action: "PARSE", md });
-  }
-
-  render(htmlString) {
-    this.worker.postMessage({ action: "RENDER", htmlString });
   }
 
   terminate() {

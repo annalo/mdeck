@@ -28,7 +28,7 @@ export const Slideshow: React.FC = () => {
 
   return (
     <Article ref={ref} id="slideshow">
-      {htmlString}
+      <div dangerouslySetInnerHTML={{ __html: htmlString }} />
     </Article>
   );
 };
