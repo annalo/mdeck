@@ -9,7 +9,7 @@ export declare interface MarkdownContextState {
   textLineNumber: number;
 }
 
-export const enum MarkdownContextReducerActionType {
+export enum MarkdownContextReducerActionType {
   SetHtmlString = "SET_HTML_STRING",
   SetMd = "SET_MD",
   SetSlideshowLineNumber = "SET_SLIDESHOW_LINE_NUMBER",
