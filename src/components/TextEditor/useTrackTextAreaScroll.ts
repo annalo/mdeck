@@ -1,6 +1,9 @@
 import { useEffect, useMemo } from "react";
 import type { Dispatch, RefObject } from "react";
-import type { MarkdownContextReducerAction } from "types/markdown-context";
+import {
+  MarkdownContextReducerAction,
+  MarkdownContextReducerActionType,
+} from "types/markdown-context";
 
 import * as R from "ramda";
 import throttle from "lodash/throttle";
@@ -31,7 +34,10 @@ export const useTrackTextAreaScroll = ({
           Math.floor
         )(e);
 
-        dispatch({ type: "SET_TEXT_LINE_NUMBER", textLineNumber });
+        dispatch({
+          type: MarkdownContextReducerActionType.SetTextLineNumber,
+          textLineNumber,
+        });
       }, 200),
     [dispatch, textAreaLineHeight]
   );

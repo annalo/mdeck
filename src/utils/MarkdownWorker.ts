@@ -7,7 +7,11 @@ export class MarkdownWorker {
 
   constructor(dispatch: Dispatch<MarkdownContextReducerAction>) {
     this.worker = new Worker();
-    this.worker.onmessage = ({ data }) => dispatch(data);
+    this.worker.onmessage = ({
+      data,
+    }: {
+      data: MarkdownContextReducerAction;
+    }) => dispatch(data);
   }
 
   postMessage(data) {

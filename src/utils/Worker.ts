@@ -1,3 +1,4 @@
+import { MarkdownContextReducerActionType } from "types/markdown-context";
 import { parse } from "./parse";
 
 const ctx: Worker = self as any; // eslint-disable-line
@@ -10,7 +11,10 @@ ctx.onmessage = ({ data }) => {
   switch (action) {
     case "PARSE":
       // @ts-ignore https://github.com/Microsoft/TypeScript/issues/24239
-      postMessage({ type: "SET_HTML_STRING", htmlString: parse(md) });
+      postMessage({
+        type: MarkdownContextReducerActionType.SetHtmlString,
+        htmlString: parse(md),
+      });
       break;
 
     default:
