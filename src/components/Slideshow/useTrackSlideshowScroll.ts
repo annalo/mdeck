@@ -1,12 +1,13 @@
 import { useEffect, useMemo } from "react";
 import type { Dispatch, RefObject } from "react";
+import type { MarkdownContextReducerActionType } from "types/markdown-context";
 import * as R from "ramda";
 import throttle from "lodash/throttle";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 
 interface UseTrackSlideshowScrollProps {
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch<MarkdownContextReducerActionType>;
   entries: Array<Element>;
   ref: RefObject<HTMLDivElement>;
 }

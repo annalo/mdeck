@@ -1,9 +1,11 @@
 import { useEffect, useRef } from "react";
 import type { Dispatch } from "react";
+import type { MarkdownContextReducerActionType } from "types/markdown-context";
+
 import { MarkdownWorker } from "utils/MarkdownWorker";
 
 interface UseWorkerProps {
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch<MarkdownContextReducerActionType>;
   md: string;
 }
 

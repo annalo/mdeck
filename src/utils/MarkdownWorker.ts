@@ -1,10 +1,11 @@
 import Worker from "worker-loader!./Worker"; // eslint-disable-line
 import type { Dispatch } from "react";
+import type { MarkdownContextReducerActionType } from "types/markdown-context";
 
 export class MarkdownWorker {
   private readonly worker: Worker;
 
-  constructor(dispatch: Dispatch<any>) {
+  constructor(dispatch: Dispatch<MarkdownContextReducerActionType>) {
     this.worker = new Worker();
     this.worker.onmessage = ({ data }) => dispatch(data);
   }
