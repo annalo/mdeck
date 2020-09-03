@@ -1,4 +1,10 @@
 import React, { createContext, useReducer } from "react";
+import type {
+  MarkdownContextProviderProps,
+  MarkdownContextState,
+  MarkdownContextReducerAction,
+} from "./markdown-context";
+import { MarkdownContextReducerActionType } from "./markdown-context";
 
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
   htmlString: "",
@@ -8,29 +14,29 @@ const MARKDOWN_CONTEXT_INITIAL_STATE = {
 };
 
 export const MarkdownContext = createContext<{
-  state: MarkdownContext.State;
-  dispatch: React.Dispatch<any>;
+  state: MarkdownContextState;
+  dispatch: React.Dispatch<MarkdownContextReducerAction>;
 }>({
   state: MARKDOWN_CONTEXT_INITIAL_STATE,
   dispatch: () => null,
 });
 
-export const MarkdownContextProvider: React.FC<MarkdownContext.ProviderProps> = ({
+export const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = ({
   children,
-}: MarkdownContext.ProviderProps) => {
+}: MarkdownContextProviderProps) => {
   const reducer = (
-    state,
-    { type, htmlString, md, slideshowLineNumber, textLineNumber }
+    state: MarkdownContextState,
+    action: MarkdownContextReducerAction
   ) => {
-    switch (type) {
-      case "SET_HTML_STRING":
-        return { ...state, htmlString };
-      case "SET_MD":
-        return { ...state, md };
-      case "SET_SLIDESHOW_LINE_NUMBER":
-        return { ...state, slideshowLineNumber };
-      case "SET_TEXT_LINE_NUMBER":
-        return { ...state, textLineNumber };
+    switch (action.type) {
+      case MarkdownContextReducerActionType.SetHtmlString:
+        return { ...state, htmlString: action.htmlString };
+      case MarkdownContextReducerActionType.SetMd:
+        return { ...state, md: action.md };
+      case MarkdownContextReducerActionType.SetSlideshowLineNumber:
+        return { ...state, slideshowLineNumber: action.slideshowLineNumber };
+      case MarkdownContextReducerActionType.SetTextLineNumber:
+        return { ...state, textLineNumber: action.textLineNumber };
       default:
         throw new Error();
     }
