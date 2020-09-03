@@ -1,10 +1,10 @@
 import React, { createContext, useReducer } from "react";
 import type {
-  MarkdownContextProviderProps,
   MarkdownContextState,
   MarkdownContextReducerAction,
-} from "./markdown-context";
-import { MarkdownContextReducerActionType } from "./markdown-context";
+  MarkdownContextProviderProps,
+} from "types/markdown-context";
+import { MarkdownContextReducerActionType } from "types/markdown-context";
 
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
   htmlString: "",

@@ -2,7 +2,8 @@ import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components";
 
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { MarkdownContextReducerActionType } from "contexts/markdown-context";
+import { MarkdownContextReducerActionType } from "types/markdown-context";
+
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 import { useSyncTextArea } from "./useSyncTextArea";
 
