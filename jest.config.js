@@ -10,6 +10,7 @@ module.exports = {
     "^components(.*)$": "<rootDir>/src/components$1",
     "^contexts(.*)$": "<rootDir>/src/contexts$1",
     "^utils(.*)$": "<rootDir>/src/utils$1",
+    "^worker-loader": "<rootDir>/__mocks__/workerMock.ts",
   },
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   testRegex: ".*\\.test\\.[jt]sx?$",
