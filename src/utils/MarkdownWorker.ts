@@ -12,7 +12,7 @@ export class MarkdownWorker {
     }: {
       data: MarkdownContextReducerAction;
     }) => {
-      console.log("markdown worker on message", data);
+      console.log("markdown worker on message", data); // eslint-disable-line
       dispatch(data);
     };
   }
@@ -21,7 +21,7 @@ export class MarkdownWorker {
     this.worker.postMessage({ action: "PARSE", md });
   }
 
-  terminate() {
+  terminate(): void {
     if (this.worker) this.worker.terminate();
   }
 }

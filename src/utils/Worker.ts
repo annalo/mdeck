@@ -2,7 +2,7 @@ import { MarkdownContextReducerActionType } from "types/markdown-context";
 import { parse } from "./parse";
 
 const ctx: Worker = self as any; // eslint-disable-line
-console.log("Start worker thread, wait for postMessage: ");
+console.log("Start worker thread, wait for postMessage: "); // eslint-disable-line
 
 ctx.onmessage = ({ data }) => {
   const { action, md } = data;

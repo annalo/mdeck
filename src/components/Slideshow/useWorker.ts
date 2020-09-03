@@ -10,17 +10,17 @@ interface UseWorkerProps {
 }
 
 export const useWorker = ({ dispatch, md }: UseWorkerProps): void => {
-  const workerRef = useRef<any>(null);
+  const workerRef = useRef<MarkdownWorker | null>(null);
 
   useEffect(() => {
     workerRef.current = new MarkdownWorker(dispatch);
     return () => {
-      workerRef.current.terminate();
+      workerRef.current?.terminate();
     };
   }, [dispatch]);
 
   useEffect(() => {
     const worker = workerRef.current;
-    worker.parse(md);
+    worker?.parse(md);
   }, [md]);
 };
