@@ -1,35 +1,9 @@
-import React, { useRef } from "react";
-import { useObserveElement } from "utils/useObserveElement";
+import React from "react";
 
-interface Props {
-  className: string;
-  index: number;
-  srcLine: LineNumber;
-  children: React.ReactNode;
-  viewBox: string;
+interface SlideProps {
+  htmlString: HtmlString;
 }
 
-export const Slide: React.FC<Props> = ({
-  children,
-  className,
-  index,
-  srcLine,
-  viewBox,
-}: Props) => {
-  const ref = useRef<SVGSVGElement>(null);
-
-  useObserveElement({ ref });
-
-  return (
-    <svg
-      ref={ref}
-      aria-label={`slide-${index + 1}`}
-      className={className}
-      data-line={srcLine}
-      role="img"
-      viewBox={viewBox}
-    >
-      {children}
-    </svg>
-  );
+export const Slide: React.FC<SlideProps> = ({ htmlString }: SlideProps) => {
+  return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
 };

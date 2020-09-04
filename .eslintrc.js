@@ -60,6 +60,7 @@ module.exports = {
       },
     ],
     "react/jsx-filename-extension": [1, { extensions: [".js", ".ts", "tsx"] }],
+    "react/no-unused-prop-types": "off",
     "react/prop-types": "off",
   },
   settings: {

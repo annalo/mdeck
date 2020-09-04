@@ -4,6 +4,8 @@ import styled from "styled-components";
 import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
 
+import { Slide } from "components/Slide/Loadable";
+
 import { useDisconnect } from "./useDisconnect";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
@@ -29,10 +31,7 @@ export const Slideshow: React.FC = () => {
   return (
     <Article ref={ref} id="slideshow">
       {htmlArray.map((html, i) => (
-        <div
-          key={`slide-${i + 1}`}
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <Slide key={`slide-${i + 1}`} htmlString={html} />
       ))}
     </Article>
   );
