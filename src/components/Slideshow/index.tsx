@@ -3,11 +3,11 @@ import styled from "styled-components";
 
 import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
-import { render } from "utils/render";
 
 import { useDisconnect } from "./useDisconnect";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
+import { useWorker } from "./useWorker";
 
 const Article = styled.article`
   height: 100%;
@@ -18,15 +18,17 @@ export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
   const { entries, disconnect } = useContext(SlideshowObserver);
-  const { html, textLineNumber } = state;
+  const { htmlString, md, textLineNumber } = state;
 
-  useDisconnect({ disconnect, html });
+  useDisconnect({ disconnect, md });
   useSyncSlideshow({ entries, textLineNumber });
   useTrackSlideshowScroll({ dispatch, entries, ref });
 
+  useWorker({ dispatch, md });
+
   return (
     <Article ref={ref} id="slideshow">
-      {render(html)}
+      <div dangerouslySetInnerHTML={{ __html: htmlString }} />
     </Article>
   );
 };

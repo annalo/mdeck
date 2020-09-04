@@ -1,12 +1,15 @@
 import { useEffect, useMemo } from "react";
-import type { Dispatch, RefObject } from "react";
 import * as R from "ramda";
 import throttle from "lodash/throttle";
+
+import type { Dispatch, RefObject } from "react";
+import type { MarkdownContextReducerAction } from "types/markdown-context";
+import { MarkdownContextReducerActionType } from "types/markdown-context";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 
 interface UseTrackSlideshowScrollProps {
-  dispatch: Dispatch<any>;
+  dispatch: Dispatch<MarkdownContextReducerAction>;
   entries: Array<Element>;
   ref: RefObject<HTMLDivElement>;
 }
@@ -32,7 +35,7 @@ export const useTrackSlideshowScroll = ({
         const getLineNumber = R.pipe(R.path(["dataset", "line"]), parseInt);
         const setLineNumber = (lineNumber) => {
           dispatch({
-            type: "setSlideshowLineNumber",
+            type: MarkdownContextReducerActionType.SetSlideshowLineNumber,
             slideshowLineNumber: lineNumber,
           });
         };

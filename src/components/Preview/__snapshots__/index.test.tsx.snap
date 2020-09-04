@@ -26,7 +26,9 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
     <article
       class="c1"
       id="slideshow"
-    />
+    >
+      <div />
+    </article>
   </div>
 </DocumentFragment>
 `;

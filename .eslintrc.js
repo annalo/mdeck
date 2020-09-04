@@ -22,6 +22,7 @@ module.exports = {
   },
   plugins: ["react", "@typescript-eslint", "jest"],
   rules: {
+    "@typescript-eslint/ban-ts-comment": "warn",
     "@typescript-eslint/no-unused-expressions": [
       "error",
       {
@@ -46,11 +47,11 @@ module.exports = {
         devDependencies: ["**/setupTests.ts", "**/*.test.ts", "**/*.test.tsx"],
       },
     ],
-
     "import/prefer-default-export": "off",
     "no-debugger": "warn",
     "no-underscore-dangle": "off",
     "no-unused-expressions": "off",
+    "no-useless-constructor": "off",
     "react/jsx-sort-props": [
       "error",
       {

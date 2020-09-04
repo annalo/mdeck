@@ -6,9 +6,11 @@ module.exports = {
     "!src/*/*/Loadable.{ts,tsx}",
   ],
   moduleNameMapper: {
+    "^types(.*)$": "<rootDir>/src/types$1",
     "^components(.*)$": "<rootDir>/src/components$1",
     "^contexts(.*)$": "<rootDir>/src/contexts$1",
     "^utils(.*)$": "<rootDir>/src/utils$1",
+    "^worker-loader": "<rootDir>/__mocks__/worker.ts",
   },
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
   testRegex: ".*\\.test\\.[jt]sx?$",

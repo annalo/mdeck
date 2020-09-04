@@ -1,19 +1,13 @@
 import React, { createContext, useReducer } from "react";
-import { parse } from "utils/parse";
-
-interface MarkdownProviderProps {
-  children: React.ReactNode;
-}
-
-interface MarkdownContextState {
-  html: string;
-  md: string;
-  slideshowLineNumber: number;
-  textLineNumber: number;
-}
+import type {
+  MarkdownContextState,
+  MarkdownContextReducerAction,
+  MarkdownContextProviderProps,
+} from "types/markdown-context";
+import { MarkdownContextReducerActionType } from "types/markdown-context";
 
 const MARKDOWN_CONTEXT_INITIAL_STATE = {
-  html: "",
+  htmlString: "",
   md: "",
   slideshowLineNumber: 0,
   textLineNumber: 0,
@@ -21,26 +15,28 @@ const MARKDOWN_CONTEXT_INITIAL_STATE = {
 
 export const MarkdownContext = createContext<{
   state: MarkdownContextState;
-  dispatch: React.Dispatch<any>;
+  dispatch: React.Dispatch<MarkdownContextReducerAction>;
 }>({
   state: MARKDOWN_CONTEXT_INITIAL_STATE,
   dispatch: () => null,
 });
 
-export const MarkdownContextProvider: React.FC<MarkdownProviderProps> = ({
+export const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = ({
   children,
-}: MarkdownProviderProps) => {
+}: MarkdownContextProviderProps) => {
   const reducer = (
-    state,
-    { type, md, slideshowLineNumber, textLineNumber }
+    state: MarkdownContextState,
+    action: MarkdownContextReducerAction
   ) => {
-    switch (type) {
-      case "setMd":
-        return { ...state, html: parse(md), md };
-      case "setSlideshowLineNumber":
-        return { ...state, slideshowLineNumber };
-      case "setTextLineNumber":
-        return { ...state, textLineNumber };
+    switch (action.type) {
+      case MarkdownContextReducerActionType.SetHtmlString:
+        return { ...state, htmlString: action.htmlString };
+      case MarkdownContextReducerActionType.SetMd:
+        return { ...state, md: action.md };
+      case MarkdownContextReducerActionType.SetSlideshowLineNumber:
+        return { ...state, slideshowLineNumber: action.slideshowLineNumber };
+      case MarkdownContextReducerActionType.SetTextLineNumber:
+        return { ...state, textLineNumber: action.textLineNumber };
       default:
         throw new Error();
     }
