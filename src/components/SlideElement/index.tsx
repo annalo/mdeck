@@ -5,7 +5,7 @@ interface Props {
   children: React.ReactNode;
   attributes: { [key: string]: string };
   elementTag: string;
-  srcLine: number;
+  srcLine: LineNumber;
 }
 
 export const SlideElement = ({

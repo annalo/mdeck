@@ -4,7 +4,7 @@ import { useObserveElement } from "utils/useObserveElement";
 interface Props {
   className: string;
   index: number;
-  srcLine: number;
+  srcLine: LineNumber;
   children: React.ReactNode;
   viewBox: string;
 }

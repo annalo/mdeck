@@ -4,8 +4,8 @@ import * as R from "ramda";
 
 interface UseSyncTextAreaProps {
   ref: RefObject<HTMLTextAreaElement>;
-  slideshowLineNumber: number;
-  textAreaLineHeight: number;
+  slideshowLineNumber: LineNumber;
+  textAreaLineHeight: LineNumber;
 }
 
 export const useSyncTextArea = ({
