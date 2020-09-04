@@ -18,7 +18,7 @@ export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
   const { entries, disconnect } = useContext(SlideshowObserver);
-  const { htmlString, md, textLineNumber } = state;
+  const { htmlArray, md, textLineNumber } = state;
 
   useDisconnect({ disconnect, md });
   useSyncSlideshow({ entries, textLineNumber });
@@ -28,7 +28,12 @@ export const Slideshow: React.FC = () => {
 
   return (
     <Article ref={ref} id="slideshow">
-      <div dangerouslySetInnerHTML={{ __html: htmlString }} />
+      {htmlArray.map((html, i) => (
+        <div
+          key={`slide-${i + 1}`}
+          dangerouslySetInnerHTML={{ __html: html }}
+        />
+      ))}
     </Article>
   );
 };

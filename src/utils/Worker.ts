@@ -11,8 +11,8 @@ ctx.onmessage = ({ data }) => {
     case "PARSE":
       // @ts-ignore https://github.com/Microsoft/TypeScript/issues/24239
       postMessage({
-        type: MarkdownContextReducerActionType.SetHtmlString,
-        htmlString: parse(md),
+        type: MarkdownContextReducerActionType.SetHtmlArray,
+        htmlArray: parse(md),
       });
       break;
 
