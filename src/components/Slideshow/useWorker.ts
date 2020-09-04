@@ -6,7 +6,7 @@ import { MarkdownWorker } from "utils/MarkdownWorker";
 
 interface UseWorkerProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
-  md: string;
+  md: MarkdownString;
 }
 
 export const useWorker = ({ dispatch, md }: UseWorkerProps): void => {

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 interface UseDisconnectProps {
   disconnect: () => void;
-  md: string;
+  md: MarkdownString;
 }
 
 export const useDisconnect = ({ disconnect, md }: UseDisconnectProps): void => {

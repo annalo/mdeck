@@ -17,7 +17,7 @@ export class MarkdownWorker {
     };
   }
 
-  parse(md: string): void {
+  parse(md: MarkdownString): void {
     this.worker.postMessage({ action: "PARSE", md });
   }
 
