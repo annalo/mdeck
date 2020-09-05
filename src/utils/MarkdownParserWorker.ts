@@ -1,24 +1,24 @@
 import Worker from "worker-loader!./Worker"; // eslint-disable-line
+
 import type { Dispatch } from "react";
 import type { MarkdownContextReducerAction } from "types/markdown-context";
 
-export class MarkdownWorker {
+import { MarkdownContextReducerActionType } from "types/markdown-context";
+
+export class MarkdownParserWorker {
   private readonly worker: Worker;
 
   constructor(dispatch: Dispatch<MarkdownContextReducerAction>) {
     this.worker = new Worker();
-    this.worker.onmessage = ({
-      data,
-    }: {
-      data: MarkdownContextReducerAction;
-    }) => {
-      console.log("markdown worker on message", data); // eslint-disable-line
-      dispatch(data);
-    };
+    this.worker.onmessage = ({ data }: { data: HtmlArray }) =>
+      dispatch({
+        type: MarkdownContextReducerActionType.SetHtmlArray,
+        htmlArray: data,
+      });
   }
 
   parse(md: MarkdownString): void {
-    this.worker.postMessage({ action: "PARSE", md });
+    this.worker.postMessage(md);
   }
 
   terminate(): void {
