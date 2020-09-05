@@ -1,9 +1,12 @@
 import React from "react";
+import { useElements } from "./useElements";
 
 interface SlideProps {
   htmlString: HtmlString;
 }
 
 export const Slide: React.FC<SlideProps> = ({ htmlString }: SlideProps) => {
-  return <div dangerouslySetInnerHTML={{ __html: htmlString }} />;
+  const elements = useElements({ htmlString });
+
+  return <div>{elements}</div>;
 };
