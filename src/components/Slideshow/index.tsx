@@ -27,7 +27,7 @@ export const Slideshow: React.FC = () => {
   return (
     <Article ref={ref} id="slideshow">
       {htmlArray.map((html, i) => (
-        <Slide key={`slide-${i + 1}`} htmlString={html} />
+        <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
       ))}
     </Article>
   );

@@ -6,7 +6,4 @@
 
 import { lazyLoad } from "utils/loadable";
 
-export const Slide = lazyLoad(
-  () => import("./index"),
-  (module) => module.Slide
-);
+export const Slide = lazyLoad(() => import("./index"));
