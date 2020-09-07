@@ -10,8 +10,6 @@ exports[`<Slideshow /> should render and match the snapshot 1`] = `
 <article
     class="c0"
     id="slideshow"
-  >
-    <div />
-  </article>
+  />
 </DocumentFragment>
 `;
