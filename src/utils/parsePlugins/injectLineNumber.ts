@@ -14,7 +14,7 @@ const RULES = [
 
 export const injectLineNumber = (md: Record<string, any>) => {
   const { marpit_inline_svg_open } = md.renderer.rules;
-  // Enable line sync by per slides
+  // Enables line sync by per slides
   md.renderer.rules.marpit_inline_svg_open = (tokens, idx, opts, env, self) => {
     const slide = tokens
       .slice(idx + 1)

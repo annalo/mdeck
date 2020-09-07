@@ -4,7 +4,7 @@ import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 interface UseSyncSlideshowProps {
   entries: Array<Element>;
-  textLineNumber: number;
+  textLineNumber: LineNumber;
 }
 
 export const useSyncSlideshow = ({

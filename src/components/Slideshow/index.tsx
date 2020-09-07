@@ -1,12 +1,12 @@
 import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components";
 
-import { SlideshowObserver } from "contexts/SlideshowObserver";
 import { MarkdownContext } from "contexts/MarkdownContext";
 
-import { useDisconnect } from "./useDisconnect";
-import { useSyncSlideshow } from "./useSyncSlideshow";
-import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
+import { Slide } from "components/Slide/Loadable";
+
+// import { useSyncSlideshow } from "./useSyncSlideshow";
+// import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 import { useWorker } from "./useWorker";
 
 const Article = styled.article`
@@ -17,18 +17,18 @@ const Article = styled.article`
 export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { entries, disconnect } = useContext(SlideshowObserver);
-  const { htmlString, md, textLineNumber } = state;
+  const { htmlArray, md } = state;
 
-  useDisconnect({ disconnect, md });
-  useSyncSlideshow({ entries, textLineNumber });
-  useTrackSlideshowScroll({ dispatch, entries, ref });
+  // useSyncSlideshow({ entries, textLineNumber });
+  // useTrackSlideshowScroll({ dispatch, entries, ref });
 
   useWorker({ dispatch, md });
 
   return (
     <Article ref={ref} id="slideshow">
-      <div dangerouslySetInnerHTML={{ __html: htmlString }} />
+      {htmlArray.map((html, i) => (
+        <Slide key={`slide-${i + 1}`} htmlString={html} />
+      ))}
     </Article>
   );
 };

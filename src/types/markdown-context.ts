@@ -3,14 +3,14 @@ export declare interface MarkdownContextProviderProps {
 }
 
 export declare interface MarkdownContextState {
-  htmlString: string;
-  md: string;
-  slideshowLineNumber: number;
-  textLineNumber: number;
+  htmlArray: HtmlArray;
+  md: MarkdownString;
+  slideshowLineNumber: LineNumber;
+  textLineNumber: LineNumber;
 }
 
 export enum MarkdownContextReducerActionType {
-  SetHtmlString = "SET_HTML_STRING",
+  SetHtmlArray = "SET_HTML_STRING",
   SetMd = "SET_MD",
   SetSlideshowLineNumber = "SET_SLIDESHOW_LINE_NUMBER",
   SetTextLineNumber = "SET_TEXT_LINE_NUMBER",
@@ -18,18 +18,18 @@ export enum MarkdownContextReducerActionType {
 
 export declare type MarkdownContextReducerAction =
   | {
-      type: MarkdownContextReducerActionType.SetHtmlString;
-      htmlString: string;
+      type: MarkdownContextReducerActionType.SetHtmlArray;
+      htmlArray: HtmlArray;
     }
   | {
       type: MarkdownContextReducerActionType.SetMd;
-      md: string;
+      md: MarkdownString;
     }
   | {
       type: MarkdownContextReducerActionType.SetSlideshowLineNumber;
-      slideshowLineNumber: number;
+      slideshowLineNumber: LineNumber;
     }
   | {
       type: MarkdownContextReducerActionType.SetTextLineNumber;
-      textLineNumber: number;
+      textLineNumber: LineNumber;
     };
