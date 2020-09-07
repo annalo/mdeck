@@ -3,7 +3,7 @@ import * as R from "ramda";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 interface UseSyncSlideshowProps {
-  entries: Array<Element>;
+  entries: SlideshowObserver.Entries;
   textLineNumber: LineNumber;
 }
 

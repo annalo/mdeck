@@ -10,7 +10,7 @@ import { usePaneIsActive } from "utils/usePaneIsActive";
 
 interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
-  entries: Array<Element>;
+  entries: SlideshowObserver.Entries;
   ref: RefObject<HTMLDivElement>;
 }
 
