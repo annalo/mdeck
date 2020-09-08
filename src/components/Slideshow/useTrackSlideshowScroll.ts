@@ -19,7 +19,6 @@ export const useTrackSlideshowScroll = ({
   entries,
   ref,
 }: UseTrackSlideshowScrollProps): void => {
-  const node = ref.current;
   const isActive = usePaneIsActive({ ref, initialValue: false });
 
   /*
@@ -31,29 +30,28 @@ export const useTrackSlideshowScroll = ({
       throttle(() => {
         const withinBounds = R.both(R.gte(R.__, 0), R.lte(R.__, 18));
         const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
-        const getLineNumber = R.pipe(R.path(["dataset", "line"]), parseInt);
-        const setLineNumber = (lineNumber) => {
+        const setLineNumber = (lineNumber) =>
           dispatch({
             type: MarkdownContextReducerActionType.SetSlideshowLineNumber,
             slideshowLineNumber: lineNumber,
           });
-        };
 
-        R.pipe(
-          R.values,
-          R.find(isTopElement),
-          R.either(R.isNil, R.pipe(getLineNumber, setLineNumber))
-        )(entries);
+        const topElement = Object.entries(entries).find(([, entry]) =>
+          isTopElement(entry)
+        );
+        if (topElement) setLineNumber(topElement[0]);
       }, 100),
     [dispatch, entries]
   );
 
   /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
+    const node = ref.current;
+
     isActive
       ? node?.addEventListener("scroll", handleScroll, { passive: true })
       : node?.removeEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);
-  }, [isActive, handleScroll, node]);
+  }, [isActive, handleScroll, ref]);
 };
