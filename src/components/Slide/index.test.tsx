@@ -3,8 +3,9 @@ import { render } from "@testing-library/react";
 
 import { Slide } from ".";
 
+const observeMock = jest.fn();
 const component = (
-  <Slide htmlString="<h1>Title</h1>">
+  <Slide htmlString="<h1>Title</h1>" index={0} observe={observeMock}>
     <div>Some Child Element</div>
   </Slide>
 );
