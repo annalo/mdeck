@@ -7,17 +7,22 @@ import {
   CODE_LINE_CLASS_NAME,
   DATA_LINE_ATTRIBUTE,
 } from "utils/parsePlugins/injectLineNumber";
+import MarkdownParserWorker from "utils/MarkdownParserWorker";
 import {
   MarkdownContext,
   MarkdownContextProvider,
 } from "contexts/MarkdownContext";
 
 import { Slideshow } from ".";
+
 import { useObservable } from "./useObservable";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
+import { useWorker } from "./useWorker";
 
 jest.mock("smooth-scroll-into-view-if-needed");
+jest.mock("utils/MarkdownParserWorker");
+
 afterEach(() => jest.clearAllMocks());
 
 describe("<Slideshow />", () => {
@@ -116,6 +121,45 @@ describe("<Slideshow />", () => {
       });
 
       expect(result.current.slideshowLineNumber).toBe(lineNumber);
+    });
+  });
+
+  describe("useWorker", () => {
+    const wrapper = ({ children }) => (
+      <MarkdownContextProvider>{children}</MarkdownContextProvider>
+    );
+
+    test("should instantiate MarkdownParseWorker just once", () => {
+      let md = "## Markdown String";
+      const { rerender } = renderHook(
+        () => {
+          const { dispatch } = useContext(MarkdownContext);
+          useWorker({ dispatch, md });
+        },
+        { wrapper }
+      );
+
+      md = "## Markdown String\n* Bullet 1";
+      rerender();
+
+      expect(MarkdownParserWorker).toHaveBeenCalledTimes(1);
+    });
+
+    test("should parse md with MarkdownParserWorker", () => {
+      let md = "## Markdown String";
+      const { rerender } = renderHook(
+        () => {
+          const { dispatch } = useContext(MarkdownContext);
+          useWorker({ dispatch, md });
+        },
+        { wrapper }
+      );
+
+      md = "## Markdown String\n* Bullet 1";
+      rerender();
+
+      const workerInstance = MarkdownParserWorker.mock.instances[0];
+      expect(workerInstance.parse).toHaveBeenCalledTimes(2);
     });
   });
 });
