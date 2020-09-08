@@ -1,5 +1,6 @@
-import React, { memo, useEffect, useRef } from "react";
-import { useElements } from "./useElements";
+import React, { memo, useEffect, useRef, useState } from "react";
+import { render } from "utils/render";
+import { useObserve } from "./useObserve";
 
 interface SlideProps {
   htmlString: HtmlString;
@@ -13,12 +14,10 @@ export const Slide: React.FC<SlideProps> = ({
   observe,
 }: SlideProps) => {
   const ref = useRef<HTMLDivElement>(null);
+  const [elements, setElements] = useState<React.ReactNode>(null);
 
-  const elements = useElements({ htmlString });
-
-  useEffect(() => {
-    if (ref.current) observe(ref.current);
-  }, [elements, observe]);
+  useEffect(() => setElements(render(htmlString)), [htmlString]);
+  useObserve({ elements, ref, observe });
 
   return (
     <div ref={ref} id={`slide-${index + 1}`}>
