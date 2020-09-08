@@ -6,7 +6,7 @@ interface Node {
   attribs: Record<string, string>;
 }
 
-export const render = (htmlString: string): Array<React.ReactElement> => {
+export const render = (htmlString: string): SlideElements => {
   const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
   const isTableDescendent = (parent) =>
     parent && TABLE_TAGS.includes(parent.name);
