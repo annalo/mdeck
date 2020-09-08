@@ -5,7 +5,7 @@ import type { MarkdownContextReducerAction } from "types/markdown-context";
 
 import { MarkdownContextReducerActionType } from "types/markdown-context";
 
-export class MarkdownParserWorker {
+export default class MarkdownParserWorker {
   private readonly worker: Worker;
 
   constructor(dispatch: Dispatch<MarkdownContextReducerAction>) {
