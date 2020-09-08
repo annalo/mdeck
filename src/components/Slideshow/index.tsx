@@ -5,8 +5,9 @@ import { MarkdownContext } from "contexts/MarkdownContext";
 
 import { Slide } from "components/Slide/Loadable";
 
-// import { useSyncSlideshow } from "./useSyncSlideshow";
-// import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
+import { useObservable } from "./useObservable";
+import { useSyncSlideshow } from "./useSyncSlideshow";
+import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 import { useWorker } from "./useWorker";
 
 const Article = styled.article`
@@ -17,17 +18,25 @@ const Article = styled.article`
 export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
   const { state, dispatch } = useContext(MarkdownContext);
-  const { htmlArray, md } = state;
+  const { htmlArray, md, textLineNumber } = state;
 
-  // useSyncSlideshow({ entries, textLineNumber });
-  // useTrackSlideshowScroll({ dispatch, entries, ref });
+  const { entries, observe } = useObservable();
+
+  // console.log(Object.keys(entries).length);
+  useSyncSlideshow({ entries, ref, textLineNumber });
+  useTrackSlideshowScroll({ dispatch, entries, ref });
 
   useWorker({ dispatch, md });
 
   return (
     <Article ref={ref} id="slideshow">
       {htmlArray.map((html, i) => (
-        <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
+        <Slide
+          key={`slide-${i + 1}`}
+          htmlString={html}
+          index={i}
+          observe={observe}
+        />
       ))}
     </Article>
   );

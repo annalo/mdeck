@@ -1,24 +1,31 @@
-import React, { memo, useEffect, useState } from "react";
+import React, { memo, useEffect, useRef, useState } from "react";
 import { render } from "utils/render";
 
 interface SlideProps {
   htmlString: HtmlString;
   index: number;
+  observe: SlideshowObserver.Observe;
 }
 
 export const Slide: React.FC<SlideProps> = ({
   htmlString,
   index,
+  observe,
 }: SlideProps) => {
+  const ref = useRef<HTMLDivElement>(null);
   const [elements, setElements] = useState<React.ReactNode>(null);
-
-  useEffect(() => {
-    if (index === 0) console.log("rerendering slide 1");
-  });
 
   useEffect(() => setElements(render(htmlString)), [htmlString]);
 
-  return <div>{elements}</div>;
+  useEffect(() => {
+    if (ref.current) observe(ref.current);
+  }, [elements, observe]);
+
+  return (
+    <div ref={ref} id={`slide-${index + 1}`}>
+      {elements}
+    </div>
+  );
 };
 
 export default memo(Slide);
