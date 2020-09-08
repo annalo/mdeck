@@ -6,21 +6,19 @@ import type { Dispatch, RefObject } from "react";
 import type { MarkdownContextReducerAction } from "types/markdown-context";
 import { MarkdownContextReducerActionType } from "types/markdown-context";
 
-import { usePaneIsActive } from "utils/usePaneIsActive";
-
 interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
   entries: SlideshowObserver.Entries;
+  isActive: boolean;
   ref: RefObject<HTMLDivElement>;
 }
 
 export const useTrackSlideshowScroll = ({
   dispatch,
   entries,
+  isActive,
   ref,
 }: UseTrackSlideshowScrollProps): void => {
-  const isActive = usePaneIsActive({ ref, initialValue: false });
-
   /*
    * Finds the top most element in view (within 0px - 18px from the top)
    * IF element THEN set `slideshowLineNumber` to it's data-line number

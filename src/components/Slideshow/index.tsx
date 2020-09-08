@@ -5,6 +5,7 @@ import { MarkdownContext } from "contexts/MarkdownContext";
 
 import { Slide } from "components/Slide/Loadable";
 
+import { usePaneIsActive } from "utils/usePaneIsActive";
 import { useObservable } from "./useObservable";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
@@ -17,13 +18,15 @@ const Article = styled.article`
 
 export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
+
   const { state, dispatch } = useContext(MarkdownContext);
   const { htmlArray, md, textLineNumber } = state;
 
+  const isActive = usePaneIsActive({ ref, initialValue: false });
   const { entries, observe } = useObservable();
 
   useSyncSlideshow({ entries, textLineNumber });
-  useTrackSlideshowScroll({ dispatch, entries, ref });
+  useTrackSlideshowScroll({ dispatch, entries, isActive, ref });
 
   useWorker({ dispatch, md });
 
