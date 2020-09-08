@@ -37,7 +37,7 @@ export const useTrackSlideshowScroll = ({
         const topElement = Object.entries(entries).find(([, entry]) =>
           isTopElement(entry)
         );
-        if (topElement) setLineNumber(topElement[0]);
+        if (topElement) setLineNumber(parseInt(topElement[0], 10));
       }, 100),
     [dispatch, entries]
   );
