@@ -23,8 +23,7 @@ export const useTrackSlideshowScroll = ({
   const isActive = usePaneIsActive({ ref, initialValue: false });
 
   /*
-   * From the list of elements registerd with the observer (SlideshowObserver),
-   * finds the top most element in view (within 0px - 18px from the top)
+   * Finds the top most element in view (within 0px - 18px from the top)
    * IF element THEN set `slideshowLineNumber` to it's data-line number
    */
   const handleScroll = useMemo(

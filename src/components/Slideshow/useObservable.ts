@@ -16,10 +16,15 @@ export const useObservable = (): {
   const observe = useCallback(
     (node) => {
       const entries = {};
-      node?.querySelectorAll(`.${CODE_LINE_CLASS_NAME}`).forEach((element) => {
+      const codeLineElements = node?.querySelectorAll(
+        `.${CODE_LINE_CLASS_NAME}`
+      );
+
+      codeLineElements.forEach((element) => {
         const dataLine = element.getAttribute(DATA_LINE_ATTRIBUTE);
         if (dataLine) entries[parseInt(dataLine, 10)] = element;
       });
+
       setObserverEntries((currentEntries) => ({
         ...currentEntries,
         ...entries,

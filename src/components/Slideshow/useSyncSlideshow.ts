@@ -20,7 +20,7 @@ export const useSyncSlideshow = ({
 }: UseSyncSlideshowProps): void => {
   /* Syncs slideshow when textLineNumber changes */
   useEffect(() => {
-    // console.log(textLineNumber);
+    // // use querySelector instead of entries?
     // const dataLineElement = ref.current?.querySelector(
     //   `[${DATA_LINE_ATTRIBUTE}="${textLineNumber}"]`
     // );

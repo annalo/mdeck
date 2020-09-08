@@ -1,12 +1,12 @@
 import { useEffect, useMemo } from "react";
+import * as R from "ramda";
+import throttle from "lodash/throttle";
+
 import type { Dispatch, RefObject } from "react";
 import {
   MarkdownContextReducerAction,
   MarkdownContextReducerActionType,
 } from "types/markdown-context";
-
-import * as R from "ramda";
-import throttle from "lodash/throttle";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 

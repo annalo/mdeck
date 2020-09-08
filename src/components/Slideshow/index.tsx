@@ -22,7 +22,6 @@ export const Slideshow: React.FC = () => {
 
   const { entries, observe } = useObservable();
 
-  // console.log(Object.keys(entries).length);
   useSyncSlideshow({ entries, ref, textLineNumber });
   useTrackSlideshowScroll({ dispatch, entries, ref });
 
