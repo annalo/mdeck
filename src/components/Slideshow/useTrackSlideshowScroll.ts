@@ -41,6 +41,7 @@ export const useTrackSlideshowScroll = ({
         };
 
         R.pipe(
+          R.values,
           R.find(isTopElement),
           R.either(R.isNil, R.pipe(getLineNumber, setLineNumber))
         )(entries);
