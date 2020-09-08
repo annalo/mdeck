@@ -12,6 +12,7 @@ import { useObservable } from "./useObservable";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 
 jest.mock("smooth-scroll-into-view-if-needed");
+afterEach(() => jest.clearAllMocks());
 
 describe("<Slideshow />", () => {
   test("should render and match the snapshot", () => {
@@ -40,12 +41,13 @@ describe("<Slideshow />", () => {
 
   describe("useSyncSlideshow", () => {
     test("should sync slideshow to textLineNumber if there's an element with the data-line", () => {
-      const textLineNumber = 5;
-      const element = {};
-      const entries = { 5: element };
+      const textLineNumber = 2;
+      const element = { test: "test" };
+      const entries = { 2: element };
 
       renderHook(() => useSyncSlideshow({ entries, textLineNumber }));
 
+      expect(scrollIntoView).toHaveBeenCalledTimes(1);
       expect(scrollIntoView).toHaveBeenCalledWith(element, { block: "start" });
     });
 

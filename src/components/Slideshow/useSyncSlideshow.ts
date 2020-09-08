@@ -25,7 +25,6 @@ export const useSyncSlideshow = ({
     // );
     // if (dataLineElement) scrollIntoView(dataLineElement, { block: "start" });
     const dataLineElement = entries[textLineNumber];
-    console.log(dataLineElement);
     if (dataLineElement) scrollIntoView(dataLineElement, { block: "start" });
   }, [entries, textLineNumber]);
 };

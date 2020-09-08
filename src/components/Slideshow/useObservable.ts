@@ -22,7 +22,7 @@ export const useObservable = (): {
 
       codeLineElements.forEach((element) => {
         const dataLine = element.getAttribute(DATA_LINE_ATTRIBUTE);
-        if (dataLine) entries[parseInt(dataLine, 10)] = element;
+        if (dataLine) entries[dataLine] = element;
       });
 
       setObserverEntries((currentEntries) => ({
