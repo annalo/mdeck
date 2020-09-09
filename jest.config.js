@@ -3,6 +3,7 @@ module.exports = {
   collectCoverageFrom: [
     "**/*.{js,ts,tsx}",
     "!**/*.d.ts",
+    "!src/index.tsx",
     "!src/*/*/Loadable.{ts,tsx}",
   ],
   moduleNameMapper: {
