@@ -30,6 +30,7 @@ describe("<Slide />", () => {
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       <div
+        class="slide"
         id="slide-1"
       >
         <svg>
