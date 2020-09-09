@@ -4,6 +4,7 @@ import { act, renderHook } from "@testing-library/react-hooks";
 import userEvent from "@testing-library/user-event";
 
 import {
+  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   MarkdownContext,
   MarkdownContextProvider,
 } from "contexts/MarkdownContext";
@@ -51,17 +52,23 @@ describe("<TextEditor />", () => {
   });
 
   describe("useTrackTextAreaScroll", () => {
-    test("should set textLineNumber in MarkdownContext on scroll", () => {
+    let textarea;
+    let lineCount;
+    let scrollHeight;
+
+    beforeEach(() => {
       // Fill textarea with lines of text to scroll
-      const textarea = document.createElement("textarea");
-      const lineCount = 7;
-      const scrollHeight = lineCount * TEXT_AREA_LINE_HEIGHT;
+      textarea = document.createElement("textarea");
+      lineCount = 7;
+      scrollHeight = lineCount * TEXT_AREA_LINE_HEIGHT;
       const textValue = Array(...Array(lineCount))
         .map(() => "test")
         .join("\n");
       textarea.value = textValue;
-      const ref = { current: textarea };
+    });
 
+    test("should set textLineNumber on scroll if TextEditor isActive", () => {
+      const ref = { current: textarea };
       const wrapper = ({ children }) => (
         <MarkdownContextProvider>{children}</MarkdownContextProvider>
       );
@@ -80,12 +87,38 @@ describe("<TextEditor />", () => {
       );
 
       act(() => {
-        fireEvent.scroll(textarea, {
-          target: { scrollTop: scrollHeight },
-        });
+        fireEvent.scroll(textarea, { target: { scrollTop: scrollHeight } });
       });
 
       expect(result.current.textLineNumber).toBe(lineCount);
+    });
+
+    test("should not set textLineNumber on scroll if TextEditor isActive is false", () => {
+      const ref = { current: textarea };
+      const wrapper = ({ children }) => (
+        <MarkdownContextProvider>{children}</MarkdownContextProvider>
+      );
+      const { result } = renderHook(
+        () => {
+          const { dispatch, state } = useContext(MarkdownContext);
+          useTrackTextAreaScroll({
+            dispatch,
+            isActive: false,
+            ref,
+            textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
+          });
+          return state;
+        },
+        { wrapper }
+      );
+
+      act(() => {
+        fireEvent.scroll(textarea, { target: { scrollTop: scrollHeight } });
+      });
+
+      expect(result.current.textLineNumber).toBe(
+        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
+      );
     });
   });
 });
