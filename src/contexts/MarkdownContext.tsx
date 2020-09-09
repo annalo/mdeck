@@ -23,6 +23,7 @@ export const MarkdownContext = createContext<{
 
 export const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = ({
   children,
+  initialState, // optional param
 }: MarkdownContextProviderProps) => {
   const reducer = (
     state: MarkdownContextState,
@@ -42,7 +43,10 @@ export const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = (
     }
   };
 
-  const [state, dispatch] = useReducer(reducer, MARKDOWN_CONTEXT_INITIAL_STATE);
+  const [state, dispatch] = useReducer(
+    reducer,
+    initialState || MARKDOWN_CONTEXT_INITIAL_STATE
+  );
   const contextValue = { state, dispatch };
 
   return (

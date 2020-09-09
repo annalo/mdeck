@@ -1,5 +1,6 @@
 export declare interface MarkdownContextProviderProps {
   children: React.ReactNode;
+  initialState?: MarkdownContextState;
 }
 
 export declare interface MarkdownContextState {
