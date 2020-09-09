@@ -1,0 +1,70 @@
+import React, { useContext } from "react";
+import { act, renderHook } from "@testing-library/react-hooks";
+
+import Worker from "worker-loader!./Worker"; // eslint-disable-line
+import {
+  MarkdownContext,
+  MarkdownContextProvider,
+} from "contexts/MarkdownContext";
+import MarkdownParserWorker from "./MarkdownParserWorker";
+
+afterEach(() => jest.clearAllMocks());
+
+describe("MarkdownParserWorker", () => {
+  const wrapper = ({ children }) => (
+    <MarkdownContextProvider>{children}</MarkdownContextProvider>
+  );
+  describe("worker", () => {
+    test("should initialize with a new web worker", () => {
+      const { result } = renderHook(
+        () => {
+          const { dispatch } = useContext(MarkdownContext);
+          const worker = new MarkdownParserWorker(dispatch);
+          return worker;
+        },
+        { wrapper }
+      );
+
+      expect(Worker).toHaveBeenCalledTimes(1);
+      expect(result.current.worker).toBeInstanceOf(Worker);
+    });
+  });
+
+  describe("parse/1", () => {
+    test("should post a message to worker with argument md", () => {
+      const md = "## Title";
+      const { result } = renderHook(
+        () => {
+          const { dispatch } = useContext(MarkdownContext);
+          const worker = new MarkdownParserWorker(dispatch);
+          return worker;
+        },
+        { wrapper }
+      );
+
+      act(() => result.current.parse(md));
+
+      expect(Worker.mock.instances[0].postMessage).toHaveBeenNthCalledWith(
+        1,
+        md
+      );
+    });
+  });
+
+  describe("terminate", () => {
+    test("should terminate the web worker", () => {
+      const { result } = renderHook(
+        () => {
+          const { dispatch } = useContext(MarkdownContext);
+          const worker = new MarkdownParserWorker(dispatch);
+          return worker;
+        },
+        { wrapper }
+      );
+
+      act(() => result.current.terminate());
+
+      expect(Worker.mock.instances[0].terminate).toHaveBeenCalledTimes(1);
+    });
+  });
+});
