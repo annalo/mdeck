@@ -4,8 +4,8 @@ import styled from "styled-components";
 import { MarkdownContext } from "contexts/MarkdownContext";
 import { MarkdownContextReducerActionType } from "types/markdown-context";
 
-import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 import { useSyncTextArea } from "./useSyncTextArea";
+import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
 export const TEXT_AREA_LINE_HEIGHT = 18;
 
@@ -31,14 +31,14 @@ export const TextEditor: React.FC = () => {
   const { state, dispatch } = useContext(MarkdownContext);
   const { md, slideshowLineNumber } = state;
 
-  useTrackTextAreaScroll({
-    dispatch,
-    ref,
-    textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
-  });
   useSyncTextArea({
     ref,
     slideshowLineNumber,
+    textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
+  });
+  useTrackTextAreaScroll({
+    dispatch,
+    ref,
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
   });
 

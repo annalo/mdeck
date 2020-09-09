@@ -16,12 +16,15 @@ export const useSyncTextArea = ({
   /* Syncs text when slideshowLineNumber changes */
   useEffect(() => {
     const getNode = R.prop("current");
-    const scrollTop = R.multiply(textAreaLineHeight, slideshowLineNumber);
+    const calculateScrollTop = R.multiply(
+      textAreaLineHeight,
+      slideshowLineNumber
+    );
     // TODO smooth scrolling
-    const setScrollTop = R.curry((value, n) => {
-      n.scrollTop = value; // eslint-disable-line no-param-reassign
+    const setScrollTop = R.curry((scrollTop, n) => {
+      n.scrollTop = scrollTop; // eslint-disable-line no-param-reassign
     });
 
-    R.pipe(getNode, R.unless(R.isNil, setScrollTop(scrollTop)))(ref);
+    R.pipe(getNode, R.unless(R.isNil, setScrollTop(calculateScrollTop)))(ref);
   }, [ref, slideshowLineNumber, textAreaLineHeight]);
 };
