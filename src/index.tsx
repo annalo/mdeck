@@ -14,7 +14,7 @@ const ConnectedApp = ({ Component }: Props) => (
     <Component />
   </React.StrictMode>
 );
-const render = (Component: typeof App) => {
+export const render = (Component: typeof App) => {
   ReactDOM.render(<ConnectedApp Component={Component} />, MOUNT_NODE);
 };
 

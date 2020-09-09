@@ -2,10 +2,15 @@
 
 exports[`<Slide /> should render and match the snapshot 1`] = `
 <DocumentFragment>
-  <div>
-    <h1>
-      Title
-    </h1>
+  <div
+    class="slide"
+    id="slide-1"
+  >
+    <svg>
+      <h1>
+        Title
+      </h1>
+    </svg>
   </div>
 </DocumentFragment>
 `;

@@ -6,7 +6,7 @@ import type {
 } from "types/markdown-context";
 import { MarkdownContextReducerActionType } from "types/markdown-context";
 
-const MARKDOWN_CONTEXT_INITIAL_STATE = {
+export const MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE = {
   htmlArray: [],
   md: "",
   slideshowLineNumber: 0,
@@ -17,12 +17,13 @@ export const MarkdownContext = createContext<{
   state: MarkdownContextState;
   dispatch: React.Dispatch<MarkdownContextReducerAction>;
 }>({
-  state: MARKDOWN_CONTEXT_INITIAL_STATE,
+  state: MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   dispatch: () => null,
 });
 
 export const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = ({
   children,
+  initialState, // optional param
 }: MarkdownContextProviderProps) => {
   const reducer = (
     state: MarkdownContextState,
@@ -42,8 +43,11 @@ export const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = (
     }
   };
 
-  const [state, dispatch] = useReducer(reducer, MARKDOWN_CONTEXT_INITIAL_STATE);
-  const contextValue = { state, dispatch };
+  const [state, dispatch] = useReducer(
+    reducer,
+    initialState || MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE
+  );
+  const contextValue = { dispatch, state };
 
   return (
     <MarkdownContext.Provider value={contextValue}>

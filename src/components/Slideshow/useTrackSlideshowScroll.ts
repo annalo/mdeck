@@ -6,25 +6,21 @@ import type { Dispatch, RefObject } from "react";
 import type { MarkdownContextReducerAction } from "types/markdown-context";
 import { MarkdownContextReducerActionType } from "types/markdown-context";
 
-import { usePaneIsActive } from "utils/usePaneIsActive";
-
 interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
-  entries: Array<Element>;
+  entries: SlideshowObserver.Entries;
+  isActive: boolean;
   ref: RefObject<HTMLDivElement>;
 }
 
 export const useTrackSlideshowScroll = ({
   dispatch,
   entries,
+  isActive,
   ref,
 }: UseTrackSlideshowScrollProps): void => {
-  const node = ref.current;
-  const isActive = usePaneIsActive({ ref, initialValue: false });
-
   /*
-   * From the list of elements registerd with the observer (SlideshowObserver),
-   * finds the top most element in view (within 0px - 18px from the top)
+   * Finds the top most element in view (within 0px - 18px from the top)
    * IF element THEN set `slideshowLineNumber` to it's data-line number
    */
   const handleScroll = useMemo(
@@ -32,28 +28,28 @@ export const useTrackSlideshowScroll = ({
       throttle(() => {
         const withinBounds = R.both(R.gte(R.__, 0), R.lte(R.__, 18));
         const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
-        const getLineNumber = R.pipe(R.path(["dataset", "line"]), parseInt);
-        const setLineNumber = (lineNumber) => {
+        const setLineNumber = (lineNumber) =>
           dispatch({
             type: MarkdownContextReducerActionType.SetSlideshowLineNumber,
             slideshowLineNumber: lineNumber,
           });
-        };
 
-        R.pipe(
-          R.find(isTopElement),
-          R.either(R.isNil, R.pipe(getLineNumber, setLineNumber))
-        )(entries);
+        const topElement = Object.entries(entries).find(([, entry]) =>
+          isTopElement(entry)
+        );
+        if (topElement) setLineNumber(parseInt(topElement[0], 10));
       }, 100),
     [dispatch, entries]
   );
 
   /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
+    const node = ref.current;
+
     isActive
       ? node?.addEventListener("scroll", handleScroll, { passive: true })
       : node?.removeEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);
-  }, [isActive, handleScroll, node]);
+  }, [isActive, handleScroll, ref]);
 };

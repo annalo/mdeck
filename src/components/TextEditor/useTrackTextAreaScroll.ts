@@ -1,28 +1,26 @@
 import { useEffect, useMemo } from "react";
+import * as R from "ramda";
+import throttle from "lodash/throttle";
+
 import type { Dispatch, RefObject } from "react";
 import {
   MarkdownContextReducerAction,
   MarkdownContextReducerActionType,
 } from "types/markdown-context";
 
-import * as R from "ramda";
-import throttle from "lodash/throttle";
-
-import { usePaneIsActive } from "utils/usePaneIsActive";
-
 interface UseTrackTextAreaScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
+  isActive: boolean;
   ref: RefObject<HTMLTextAreaElement>;
   textAreaLineHeight: number;
 }
 
 export const useTrackTextAreaScroll = ({
   dispatch,
+  isActive,
   ref,
   textAreaLineHeight,
 }: UseTrackTextAreaScrollProps): void => {
-  const isActive = usePaneIsActive({ ref, initialValue: true });
-
   const handleScroll = useMemo(
     () =>
       throttle((e) => {
