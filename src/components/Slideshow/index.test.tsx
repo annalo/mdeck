@@ -9,6 +9,7 @@ import {
 } from "utils/parsePlugins/injectLineNumber";
 import MarkdownParserWorker from "utils/MarkdownParserWorker";
 import {
+  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   MarkdownContext,
   MarkdownContextProvider,
 } from "contexts/MarkdownContext";
@@ -99,23 +100,24 @@ describe("<Slideshow />", () => {
   });
 
   describe("useTrackSlideshowScroll", () => {
+    let slideshow;
+    let entries;
+    let lineNumber;
     const mockBoundingClientRect = (top) =>
-      jest.fn(() => {
-        return {
-          width: 120,
-          height: 120,
-          top,
-          left: 0,
-          x: 0,
-          y: 1,
-          bottom: 0,
-          right: 0,
-          toJSON: jest.fn(),
-        };
-      });
+      jest.fn(() => ({
+        width: 120,
+        height: 120,
+        top,
+        left: 0,
+        x: 0,
+        y: 1,
+        bottom: 0,
+        right: 0,
+        toJSON: jest.fn(),
+      }));
 
-    test("should set slideshowLineNumber to the top most element's data-line", () => {
-      const slideshow = document.createElement("div");
+    beforeEach(() => {
+      slideshow = document.createElement("div");
       const h1 = document.createElement("h1");
       const h2 = document.createElement("h2");
       const h3 = document.createElement("h3");
@@ -124,13 +126,16 @@ describe("<Slideshow />", () => {
       h2.getBoundingClientRect = mockBoundingClientRect(2);
       h3.getBoundingClientRect = mockBoundingClientRect(50);
 
-      const lineNumber = 2;
-      const entries = { 0: h1, 50: h3, [lineNumber]: h2 };
-      const ref = { current: slideshow };
+      lineNumber = 2;
+      entries = { 0: h1, 50: h3, [lineNumber]: h2 };
+    });
 
-      const wrapper = ({ children }) => (
-        <MarkdownContextProvider>{children}</MarkdownContextProvider>
-      );
+    const wrapper = ({ children }) => (
+      <MarkdownContextProvider>{children}</MarkdownContextProvider>
+    );
+
+    test("should set slideshowLineNumber to the top most element's data-line if isActive", () => {
+      const ref = { current: slideshow };
       const { result } = renderHook(
         () => {
           const { state, dispatch } = useContext(MarkdownContext);
@@ -140,13 +145,35 @@ describe("<Slideshow />", () => {
         { wrapper }
       );
 
-      expect(result.current.slideshowLineNumber).toBe(0);
+      expect(result.current.slideshowLineNumber).toBe(
+        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
+      );
 
       act(() => {
         fireEvent.scroll(slideshow, { target: { scrollY: 100 } });
       });
 
       expect(result.current.slideshowLineNumber).toBe(lineNumber);
+    });
+
+    test("should not set slideshowLineNumber if isActive is false", () => {
+      const ref = { current: slideshow };
+      const { result } = renderHook(
+        () => {
+          const { state, dispatch } = useContext(MarkdownContext);
+          useTrackSlideshowScroll({ dispatch, entries, isActive: false, ref });
+          return state;
+        },
+        { wrapper }
+      );
+
+      act(() => {
+        fireEvent.scroll(slideshow, { target: { scrollY: 100 } });
+      });
+
+      expect(result.current.slideshowLineNumber).toBe(
+        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
+      );
     });
   });
 

@@ -67,11 +67,12 @@ describe("<TextEditor />", () => {
       textarea.value = textValue;
     });
 
-    test("should set textLineNumber on scroll if TextEditor isActive", () => {
+    const wrapper = ({ children }) => (
+      <MarkdownContextProvider>{children}</MarkdownContextProvider>
+    );
+
+    test("should set textLineNumber to the top most visible line number on scroll if isActive", () => {
       const ref = { current: textarea };
-      const wrapper = ({ children }) => (
-        <MarkdownContextProvider>{children}</MarkdownContextProvider>
-      );
       const { result } = renderHook(
         () => {
           const { dispatch, state } = useContext(MarkdownContext);
@@ -86,6 +87,10 @@ describe("<TextEditor />", () => {
         { wrapper }
       );
 
+      expect(result.current.textLineNumber).toBe(
+        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
+      );
+
       act(() => {
         fireEvent.scroll(textarea, { target: { scrollTop: scrollHeight } });
       });
@@ -93,11 +98,8 @@ describe("<TextEditor />", () => {
       expect(result.current.textLineNumber).toBe(lineCount);
     });
 
-    test("should not set textLineNumber on scroll if TextEditor isActive is false", () => {
+    test("should not set textLineNumber on scroll if isActive is false", () => {
       const ref = { current: textarea };
-      const wrapper = ({ children }) => (
-        <MarkdownContextProvider>{children}</MarkdownContextProvider>
-      );
       const { result } = renderHook(
         () => {
           const { dispatch, state } = useContext(MarkdownContext);
