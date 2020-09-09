@@ -47,7 +47,7 @@ export const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = (
     reducer,
     initialState || MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE
   );
-  const contextValue = { state, dispatch };
+  const contextValue = { dispatch, state };
 
   return (
     <MarkdownContext.Provider value={contextValue}>

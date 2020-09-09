@@ -19,7 +19,7 @@ const Article = styled.article`
 export const Slideshow: React.FC = () => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const { state, dispatch } = useContext(MarkdownContext);
+  const { dispatch, state } = useContext(MarkdownContext);
   const { htmlArray, md, textLineNumber } = state;
 
   const isActive = usePaneIsActive({ ref, initialValue: false });

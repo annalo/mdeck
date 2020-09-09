@@ -28,6 +28,24 @@ describe("MarkdownParserWorker", () => {
       expect(Worker).toHaveBeenCalledTimes(1);
       expect(result.current.worker).toBeInstanceOf(Worker);
     });
+
+    test("should set htmlArray on 'onmessage'", () => {
+      const htmlArray = ["test", "test"];
+      const { result } = renderHook(
+        () => {
+          const { dispatch, state } = useContext(MarkdownContext);
+          const markdownWorker = new MarkdownParserWorker(dispatch);
+          return { state, markdownWorker };
+        },
+        { wrapper }
+      );
+
+      act(() =>
+        result.current.markdownWorker.worker.onmessage({ data: htmlArray })
+      );
+
+      expect(result.current.state.htmlArray).toBe(htmlArray);
+    });
   });
 
   describe("parse/1", () => {

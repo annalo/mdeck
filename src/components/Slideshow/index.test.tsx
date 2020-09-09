@@ -138,7 +138,7 @@ describe("<Slideshow />", () => {
       const ref = { current: slideshow };
       const { result } = renderHook(
         () => {
-          const { state, dispatch } = useContext(MarkdownContext);
+          const { dispatch, state } = useContext(MarkdownContext);
           useTrackSlideshowScroll({ dispatch, entries, isActive: true, ref });
           return state;
         },
@@ -160,7 +160,7 @@ describe("<Slideshow />", () => {
       const ref = { current: slideshow };
       const { result } = renderHook(
         () => {
-          const { state, dispatch } = useContext(MarkdownContext);
+          const { dispatch, state } = useContext(MarkdownContext);
           useTrackSlideshowScroll({ dispatch, entries, isActive: false, ref });
           return state;
         },
