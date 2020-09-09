@@ -1,13 +1,10 @@
 import React from "react";
-import { createRenderer } from "react-test-renderer/shallow";
+import { render } from "@testing-library/react";
 import { App } from "./index";
-
-const renderer = createRenderer();
 
 describe("<App />", () => {
   test("should render and match the snapshot", () => {
-    renderer.render(<App />);
-    const renderedOutput = renderer.getRenderOutput();
-    expect(renderedOutput).toMatchSnapshot();
+    const { asFragment } = render(<App />);
+    expect(asFragment()).toMatchSnapshot();
   });
 });
