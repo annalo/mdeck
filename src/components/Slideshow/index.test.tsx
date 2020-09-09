@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
@@ -29,6 +29,32 @@ describe("<Slideshow />", () => {
   test("should render and match the snapshot", () => {
     const { asFragment } = render(<Slideshow />);
     expect(asFragment()).toMatchSnapshot();
+  });
+
+  test("should render a Slide component for each element in 'htmlArray'", async () => {
+    const htmlArray = [
+      "<svg><h1>Title</h1></svg>",
+      "<svg><p>Paragraph</p></svg>",
+    ];
+    render(
+      <MarkdownContextProvider
+        initialState={{
+          htmlArray,
+          md: "",
+          slideshowLineNumber: 0,
+          textLineNumber: 0,
+        }}
+      >
+        <Slideshow />
+      </MarkdownContextProvider>
+    );
+
+    const article = screen.getByRole("article");
+    await waitFor(() => {
+      expect(article.childElementCount).toBe(htmlArray.length);
+      expect(article.children[0].getAttribute("id")).toBe("slide-1");
+      expect(article.children[1].getAttribute("id")).toBe("slide-2");
+    });
   });
 
   describe("useObservable", () => {
