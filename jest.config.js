@@ -2,8 +2,8 @@ module.exports = {
   roots: ["<rootDir>/src"],
   collectCoverageFrom: [
     "**/*.{js,ts,tsx}",
-    "!**/*.d.ts",
     "!src/index.tsx",
+    "!src/types/*",
     "!src/*/*/Loadable.{ts,tsx}",
   ],
   moduleNameMapper: {
