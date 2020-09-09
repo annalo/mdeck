@@ -8,21 +8,19 @@ import {
   MarkdownContextReducerActionType,
 } from "types/markdown-context";
 
-import { usePaneIsActive } from "utils/usePaneIsActive";
-
 interface UseTrackTextAreaScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
+  isActive: boolean;
   ref: RefObject<HTMLTextAreaElement>;
   textAreaLineHeight: number;
 }
 
 export const useTrackTextAreaScroll = ({
   dispatch,
+  isActive,
   ref,
   textAreaLineHeight,
 }: UseTrackTextAreaScrollProps): void => {
-  const isActive = usePaneIsActive({ ref, initialValue: true });
-
   const handleScroll = useMemo(
     () =>
       throttle((e) => {

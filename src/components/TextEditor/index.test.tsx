@@ -70,6 +70,7 @@ describe("<TextEditor />", () => {
           const { dispatch, state } = useContext(MarkdownContext);
           useTrackTextAreaScroll({
             dispatch,
+            isActive: true,
             ref,
             textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
           });
