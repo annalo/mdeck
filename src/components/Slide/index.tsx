@@ -20,7 +20,7 @@ export const Slide: React.FC<SlideProps> = ({
   useObserve({ elements, ref, observe });
 
   return (
-    <div ref={ref} id={`slide-${index + 1}`}>
+    <div ref={ref} className="slide" id={`slide-${index + 1}`}>
       {elements}
     </div>
   );
