@@ -5,7 +5,7 @@ import Worker from "worker-loader!./Worker"; // eslint-disable-line
 import {
   MarkdownContext,
   MarkdownContextProvider,
-} from "contexts/MarkdownContext";
+} from "contexts/MarkdownContext2";
 import MarkdownWorker from "./markdown-worker";
 
 afterEach(() => jest.clearAllMocks());

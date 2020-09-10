@@ -5,7 +5,7 @@ import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   MarkdownContext,
   MarkdownContextProvider,
-} from "./MarkdownContext";
+} from "./MarkdownContext2";
 
 describe("MarkdownContext", () => {
   test("should provide default initial state value", () => {

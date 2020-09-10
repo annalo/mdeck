@@ -7,7 +7,7 @@ import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   MarkdownContext,
   MarkdownContextProvider,
-} from "contexts/MarkdownContext";
+} from "contexts/MarkdownContext2";
 import { TEXT_AREA_LINE_HEIGHT, TextEditor } from ".";
 import { useSyncTextArea } from "./useSyncTextArea";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";

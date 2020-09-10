@@ -11,7 +11,7 @@ import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   MarkdownContext,
   MarkdownContextProvider,
-} from "contexts/MarkdownContext";
+} from "contexts/MarkdownContext2";
 
 import { Slideshow } from ".";
 import MarkdownWorker from "./markdown-worker";
@@ -22,7 +22,7 @@ import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 import { useWorker } from "./useWorker";
 
 jest.mock("smooth-scroll-into-view-if-needed");
-jest.mock("utils/MarkdownWorker");
+jest.mock("./markdown-worker");
 
 afterEach(() => jest.clearAllMocks());
 
