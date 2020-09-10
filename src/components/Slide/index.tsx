@@ -9,11 +9,7 @@ interface SlideProps {
   observe: SlideshowObserver.Observe;
 }
 
-export const Slide: React.FC<SlideProps> = ({
-  htmlString,
-  index,
-  observe,
-}: SlideProps) => {
+const Slide = memo(function Slide({ htmlString, index, observe }: SlideProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const elements = useElements({ htmlString });
@@ -24,6 +20,6 @@ export const Slide: React.FC<SlideProps> = ({
       {elements}
     </div>
   );
-};
+});
 
-export default memo(Slide);
+export { Slide };

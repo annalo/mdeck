@@ -11,13 +11,15 @@ const Div = styled.div`
   height: 100%;
 `;
 
-export const Editor: React.FC = () => (
-  <Div>
-    <MarkdownProvider>
-      <TextEditor />
-      <Preview />
-    </MarkdownProvider>
-  </Div>
-);
+const Editor = memo(function Editor() {
+  return (
+    <Div>
+      <MarkdownProvider>
+        <TextEditor />
+        <Preview />
+      </MarkdownProvider>
+    </Div>
+  );
+});
 
-export default memo(Editor);
+export { Editor };

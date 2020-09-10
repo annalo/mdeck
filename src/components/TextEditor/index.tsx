@@ -30,7 +30,7 @@ const TextArea = styled.textarea`
   resize: none;
 `;
 
-export const TextEditor: React.FC = () => {
+const TextEditor = memo(function TextEditor() {
   const ref = useRef<HTMLTextAreaElement>(null);
   const dispatch = useMarkdownDispatch();
   const { md, slideshowLineNumber } = useMarkdownState();
@@ -61,6 +61,6 @@ export const TextEditor: React.FC = () => {
       <TextArea ref={ref} autoFocus onChange={handleInputChange} value={md} />
     </Container>
   );
-};
+});
 
-export default memo(TextEditor);
+export { TextEditor };

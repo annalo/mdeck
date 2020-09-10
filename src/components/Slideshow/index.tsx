@@ -19,7 +19,7 @@ const Article = styled.article`
   overflow: auto;
 `;
 
-export const Slideshow: React.FC = () => {
+const Slideshow = memo(function Slideshow() {
   const ref = useRef<HTMLDivElement>(null);
 
   const dispatch = useMarkdownDispatch();
@@ -45,6 +45,6 @@ export const Slideshow: React.FC = () => {
       ))}
     </Article>
   );
-};
+});
 
-export default memo(Slideshow);
+export { Slideshow };
