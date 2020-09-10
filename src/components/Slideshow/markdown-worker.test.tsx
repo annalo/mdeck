@@ -6,11 +6,11 @@ import {
   MarkdownContext,
   MarkdownContextProvider,
 } from "contexts/MarkdownContext";
-import MarkdownParserWorker from "./MarkdownParserWorker";
+import MarkdownWorker from "./markdown-worker";
 
 afterEach(() => jest.clearAllMocks());
 
-describe("MarkdownParserWorker", () => {
+describe("MarkdownWorker", () => {
   const wrapper = ({ children }) => (
     <MarkdownContextProvider>{children}</MarkdownContextProvider>
   );
@@ -19,7 +19,7 @@ describe("MarkdownParserWorker", () => {
       const { result } = renderHook(
         () => {
           const { dispatch } = useContext(MarkdownContext);
-          const worker = new MarkdownParserWorker(dispatch);
+          const worker = new MarkdownWorker(dispatch);
           return worker;
         },
         { wrapper }
@@ -34,7 +34,7 @@ describe("MarkdownParserWorker", () => {
       const { result } = renderHook(
         () => {
           const { dispatch, state } = useContext(MarkdownContext);
-          const markdownWorker = new MarkdownParserWorker(dispatch);
+          const markdownWorker = new MarkdownWorker(dispatch);
           return { state, markdownWorker };
         },
         { wrapper }
@@ -54,7 +54,7 @@ describe("MarkdownParserWorker", () => {
       const { result } = renderHook(
         () => {
           const { dispatch } = useContext(MarkdownContext);
-          const worker = new MarkdownParserWorker(dispatch);
+          const worker = new MarkdownWorker(dispatch);
           return worker;
         },
         { wrapper }
@@ -74,7 +74,7 @@ describe("MarkdownParserWorker", () => {
       const { result } = renderHook(
         () => {
           const { dispatch } = useContext(MarkdownContext);
-          const worker = new MarkdownParserWorker(dispatch);
+          const worker = new MarkdownWorker(dispatch);
           return worker;
         },
         { wrapper }
