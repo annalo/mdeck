@@ -115,5 +115,60 @@ exports[`parse/1 should parse markdown string into html string 1`] = `
       </foreignobject>
     </svg>
   </div>
+  <div>
+    <svg
+      classname="code-line"
+      data-line="1"
+      data-marpit-svg=""
+      viewBox="0 0 1280 720"
+    >
+      <foreignobject
+        height="720"
+        width="1280"
+      >
+        <section
+          data-marpit-fragments="2"
+          id="2"
+        >
+          
+
+          <h2
+            classname="code-line"
+            data-line="2"
+          >
+            Slide 2
+          </h2>
+          
+
+          <ul>
+            
+
+            <li
+              classname="code-line"
+              data-line="3"
+              data-marpit-fragment="1"
+            >
+              Bullet 1
+            </li>
+            
+
+            <li
+              classname="code-line"
+              data-line="4"
+              data-marpit-fragment="2"
+            >
+              Bullet 2
+            </li>
+            
+
+          </ul>
+          
+
+        </section>
+        
+
+      </foreignobject>
+    </svg>
+  </div>
 </DocumentFragment>
 `;
