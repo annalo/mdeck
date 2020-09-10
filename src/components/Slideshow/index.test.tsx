@@ -26,10 +26,17 @@ afterEach(() => jest.clearAllMocks());
 
 describe("<Slideshow />", () => {
   test("should render and match the snapshot", () => {
-    const wrapper = ({ children }) => (
-      <MarkdownProvider>{children}</MarkdownProvider>
+    const htmlArray = [
+      "<svg><h1>Title</h1></svg>",
+      "<svg><p>Paragraph</p></svg>",
+    ];
+    const { asFragment } = render(
+      <Slideshow
+        dispatch={jest.fn()}
+        htmlArray={htmlArray}
+        textLineNumber={0}
+      />
     );
-    const { asFragment } = render(<Slideshow />, { wrapper });
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -39,16 +46,11 @@ describe("<Slideshow />", () => {
       "<svg><p>Paragraph</p></svg>",
     ];
     render(
-      <MarkdownProvider
-        initialState={{
-          htmlArray,
-          md: "",
-          slideshowLineNumber: 0,
-          textLineNumber: 0,
-        }}
-      >
-        <Slideshow />
-      </MarkdownProvider>
+      <Slideshow
+        dispatch={jest.fn()}
+        htmlArray={htmlArray}
+        textLineNumber={0}
+      />
     );
 
     const article = screen.getByRole("article");

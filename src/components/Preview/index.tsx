@@ -16,13 +16,17 @@ const Div = styled.div`
 
 const Preview = memo(function Preview() {
   const dispatch = useMarkdownDispatch();
-  const { md } = useMarkdownState();
+  const { htmlArray, md, textLineNumber } = useMarkdownState();
 
   useWorker({ dispatch, md });
 
   return (
     <Div>
-      <Slideshow />
+      <Slideshow
+        dispatch={dispatch}
+        htmlArray={htmlArray}
+        textLineNumber={textLineNumber}
+      />
     </Div>
   );
 });
