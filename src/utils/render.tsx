@@ -6,10 +6,11 @@ interface Node {
   attribs: Record<string, string>;
 }
 
-export const render = (htmlString: string): SlideElements => {
+function render(htmlString: string): SlideElements {
   const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
-  const isTableDescendent = (parent) =>
-    parent && TABLE_TAGS.includes(parent.name);
+  function isTableDescendent(parent) {
+    return parent && TABLE_TAGS.includes(parent.name);
+  }
   const isValidNode = () => true;
 
   const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);
@@ -33,4 +34,6 @@ export const render = (htmlString: string): SlideElements => {
     isValidNode,
     processingInstructions
   );
-};
+}
+
+export { render };

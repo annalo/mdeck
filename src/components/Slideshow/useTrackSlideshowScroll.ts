@@ -13,12 +13,12 @@ interface UseTrackSlideshowScrollProps {
   ref: RefObject<HTMLDivElement>;
 }
 
-export const useTrackSlideshowScroll = ({
+function useTrackSlideshowScroll({
   dispatch,
   entries,
   isActive,
   ref,
-}: UseTrackSlideshowScrollProps): void => {
+}: UseTrackSlideshowScrollProps): void {
   /*
    * Finds the top most element in view (within 0px - 18px from the top)
    * IF element THEN set `slideshowLineNumber` to it's data-line number
@@ -52,4 +52,6 @@ export const useTrackSlideshowScroll = ({
 
     return () => node?.removeEventListener("scroll", handleScroll);
   }, [isActive, handleScroll, ref]);
-};
+}
+
+export { useTrackSlideshowScroll };

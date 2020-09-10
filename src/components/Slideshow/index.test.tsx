@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
@@ -7,14 +7,15 @@ import {
   CODE_LINE_CLASS_NAME,
   DATA_LINE_ATTRIBUTE,
 } from "utils/parsePlugins/injectLineNumber";
-import MarkdownParserWorker from "utils/MarkdownParserWorker";
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownContext,
-  MarkdownContextProvider,
+  MarkdownProvider,
+  useMarkdownDispatch,
+  useMarkdownState,
 } from "contexts/MarkdownContext";
 
 import { Slideshow } from ".";
+import MarkdownWorker from "./markdown-worker";
 
 import { useObservable } from "./useObservable";
 import { useSyncSlideshow } from "./useSyncSlideshow";
@@ -22,13 +23,16 @@ import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 import { useWorker } from "./useWorker";
 
 jest.mock("smooth-scroll-into-view-if-needed");
-jest.mock("utils/MarkdownParserWorker");
+jest.mock("./markdown-worker");
 
 afterEach(() => jest.clearAllMocks());
 
 describe("<Slideshow />", () => {
   test("should render and match the snapshot", () => {
-    const { asFragment } = render(<Slideshow />);
+    const wrapper = ({ children }) => (
+      <MarkdownProvider>{children}</MarkdownProvider>
+    );
+    const { asFragment } = render(<Slideshow />, { wrapper });
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -38,7 +42,7 @@ describe("<Slideshow />", () => {
       "<svg><p>Paragraph</p></svg>",
     ];
     render(
-      <MarkdownContextProvider
+      <MarkdownProvider
         initialState={{
           htmlArray,
           md: "",
@@ -47,7 +51,7 @@ describe("<Slideshow />", () => {
         }}
       >
         <Slideshow />
-      </MarkdownContextProvider>
+      </MarkdownProvider>
     );
 
     const article = screen.getByRole("article");
@@ -103,8 +107,8 @@ describe("<Slideshow />", () => {
     let slideshow;
     let entries;
     let lineNumber;
-    const mockBoundingClientRect = (top) =>
-      jest.fn(() => ({
+    function mockBoundingClientRect(top) {
+      return jest.fn(() => ({
         width: 120,
         height: 120,
         top,
@@ -115,6 +119,7 @@ describe("<Slideshow />", () => {
         right: 0,
         toJSON: jest.fn(),
       }));
+    }
 
     beforeEach(() => {
       slideshow = document.createElement("div");
@@ -131,16 +136,16 @@ describe("<Slideshow />", () => {
     });
 
     const wrapper = ({ children }) => (
-      <MarkdownContextProvider>{children}</MarkdownContextProvider>
+      <MarkdownProvider>{children}</MarkdownProvider>
     );
 
     test("should set slideshowLineNumber to the top most element's data-line if isActive", () => {
       const ref = { current: slideshow };
       const { result } = renderHook(
         () => {
-          const { dispatch, state } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useTrackSlideshowScroll({ dispatch, entries, isActive: true, ref });
-          return state;
+          return useMarkdownState();
         },
         { wrapper }
       );
@@ -160,9 +165,9 @@ describe("<Slideshow />", () => {
       const ref = { current: slideshow };
       const { result } = renderHook(
         () => {
-          const { dispatch, state } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useTrackSlideshowScroll({ dispatch, entries, isActive: false, ref });
-          return state;
+          return useMarkdownState();
         },
         { wrapper }
       );
@@ -179,14 +184,14 @@ describe("<Slideshow />", () => {
 
   describe("useWorker", () => {
     const wrapper = ({ children }) => (
-      <MarkdownContextProvider>{children}</MarkdownContextProvider>
+      <MarkdownProvider>{children}</MarkdownProvider>
     );
 
-    test("should instantiate MarkdownParseWorker just once", () => {
+    test("should instantiate MarkdownWorker just once", () => {
       let md = "## Markdown String";
       const { rerender } = renderHook(
         () => {
-          const { dispatch } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useWorker({ dispatch, md });
         },
         { wrapper }
@@ -195,14 +200,14 @@ describe("<Slideshow />", () => {
       md = "## Markdown String\n* Bullet 1";
       rerender();
 
-      expect(MarkdownParserWorker).toHaveBeenCalledTimes(1);
+      expect(MarkdownWorker).toHaveBeenCalledTimes(1);
     });
 
-    test("should parse md with MarkdownParserWorker", () => {
+    test("should parse md with MarkdownWorker", () => {
       let md = "## Markdown String";
       const { rerender } = renderHook(
         () => {
-          const { dispatch } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useWorker({ dispatch, md });
         },
         { wrapper }
@@ -211,7 +216,7 @@ describe("<Slideshow />", () => {
       md = "## Markdown String\n* Bullet 1";
       rerender();
 
-      const workerInstance = MarkdownParserWorker.mock.instances[0];
+      const workerInstance = MarkdownWorker.mock.instances[0];
       expect(workerInstance.parse).toHaveBeenCalledTimes(2);
     });
   });

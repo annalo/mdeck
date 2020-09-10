@@ -2,18 +2,18 @@ import { useEffect, useRef } from "react";
 import type { Dispatch } from "react";
 import type { MarkdownContextReducerAction } from "types/markdown-context";
 
-import MarkdownParserWorker from "utils/MarkdownParserWorker";
+import MarkdownWorker from "./markdown-worker";
 
 interface UseWorkerProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
   md: MarkdownString;
 }
 
-export const useWorker = ({ dispatch, md }: UseWorkerProps): void => {
-  const workerRef = useRef<MarkdownParserWorker | null>(null);
+function useWorker({ dispatch, md }: UseWorkerProps): void {
+  const workerRef = useRef<MarkdownWorker | null>(null);
 
   useEffect(() => {
-    workerRef.current = new MarkdownParserWorker(dispatch);
+    workerRef.current = new MarkdownWorker(dispatch);
     return () => {
       workerRef.current?.terminate();
     };
@@ -24,4 +24,6 @@ export const useWorker = ({ dispatch, md }: UseWorkerProps): void => {
     // TODO throttle
     worker?.parse(md);
   }, [md]);
-};
+}
+
+export { useWorker };

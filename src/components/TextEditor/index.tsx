@@ -1,14 +1,17 @@
-import React, { memo, useContext, useRef } from "react";
+import React, { memo, useRef } from "react";
 import styled from "styled-components";
 
-import { MarkdownContext } from "contexts/MarkdownContext";
+import {
+  useMarkdownDispatch,
+  useMarkdownState,
+} from "contexts/MarkdownContext";
 import { MarkdownContextReducerActionType } from "types/markdown-context";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 import { useSyncTextArea } from "./useSyncTextArea";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
-export const TEXT_AREA_LINE_HEIGHT = 18;
+const TEXT_AREA_LINE_HEIGHT = 18;
 
 const Container = styled.div`
   background-color: #fafafa;
@@ -27,10 +30,10 @@ const TextArea = styled.textarea`
   resize: none;
 `;
 
-export const TextEditor: React.FC = () => {
+const TextEditor = memo(function TextEditor() {
   const ref = useRef<HTMLTextAreaElement>(null);
-  const { dispatch, state } = useContext(MarkdownContext);
-  const { md, slideshowLineNumber } = state;
+  const dispatch = useMarkdownDispatch();
+  const { md, slideshowLineNumber } = useMarkdownState();
 
   const isActive = usePaneIsActive({ ref, initialValue: true });
 
@@ -58,6 +61,6 @@ export const TextEditor: React.FC = () => {
       <TextArea ref={ref} autoFocus onChange={handleInputChange} value={md} />
     </Container>
   );
-};
+});
 
-export default memo(TextEditor);
+export { TEXT_AREA_LINE_HEIGHT, TextEditor };

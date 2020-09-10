@@ -1,7 +1,10 @@
-import React, { memo, useContext, useRef } from "react";
+import React, { memo, useRef } from "react";
 import styled from "styled-components";
 
-import { MarkdownContext } from "contexts/MarkdownContext";
+import {
+  useMarkdownDispatch,
+  useMarkdownState,
+} from "contexts/MarkdownContext";
 
 import { Slide } from "components/Slide/Loadable";
 
@@ -16,11 +19,11 @@ const Article = styled.article`
   overflow: auto;
 `;
 
-export const Slideshow: React.FC = () => {
+const Slideshow = memo(function Slideshow() {
   const ref = useRef<HTMLDivElement>(null);
 
-  const { dispatch, state } = useContext(MarkdownContext);
-  const { htmlArray, md, textLineNumber } = state;
+  const dispatch = useMarkdownDispatch();
+  const { htmlArray, md, textLineNumber } = useMarkdownState();
 
   const isActive = usePaneIsActive({ ref, initialValue: false });
   const { entries, observe } = useObservable();
@@ -42,6 +45,6 @@ export const Slideshow: React.FC = () => {
       ))}
     </Article>
   );
-};
+});
 
-export default memo(Slideshow);
+export { Slideshow };

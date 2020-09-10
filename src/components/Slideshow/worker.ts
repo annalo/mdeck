@@ -1,5 +1,4 @@
-// TODO inline this worker
-import { parse } from "./parse";
+import { parse } from "utils/parse";
 
 const ctx: Worker = self as any; // eslint-disable-line
 console.log("Start worker thread, wait for postMessage: "); // eslint-disable-line

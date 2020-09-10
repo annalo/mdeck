@@ -1,5 +1,6 @@
-import React, { memo, useEffect, useRef, useState } from "react";
-import { render } from "utils/render";
+import React, { memo, useRef } from "react";
+
+import { useElements } from "./useElements";
 import { useObserve } from "./useObserve";
 
 interface SlideProps {
@@ -8,15 +9,10 @@ interface SlideProps {
   observe: SlideshowObserver.Observe;
 }
 
-export const Slide: React.FC<SlideProps> = ({
-  htmlString,
-  index,
-  observe,
-}: SlideProps) => {
+const Slide = memo(function Slide({ htmlString, index, observe }: SlideProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const [elements, setElements] = useState<React.ReactNode>(null);
 
-  useEffect(() => setElements(render(htmlString)), [htmlString]);
+  const elements = useElements({ htmlString });
   useObserve({ elements, ref, observe });
 
   return (
@@ -24,6 +20,6 @@ export const Slide: React.FC<SlideProps> = ({
       {elements}
     </div>
   );
-};
+});
 
-export default memo(Slide);
+export { Slide };

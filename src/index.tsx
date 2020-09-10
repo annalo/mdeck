@@ -14,10 +14,12 @@ const ConnectedApp = ({ Component }: Props) => (
     <Component />
   </React.StrictMode>
 );
-export const render = (Component: typeof App) => {
+const render = (Component: typeof App) => {
   ReactDOM.render(<ConnectedApp Component={Component} />, MOUNT_NODE);
 };
 
 if (module.hot) module.hot.accept(["./components/App"], () => render(App));
 
 render(App);
+
+export { render };

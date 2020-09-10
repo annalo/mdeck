@@ -1,9 +1,12 @@
 /**
- *
  * Asynchronously loads the component for Editor
- *
  */
 
-import { lazyLoad } from "utils/loadable";
+import { loadable } from "utils/loadable";
 
-export const Editor = lazyLoad(() => import("./index"));
+const Editor = loadable(
+  () => import("./index"),
+  (module) => module.Editor
+);
+
+export { Editor };

@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Home } from "components/Home/Loadable";
 import { GlobalStyle } from "./GlobalStyle";
 
-export const App: React.FC = () => {
+const App: React.FC = () => {
   return (
     <Router>
       <Switch>
@@ -16,3 +16,5 @@ export const App: React.FC = () => {
     </Router>
   );
 };
+
+export { App };

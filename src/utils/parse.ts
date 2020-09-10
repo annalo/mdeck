@@ -2,7 +2,7 @@ import { Marpit } from "@marp-team/marpit";
 import TaskList from "markdown-it-task-lists";
 import { injectLineNumber } from "utils/parsePlugins/injectLineNumber";
 
-export const parse = (markdown: MarkdownString): HtmlArray => {
+function parse(markdown: MarkdownString): HtmlArray {
   const marpit = new Marpit({
     inlineSVG: true,
     markdown: { html: true, linkify: true, typographer: true },
@@ -14,4 +14,6 @@ export const parse = (markdown: MarkdownString): HtmlArray => {
     htmlAsArray: true,
   });
   return html;
-};
+}
+
+export { parse };

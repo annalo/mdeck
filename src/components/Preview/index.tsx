@@ -8,12 +8,12 @@ const Div = styled.div`
   flex-direction: column;
 `;
 
-export const Preview: React.FC = () => {
+const Preview = memo(function Preview() {
   return (
     <Div>
       <Slideshow />
     </Div>
   );
-};
+});
 
-export default memo(Preview);
+export { Preview };

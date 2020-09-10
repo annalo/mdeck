@@ -1,6 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
-export const GlobalStyle = createGlobalStyle`
+const GlobalStyle = createGlobalStyle`
   html,
   body {
     height: 100%;
@@ -35,3 +35,5 @@ export const GlobalStyle = createGlobalStyle`
     font-size: inherit;
   }
 `;
+
+export { GlobalStyle };

@@ -1,9 +1,12 @@
 /**
- *
  * Asynchronously loads the component for Slideshow
- *
  */
 
-import { lazyLoad } from "utils/loadable";
+import { loadable } from "utils/loadable";
 
-export const Slideshow = lazyLoad(() => import("./index"));
+const Slideshow = loadable(
+  () => import("./index"),
+  (module) => module.Slideshow
+);
+
+export { Slideshow };

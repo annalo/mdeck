@@ -1,9 +1,12 @@
 /**
- *
  * Asynchronously loads the component for TextEditor
- *
  */
 
-import { lazyLoad } from "utils/loadable";
+import { loadable } from "utils/loadable";
 
-export const TextEditor = lazyLoad(() => import("./index"));
+const TextEditor = loadable(
+  () => import("./index"),
+  (module) => module.TextEditor
+);
+
+export { TextEditor };

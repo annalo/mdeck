@@ -2,9 +2,11 @@
  * Asynchronously loads the component for Home
  */
 
-import { lazyLoad } from "utils/loadable";
+import { loadable } from "utils/loadable";
 
-export const Home = lazyLoad(
+const Home = loadable(
   () => import("./index"),
   (module) => module.Home
 );
+
+export { Home };

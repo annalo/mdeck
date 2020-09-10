@@ -7,12 +7,10 @@ interface UseObserveProps {
   observe: SlideshowObserver.Observe;
 }
 
-export const useObserve = ({
-  elements,
-  ref,
-  observe,
-}: UseObserveProps): void => {
+function useObserve({ elements, ref, observe }: UseObserveProps): void {
   useEffect(() => {
     if (ref.current) observe(ref.current);
   }, [elements, ref, observe]);
-};
+}
+
+export { useObserve };

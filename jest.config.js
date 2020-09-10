@@ -4,7 +4,7 @@ module.exports = {
     "**/*.{js,ts,tsx}",
     "!src/index.tsx",
     "!src/types/*",
-    "!src/utils/Worker.ts",
+    "!src/utils/worker.ts",
     "!src/*/*/Loadable.{ts,tsx}",
   ],
   moduleNameMapper: {

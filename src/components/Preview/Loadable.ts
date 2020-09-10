@@ -1,9 +1,12 @@
 /**
- *
  * Asynchronously loads the component for Preview
- *
  */
 
-import { lazyLoad } from "utils/loadable";
+import { loadable } from "utils/loadable";
 
-export const Preview = lazyLoad(() => import("./index"));
+const Preview = loadable(
+  () => import("./index"),
+  (module) => module.Preview
+);
+
+export { Preview };
