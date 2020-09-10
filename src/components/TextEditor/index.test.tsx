@@ -1,28 +1,32 @@
-import React, { useContext } from "react";
+import React from "react";
 import { fireEvent, render, screen } from "@testing-library/react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import userEvent from "@testing-library/user-event";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownContext,
-  MarkdownContextProvider,
-} from "contexts/MarkdownContext2";
+  MarkdownProvider,
+  useMarkdownDispatch,
+  useMarkdownState,
+} from "contexts/MarkdownContext";
 import { TEXT_AREA_LINE_HEIGHT, TextEditor } from ".";
 import { useSyncTextArea } from "./useSyncTextArea";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
 describe("<TextEditor />", () => {
   test("should render and match the snapshot", () => {
-    const { asFragment } = render(<TextEditor />);
+    const wrapper = ({ children }) => (
+      <MarkdownProvider>{children}</MarkdownProvider>
+    );
+    const { asFragment } = render(<TextEditor />, { wrapper });
     expect(asFragment()).toMatchSnapshot();
   });
 
   test("should set md on textarea change", () => {
     render(
-      <MarkdownContextProvider>
+      <MarkdownProvider>
         <TextEditor />
-      </MarkdownContextProvider>
+      </MarkdownProvider>
     );
     const textarea = screen.getByRole("textbox");
 
@@ -68,21 +72,21 @@ describe("<TextEditor />", () => {
     });
 
     const wrapper = ({ children }) => (
-      <MarkdownContextProvider>{children}</MarkdownContextProvider>
+      <MarkdownProvider>{children}</MarkdownProvider>
     );
 
     test("should set textLineNumber to the top most visible line number on scroll if isActive", () => {
       const ref = { current: textarea };
       const { result } = renderHook(
         () => {
-          const { dispatch, state } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useTrackTextAreaScroll({
             dispatch,
             isActive: true,
             ref,
             textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
           });
-          return state;
+          return useMarkdownState();
         },
         { wrapper }
       );
@@ -102,14 +106,14 @@ describe("<TextEditor />", () => {
       const ref = { current: textarea };
       const { result } = renderHook(
         () => {
-          const { dispatch, state } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useTrackTextAreaScroll({
             dispatch,
             isActive: false,
             ref,
             textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
           });
-          return state;
+          return useMarkdownState();
         },
         { wrapper }
       );

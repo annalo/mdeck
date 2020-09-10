@@ -1,7 +1,10 @@
-import React, { memo, useContext, useRef } from "react";
+import React, { memo, useRef } from "react";
 import styled from "styled-components";
 
-import { MarkdownContext } from "contexts/MarkdownContext2";
+import {
+  useMarkdownDispatch,
+  useMarkdownState,
+} from "contexts/MarkdownContext";
 import { MarkdownContextReducerActionType } from "types/markdown-context";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
@@ -29,8 +32,8 @@ const TextArea = styled.textarea`
 
 export const TextEditor: React.FC = () => {
   const ref = useRef<HTMLTextAreaElement>(null);
-  const { dispatch, state } = useContext(MarkdownContext);
-  const { md, slideshowLineNumber } = state;
+  const dispatch = useMarkdownDispatch();
+  const { md, slideshowLineNumber } = useMarkdownState();
 
   const isActive = usePaneIsActive({ ref, initialValue: true });
 

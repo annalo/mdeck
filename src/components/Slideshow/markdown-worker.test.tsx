@@ -1,24 +1,25 @@
-import React, { useContext } from "react";
+import React from "react";
 import { act, renderHook } from "@testing-library/react-hooks";
 
 import Worker from "worker-loader!./Worker"; // eslint-disable-line
 import {
-  MarkdownContext,
-  MarkdownContextProvider,
-} from "contexts/MarkdownContext2";
+  MarkdownProvider,
+  useMarkdownDispatch,
+  useMarkdownState,
+} from "contexts/MarkdownContext";
 import MarkdownWorker from "./markdown-worker";
 
 afterEach(() => jest.clearAllMocks());
 
 describe("MarkdownWorker", () => {
   const wrapper = ({ children }) => (
-    <MarkdownContextProvider>{children}</MarkdownContextProvider>
+    <MarkdownProvider>{children}</MarkdownProvider>
   );
   describe("worker", () => {
     test("should initialize with a new web worker", () => {
       const { result } = renderHook(
         () => {
-          const { dispatch } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           const worker = new MarkdownWorker(dispatch);
           return worker;
         },
@@ -33,7 +34,8 @@ describe("MarkdownWorker", () => {
       const htmlArray = ["test", "test"];
       const { result } = renderHook(
         () => {
-          const { dispatch, state } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
+          const state = useMarkdownState();
           const markdownWorker = new MarkdownWorker(dispatch);
           return { state, markdownWorker };
         },
@@ -53,7 +55,7 @@ describe("MarkdownWorker", () => {
       const md = "## Title";
       const { result } = renderHook(
         () => {
-          const { dispatch } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           const worker = new MarkdownWorker(dispatch);
           return worker;
         },
@@ -73,7 +75,7 @@ describe("MarkdownWorker", () => {
     test("should terminate the web worker", () => {
       const { result } = renderHook(
         () => {
-          const { dispatch } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           const worker = new MarkdownWorker(dispatch);
           return worker;
         },

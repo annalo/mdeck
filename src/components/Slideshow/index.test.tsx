@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
@@ -9,9 +9,10 @@ import {
 } from "utils/parsePlugins/injectLineNumber";
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownContext,
-  MarkdownContextProvider,
-} from "contexts/MarkdownContext2";
+  MarkdownProvider,
+  useMarkdownDispatch,
+  useMarkdownState,
+} from "contexts/MarkdownContext";
 
 import { Slideshow } from ".";
 import MarkdownWorker from "./markdown-worker";
@@ -28,7 +29,10 @@ afterEach(() => jest.clearAllMocks());
 
 describe("<Slideshow />", () => {
   test("should render and match the snapshot", () => {
-    const { asFragment } = render(<Slideshow />);
+    const wrapper = ({ children }) => (
+      <MarkdownProvider>{children}</MarkdownProvider>
+    );
+    const { asFragment } = render(<Slideshow />, { wrapper });
     expect(asFragment()).toMatchSnapshot();
   });
 
@@ -38,7 +42,7 @@ describe("<Slideshow />", () => {
       "<svg><p>Paragraph</p></svg>",
     ];
     render(
-      <MarkdownContextProvider
+      <MarkdownProvider
         initialState={{
           htmlArray,
           md: "",
@@ -47,7 +51,7 @@ describe("<Slideshow />", () => {
         }}
       >
         <Slideshow />
-      </MarkdownContextProvider>
+      </MarkdownProvider>
     );
 
     const article = screen.getByRole("article");
@@ -131,16 +135,16 @@ describe("<Slideshow />", () => {
     });
 
     const wrapper = ({ children }) => (
-      <MarkdownContextProvider>{children}</MarkdownContextProvider>
+      <MarkdownProvider>{children}</MarkdownProvider>
     );
 
     test("should set slideshowLineNumber to the top most element's data-line if isActive", () => {
       const ref = { current: slideshow };
       const { result } = renderHook(
         () => {
-          const { dispatch, state } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useTrackSlideshowScroll({ dispatch, entries, isActive: true, ref });
-          return state;
+          return useMarkdownState();
         },
         { wrapper }
       );
@@ -160,9 +164,9 @@ describe("<Slideshow />", () => {
       const ref = { current: slideshow };
       const { result } = renderHook(
         () => {
-          const { dispatch, state } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useTrackSlideshowScroll({ dispatch, entries, isActive: false, ref });
-          return state;
+          return useMarkdownState();
         },
         { wrapper }
       );
@@ -179,14 +183,14 @@ describe("<Slideshow />", () => {
 
   describe("useWorker", () => {
     const wrapper = ({ children }) => (
-      <MarkdownContextProvider>{children}</MarkdownContextProvider>
+      <MarkdownProvider>{children}</MarkdownProvider>
     );
 
     test("should instantiate MarkdownWorker just once", () => {
       let md = "## Markdown String";
       const { rerender } = renderHook(
         () => {
-          const { dispatch } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useWorker({ dispatch, md });
         },
         { wrapper }
@@ -202,7 +206,7 @@ describe("<Slideshow />", () => {
       let md = "## Markdown String";
       const { rerender } = renderHook(
         () => {
-          const { dispatch } = useContext(MarkdownContext);
+          const dispatch = useMarkdownDispatch();
           useWorker({ dispatch, md });
         },
         { wrapper }

@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 
-import { MarkdownContextProvider } from "contexts/MarkdownContext2";
+import { MarkdownProvider } from "contexts/MarkdownContext";
 
 const Div = styled.div`
   display: flex;
@@ -13,10 +13,10 @@ const Div = styled.div`
 
 export const Editor: React.FC = () => (
   <Div>
-    <MarkdownContextProvider>
+    <MarkdownProvider>
       <TextEditor />
       <Preview />
-    </MarkdownContextProvider>
+    </MarkdownProvider>
   </Div>
 );
 
