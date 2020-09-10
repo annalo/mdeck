@@ -7,10 +7,7 @@ interface UsePaneIsActiveProps {
   initialValue: boolean;
 }
 
-export const usePaneIsActive = ({
-  ref,
-  initialValue,
-}: UsePaneIsActiveProps): boolean => {
+function usePaneIsActive({ ref, initialValue }: UsePaneIsActiveProps): boolean {
   const node = ref.current;
   const [isActive, setIsActive] = useState<boolean>(initialValue);
 
@@ -29,4 +26,6 @@ export const usePaneIsActive = ({
   }, [node, setIsActive]);
 
   return isActive;
-};
+}
+
+export { usePaneIsActive };
