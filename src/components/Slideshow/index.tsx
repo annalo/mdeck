@@ -12,7 +12,6 @@ import { usePaneIsActive } from "utils/usePaneIsActive";
 import { useObservable } from "./useObservable";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
-import { useWorker } from "./useWorker";
 
 const Article = styled.article`
   height: 100%;
@@ -23,15 +22,13 @@ const Slideshow = memo(function Slideshow() {
   const ref = useRef<HTMLDivElement>(null);
 
   const dispatch = useMarkdownDispatch();
-  const { htmlArray, md, textLineNumber } = useMarkdownState();
+  const { htmlArray, textLineNumber } = useMarkdownState();
 
   const isActive = usePaneIsActive({ ref, initialValue: false });
   const { entries, observe } = useObservable();
 
   useSyncSlideshow({ entries, textLineNumber });
   useTrackSlideshowScroll({ dispatch, entries, isActive, ref });
-
-  useWorker({ dispatch, md });
 
   return (
     <Article ref={ref} id="slideshow">

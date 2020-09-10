@@ -21,7 +21,6 @@ function useWorker({ dispatch, md }: UseWorkerProps): void {
 
   useEffect(() => {
     const worker = workerRef.current;
-    // TODO throttle
     worker?.parse(md);
   }, [md]);
 }
