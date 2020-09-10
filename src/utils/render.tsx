@@ -8,8 +8,9 @@ interface Node {
 
 function render(htmlString: string): SlideElements {
   const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
-  const isTableDescendent = (parent) =>
-    parent && TABLE_TAGS.includes(parent.name);
+  function isTableDescendent(parent) {
+    return parent && TABLE_TAGS.includes(parent.name);
+  }
   const isValidNode = () => true;
 
   const processNodeDefinitions = new HtmlToReact.ProcessNodeDefinitions(React);

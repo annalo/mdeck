@@ -107,8 +107,8 @@ describe("<Slideshow />", () => {
     let slideshow;
     let entries;
     let lineNumber;
-    const mockBoundingClientRect = (top) =>
-      jest.fn(() => ({
+    function mockBoundingClientRect(top) {
+      return jest.fn(() => ({
         width: 120,
         height: 120,
         top,
@@ -119,6 +119,7 @@ describe("<Slideshow />", () => {
         right: 0,
         toJSON: jest.fn(),
       }));
+    }
 
     beforeEach(() => {
       slideshow = document.createElement("div");
