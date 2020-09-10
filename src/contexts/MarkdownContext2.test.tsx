@@ -1,25 +1,31 @@
-import React from "react";
+import React, { useContext } from "react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownProvider,
-  useMarkdownState,
-} from "./MarkdownContext";
+  MarkdownContext,
+  MarkdownContextProvider,
+} from "./MarkdownContext2";
 
 describe("MarkdownContext", () => {
   test("should provide default initial state value", () => {
     const wrapper = ({ children }) => (
-      <MarkdownProvider>{children}</MarkdownProvider>
+      <MarkdownContextProvider>{children}</MarkdownContextProvider>
     );
-    const { result } = renderHook(() => useMarkdownState(), { wrapper });
+    const { result } = renderHook(
+      () => {
+        const { state } = useContext(MarkdownContext);
+        return state;
+      },
+      { wrapper }
+    );
 
     expect(result.current).toMatchObject(
       MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE
     );
   });
 
-  describe("<MarkdownProvider />", () => {
+  describe("<MarkdownContextProvider />", () => {
     test("should set MarkdownContext with 'initialState' if provided", () => {
       const initialState = {
         htmlArray: ["1", "2"],
@@ -28,11 +34,17 @@ describe("MarkdownContext", () => {
         textLineNumber: 5,
       };
       const wrapper = ({ children }) => (
-        <MarkdownProvider initialState={initialState}>
+        <MarkdownContextProvider initialState={initialState}>
           {children}
-        </MarkdownProvider>
+        </MarkdownContextProvider>
       );
-      const { result } = renderHook(() => useMarkdownState(), { wrapper });
+      const { result } = renderHook(
+        () => {
+          const { state } = useContext(MarkdownContext);
+          return state;
+        },
+        { wrapper }
+      );
 
       expect(result.current).toMatchObject(initialState);
     });
