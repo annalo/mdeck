@@ -15,12 +15,12 @@ interface UseTrackTextAreaScrollProps {
   textAreaLineHeight: number;
 }
 
-export const useTrackTextAreaScroll = ({
+function useTrackTextAreaScroll({
   dispatch,
   isActive,
   ref,
   textAreaLineHeight,
-}: UseTrackTextAreaScrollProps): void => {
+}: UseTrackTextAreaScrollProps): void {
   const handleScroll = useMemo(
     () =>
       throttle((e) => {
@@ -50,4 +50,6 @@ export const useTrackTextAreaScroll = ({
 
     return () => node?.removeEventListener("scroll", handleScroll);
   }, [isActive, handleScroll, ref]);
-};
+}
+
+export { useTrackTextAreaScroll };

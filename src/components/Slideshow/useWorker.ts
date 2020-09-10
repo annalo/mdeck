@@ -9,7 +9,7 @@ interface UseWorkerProps {
   md: MarkdownString;
 }
 
-export const useWorker = ({ dispatch, md }: UseWorkerProps): void => {
+function useWorker({ dispatch, md }: UseWorkerProps): void {
   const workerRef = useRef<MarkdownWorker | null>(null);
 
   useEffect(() => {
@@ -24,4 +24,6 @@ export const useWorker = ({ dispatch, md }: UseWorkerProps): void => {
     // TODO throttle
     worker?.parse(md);
   }, [md]);
-};
+}
+
+export { useWorker };

@@ -5,10 +5,10 @@ import {
   DATA_LINE_ATTRIBUTE,
 } from "utils/parsePlugins/injectLineNumber";
 
-export const useObservable = (): {
+function useObservable(): {
   entries: SlideshowObserver.Entries;
   observe: SlideshowObserver.Observe;
-} => {
+} {
   const [observerEntries, setObserverEntries] = useState<
     SlideshowObserver.Entries
   >({});
@@ -38,4 +38,6 @@ export const useObservable = (): {
   }, []);
 
   return { entries: observerEntries, observe };
-};
+}
+
+export { useObservable };

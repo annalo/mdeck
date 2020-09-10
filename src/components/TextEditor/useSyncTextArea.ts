@@ -8,11 +8,11 @@ interface UseSyncTextAreaProps {
   textAreaLineHeight: LineNumber;
 }
 
-export const useSyncTextArea = ({
+function useSyncTextArea({
   ref,
   slideshowLineNumber,
   textAreaLineHeight,
-}: UseSyncTextAreaProps): void => {
+}: UseSyncTextAreaProps): void {
   /* Syncs text when slideshowLineNumber changes */
   useEffect(() => {
     const getNode = R.prop("current");
@@ -27,4 +27,6 @@ export const useSyncTextArea = ({
 
     R.pipe(getNode, R.unless(R.isNil, setScrollTop(calculateScrollTop)))(ref);
   }, [ref, slideshowLineNumber, textAreaLineHeight]);
-};
+}
+
+export { useSyncTextArea };
