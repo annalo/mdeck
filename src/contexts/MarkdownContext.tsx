@@ -1,10 +1,10 @@
 import React, { createContext, useContext, useReducer } from "react";
 import type {
-  MarkdownContextState as MarkdownContextStateType,
-  MarkdownContextReducerAction,
-  MarkdownContextProviderProps,
+  MarkdownContextState as State,
+  MarkdownContextReducerAction as ReducerAction,
+  MarkdownContextProviderProps as ProviderProps,
 } from "types/markdown-context";
-import { MarkdownContextReducerActionType } from "types/markdown-context";
+import { MarkdownContextReducerActionType as ReducerActionType } from "types/markdown-context";
 
 const MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE = {
   htmlArray: [],
@@ -13,28 +13,23 @@ const MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE = {
   textLineNumber: 0,
 };
 
-const MarkdownStateContext = createContext<MarkdownContextStateType>(
-  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE
-);
-const MarkdownDispatchContext = createContext<
-  React.Dispatch<MarkdownContextReducerAction>
->(() => null);
+const StateContext = createContext<State | undefined>(undefined);
+const DispatchContext = createContext<
+  React.Dispatch<ReducerAction> | undefined
+>(undefined);
 
-function markdownReducer(
-  state: MarkdownContextStateType,
-  action: MarkdownContextReducerAction
-) {
+function reducer(state: State, action: ReducerAction) {
   switch (action.type) {
-    case MarkdownContextReducerActionType.SetHtmlArray: {
+    case ReducerActionType.SetHtmlArray: {
       return { ...state, htmlArray: action.htmlArray };
     }
-    case MarkdownContextReducerActionType.SetMd: {
+    case ReducerActionType.SetMd: {
       return { ...state, md: action.md };
     }
-    case MarkdownContextReducerActionType.SetSlideshowLineNumber: {
+    case ReducerActionType.SetSlideshowLineNumber: {
       return { ...state, slideshowLineNumber: action.slideshowLineNumber };
     }
-    case MarkdownContextReducerActionType.SetTextLineNumber: {
+    case ReducerActionType.SetTextLineNumber: {
       return { ...state, textLineNumber: action.textLineNumber };
     }
     default: {
@@ -43,25 +38,25 @@ function markdownReducer(
   }
 }
 
-const MarkdownProvider: React.FC<MarkdownContextProviderProps> = ({
+const MarkdownProvider: React.FC<ProviderProps> = ({
   children,
   initialState, // optional param
-}: MarkdownContextProviderProps) => {
+}: ProviderProps) => {
   const [state, dispatch] = useReducer(
-    markdownReducer,
+    reducer,
     initialState || MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE
   );
   return (
-    <MarkdownStateContext.Provider value={state}>
-      <MarkdownDispatchContext.Provider value={dispatch}>
+    <StateContext.Provider value={state}>
+      <DispatchContext.Provider value={dispatch}>
         {children}
-      </MarkdownDispatchContext.Provider>
-    </MarkdownStateContext.Provider>
+      </DispatchContext.Provider>
+    </StateContext.Provider>
   );
 };
 
-function useMarkdownDispatch(): React.Dispatch<MarkdownContextReducerAction> {
-  const context = useContext(MarkdownDispatchContext);
+function useMarkdownDispatch(): React.Dispatch<ReducerAction> {
+  const context = useContext(DispatchContext);
   if (context === undefined) {
     throw new Error(
       "useMarkdownDispatch must be used within a MarkdownProvider"
@@ -70,8 +65,8 @@ function useMarkdownDispatch(): React.Dispatch<MarkdownContextReducerAction> {
   return context;
 }
 
-function useMarkdownState(): MarkdownContextStateType {
-  const context = useContext(MarkdownStateContext);
+function useMarkdownState(): State {
+  const context = useContext(StateContext);
   if (context === undefined) {
     throw new Error("useMarkdownState must be used within a MarkdownProvider");
   }
