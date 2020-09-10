@@ -1,4 +1,4 @@
-import Worker from "worker-loader!./worker-temp"; // eslint-disable-line
+import Worker from "worker-loader!./worker"; // eslint-disable-line
 
 import type { Dispatch } from "react";
 import type { MarkdownContextReducerAction } from "types/markdown-context";
