@@ -25,23 +25,28 @@ export const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = (
   children,
   initialState, // optional param
 }: MarkdownContextProviderProps) => {
-  const reducer = (
+  function reducer(
     state: MarkdownContextState,
     action: MarkdownContextReducerAction
-  ) => {
+  ) {
     switch (action.type) {
-      case MarkdownContextReducerActionType.SetHtmlArray:
+      case MarkdownContextReducerActionType.SetHtmlArray: {
         return { ...state, htmlArray: action.htmlArray };
-      case MarkdownContextReducerActionType.SetMd:
+      }
+      case MarkdownContextReducerActionType.SetMd: {
         return { ...state, md: action.md };
-      case MarkdownContextReducerActionType.SetSlideshowLineNumber:
+      }
+      case MarkdownContextReducerActionType.SetSlideshowLineNumber: {
         return { ...state, slideshowLineNumber: action.slideshowLineNumber };
-      case MarkdownContextReducerActionType.SetTextLineNumber:
+      }
+      case MarkdownContextReducerActionType.SetTextLineNumber: {
         return { ...state, textLineNumber: action.textLineNumber };
-      default:
-        throw new Error();
+      }
+      default: {
+        throw new Error("Unhandled action type");
+      }
     }
-  };
+  }
 
   const [state, dispatch] = useReducer(
     reducer,
