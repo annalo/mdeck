@@ -1,5 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+
+import "highlight.js/styles/github.css";
 import "sanitize.css/sanitize.css";
 
 import { App } from "components/App";
@@ -14,7 +16,7 @@ const ConnectedApp = ({ Component }: Props) => (
     <Component />
   </React.StrictMode>
 );
-const render = (Component: typeof App) => {
+const render = (Component: typeof App): void => {
   ReactDOM.render(<ConnectedApp Component={Component} />, MOUNT_NODE);
 };
 
