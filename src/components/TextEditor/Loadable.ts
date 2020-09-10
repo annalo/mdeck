@@ -4,7 +4,9 @@
 
 import { loadable } from "utils/loadable";
 
-export const TextEditor = loadable(
+const TextEditor = loadable(
   () => import("./index"),
   (module) => module.TextEditor
 );
+
+export { TextEditor };

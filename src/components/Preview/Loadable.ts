@@ -4,7 +4,9 @@
 
 import { loadable } from "utils/loadable";
 
-export const Preview = loadable(
+const Preview = loadable(
   () => import("./index"),
   (module) => module.Preview
 );
+
+export { Preview };

@@ -11,7 +11,7 @@ import { usePaneIsActive } from "utils/usePaneIsActive";
 import { useSyncTextArea } from "./useSyncTextArea";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
-export const TEXT_AREA_LINE_HEIGHT = 18;
+const TEXT_AREA_LINE_HEIGHT = 18;
 
 const Container = styled.div`
   background-color: #fafafa;
@@ -63,4 +63,4 @@ const TextEditor = memo(function TextEditor() {
   );
 });
 
-export { TextEditor };
+export { TEXT_AREA_LINE_HEIGHT, TextEditor };

@@ -4,7 +4,9 @@
 
 import { loadable } from "utils/loadable";
 
-export const Slideshow = loadable(
+const Slideshow = loadable(
   () => import("./index"),
   (module) => module.Slideshow
 );
+
+export { Slideshow };
