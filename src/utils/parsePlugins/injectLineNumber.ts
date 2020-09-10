@@ -11,10 +11,10 @@ const RULES = [
   "paragraph_open",
   "table_open",
 ];
-export const CODE_LINE_CLASS_NAME = "code-line";
-export const DATA_LINE_ATTRIBUTE = "data-line";
+const CODE_LINE_CLASS_NAME = "code-line";
+const DATA_LINE_ATTRIBUTE = "data-line";
 
-export const injectLineNumber = (md: Record<string, any>) => {
+function injectLineNumber(md: Record<string, any>) {
   const { marpit_inline_svg_open } = md.renderer.rules;
   // Enables line sync by per slides
   md.renderer.rules.marpit_inline_svg_open = (tokens, idx, opts, env, self) => {
@@ -46,4 +46,6 @@ export const injectLineNumber = (md: Record<string, any>) => {
       return renderer.call(self, tokens, idx, options, env, self);
     };
   });
-};
+}
+
+export { CODE_LINE_CLASS_NAME, DATA_LINE_ATTRIBUTE, injectLineNumber };
