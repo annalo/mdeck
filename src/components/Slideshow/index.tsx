@@ -1,7 +1,7 @@
 import React, { memo, useContext, useRef } from "react";
 import styled from "styled-components";
 
-import { MarkdownContext } from "contexts/MarkdownContext";
+import { MarkdownContext } from "contexts/MarkdownContext2";
 
 import { Slide } from "components/Slide/Loadable";
 

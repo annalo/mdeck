@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 
-import { MarkdownContextProvider } from "contexts/MarkdownContext";
+import { MarkdownContextProvider } from "contexts/MarkdownContext2";
 
 const Div = styled.div`
   display: flex;
