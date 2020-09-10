@@ -1,7 +1,7 @@
 import React from "react";
 import { act, renderHook } from "@testing-library/react-hooks";
 
-import Worker from "worker-loader!./Worker"; // eslint-disable-line
+import Worker from "worker-loader!./worker-temp"; // eslint-disable-line
 import {
   MarkdownProvider,
   useMarkdownDispatch,

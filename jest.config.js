@@ -4,7 +4,7 @@ module.exports = {
     "**/*.{js,ts,tsx}",
     "!src/index.tsx",
     "!src/types/*",
-    "!src/utils/Worker.ts",
+    "!src/utils/worker-temp.ts",
     "!src/*/*/Loadable.{ts,tsx}",
   ],
   moduleNameMapper: {
@@ -12,7 +12,7 @@ module.exports = {
     "^components(.*)$": "<rootDir>/src/components$1",
     "^contexts(.*)$": "<rootDir>/src/contexts$1",
     "^utils(.*)$": "<rootDir>/src/utils$1",
-    "^worker-loader": "<rootDir>/__mocks__/worker.ts",
+    "^worker-loader": "<rootDir>/__mocks__/worker-temp.ts",
     "\\.css$": "identity-obj-proxy",
   },
   setupFilesAfterEnv: ["<rootDir>/src/setupTests.ts"],
