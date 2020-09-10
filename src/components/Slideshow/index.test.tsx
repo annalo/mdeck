@@ -15,6 +15,7 @@ import {
 } from "contexts/MarkdownContext";
 
 import { Slideshow } from ".";
+
 import { useObservable } from "./useObservable";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
