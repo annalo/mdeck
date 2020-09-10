@@ -1,5 +1,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+
+import "highlight.js/styles/github.css";
 import "sanitize.css/sanitize.css";
 
 import { App } from "components/App";
