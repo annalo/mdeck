@@ -1,5 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
-import * as R from "ramda";
+import { useEffect, useState } from "react";
 
 type SlideNumber = number;
 interface UseNavigationProps {
@@ -9,30 +8,28 @@ interface UseNavigationProps {
 function useNavigation({ slideCount }: UseNavigationProps): SlideNumber {
   const [currentSlide, setCurrentSlide] = useState<SlideNumber>(1);
 
-  const pageUp = useCallback(() => {
-    setCurrentSlide((slideNumber) =>
-      R.ifElse(R.equals(slideCount), R.identity, R.add(1))(slideNumber)
-    );
-  }, [setCurrentSlide, slideCount]);
-  const pageDown = useCallback(() => {
-    setCurrentSlide((slideNumber) =>
-      R.ifElse(R.equals(1), R.identity, R.subtract(1))(slideNumber)
-    );
-  }, [setCurrentSlide]);
-
   useEffect(() => {
+    const nextSlide = () =>
+      setCurrentSlide((slideNumber) =>
+        slideNumber < slideCount ? slideNumber + 1 : slideNumber
+      );
+    const previousSlide = () =>
+      setCurrentSlide((slideNumber) =>
+        slideNumber > 1 ? slideNumber - 1 : slideNumber
+      );
+
     const handleKeyDown = (e) => {
       switch (e.keyCode) {
-        case 37:
-        case 38: {
-          pageDown();
+        case 37: // ArrowLeft
+        case 38: // ArrowUp
+          previousSlide();
           break;
-        }
-        case 39:
-        case 40: {
-          pageUp();
+
+        case 39: // ArrowRight
+        case 40: // ArrowDown
+          nextSlide();
           break;
-        }
+
         default: {
           break;
         }
@@ -43,7 +40,7 @@ function useNavigation({ slideCount }: UseNavigationProps): SlideNumber {
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
     };
-  }, [currentSlide, pageUp, pageDown]);
+  }, [currentSlide, slideCount]);
 
   return currentSlide;
 }
