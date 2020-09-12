@@ -5,8 +5,7 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
-import { SlideObserverProvider } from "contexts/SlideObserver";
-import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
+import { SlideshowObservable } from "contexts/SlideshowObservable";
 
 import { Slideshow } from "components/Slideshow";
 import { useWorker } from "./useWorker";
@@ -25,15 +24,13 @@ const Preview = memo(function Preview() {
 
   return (
     <Div>
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>
-          <Slideshow
-            dispatch={dispatch}
-            htmlArray={htmlArray}
-            textLineNumber={textLineNumber}
-          />
-        </CodeLineObserverProvider>
-      </SlideObserverProvider>
+      <SlideshowObservable>
+        <Slideshow
+          dispatch={dispatch}
+          htmlArray={htmlArray}
+          textLineNumber={textLineNumber}
+        />
+      </SlideshowObservable>
     </Div>
   );
 });
