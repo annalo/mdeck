@@ -1,14 +1,13 @@
-declare type CodeLine = number;
+declare type CodeLine = LineNumber;
 declare type CodeLineElement = Element;
 
 declare interface CodeLineObserverEntries {
   [codeLine: CodeLine]: CodeLineElement;
 }
 
-declare function CodeLineObserverObserve({
-  codeLine: CodeLine,
-  element: CodeLineElement,
-}): void;
+declare function CodeLineObserverObserve(
+  targetEntries: CodeLineObserverEntries
+): void;
 
 declare interface CodeLineObserverProviderProps {
   children: React.ReactNode;
