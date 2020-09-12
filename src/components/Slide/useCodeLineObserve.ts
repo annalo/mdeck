@@ -7,7 +7,13 @@ import {
   DATA_LINE_ATTRIBUTE,
 } from "utils/parsePlugins/injectLineNumber";
 
-function useCodeLineObserve(ref: RefObject<Element>): void {
+interface UseCodeLineObserveProps {
+  elements: SlideContentElements;
+  ref: RefObject<HTMLDivElement>;
+  observe: SlideshowObserver.Observe;
+}
+
+function useCodeLineObserve({ elements, ref }: UseCodeLineObserveProps): void {
   const { observe } = useCodeLineObserver();
 
   useEffect(() => {
@@ -25,7 +31,7 @@ function useCodeLineObserve(ref: RefObject<Element>): void {
 
       observe(entries);
     }
-  }, [ref, observe]);
+  }, [elements, ref, observe]);
 }
 
 export { useCodeLineObserve };
