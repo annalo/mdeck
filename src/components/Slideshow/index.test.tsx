@@ -13,10 +13,13 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
+import { SlideshowObservable } from "contexts/SlideshowObservable";
+import {
+  CodeLineObserverProvider,
+  useCodeLineEntries,
+} from "contexts/CodeLineObserver";
 
 import { Slideshow } from ".";
-
-import { useObserver } from "./useObserver";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 
@@ -30,12 +33,16 @@ describe("<Slideshow />", () => {
       "<svg><h1>Title</h1></svg>",
       "<svg><p>Paragraph</p></svg>",
     ];
+    const wrapper = ({ children }) => (
+      <SlideshowObservable>{children}</SlideshowObservable>
+    );
     const { asFragment } = render(
       <Slideshow
         dispatch={jest.fn()}
         htmlArray={htmlArray}
         textLineNumber={0}
-      />
+      />,
+      { wrapper }
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -45,12 +52,16 @@ describe("<Slideshow />", () => {
       "<svg><h1>Title</h1></svg>",
       "<svg><p>Paragraph</p></svg>",
     ];
+    const wrapper = ({ children }) => (
+      <SlideshowObservable>{children}</SlideshowObservable>
+    );
     render(
       <Slideshow
         dispatch={jest.fn()}
         htmlArray={htmlArray}
         textLineNumber={0}
-      />
+      />,
+      { wrapper }
     );
 
     const article = screen.getByRole("article");
@@ -61,32 +72,26 @@ describe("<Slideshow />", () => {
     });
   });
 
-  describe("useObserver", () => {
-    test("should observe and return entries", () => {
-      /* Create element with data-line for observer to pick up */
-      const div = document.createElement("div");
-      const h1 = document.createElement("h1");
-      h1.className = CODE_LINE_CLASS_NAME;
-      h1.setAttribute(DATA_LINE_ATTRIBUTE, "0");
-      div.appendChild(h1);
-
-      const { result } = renderHook(() => useObserver());
-
-      expect(result.current.entries).toMatchObject({});
-
-      act(() => result.current.observe(div));
-
-      expect(result.current.entries).toMatchObject({ 0: h1 });
-    });
-  });
-
   describe("useSyncSlideshow", () => {
     test("should sync slideshow to textLineNumber if there's an element with the data-line", () => {
       const textLineNumber = 2;
       const element = { test: "test" };
-      const entries = { [textLineNumber]: element };
+      const initialEntries = { [textLineNumber]: element };
 
-      renderHook(() => useSyncSlideshow({ entries, textLineNumber }));
+      const wrapper = ({ children }) => (
+        <CodeLineObserverProvider initialEntries={initialEntries}>
+          {children}
+        </CodeLineObserverProvider>
+      );
+      renderHook(
+        () => {
+          const entries = useCodeLineEntries();
+          useSyncSlideshow({ entries, textLineNumber });
+        },
+        {
+          wrapper,
+        }
+      );
 
       expect(scrollIntoView).toHaveBeenCalledTimes(1);
       expect(scrollIntoView).toHaveBeenCalledWith(element, { block: "start" });
@@ -104,8 +109,8 @@ describe("<Slideshow />", () => {
 
   describe("useTrackSlideshowScroll", () => {
     let slideshow;
-    let entries;
     let lineNumber;
+    let initialEntries;
     function mockBoundingClientRect(top) {
       return jest.fn(() => ({
         width: 120,
@@ -131,11 +136,15 @@ describe("<Slideshow />", () => {
       h3.getBoundingClientRect = mockBoundingClientRect(50);
 
       lineNumber = 2;
-      entries = { 0: h1, 50: h3, [lineNumber]: h2 };
+      initialEntries = { 0: h1, 50: h3, [lineNumber]: h2 };
     });
 
     const wrapper = ({ children }) => (
-      <MarkdownProvider>{children}</MarkdownProvider>
+      <MarkdownProvider>
+        <CodeLineObserverProvider initialEntries={initialEntries}>
+          {children}
+        </CodeLineObserverProvider>
+      </MarkdownProvider>
     );
 
     test("should set slideshowLineNumber to the top most element's data-line if isActive", () => {
@@ -143,6 +152,7 @@ describe("<Slideshow />", () => {
       const { result } = renderHook(
         () => {
           const dispatch = useMarkdownDispatch();
+          const entries = useCodeLineEntries();
           useTrackSlideshowScroll({ dispatch, entries, isActive: true, ref });
           return useMarkdownState();
         },
@@ -165,6 +175,7 @@ describe("<Slideshow />", () => {
       const { result } = renderHook(
         () => {
           const dispatch = useMarkdownDispatch();
+          const entries = useCodeLineEntries();
           useTrackSlideshowScroll({ dispatch, entries, isActive: false, ref });
           return useMarkdownState();
         },

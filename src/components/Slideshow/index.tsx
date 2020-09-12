@@ -4,10 +4,10 @@ import styled from "styled-components";
 import type { Dispatch } from "react";
 import type { MarkdownContextReducerAction } from "types/markdown-context-reducer-action";
 
-import { Slide } from "components/Slide/Loadable";
+import { useCodeLineEntries } from "contexts/CodeLineObserver";
 
+import { Slide } from "components/Slide/Loadable";
 import { usePaneIsActive } from "utils/usePaneIsActive";
-import { useObserver } from "./useObserver";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 
@@ -29,7 +29,7 @@ const Slideshow = memo(function Slideshow({
 }: SlideshowProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isActive = usePaneIsActive({ ref, initialValue: false });
-  const { entries, observe } = useObserver();
+  const entries = useCodeLineEntries();
 
   useSyncSlideshow({ entries, textLineNumber });
   useTrackSlideshowScroll({ dispatch, entries, isActive, ref });
