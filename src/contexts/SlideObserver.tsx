@@ -21,9 +21,9 @@ const SlideObserverProvider: React.FC<SlideObserverProviderProps> = ({
     initialEntries || SLIDE_OBSERVER_DEFAULT_INITIAL_STATE
   );
   const observe = useCallback(
-    ({ slideNumber, slideElement }) =>
+    (slideNumber, element) =>
       setEntries((currentEntries) =>
-        R.mergeRight(currentEntries, { [slideNumber]: slideElement })
+        R.mergeRight(currentEntries, { [slideNumber]: element })
       ),
     []
   );

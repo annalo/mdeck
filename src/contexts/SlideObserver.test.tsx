@@ -32,7 +32,7 @@ describe("SlideObserver", () => {
 
       const slideNumber = 1;
       const slideElement = document.createElement("svg");
-      act(() => result.current.observe({ slideNumber, slideElement }));
+      act(() => result.current.observe(slideNumber, slideElement));
       expect(result.current.entries[slideNumber]).toMatchObject(slideElement);
     });
 

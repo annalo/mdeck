@@ -1,5 +1,4 @@
 declare type SlideNumber = number;
-
 declare type SlideElement = HTMLDivElement;
 
 declare interface SlideObserverEntries {
@@ -8,7 +7,7 @@ declare interface SlideObserverEntries {
 
 declare function SlideObserverObserve({
   slideNumber: SlideNumber,
-  node: SlideElement,
+  element: SlideElement,
 }): void;
 
 declare function SlideObserverUnobserve(slideNumber: SlideNumber): void;
