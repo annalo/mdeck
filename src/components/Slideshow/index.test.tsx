@@ -16,7 +16,7 @@ import {
 
 import { Slideshow } from ".";
 
-import { useObservable } from "./useObservable";
+import { useObserver } from "./useObserver";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 
@@ -61,7 +61,7 @@ describe("<Slideshow />", () => {
     });
   });
 
-  describe("useObservable", () => {
+  describe("useObserver", () => {
     test("should observe and return entries", () => {
       /* Create element with data-line for observer to pick up */
       const div = document.createElement("div");
@@ -70,7 +70,7 @@ describe("<Slideshow />", () => {
       h1.setAttribute(DATA_LINE_ATTRIBUTE, "0");
       div.appendChild(h1);
 
-      const { result } = renderHook(() => useObservable());
+      const { result } = renderHook(() => useObserver());
 
       expect(result.current.entries).toMatchObject({});
 

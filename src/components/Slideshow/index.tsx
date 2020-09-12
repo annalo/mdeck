@@ -7,7 +7,7 @@ import type { MarkdownContextReducerAction } from "types/markdown-context-reduce
 import { Slide } from "components/Slide/Loadable";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
-import { useObservable } from "./useObservable";
+import { useObserver } from "./useObserver";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 
@@ -29,7 +29,7 @@ const Slideshow = memo(function Slideshow({
 }: SlideshowProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isActive = usePaneIsActive({ ref, initialValue: false });
-  const { entries, observe } = useObservable();
+  const { entries, observe } = useObserver();
 
   useSyncSlideshow({ entries, textLineNumber });
   useTrackSlideshowScroll({ dispatch, entries, isActive, ref });

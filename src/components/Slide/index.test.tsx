@@ -6,7 +6,7 @@ import {
   CODE_LINE_CLASS_NAME,
   DATA_LINE_ATTRIBUTE,
 } from "utils/parsePlugins/injectLineNumber";
-import { useObservable } from "components/Slideshow/useObservable";
+import { useObserver } from "components/Slideshow/useObserver";
 import { Slide } from ".";
 import { useObserve } from "./useObserve";
 
@@ -54,7 +54,7 @@ describe("<Slide />", () => {
     const ref = { current: div };
 
     const { result } = renderHook(() => {
-      const { entries, observe } = useObservable();
+      const { entries, observe } = useObserver();
       useObserve({ elements, ref, observe });
       return entries;
     });

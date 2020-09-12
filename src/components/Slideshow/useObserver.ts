@@ -5,7 +5,7 @@ import {
   DATA_LINE_ATTRIBUTE,
 } from "utils/parsePlugins/injectLineNumber";
 
-function useObservable(): {
+function useObserver(): {
   entries: SlideshowObserver.Entries;
   observe: SlideshowObserver.Observe;
 } {
@@ -40,4 +40,4 @@ function useObservable(): {
   return { entries: observerEntries, observe };
 }
 
-export { useObservable };
+export { useObserver };
