@@ -7,18 +7,21 @@ import React, {
 } from "react";
 import * as R from "ramda";
 
-const SLIDE_OBSERVER_DEFAULT_INITIAL_STATE = {};
+const SLIDE_ENTRIES_DEFAULT_INITIAL_STATE = {};
 
-const SlideObserver = createContext<SlideObserverContext | undefined>(
+const SlideEntriesContext = createContext<SlideObserver.Entries | undefined>(
+  undefined
+);
+const SlideObserverContext = createContext<SlideObserver.Observer | undefined>(
   undefined
 );
 
-const SlideObserverProvider: React.FC<SlideObserverProviderProps> = ({
+const SlideObserverProvider: React.FC<SlideObserver.ProviderProps> = ({
   children,
   initialEntries,
-}: SlideObserverProviderProps) => {
+}: SlideObserver.ProviderProps) => {
   const [entries, setEntries] = useState(
-    initialEntries || SLIDE_OBSERVER_DEFAULT_INITIAL_STATE
+    initialEntries || SLIDE_ENTRIES_DEFAULT_INITIAL_STATE
   );
   const observe = useCallback(
     (slideNumber, targetElement) =>
@@ -33,21 +36,31 @@ const SlideObserverProvider: React.FC<SlideObserverProviderProps> = ({
     []
   );
 
-  const value = useMemo(
-    () => ({
-      entries,
-      observe,
-      unobserve,
-    }),
-    [entries, observe, unobserve]
-  );
+  const observerProviderValue = useMemo(() => ({ observe, unobserve }), [
+    observe,
+    unobserve,
+  ]);
   return (
-    <SlideObserver.Provider value={value}>{children}</SlideObserver.Provider>
+    <SlideEntriesContext.Provider value={entries}>
+      <SlideObserverContext.Provider value={observerProviderValue}>
+        {children}
+      </SlideObserverContext.Provider>
+    </SlideEntriesContext.Provider>
   );
 };
 
-function useSlideObserver(): SlideObserverContext {
-  const context = useContext(SlideObserver);
+function useSlideEntries(): SlideObserver.Entries {
+  const context = useContext(SlideEntriesContext);
+  if (context === undefined) {
+    throw new Error(
+      "useSlideEntries must be used within a SlideObserverProvider"
+    );
+  }
+  return context;
+}
+
+function useSlideObserver(): SlideObserver.Observer {
+  const context = useContext(SlideObserverContext);
   if (context === undefined) {
     throw new Error(
       "useSlideObserver must be used within a SlideObserverProvider"
@@ -56,4 +69,4 @@ function useSlideObserver(): SlideObserverContext {
   return context;
 }
 
-export { SlideObserverProvider, useSlideObserver };
+export { SlideObserverProvider, useSlideEntries, useSlideObserver };

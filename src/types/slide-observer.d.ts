@@ -1,24 +1,25 @@
 declare type SlideNumber = number;
 declare type SlideElement = HTMLDivElement;
 
-declare interface SlideObserverEntries {
-  [slideNumber: SlideNumber]: SlideElement;
-}
+declare namespace SlideObserver {
+  declare interface Entries {
+    [slideNumber: SlideNumber]: SlideElement;
+  }
 
-declare function SlideObserverObserve({
-  slideNumber: SlideNumber,
-  targetElement: SlideElement,
-}): void;
+  declare function Observe({
+    slideNumber: SlideNumber,
+    targetElement: SlideElement,
+  }): void;
 
-declare function SlideObserverUnobserve(slideNumber: SlideNumber): void;
+  declare function Unobserve(slideNumber: SlideNumber): void;
 
-declare interface SlideObserverProviderProps {
-  children: React.ReactNode;
-  initialEntries?: SlideObserverEntries;
-}
+  declare interface ProviderProps {
+    children: ReactNode;
+    initialEntries?: Entries;
+  }
 
-declare interface SlideObserverContext {
-  entries: SlideObserverEntries;
-  observe: SlideObserverObserve;
-  unobserve: SlideObserverUnobserve;
+  declare interface Observer {
+    observe: Observe;
+    unobserve: Unobserve;
+  }
 }
