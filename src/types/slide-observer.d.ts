@@ -7,7 +7,7 @@ declare interface SlideObserverEntries {
 
 declare function SlideObserverObserve({
   slideNumber: SlideNumber,
-  element: SlideElement,
+  targetElement: SlideElement,
 }): void;
 
 declare function SlideObserverUnobserve(slideNumber: SlideNumber): void;
