@@ -6,12 +6,12 @@ declare namespace SlideObserver {
     [slideNumber: SlideNumber]: SlideElement;
   }
 
-  declare function Observe({
+  declare type Observe = (
     slideNumber: SlideNumber,
-    targetElement: SlideElement,
-  }): void;
+    targetElement: SlideElement
+  ) => void;
 
-  declare function Unobserve(slideNumber: SlideNumber): void;
+  declare type Unobserve = (slideNumber: SlideNumber) => void;
 
   declare interface ProviderProps {
     children: ReactNode;

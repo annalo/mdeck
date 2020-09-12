@@ -20,17 +20,17 @@ const SlideObserverProvider: React.FC<SlideObserver.ProviderProps> = ({
   children,
   initialEntries,
 }: SlideObserver.ProviderProps) => {
-  const [entries, setEntries] = useState(
+  const [entries, setEntries] = useState<SlideObserver.Entries>(
     initialEntries || SLIDE_ENTRIES_DEFAULT_INITIAL_STATE
   );
-  const observe = useCallback(
+  const observe: SlideObserver.Observe = useCallback(
     (slideNumber, targetElement) =>
       setEntries((currentEntries) =>
         R.mergeRight(currentEntries, { [slideNumber]: targetElement })
       ),
     []
   );
-  const unobserve = useCallback(
+  const unobserve: SlideObserver.Unobserve = useCallback(
     (slideNumber: SlideNumber) =>
       setEntries((currentEntries) => R.omit([slideNumber], currentEntries)),
     []
