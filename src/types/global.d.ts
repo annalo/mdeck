@@ -1,5 +1,4 @@
 declare type SlideContentElements = ReactNode;
-declare type CodeLineElement = Element;
 
 declare interface Document {
   exitFullscreen: () => void;
