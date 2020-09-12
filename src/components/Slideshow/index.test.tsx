@@ -4,16 +4,12 @@ import { act, renderHook } from "@testing-library/react-hooks";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import {
-  CODE_LINE_CLASS_NAME,
-  DATA_LINE_ATTRIBUTE,
-} from "utils/parsePlugins/injectLineNumber";
-import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   MarkdownProvider,
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
-import { SlideshowObservable } from "contexts/SlideshowObservable";
+import { SlideObserverProvider } from "contexts/SlideObserver";
 import {
   CodeLineObserverProvider,
   useCodeLineEntries,
@@ -34,7 +30,9 @@ describe("<Slideshow />", () => {
       "<svg><p>Paragraph</p></svg>",
     ];
     const wrapper = ({ children }) => (
-      <SlideshowObservable>{children}</SlideshowObservable>
+      <SlideObserverProvider>
+        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+      </SlideObserverProvider>
     );
     const { asFragment } = render(
       <Slideshow
@@ -53,7 +51,9 @@ describe("<Slideshow />", () => {
       "<svg><p>Paragraph</p></svg>",
     ];
     const wrapper = ({ children }) => (
-      <SlideshowObservable>{children}</SlideshowObservable>
+      <SlideObserverProvider>
+        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+      </SlideObserverProvider>
     );
     render(
       <Slideshow

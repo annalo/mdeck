@@ -6,16 +6,20 @@ import {
   CODE_LINE_CLASS_NAME,
   DATA_LINE_ATTRIBUTE,
 } from "utils/parsePlugins/injectLineNumber";
-import { SlideshowObservable } from "contexts/SlideshowObservable";
-import { useSlideEntries } from "contexts/SlideObserver";
-import { useCodeLineEntries } from "contexts/CodeLineObserver";
+import { SlideObserverProvider, useSlideEntries } from "contexts/SlideObserver";
+import {
+  CodeLineObserverProvider,
+  useCodeLineEntries,
+} from "contexts/CodeLineObserver";
 
 import { Slide } from ".";
 import { useSlideObserve } from "./useSlideObserve";
 import { useCodeLineObserve } from "./useCodeLineObserve";
 
 const wrapper = ({ children }) => (
-  <SlideshowObservable>{children}</SlideshowObservable>
+  <SlideObserverProvider>
+    <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+  </SlideObserverProvider>
 );
 const component = <Slide htmlString="<svg><h1>Title</h1></svg>" index={0} />;
 
