@@ -27,11 +27,11 @@ describe("CodeLineObserver", () => {
       expect(result.current).toMatchObject(initialEntries);
     });
 
-    test("should return Error if not used within a CodeLineObserverProvider", () => {
+    test("should return Error if not used within a valid Provider", () => {
       const { result } = renderHook(() => useCodeLineEntries());
       expect(result.error).toEqual(
         Error(
-          "useCodeLineEntries must be used within a CodeLineObserverProvider"
+          "useCodeLineEntries must be used within CodeLineObserverProvider or SlideshowObservable"
         )
       );
     });
@@ -100,11 +100,11 @@ describe("CodeLineObserver", () => {
       expect(result.current.entries[codeLine]).toMatchObject(newElement);
     });
 
-    test("should return Error if not used within a CodeLineObserverProvider", () => {
+    test("should return Error if not used within a valid Provider", () => {
       const { result } = renderHook(() => useCodeLineObserver());
       expect(result.error).toEqual(
         Error(
-          "useCodeLineObserver must be used within a CodeLineObserverProvider"
+          "useCodeLineObserver must be used within CodeLineObserverProvider or SlideshowObservable"
         )
       );
     });

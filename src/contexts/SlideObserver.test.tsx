@@ -27,10 +27,12 @@ describe("SlideObserver", () => {
       expect(result.current).toMatchObject(initialEntries);
     });
 
-    test("should return Error if not used within a SlideObserverProvider", () => {
+    test("should return Error if not used within a valid Provider", () => {
       const { result } = renderHook(() => useSlideEntries());
       expect(result.error).toEqual(
-        Error("useSlideEntries must be used within a SlideObserverProvider")
+        Error(
+          "useSlideEntries must be used within SlideObserverProvider or SlideshowObservable"
+        )
       );
     });
   });
@@ -80,10 +82,12 @@ describe("SlideObserver", () => {
       expect(result.current.entries).toMatchObject({});
     });
 
-    test("should return Error if not used within a SlideObserverProvider", () => {
+    test("should return Error if not used within a valid Provider", () => {
       const { result } = renderHook(() => useSlideObserver());
       expect(result.error).toEqual(
-        Error("useSlideObserver must be used within a SlideObserverProvider")
+        Error(
+          "useSlideObserver must be used within SlideObserverProvider or SlideshowObservable"
+        )
       );
     });
   });

@@ -53,7 +53,7 @@ function useSlideEntries(): SlideObserver.Entries {
   const context = useContext(SlideEntriesContext);
   if (context === undefined) {
     throw new Error(
-      "useSlideEntries must be used within a SlideObserverProvider"
+      "useSlideEntries must be used within SlideObserverProvider or SlideshowObservable"
     );
   }
   return context;
@@ -63,7 +63,7 @@ function useSlideObserver(): SlideObserver.Observer {
   const context = useContext(SlideObserverContext);
   if (context === undefined) {
     throw new Error(
-      "useSlideObserver must be used within a SlideObserverProvider"
+      "useSlideObserver must be used within SlideObserverProvider or SlideshowObservable"
     );
   }
   return context;

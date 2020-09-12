@@ -45,7 +45,7 @@ function useCodeLineEntries(): CodeLineObserver.Entries {
   const context = useContext(CodeLineEntriesContext);
   if (context === undefined) {
     throw new Error(
-      "useCodeLineEntries must be used within a CodeLineObserverProvider"
+      "useCodeLineEntries must be used within CodeLineObserverProvider or SlideshowObservable"
     );
   }
   return context;
@@ -55,7 +55,7 @@ function useCodeLineObserver(): CodeLineObserver.Observer {
   const context = useContext(CodeLineObserverContext);
   if (context === undefined) {
     throw new Error(
-      "useCodeLineObserver must be used within a CodeLineObserverProvider"
+      "useCodeLineObserver must be used within CodeLineObserverProvider or SlideshowObservable"
     );
   }
   return context;
