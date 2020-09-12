@@ -15,6 +15,7 @@ declare function SlideObserverUnobserve(slideNumber: SlideNumber): void;
 
 declare interface SlideObserverProviderProps {
   children: React.ReactNode;
+  initialEntries?: SlideObserverEntries;
 }
 
 declare interface SlideObserverContext {
