@@ -10,7 +10,6 @@ import {
 interface UseCodeLineObserveProps {
   elements: SlideContentElements;
   ref: RefObject<HTMLDivElement>;
-  observe: SlideshowObserver.Observe;
 }
 
 function useCodeLineObserve({ elements, ref }: UseCodeLineObserveProps): void {

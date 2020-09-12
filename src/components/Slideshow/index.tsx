@@ -37,12 +37,7 @@ const Slideshow = memo(function Slideshow({
   return (
     <Article ref={ref} id="slideshow">
       {htmlArray.map((html, i) => (
-        <Slide
-          key={`slide-${i + 1}`}
-          htmlString={html}
-          index={i}
-          observe={observe}
-        />
+        <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
       ))}
     </Article>
   );
