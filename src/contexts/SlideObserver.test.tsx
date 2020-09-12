@@ -44,7 +44,6 @@ describe("SlideObserver", () => {
         () => {
           const entries = useSlideEntries();
           const { observe } = useSlideObserver();
-
           return { entries, observe };
         },
         { wrapper }
@@ -71,7 +70,6 @@ describe("SlideObserver", () => {
         () => {
           const entries = useSlideEntries();
           const { unobserve } = useSlideObserver();
-
           return { entries, unobserve };
         },
         { wrapper }

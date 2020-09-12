@@ -2,11 +2,12 @@ import React from "react";
 import { act, renderHook } from "@testing-library/react-hooks";
 import {
   CodeLineObserverProvider,
+  useCodeLineEntries,
   useCodeLineObserver,
 } from "./CodeLineObserver";
 
 describe("CodeLineObserver", () => {
-  describe("useCodeLineObserver", () => {
+  describe("useCodeLineEntries", () => {
     test("should return entries", () => {
       const element1 = document.createElement("h1");
       const element2 = document.createElement("p");
@@ -22,20 +23,39 @@ describe("CodeLineObserver", () => {
           {children}
         </CodeLineObserverProvider>
       );
-      const { result } = renderHook(() => useCodeLineObserver(), { wrapper });
-      expect(result.current.entries).toMatchObject(initialEntries);
+      const { result } = renderHook(() => useCodeLineEntries(), { wrapper });
+      expect(result.current).toMatchObject(initialEntries);
     });
 
+    test("should return Error if not used within a CodeLineObserverProvider", () => {
+      const { result } = renderHook(() => useCodeLineEntries());
+      expect(result.error).toEqual(
+        Error(
+          "useCodeLineEntries must be used within a CodeLineObserverProvider"
+        )
+      );
+    });
+  });
+
+  describe("useCodeLineObserver", () => {
     test("should observe entries", () => {
       const element1 = document.createElement("h1");
       const element2 = document.createElement("h3");
       const initialEntries = { 1: element1, 2: element2 };
+
       const wrapper = ({ children }) => (
         <CodeLineObserverProvider initialEntries={initialEntries}>
           {children}
         </CodeLineObserverProvider>
       );
-      const { result } = renderHook(() => useCodeLineObserver(), { wrapper });
+      const { result } = renderHook(
+        () => {
+          const entries = useCodeLineEntries();
+          const { observe } = useCodeLineObserver();
+          return { entries, observe };
+        },
+        { wrapper }
+      );
 
       expect(result.current.entries).toMatchObject(initialEntries);
 
@@ -61,7 +81,14 @@ describe("CodeLineObserver", () => {
           {children}
         </CodeLineObserverProvider>
       );
-      const { result } = renderHook(() => useCodeLineObserver(), { wrapper });
+      const { result } = renderHook(
+        () => {
+          const entries = useCodeLineEntries();
+          const { observe } = useCodeLineObserver();
+          return { entries, observe };
+        },
+        { wrapper }
+      );
 
       expect(result.current.entries[codeLine]).toMatchObject(element);
 

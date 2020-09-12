@@ -9,18 +9,21 @@ import * as R from "ramda";
 
 const CODE_LINE_OBSERVER_DEFAULT_INITIAL_STATE = {};
 
-const CodeLineObserver = createContext<CodeLineObserverContext | undefined>(
-  undefined
-);
+const CodeLineEntriesContext = createContext<
+  CodeLineObserver.Entries | undefined
+>(undefined);
+const CodeLineObserverContext = createContext<
+  CodeLineObserver.Observer | undefined
+>(undefined);
 
-const CodeLineObserverProvider: React.FC<CodeLineObserverProviderProps> = ({
+const CodeLineObserverProvider: React.FC<CodeLineObserver.ProviderProps> = ({
   children,
   initialEntries,
-}: CodeLineObserverProviderProps) => {
+}: CodeLineObserver.ProviderProps) => {
   const [entries, setEntries] = useState(
     initialEntries || CODE_LINE_OBSERVER_DEFAULT_INITIAL_STATE
   );
-  const observe = useCallback(
+  const observe: CodeLineObserver.Observe = useCallback(
     (targetEntries) =>
       setEntries((currentEntries) =>
         R.mergeRight(currentEntries, targetEntries)
@@ -28,16 +31,28 @@ const CodeLineObserverProvider: React.FC<CodeLineObserverProviderProps> = ({
     []
   );
 
-  const value = useMemo(() => ({ entries, observe }), [entries, observe]);
+  const observerProviderValue = useMemo(() => ({ observe }), [observe]);
   return (
-    <CodeLineObserver.Provider value={value}>
-      {children}
-    </CodeLineObserver.Provider>
+    <CodeLineEntriesContext.Provider value={entries}>
+      <CodeLineObserverContext.Provider value={observerProviderValue}>
+        {children}
+      </CodeLineObserverContext.Provider>
+    </CodeLineEntriesContext.Provider>
   );
 };
 
-function useCodeLineObserver(): CodeLineObserverContext {
-  const context = useContext(CodeLineObserver);
+function useCodeLineEntries(): CodeLineObserver.Entries {
+  const context = useContext(CodeLineEntriesContext);
+  if (context === undefined) {
+    throw new Error(
+      "useCodeLineEntries must be used within a CodeLineObserverProvider"
+    );
+  }
+  return context;
+}
+
+function useCodeLineObserver(): CodeLineObserver.Observer {
+  const context = useContext(CodeLineObserverContext);
   if (context === undefined) {
     throw new Error(
       "useCodeLineObserver must be used within a CodeLineObserverProvider"
@@ -46,4 +61,4 @@ function useCodeLineObserver(): CodeLineObserverContext {
   return context;
 }
 
-export { CodeLineObserverProvider, useCodeLineObserver };
+export { CodeLineObserverProvider, useCodeLineEntries, useCodeLineObserver };
