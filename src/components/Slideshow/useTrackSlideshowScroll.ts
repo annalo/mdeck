@@ -3,8 +3,10 @@ import * as R from "ramda";
 import throttle from "lodash/throttle";
 
 import type { Dispatch, RefObject } from "react";
-import type { MarkdownContextReducerAction } from "types/markdown-context";
-import { MarkdownContextReducerActionType } from "types/markdown-context";
+import {
+  MarkdownContextReducerAction,
+  MarkdownContextReducerActionType,
+} from "types/markdown-context-reducer-action";
 
 interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;

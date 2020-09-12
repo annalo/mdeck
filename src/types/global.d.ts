@@ -1,9 +1,4 @@
-declare type HtmlArray = string[];
-declare type HtmlString = string;
-declare type LineNumber = number;
-declare type MarkdownString = string;
-
-declare type SlideContentElements = Element[];
+declare type SlideContentElements = ReactNode;
 declare type CodeLineElement = Element;
 
 declare interface Document {

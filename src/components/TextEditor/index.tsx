@@ -5,7 +5,7 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
-import { MarkdownContextReducerActionType } from "types/markdown-context";
+import { MarkdownContextReducerActionType } from "types/markdown-context-reducer-action";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 import { useSyncTextArea } from "./useSyncTextArea";

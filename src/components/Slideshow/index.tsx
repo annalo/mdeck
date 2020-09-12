@@ -2,7 +2,7 @@ import React, { memo, useRef } from "react";
 import styled from "styled-components";
 
 import type { Dispatch } from "react";
-import type { MarkdownContextReducerAction } from "types/markdown-context";
+import type { MarkdownContextReducerAction } from "types/markdown-context-reducer-action";
 
 import { Slide } from "components/Slide/Loadable";
 
