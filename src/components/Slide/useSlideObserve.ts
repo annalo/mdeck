@@ -8,11 +8,12 @@ interface UseSlideObserveProps {
 }
 
 function useSlideObserve({ ref, slideNumber }: UseSlideObserveProps): void {
-  const { observe } = useSlideObserver();
+  const { observe, unobserve } = useSlideObserver();
 
   useEffect(() => {
     if (ref.current) observe(slideNumber, ref.current);
-  }, [observe, ref, slideNumber]);
+    return () => unobserve(slideNumber);
+  }, [ref, slideNumber, observe, unobserve]);
 }
 
 export { useSlideObserve };
