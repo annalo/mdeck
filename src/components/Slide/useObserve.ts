@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import type { RefObject } from "react";
 
 interface UseObserveProps {
-  elements: SlideElements;
+  elements: SlideContentElements;
   ref: RefObject<HTMLDivElement>;
   observe: SlideshowObserver.Observe;
 }
