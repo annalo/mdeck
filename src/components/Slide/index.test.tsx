@@ -33,8 +33,12 @@ describe("<Slide />", () => {
     const { container } = render(component, { wrapper });
 
     expect(container.firstChild).toMatchInlineSnapshot(`
+      .c0 {
+        background-color: white;
+      }
+
       <div
-        class="slide"
+        class="c0 slide"
         id="slide-1"
       >
         <svg>

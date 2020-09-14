@@ -2,8 +2,12 @@
 
 exports[`<Slide /> should render and match the snapshot 1`] = `
 <DocumentFragment>
-  <div
-    class="slide"
+  .c0 {
+  background-color: white;
+}
+
+<div
+    class="c0 slide"
     id="slide-1"
   >
     <svg>
