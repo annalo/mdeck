@@ -1,22 +1,39 @@
 import { useEffect, useState } from "react";
+import * as screenfull from "screenfull";
+import { Screenfull } from "screenfull";
 
-type SlideNumber = number;
+import { useSlideEntries } from "contexts/SlideObserver";
+
 interface UseNavigationProps {
-  slideCount: number;
+  isFullscreen: boolean;
 }
 
-function useNavigation({ slideCount }: UseNavigationProps): SlideNumber {
-  const [currentSlide, setCurrentSlide] = useState<SlideNumber>(1);
+function useNavigation({ isFullscreen }: UseNavigationProps): void {
+  const [slideNumber, setSlideNumber] = useState<SlideNumber>(1);
+
+  const slideEntries = useSlideEntries();
+  const slideCount = Object.keys(slideEntries).length;
 
   useEffect(() => {
+    console.log("use effect fullscreen");
+    if (isFullscreen) setSlideNumber(1);
+  }, [isFullscreen, slideEntries]);
+
+  useEffect(() => {
+    console.log("useeffect slidenumber changed");
+    if (isFullscreen)
+      (screenfull as Screenfull).request(slideEntries[slideNumber]);
+  }, [isFullscreen, slideEntries, slideNumber]);
+
+  useEffect(() => {
+    console.log("use effect handlekey");
     const nextSlide = () =>
-      setCurrentSlide((slideNumber) =>
-        slideNumber < slideCount ? slideNumber + 1 : slideNumber
+      setSlideNumber((current) =>
+        current < slideCount ? current + 1 : current
       );
+
     const previousSlide = () =>
-      setCurrentSlide((slideNumber) =>
-        slideNumber > 1 ? slideNumber - 1 : slideNumber
-      );
+      setSlideNumber((current) => (current > 1 ? current - 1 : current));
 
     const handleKeyDown = (e) => {
       switch (e.keyCode) {
@@ -36,13 +53,10 @@ function useNavigation({ slideCount }: UseNavigationProps): SlideNumber {
       }
     };
 
-    document.addEventListener("keydown", handleKeyDown);
-    return () => {
-      document.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [currentSlide, slideCount]);
-
-  return currentSlide;
+    isFullscreen
+      ? document.addEventListener("keydown", handleKeyDown)
+      : document.removeEventListener("keydown", handleKeyDown);
+  }, [isFullscreen, slideCount, slideEntries]);
 }
 
 export { useNavigation };
