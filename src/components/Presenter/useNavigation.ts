@@ -1,41 +1,60 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import * as screenfull from "screenfull";
 import { Screenfull } from "screenfull";
 
 import { useSlideEntries } from "contexts/SlideObserver";
 
 interface UseNavigationProps {
-  isFullscreen: boolean;
+  presentationOn: boolean;
+  togglePresentation: (boolean) => void;
 }
 
-function useNavigation({ isFullscreen }: UseNavigationProps): void {
-  const [slideNumber, setSlideNumber] = useState<SlideNumber>(1);
+function useNavigation({
+  presentationOn,
+  togglePresentation,
+}: UseNavigationProps): void {
+  const [slideNumber, setSlideNumber] = useState<SlideNumber | null>(null);
 
   const slideEntries = useSlideEntries();
   const slideCount = Object.keys(slideEntries).length;
 
   useEffect(() => {
-    console.log("use effect fullscreen");
-    if (isFullscreen) setSlideNumber(1);
-  }, [isFullscreen, slideEntries]);
+    (screenfull as Screenfull).on("change", () => {
+      if (!(screenfull as Screenfull).isFullscreen) togglePresentation(false);
+    });
+  }, [togglePresentation]);
 
   useEffect(() => {
-    console.log("useeffect slidenumber changed");
-    if (isFullscreen)
+    console.log("use effect fullscreen");
+    presentationOn ? setSlideNumber(1) : setSlideNumber(null);
+  }, [presentationOn]);
+
+  useEffect(() => {
+    console.log("useeffect slidenumber changed", slideNumber);
+    if (slideNumber)
       (screenfull as Screenfull).request(slideEntries[slideNumber]);
-  }, [isFullscreen, slideEntries, slideNumber]);
+  }, [slideEntries, slideNumber]);
+
+  const nextSlide = useCallback(
+    () =>
+      setSlideNumber((current) =>
+        current && current < slideCount ? current + 1 : current
+      ),
+    [setSlideNumber, slideCount]
+  );
+
+  const previousSlide = useCallback(
+    () =>
+      setSlideNumber((current) =>
+        current && current > 1 ? current - 1 : current
+      ),
+    [setSlideNumber]
+  );
 
   useEffect(() => {
     console.log("use effect handlekey");
-    const nextSlide = () =>
-      setSlideNumber((current) =>
-        current < slideCount ? current + 1 : current
-      );
-
-    const previousSlide = () =>
-      setSlideNumber((current) => (current > 1 ? current - 1 : current));
-
     const handleKeyDown = (e) => {
+      console.log("handlekeydown");
       switch (e.keyCode) {
         case 37: // ArrowLeft
         case 38: // ArrowUp
@@ -53,10 +72,12 @@ function useNavigation({ isFullscreen }: UseNavigationProps): void {
       }
     };
 
-    isFullscreen
+    presentationOn
       ? document.addEventListener("keydown", handleKeyDown)
       : document.removeEventListener("keydown", handleKeyDown);
-  }, [isFullscreen, slideCount, slideEntries]);
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [presentationOn, nextSlide, previousSlide, togglePresentation]);
 }
 
 export { useNavigation };
