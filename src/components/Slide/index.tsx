@@ -6,7 +6,9 @@ import { useSlideObserve } from "./useSlideObserve";
 import { useCodeLineObserve } from "./useCodeLineObserve";
 
 const Div = styled.div`
-  background-color: white;
+  svg {
+    background-color: white;
+  }
 `;
 
 interface SlideProps {

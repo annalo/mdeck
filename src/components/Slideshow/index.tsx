@@ -20,6 +20,21 @@ interface SlideshowProps {
 const Article = styled.article`
   height: 100%;
   overflow: auto;
+
+  &:fullscreen {
+    scroll-snap-type: y mandatory;
+
+    .slide {
+      /* display: none !important; */
+      display: grid;
+      height: 100%;
+      scroll-snap-align: start;
+
+      svg {
+        margin: auto;
+      }
+    }
+  }
 `;
 
 const Slideshow = memo(function Slideshow({
