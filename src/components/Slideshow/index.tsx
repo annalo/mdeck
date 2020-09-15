@@ -25,7 +25,6 @@ const Article = styled.article`
     scroll-snap-type: y mandatory;
 
     .slide {
-      /* display: none !important; */
       display: grid;
       height: 100%;
       scroll-snap-align: start;
