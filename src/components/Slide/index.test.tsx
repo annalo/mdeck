@@ -37,7 +37,7 @@ describe("<Slide />", () => {
         background-color: white;
       }
 
-      <div
+      <section
         class="c0 slide"
         id="slide-1"
       >
@@ -46,7 +46,7 @@ describe("<Slide />", () => {
             Title
           </h1>
         </svg>
-      </div>
+      </section>
     `);
   });
 
