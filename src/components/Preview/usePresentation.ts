@@ -1,10 +1,11 @@
 import { useCallback, useEffect, useState } from "react";
+import type { RefObject } from "react";
 import screenfull, { Screenfull } from "screenfull";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import { useSlideEntries } from "contexts/SlideObserver";
 
-function usePresentation(slideshowRef: any): () => void {
+function usePresentation(slideshowRef: RefObject<HTMLElement>): () => void {
   const [presentationMode, togglePresentation] = useState(false);
   const [slideNumber, setSlideNumber] = useState<SlideNumber>(1);
 
@@ -12,7 +13,8 @@ function usePresentation(slideshowRef: any): () => void {
   const slideCount = Object.keys(slideEntries).length;
 
   const requestPresentation = useCallback(() => {
-    (screenfull as Screenfull).request(slideshowRef.current);
+    if (slideshowRef.current)
+      (screenfull as Screenfull).request(slideshowRef.current);
   }, [slideshowRef]);
 
   useEffect(() => {

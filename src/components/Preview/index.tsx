@@ -23,6 +23,7 @@ const FullscreenButton = styled.button`
 
 const Preview = memo(function Preview() {
   const slideshowRef = useRef<HTMLElement>(null);
+
   const dispatch = useMarkdownDispatch();
   const { htmlArray, md, textLineNumber } = useMarkdownState();
 
