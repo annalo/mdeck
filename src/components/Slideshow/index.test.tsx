@@ -34,8 +34,10 @@ describe("<Slideshow />", () => {
         <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
       </SlideObserverProvider>
     );
+    const ref = { current: document.createElement("div") };
     const { asFragment } = render(
       <Slideshow
+        ref={ref}
         dispatch={jest.fn()}
         htmlArray={htmlArray}
         textLineNumber={0}
@@ -55,8 +57,10 @@ describe("<Slideshow />", () => {
         <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
       </SlideObserverProvider>
     );
+    const ref = { current: document.createElement("div") };
     render(
       <Slideshow
+        ref={ref}
         dispatch={jest.fn()}
         htmlArray={htmlArray}
         textLineNumber={0}
