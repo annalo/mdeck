@@ -6,29 +6,32 @@ import {
   MarkdownProvider,
   useMarkdownDispatch,
 } from "contexts/MarkdownContext";
+import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
+import { SlideObserverProvider } from "contexts/SlideObserver";
 
 import { Preview } from ".";
 import MarkdownWorker from "./markdown-worker";
 import { useWorker } from "./useWorker";
 
+jest.mock("screenfull");
 jest.mock("./markdown-worker");
 
 afterEach(() => jest.clearAllMocks());
 
 describe("<Preview />", () => {
+  const wrapper = ({ children }) => (
+    <MarkdownProvider>
+      <SlideObserverProvider>
+        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+      </SlideObserverProvider>
+    </MarkdownProvider>
+  );
   test("should render and match the snapshot", () => {
-    const wrapper = ({ children }) => (
-      <MarkdownProvider>{children}</MarkdownProvider>
-    );
     const { asFragment } = render(<Preview />, { wrapper });
     expect(asFragment()).toMatchSnapshot();
   });
 
   describe("useWorker", () => {
-    const wrapper = ({ children }) => (
-      <MarkdownProvider>{children}</MarkdownProvider>
-    );
-
     test("should instantiate MarkdownWorker just once", () => {
       let md = "## Markdown String";
       const { rerender } = renderHook(

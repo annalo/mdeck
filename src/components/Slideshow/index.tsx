@@ -53,7 +53,7 @@ const Article = styled.article`
   }
 `;
 
-const ForwardRefComponent = forwardRef<HTMLElement, SlideshowProps>(
+const ForwardRefSlideshowComponent = forwardRef<HTMLElement, SlideshowProps>(
   ({ dispatch, htmlArray, textLineNumber }, ref) => {
     const isActive = usePaneIsActive({ ref, initialValue: false });
     const entries = useCodeLineEntries();
@@ -71,6 +71,6 @@ const ForwardRefComponent = forwardRef<HTMLElement, SlideshowProps>(
   }
 );
 
-const Slideshow = memo(ForwardRefComponent);
+const Slideshow = memo(ForwardRefSlideshowComponent);
 
 export { Slideshow };

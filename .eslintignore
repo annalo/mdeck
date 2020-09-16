@@ -4,3 +4,4 @@ public
 __mocks__
 *.html
 webpack.config.js
+*/setupTests.ts
