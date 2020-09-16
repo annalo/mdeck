@@ -6,7 +6,8 @@ import { useSlideNavigation } from "./usePresentationSlideNavigation";
 
 function usePresentation(slideshowRef: RefObject<HTMLElement>): () => void {
   const [isActive, togglePresentation] = useState(false);
-  const { nextSlide, previousSlide } = useSlideNavigation(isActive);
+
+  useSlideNavigation(isActive);
 
   const requestPresentation = useCallback(() => {
     if (slideshowRef.current)
@@ -20,34 +21,6 @@ function usePresentation(slideshowRef: RefObject<HTMLElement>): () => void {
     sf.on("change", setIsActive);
     return () => sf.off("change", setIsActive);
   }, []);
-
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      e.preventDefault();
-
-      switch (e.keyCode) {
-        case 37: // ArrowLeft
-        case 38: // ArrowUp
-          previousSlide();
-          break;
-
-        case 39: // ArrowRight
-        case 40: // ArrowDown
-          nextSlide();
-          break;
-
-        default: {
-          break;
-        }
-      }
-    };
-
-    isActive
-      ? document.addEventListener("keydown", handleKeyDown)
-      : document.removeEventListener("keydown", handleKeyDown);
-
-    return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [nextSlide, previousSlide, isActive]);
 
   return requestPresentation;
 }

@@ -5,13 +5,21 @@ import { useSlideEntries } from "contexts/SlideObserver";
 
 const INITIAL_SLIDE_NUMBER = 1;
 
-function useSlideNavigation(isActive: boolean): { nextSlide; previousSlide } {
+function useSlideNavigation(isActive: boolean): void {
   const [slideNumber, setSlideNumber] = useState<SlideNumber>(
     INITIAL_SLIDE_NUMBER
   );
 
   const slideEntries = useSlideEntries();
   const slideCount = Object.keys(slideEntries).length;
+
+  // Resets slide number when isActive changes
+  useEffect(() => setSlideNumber(INITIAL_SLIDE_NUMBER), [isActive]);
+
+  // Scrolls to slide when slide number changes
+  useEffect(() => {
+    if (isActive) scrollIntoView(slideEntries[slideNumber]);
+  }, [isActive, slideNumber, slideEntries]);
 
   const nextSlide = useCallback(
     () =>
@@ -28,14 +36,34 @@ function useSlideNavigation(isActive: boolean): { nextSlide; previousSlide } {
     []
   );
 
-  // Resets slide number when isActive changes
-  useEffect(() => setSlideNumber(INITIAL_SLIDE_NUMBER), [isActive]);
-
+  // Keydown slide navigation
   useEffect(() => {
-    if (isActive) scrollIntoView(slideEntries[slideNumber]);
-  }, [isActive, slideNumber, slideEntries]);
+    const handleKeyDown = (e) => {
+      e.preventDefault();
 
-  return { nextSlide, previousSlide };
+      switch (e.keyCode) {
+        case 37: // ArrowLeft
+        case 38: // ArrowUp
+          previousSlide();
+          break;
+
+        case 39: // ArrowRight
+        case 40: // ArrowDown
+          nextSlide();
+          break;
+
+        default: {
+          break;
+        }
+      }
+    };
+
+    isActive
+      ? document.addEventListener("keydown", handleKeyDown)
+      : document.removeEventListener("keydown", handleKeyDown);
+
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [nextSlide, previousSlide, isActive]);
 }
 
 export { useSlideNavigation };
