@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import * as R from "ramda";
 import throttle from "lodash/throttle";
 
-import type { Dispatch, RefObject } from "react";
+import type { Dispatch } from "react";
 import {
   MarkdownContextReducerAction,
   MarkdownContextReducerActionType,
@@ -12,7 +12,7 @@ interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
   entries: SlideshowObserver.Entries;
   isActive: boolean;
-  ref: RefObject<HTMLDivElement>;
+  ref: any;
 }
 
 function useTrackSlideshowScroll({

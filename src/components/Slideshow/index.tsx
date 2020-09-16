@@ -1,7 +1,7 @@
-import React, { memo, useRef } from "react";
+import React, { forwardRef, memo } from "react";
+import type { Dispatch } from "react";
 import styled from "styled-components";
 
-import type { Dispatch } from "react";
 import type { MarkdownContextReducerAction } from "types/markdown-context-reducer-action";
 
 import { useCodeLineEntries } from "contexts/CodeLineObserver";
@@ -53,25 +53,24 @@ const Article = styled.article`
   }
 `;
 
-const Slideshow = memo(function Slideshow({
-  dispatch,
-  htmlArray,
-  textLineNumber,
-}: SlideshowProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isActive = usePaneIsActive({ ref, initialValue: false });
-  const entries = useCodeLineEntries();
+const ForwardRefComponent = forwardRef<HTMLElement, SlideshowProps>(
+  ({ dispatch, htmlArray, textLineNumber }, ref) => {
+    const isActive = usePaneIsActive({ ref, initialValue: false });
+    const entries = useCodeLineEntries();
 
-  useSyncSlideshow({ entries, textLineNumber });
-  useTrackSlideshowScroll({ dispatch, entries, isActive, ref });
+    useSyncSlideshow({ entries, textLineNumber });
+    useTrackSlideshowScroll({ dispatch, entries, isActive, ref });
 
-  return (
-    <Article ref={ref} id="slideshow">
-      {htmlArray.map((html, i) => (
-        <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
-      ))}
-    </Article>
-  );
-});
+    return (
+      <Article ref={ref} id="slideshow">
+        {htmlArray.map((html, i) => (
+          <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
+        ))}
+      </Article>
+    );
+  }
+);
+
+const Slideshow = memo(ForwardRefComponent);
 
 export { Slideshow };

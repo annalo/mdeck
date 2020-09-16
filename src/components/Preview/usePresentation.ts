@@ -4,7 +4,7 @@ import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import { useSlideEntries } from "contexts/SlideObserver";
 
-function usePresentation(): () => void {
+function usePresentation(slideshowRef: any): () => void {
   const [presentationMode, togglePresentation] = useState(false);
   const [slideNumber, setSlideNumber] = useState<SlideNumber>(1);
 
@@ -12,9 +12,8 @@ function usePresentation(): () => void {
   const slideCount = Object.keys(slideEntries).length;
 
   const requestPresentation = useCallback(() => {
-    const slideshow = document.querySelector("#slideshow");
-    if (slideshow) (screenfull as Screenfull).request(slideshow);
-  }, []);
+    (screenfull as Screenfull).request(slideshowRef.current);
+  }, [slideshowRef]);
 
   useEffect(() => {
     const fullScreen = screenfull as Screenfull; // for Typescript
