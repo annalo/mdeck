@@ -1,5 +1,5 @@
 declare type SlideNumber = number;
-declare type SlideElement = HTMLDivElement;
+declare type SlideElement = HTMLElement;
 
 declare namespace SlideObserver {
   declare interface Entries {

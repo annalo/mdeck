@@ -3,7 +3,7 @@ import type { RefObject } from "react";
 import { useSlideObserver } from "contexts/SlideObserver";
 
 interface UseSlideObserveProps {
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLElement>;
   slideNumber: number;
 }
 

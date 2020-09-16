@@ -9,7 +9,7 @@ import {
 
 interface UseCodeLineObserveProps {
   elements: SlideContentElements;
-  ref: RefObject<HTMLDivElement>;
+  ref: RefObject<HTMLElement>;
 }
 
 function useCodeLineObserve({ elements, ref }: UseCodeLineObserveProps): void {
