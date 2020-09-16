@@ -5,22 +5,20 @@ import screenfull, { Screenfull } from "screenfull";
 import { useSlideNavigation } from "./usePresentationSlideNavigation";
 
 function usePresentation(slideshowRef: RefObject<HTMLElement>): () => void {
-  const [presentationMode, togglePresentation] = useState(false);
+  const [isActive, togglePresentation] = useState(false);
+  const { nextSlide, previousSlide } = useSlideNavigation(isActive);
 
   const requestPresentation = useCallback(() => {
     if (slideshowRef.current)
       (screenfull as Screenfull).request(slideshowRef.current);
   }, [slideshowRef]);
 
-  const { nextSlide, previousSlide } = useSlideNavigation(presentationMode);
-
   useEffect(() => {
-    const fullScreen = screenfull as Screenfull; // for Typescript
-    const setPresentationMode = () =>
-      togglePresentation(fullScreen.isFullscreen);
+    const sf = screenfull as Screenfull; // for Typescript
+    const setIsActive = () => togglePresentation(sf.isFullscreen);
 
-    fullScreen.on("change", setPresentationMode);
-    return () => fullScreen.off("change", setPresentationMode);
+    sf.on("change", setIsActive);
+    return () => sf.off("change", setIsActive);
   }, []);
 
   useEffect(() => {
@@ -44,12 +42,12 @@ function usePresentation(slideshowRef: RefObject<HTMLElement>): () => void {
       }
     };
 
-    presentationMode
+    isActive
       ? document.addEventListener("keydown", handleKeyDown)
       : document.removeEventListener("keydown", handleKeyDown);
 
     return () => document.removeEventListener("keydown", handleKeyDown);
-  }, [nextSlide, previousSlide, presentationMode]);
+  }, [nextSlide, previousSlide, isActive]);
 
   return requestPresentation;
 }
