@@ -25,6 +25,15 @@ exports[`<TextEditor /> should render and match the snapshot 1`] = `
   outline: none;
   padding: 1em;
   resize: none;
+  -ms-overflow-style: none;
+  -webkit-scrollbar-width: none;
+  -moz-scrollbar-width: none;
+  -ms-scrollbar-width: none;
+  scrollbar-width: none;
+}
+
+.c1::-webkit-scrollbar {
+  display: none;
 }
 
 <div

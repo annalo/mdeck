@@ -7,6 +7,49 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
   overflow: auto;
 }
 
+.c1:fullscreen {
+  -webkit-scroll-snap-type: y mandatory;
+  -moz-scroll-snap-type: y mandatory;
+  -ms-scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory;
+}
+
+.c1:fullscreen .slide {
+  display: grid;
+  height: 100%;
+  -webkit-scroll-snap-align: start;
+  -moz-scroll-snap-align: start;
+  -ms-scroll-snap-align: start;
+  scroll-snap-align: start;
+}
+
+.c1:fullscreen .slide svg {
+  margin: auto;
+}
+
+.c1:-webkit-full-screen {
+  background-color: rgba(255,255,255,0);
+  height: 100%;
+  -webkit-scroll-snap-type: y mandatory;
+  -moz-scroll-snap-type: y mandatory;
+  -ms-scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory;
+  width: 100%;
+}
+
+.c1:-webkit-full-screen .slide {
+  display: grid;
+  height: 100%;
+  -webkit-scroll-snap-align: start;
+  -moz-scroll-snap-align: start;
+  -ms-scroll-snap-align: start;
+  scroll-snap-align: start;
+}
+
+.c1:-webkit-full-screen .slide svg {
+  margin: auto;
+}
+
 .c0 {
   display: -webkit-box;
   display: -webkit-flex;
@@ -20,6 +63,12 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
   flex-direction: column;
 }
 
+.c2 {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
 <div
     class="c0"
   >
@@ -27,6 +76,13 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
       class="c1"
       id="slideshow"
     />
+    <button
+      class="c2"
+      disabled=""
+      type="button"
+    >
+      FULLSCREEN
+    </button>
   </div>
 </DocumentFragment>
 `;

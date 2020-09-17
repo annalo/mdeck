@@ -1,50 +1,76 @@
-import React, { memo, useRef } from "react";
+import React, { forwardRef, memo } from "react";
+import type { Dispatch } from "react";
 import styled from "styled-components";
 
-import {
-  useMarkdownDispatch,
-  useMarkdownState,
-} from "contexts/MarkdownContext";
+import type { MarkdownContextReducerAction } from "types/markdown-context-reducer-action";
+
+import { useCodeLineEntries } from "contexts/CodeLineObserver";
 
 import { Slide } from "components/Slide/Loadable";
-
 import { usePaneIsActive } from "utils/usePaneIsActive";
-import { useObservable } from "./useObservable";
 import { useSyncSlideshow } from "./useSyncSlideshow";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
-import { useWorker } from "./useWorker";
+
+interface SlideshowProps {
+  dispatch: Dispatch<MarkdownContextReducerAction>;
+  htmlArray: HtmlArray;
+  textLineNumber: LineNumber;
+}
 
 const Article = styled.article`
   height: 100%;
   overflow: auto;
+
+  &:fullscreen {
+    scroll-snap-type: y mandatory;
+
+    .slide {
+      display: grid;
+      height: 100%;
+      scroll-snap-align: start;
+
+      svg {
+        margin: auto;
+      }
+    }
+  }
+
+  &:-webkit-full-screen {
+    background-color: rgba(255, 255, 255, 0);
+    height: 100%;
+    scroll-snap-type: y mandatory;
+    width: 100%;
+
+    .slide {
+      display: grid;
+      height: 100%;
+      scroll-snap-align: start;
+
+      svg {
+        margin: auto;
+      }
+    }
+  }
 `;
 
-const Slideshow = memo(function Slideshow() {
-  const ref = useRef<HTMLDivElement>(null);
+const ForwardRefSlideshowComponent = forwardRef<HTMLElement, SlideshowProps>(
+  ({ dispatch, htmlArray, textLineNumber }, ref) => {
+    const isActive = usePaneIsActive({ ref, initialValue: false });
+    const entries = useCodeLineEntries();
 
-  const dispatch = useMarkdownDispatch();
-  const { htmlArray, md, textLineNumber } = useMarkdownState();
+    useSyncSlideshow({ entries, textLineNumber });
+    useTrackSlideshowScroll({ dispatch, entries, isActive, ref });
 
-  const isActive = usePaneIsActive({ ref, initialValue: false });
-  const { entries, observe } = useObservable();
+    return (
+      <Article ref={ref} id="slideshow">
+        {htmlArray.map((html, i) => (
+          <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
+        ))}
+      </Article>
+    );
+  }
+);
 
-  useSyncSlideshow({ entries, textLineNumber });
-  useTrackSlideshowScroll({ dispatch, entries, isActive, ref });
-
-  useWorker({ dispatch, md });
-
-  return (
-    <Article ref={ref} id="slideshow">
-      {htmlArray.map((html, i) => (
-        <Slide
-          key={`slide-${i + 1}`}
-          htmlString={html}
-          index={i}
-          observe={observe}
-        />
-      ))}
-    </Article>
-  );
-});
+const Slideshow = memo(ForwardRefSlideshowComponent);
 
 export { Slideshow };

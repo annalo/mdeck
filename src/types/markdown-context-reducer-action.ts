@@ -1,15 +1,3 @@
-export declare interface MarkdownContextProviderProps {
-  children: React.ReactNode;
-  initialState?: MarkdownContextState;
-}
-
-export declare interface MarkdownContextState {
-  htmlArray: HtmlArray;
-  md: MarkdownString;
-  slideshowLineNumber: LineNumber;
-  textLineNumber: LineNumber;
-}
-
 export enum MarkdownContextReducerActionType {
   SetHtmlArray = "SET_HTML_STRING",
   SetMd = "SET_MD",

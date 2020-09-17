@@ -1,24 +1,32 @@
 import React, { memo, useRef } from "react";
+import styled from "styled-components";
 
 import { useElements } from "./useElements";
-import { useObserve } from "./useObserve";
+import { useSlideObserve } from "./useSlideObserve";
+import { useCodeLineObserve } from "./useCodeLineObserve";
+
+const Section = styled.section`
+  svg {
+    background-color: white;
+  }
+`;
 
 interface SlideProps {
   htmlString: HtmlString;
   index: number;
-  observe: SlideshowObserver.Observe;
 }
 
-const Slide = memo(function Slide({ htmlString, index, observe }: SlideProps) {
-  const ref = useRef<HTMLDivElement>(null);
+const Slide = memo(function Slide({ htmlString, index }: SlideProps) {
+  const ref = useRef<HTMLElement>(null);
 
   const elements = useElements({ htmlString });
-  useObserve({ elements, ref, observe });
+  useSlideObserve({ ref, slideNumber: index + 1 });
+  useCodeLineObserve({ elements, ref });
 
   return (
-    <div ref={ref} className="slide" id={`slide-${index + 1}`}>
+    <Section ref={ref} className="slide" id={`slide-${index + 1}`}>
       {elements}
-    </div>
+    </Section>
   );
 });
 

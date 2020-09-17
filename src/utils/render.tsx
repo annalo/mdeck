@@ -6,7 +6,7 @@ interface Node {
   attribs: Record<string, string>;
 }
 
-function render(htmlString: string): SlideElements {
+function render(htmlString: HtmlString): SlideContentElements {
   const TABLE_TAGS = ["table", "thead", "tbody", "tr"];
   function isTableDescendent(parent) {
     return parent && TABLE_TAGS.includes(parent.name);

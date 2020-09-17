@@ -5,7 +5,7 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
-import { MarkdownContextReducerActionType } from "types/markdown-context";
+import { MarkdownContextReducerActionType } from "types/markdown-context-reducer-action";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 import { useSyncTextArea } from "./useSyncTextArea";
@@ -28,6 +28,12 @@ const TextArea = styled.textarea`
   outline: none;
   padding: 1em;
   resize: none;
+  /* Chrome, Safari and Opera */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 `;
 
 const TextEditor = memo(function TextEditor() {

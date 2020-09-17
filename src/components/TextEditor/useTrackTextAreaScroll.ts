@@ -6,7 +6,7 @@ import type { Dispatch, RefObject } from "react";
 import {
   MarkdownContextReducerAction,
   MarkdownContextReducerActionType,
-} from "types/markdown-context";
+} from "types/markdown-context-reducer-action";
 
 interface UseTrackTextAreaScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
