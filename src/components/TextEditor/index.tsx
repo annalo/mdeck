@@ -28,6 +28,7 @@ const TextArea = styled.textarea`
   outline: none;
   padding: 1em;
   resize: none;
+  tab-size: 2;
   /* Chrome, Safari and Opera */
   ::-webkit-scrollbar {
     display: none;
@@ -62,9 +63,29 @@ const TextEditor = memo(function TextEditor() {
     });
   };
 
+  const handleKeyDown = (e) => {
+    // support tabs
+    if (e.keyCode === 9) {
+      const { target } = e;
+      const val = target.value;
+      const start = target.selectionStart;
+      const end = target.selectionEnd;
+
+      target.value = `${val.substring(0, start)}\t${val.substring(end)}`;
+      target.selectionStart = target.selectionEnd = start + 1; // eslint-disable-line no-multi-assign
+
+      e.preventDefault();
+    }
+  };
   return (
     <Container>
-      <TextArea ref={ref} autoFocus onChange={handleInputChange} value={md} />
+      <TextArea
+        ref={ref}
+        autoFocus
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        value={md}
+      />
     </Container>
   );
 });
