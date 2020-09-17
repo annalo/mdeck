@@ -5,7 +5,7 @@ import { useSlideEntries } from "contexts/SlideObserver";
 
 const INITIAL_SLIDE_NUMBER = 1;
 
-function useSlideNavigation(isActive: boolean): void {
+function useSlideNavigation(isActive: boolean): SlideNumber {
   const [slideNumber, setSlideNumber] = useState<SlideNumber>(
     INITIAL_SLIDE_NUMBER
   );
@@ -13,10 +13,10 @@ function useSlideNavigation(isActive: boolean): void {
   const slideEntries = useSlideEntries();
   const slideCount = Object.keys(slideEntries).length;
 
-  // Resets slide number when isActive changes
+  // Resets slide number when isActive updates
   useEffect(() => setSlideNumber(INITIAL_SLIDE_NUMBER), [isActive]);
 
-  // Scrolls to slide when slide number changes
+  // Scrolls to slide when slide number updates
   useEffect(() => {
     if (isActive) scrollIntoView(slideEntries[slideNumber]);
   }, [isActive, slideNumber, slideEntries]);
@@ -64,6 +64,8 @@ function useSlideNavigation(isActive: boolean): void {
 
     return () => document.removeEventListener("keydown", handleKeyDown);
   }, [nextSlide, previousSlide, isActive]);
+
+  return slideNumber;
 }
 
-export { useSlideNavigation };
+export { INITIAL_SLIDE_NUMBER, useSlideNavigation };

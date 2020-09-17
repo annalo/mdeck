@@ -10,9 +10,3 @@ Object.defineProperty(Element.prototype, "scroll", {
   writable: true,
   configurable: true,
 });
-
-// fullscreen library will cause an error in jest tests
-// if it  can't find fullscreen methods on document
-["requestFullscreen", "exitFullscreen"].forEach(
-  (each) => (document[each] = () => {})
-);
