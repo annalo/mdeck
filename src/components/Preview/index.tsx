@@ -2,6 +2,7 @@ import React, { memo, useRef } from "react";
 import styled from "styled-components";
 
 import {
+  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
@@ -38,7 +39,11 @@ const Preview = memo(function Preview() {
         htmlArray={htmlArray}
         textLineNumber={textLineNumber}
       />
-      <FullscreenButton onClick={() => requestPresentation()} type="button">
+      <FullscreenButton
+        disabled={md === MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.md}
+        onClick={() => requestPresentation()}
+        type="button"
+      >
         FULLSCREEN
       </FullscreenButton>
     </Div>
