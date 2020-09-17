@@ -11,7 +11,7 @@ module.exports = {
     path: path.resolve(__dirname, "public"),
     pathinfo: false,
     filename: "bundle.js",
-    publicPath: "/",
+    publicPath: isProduction ? "/mdeck/" : "/",
   },
   mode: isProduction ? "production" : "development",
   module: {

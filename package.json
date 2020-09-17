@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "deploy": "gh-pages -d dist",
+    "deploy": "gh-pages -d public",
     "start": "cross-env NODE_ENV=development webpack-dev-server",
     "eslint": "eslint --ext js,ts,tsx",
     "lint": "yarn eslint src",
