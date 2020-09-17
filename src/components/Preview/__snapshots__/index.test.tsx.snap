@@ -78,6 +78,7 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
     />
     <button
       class="c2"
+      disabled=""
       type="button"
     >
       FULLSCREEN

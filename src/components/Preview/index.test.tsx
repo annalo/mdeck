@@ -4,6 +4,7 @@ import { renderHook } from "@testing-library/react-hooks";
 import screenfull from "screenfull";
 
 import {
+  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   MarkdownProvider,
   useMarkdownDispatch,
 } from "contexts/MarkdownContext";
@@ -36,8 +37,25 @@ describe("<Preview />", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  test("should fullscreen slideshow when fullscreen button is clicked", () => {
+  test("should disable FULLSCREEN button if no markdown string", () => {
     render(<Preview />, { wrapper });
+
+    const button = screen.getByRole("button", { name: "FULLSCREEN" });
+    expect(button).toBeDisabled();
+  });
+
+  test("should fullscreen slideshow when fullscreen button is clicked", () => {
+    const md = "test test";
+    const wrapperWithState = ({ children }) => (
+      <MarkdownProvider
+        initialState={{ ...MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE, md }}
+      >
+        <SlideObserverProvider>
+          <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+        </SlideObserverProvider>
+      </MarkdownProvider>
+    );
+    render(<Preview />, { wrapper: wrapperWithState });
 
     const button = screen.getByRole("button", { name: "FULLSCREEN" });
     fireEvent.click(button);
