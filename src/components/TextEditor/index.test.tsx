@@ -30,9 +30,26 @@ describe("<TextEditor />", () => {
     );
     const textarea = screen.getByRole("textbox");
 
-    expect(textarea.textContent).toBe("");
+    expect(textarea).toHaveValue("");
     userEvent.type(textarea, "# Hello World!");
     expect(textarea).toHaveValue("# Hello World!");
+  });
+
+  test("should support tabs in textarea", () => {
+    render(
+      <MarkdownProvider>
+        <TextEditor />
+      </MarkdownProvider>
+    );
+    const textarea = screen.getByRole("textbox");
+
+    expect(textarea).toHaveValue("");
+
+    userEvent.type(textarea, "Hello");
+    fireEvent.keyDown(textarea, { key: "Tab", keyCode: 9 });
+    userEvent.type(textarea, "World!");
+
+    expect(textarea).toHaveValue("Hello\tWorld!");
   });
 
   describe("useSyncTextArea", () => {
