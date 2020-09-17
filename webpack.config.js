@@ -8,7 +8,7 @@ const isProduction = process.env.NODE_ENV === "production";
 module.exports = {
   entry: path.resolve(__dirname, "src", "index.tsx"),
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "public"),
     pathinfo: false,
     filename: "bundle.js",
     publicPath: "/",
@@ -71,7 +71,7 @@ module.exports = {
       },
     }),
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, "dist", "index.html"),
+      template: path.resolve(__dirname, "public", "index.html"),
       typescript: {
         diagnosticOptions: {
           semantic: true,
@@ -82,7 +82,7 @@ module.exports = {
   ],
   devServer: {
     compress: true,
-    contentBase: path.resolve(__dirname, "dist"),
+    contentBase: path.resolve(__dirname, "public"),
     clientLogLevel: "silent",
     historyApiFallback: true,
     hot: true,
