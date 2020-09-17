@@ -62,7 +62,6 @@ const TextEditor = memo(function TextEditor() {
       md: e.target.value,
     });
   };
-
   const handleKeyDown = (e) => {
     // support tabs
     if (e.keyCode === 9) {
@@ -77,6 +76,7 @@ const TextEditor = memo(function TextEditor() {
       e.preventDefault();
     }
   };
+
   return (
     <Container>
       <TextArea
