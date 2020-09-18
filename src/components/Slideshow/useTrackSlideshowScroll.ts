@@ -24,7 +24,7 @@ function useTrackSlideshowScroll({
   ref,
 }: UseTrackSlideshowScrollProps): void {
   /*
-   * Finds the top most element in view (within 0px - 36px from the top)
+   * Finds the top most element in view (within 0px - 18px from the top)
    * IF element THEN set `slideshowLineNumber` to it's data-line number
    */
   const handleScroll = useMemo(
