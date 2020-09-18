@@ -1,59 +1,14 @@
 import React from "react";
-import styled from "styled-components";
 
 import SaveIcon from "icons/save.svg";
 import FileIcon from "icons/folder-add-file.svg";
-import MaximizeIcon from "icons/maximize-expand.svg";
+import CameraIcon from "icons/video-camera.svg";
 
-const NAVBAR_HEIGHT = 18;
-
-const NavBar = styled.nav`
-  * {
-    padding: 0;
-    margin: 0;
-  }
-
-  background-color: #ededed;
-  -webkit-box-shadow: 0px 1px 2px #e0e0e0;
-  -moz-box-shadow: 0px 1px 2px #e0e0e0;
-  box-shadow: 0px 1px 2px #e0e0e0;
-
-  height: ${NAVBAR_HEIGHT}px;
-  overflow: hidden;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  padding: 0 8px;
-`;
-const Menu = styled.ul`
-  display: flex;
-  /* align-items: center; */
-  /* justify-content: center; */
-  height: ${NAVBAR_HEIGHT}px;
-`;
-const MenuItem = styled.li`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* flex: 1; */
-
-  margin: 0 3px;
-
-  svg {
-    height: 85%;
-    fill: #d4d4d4;
-    circle,
-    path {
-      stroke: #2f2f2f;
-    }
-  }
-`;
-const MenuItemRight = styled(MenuItem)`
-  margin-left: auto;
-`;
+import { Menu, MenuItem, MenuItemRight } from "./Menu";
+import { Navbar } from "./Navbar";
 
 const Toolbar = (): React.ReactElement => (
-  <NavBar>
+  <Navbar>
     <Menu>
       <MenuItem>
         <SaveIcon />
@@ -62,10 +17,10 @@ const Toolbar = (): React.ReactElement => (
         <FileIcon />
       </MenuItem>
       <MenuItemRight>
-        <MaximizeIcon />
+        <CameraIcon />
       </MenuItemRight>
     </Menu>
-  </NavBar>
+  </Navbar>
 );
 
-export { NAVBAR_HEIGHT, Toolbar };
+export { Toolbar };
