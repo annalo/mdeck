@@ -1,0 +1,205 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Toolbar /> should render and match the snapshot 1`] = `
+<DocumentFragment>
+  .c0 {
+  background-color: #ededed;
+  -webkit-box-shadow: 0px 1px 2px #e0e0e0;
+  -moz-box-shadow: 0px 1px 2px #e0e0e0;
+  box-shadow: 0px 1px 2px #e0e0e0;
+  height: 18px;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 0 8px;
+}
+
+.c0 * {
+  padding: 0;
+  margin: 0;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 18px;
+}
+
+.c4 {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 3px;
+  margin-left: auto;
+}
+
+.c4 svg {
+  fill: #d4d4d4;
+}
+
+.c4 svg circle,
+.c4 svg path {
+  stroke: #888888;
+}
+
+.c4 svg {
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.c4:hover svg {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  fill: #bababa;
+}
+
+.c4:hover svg circle,
+.c4:hover svg path {
+  stroke: #2f2f2f;
+}
+
+.c3 {
+  -webkit-transition: opacity 0.2s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+  position: absolute;
+  opacity: 0;
+  color: #2f2f2f;
+  font-weight: bolder;
+  font-size: 8px;
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.c3:hover {
+  opacity: 1;
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.c2 {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 3px;
+}
+
+.c2 svg {
+  fill: #d4d4d4;
+}
+
+.c2 svg circle,
+.c2 svg path {
+  stroke: #888888;
+}
+
+.c2 svg {
+  -webkit-transition: 0.5s ease-in-out;
+  -moz-transition: 0.5s ease-in-out;
+  -o-transition: 0.5s ease-in-out;
+  -webkit-transition: 0.5s ease-in-out;
+  transition: 0.5s ease-in-out;
+}
+
+.c2:hover svg {
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -o-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+  fill: #bababa;
+}
+
+.c2:hover svg circle,
+.c2:hover svg path {
+  stroke: #2f2f2f;
+}
+
+.c2:hover svg {
+  -webkit-transition: "opacity 0.5s ease-in-out";
+  transition: "opacity 0.5s ease-in-out";
+  opacity: 0.3;
+  -webkit-transform: none;
+  -moz-transform: none;
+  -o-transform: none;
+  -ms-transform: none;
+  -webkit-transform: none;
+  -ms-transform: none;
+  transform: none;
+}
+
+<nav
+    class="c0"
+  >
+    <ul
+      class="c1"
+    >
+      <li
+        class="c2"
+      >
+        <svgr-mock />
+        <div
+          class="c3"
+        >
+          LOAD
+        </div>
+      </li>
+      <li
+        class="c2"
+      >
+        <svgr-mock />
+        <div
+          class="c3"
+        >
+          SAVE
+        </div>
+      </li>
+      <li
+        class="c4"
+      >
+        <svgr-mock />
+      </li>
+    </ul>
+  </nav>
+</DocumentFragment>
+`;
