@@ -19,13 +19,14 @@ exports[`<TextEditor /> should render and match the snapshot 1`] = `
 .c1 {
   background-color: transparent;
   border: none;
+  height: 100%;
+  outline: none;
+  resize: none;
   color: #2f2f2f;
   font-size: 15px;
-  height: 100%;
+  margin-bottom: 0.3em;
   line-height: 18px;
-  outline: none;
   padding: 0.5em;
-  resize: none;
   tab-size: 2;
   -ms-overflow-style: none;
   -webkit-scrollbar-width: none;
