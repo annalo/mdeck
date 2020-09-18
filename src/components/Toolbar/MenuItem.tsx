@@ -12,18 +12,11 @@ const iconStyle = css`
 
 const iconAnimation = css`
   svg {
-    -webkit-transition: 0.5s ease-in-out;
-    -moz-transition: 0.5s ease-in-out;
-    -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
   }
 
   :hover {
     svg {
-      -webkit-transform: scale(1.1);
-      -moz-transform: scale(1.1);
-      -o-transform: scale(1.1);
-      -ms-transform: scale(1.1);
       transform: scale(1.1);
 
       fill: #bababa;

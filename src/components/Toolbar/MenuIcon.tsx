@@ -12,12 +12,8 @@ interface MenuIconProps {
 const StyledMenuItem = styled(MenuItem)`
   :hover {
     svg {
-      transition: "opacity 0.5s ease-in-out";
+      transition: opacity 0.4s ease-in-out;
       opacity: 0.3;
-      -webkit-transform: none;
-      -moz-transform: none;
-      -o-transform: none;
-      -ms-transform: none;
       transform: none;
     }
   }

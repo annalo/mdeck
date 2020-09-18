@@ -9,8 +9,6 @@ const Navbar = styled.nav`
   }
 
   background-color: #ededed;
-  -webkit-box-shadow: 0px 0px 1.5px #2f2f2f;
-  -moz-box-shadow: 0px 0px 1.5px #2f2f2f;
   box-shadow: 0px 0px 1.5px #2f2f2f;
 
   height: ${NAVBAR_HEIGHT}px;

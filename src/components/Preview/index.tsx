@@ -17,6 +17,7 @@ const Div = styled.div`
   flex-direction: column;
 `;
 const FullscreenButton = styled.button`
+  z-index: 10000;
   position: absolute;
   right: 0;
   bottom: 0;
