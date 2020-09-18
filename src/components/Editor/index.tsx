@@ -19,7 +19,6 @@ const Container = styled.div`
 const Editor = memo(function Editor() {
   return (
     <>
-      <Toolbar />
       <Container>
         <MarkdownProvider>
           <TextEditor />
@@ -31,6 +30,8 @@ const Editor = memo(function Editor() {
           </SlideObserverProvider>
         </MarkdownProvider>
       </Container>
+
+      <Toolbar />
     </>
   );
 });
