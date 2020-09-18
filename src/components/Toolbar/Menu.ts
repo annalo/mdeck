@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components";
-import { NAVBAR_HEIGHT } from "./Navbarssss";
+import { NAVBAR_HEIGHT } from "./Navbar";
 
 const Menu = styled.ul`
   display: flex;

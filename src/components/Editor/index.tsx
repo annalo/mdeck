@@ -5,7 +5,7 @@ import { MarkdownProvider } from "contexts/MarkdownContext";
 import { SlideObserverProvider } from "contexts/SlideObserver";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
-import { NAVBAR_HEIGHT } from "components/Toolbar";
+import { NAVBAR_HEIGHT } from "components/Toolbar/Navbar";
 import { Toolbar } from "components/Toolbar/Loadable";
 import { TextEditor } from "components/TextEditor/Loadable";
 import { Preview } from "components/Preview/Loadable";
