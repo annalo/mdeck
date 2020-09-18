@@ -1,23 +1,26 @@
 import React from "react";
 
 import SaveIcon from "icons/save.svg";
-import FileIcon from "icons/folder-add-file.svg";
-import CameraIcon from "icons/video-camera.svg";
+import OpenFileIcon from "icons/folder-add-file.svg";
+import PresentationIcon from "icons/video-camera.svg";
 
-import { Menu, MenuItem, MenuItemRight } from "./Menu";
+import { Menu } from "./Menu";
+import { MenuIcon } from "./MenuIcon";
+import { MenuItemRight } from "./MenuItem";
 import { Navbar } from "./Navbar";
 
 const Toolbar = (): React.ReactElement => (
   <Navbar>
     <Menu>
-      <MenuItem>
+      <MenuIcon tooltip="LOAD">
+        <OpenFileIcon />
+      </MenuIcon>
+      <MenuIcon tooltip="SAVE">
         <SaveIcon />
-      </MenuItem>
-      <MenuItem>
-        <FileIcon />
-      </MenuItem>
+      </MenuIcon>
+
       <MenuItemRight>
-        <CameraIcon />
+        <PresentationIcon />
       </MenuItemRight>
     </Menu>
   </Navbar>
