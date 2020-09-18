@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const NAVBAR_HEIGHT = 18;
+const NAVBAR_HEIGHT = 25;
 
 const Navbar = styled.nav`
   * {
@@ -16,9 +16,9 @@ const Navbar = styled.nav`
   height: ${NAVBAR_HEIGHT}px;
   overflow: hidden;
   position: fixed;
-  top: 0;
+  bottom: 0;
   width: 100%;
-  padding: 0 8px;
+  padding: 0 10px;
 `;
 
 export { NAVBAR_HEIGHT, Navbar };

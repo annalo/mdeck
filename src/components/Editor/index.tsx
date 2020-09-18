@@ -13,7 +13,7 @@ import { Preview } from "components/Preview/Loadable";
 const Container = styled.div`
   display: flex;
   height: 100%;
-  padding-top: ${NAVBAR_HEIGHT}px;
+  padding-bottom: ${NAVBAR_HEIGHT + 2}px;
 `;
 
 const Editor = memo(function Editor() {
@@ -23,6 +23,7 @@ const Editor = memo(function Editor() {
       <Container>
         <MarkdownProvider>
           <TextEditor />
+
           <SlideObserverProvider>
             <CodeLineObserverProvider>
               <Preview />

@@ -8,7 +8,6 @@ import {
   MarkdownContextReducerActionType,
 } from "types/markdown-context-reducer-action";
 
-import { NAVBAR_HEIGHT } from "components/Toolbar/Navbar";
 import { TEXT_AREA_LINE_HEIGHT } from "components/TextEditor";
 
 interface UseTrackSlideshowScrollProps {
@@ -31,8 +30,10 @@ function useTrackSlideshowScroll({
   const handleScroll = useMemo(
     () =>
       throttle(() => {
-        const topBounds = R.add(NAVBAR_HEIGHT, TEXT_AREA_LINE_HEIGHT);
-        const withinBounds = R.both(R.gte(R.__, 0), R.lte(R.__, topBounds));
+        const withinBounds = R.both(
+          R.gte(R.__, 0),
+          R.lte(R.__, TEXT_AREA_LINE_HEIGHT)
+        );
         const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
         const setLineNumber = (lineNumber) =>
           dispatch({

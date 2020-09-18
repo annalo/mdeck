@@ -22,20 +22,22 @@ const Container = styled.div`
 const TextArea = styled.textarea`
   background-color: transparent;
   border: none;
+  height: 100%;
+  outline: none;
+  resize: none;
+
   color: #2f2f2f;
   font-size: 15px;
-  height: 100%;
+  margin-bottom: 0.3em;
   line-height: ${TEXT_AREA_LINE_HEIGHT}px;
-  outline: none;
   padding: 0.5em;
-  resize: none;
   tab-size: 2;
-  /* Chrome, Safari and Opera */
+
   ::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 `;
 
 const TextEditor = memo(function TextEditor() {
