@@ -8,6 +8,9 @@ import {
   MarkdownContextReducerActionType,
 } from "types/markdown-context-reducer-action";
 
+import { NAVBAR_HEIGHT } from "components/Toolbar/Navbar";
+import { TEXT_AREA_LINE_HEIGHT } from "components/TextEditor";
+
 interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
   entries: SlideshowObserver.Entries;
@@ -22,13 +25,14 @@ function useTrackSlideshowScroll({
   ref,
 }: UseTrackSlideshowScrollProps): void {
   /*
-   * Finds the top most element in view (within 0px - 18px from the top)
+   * Finds the top most element in view (within 0px - 36px from the top)
    * IF element THEN set `slideshowLineNumber` to it's data-line number
    */
   const handleScroll = useMemo(
     () =>
       throttle(() => {
-        const withinBounds = R.both(R.gte(R.__, 0), R.lte(R.__, 18));
+        const topBounds = R.add(NAVBAR_HEIGHT, TEXT_AREA_LINE_HEIGHT);
+        const withinBounds = R.both(R.gte(R.__, 0), R.lte(R.__, topBounds));
         const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
         const setLineNumber = (lineNumber) =>
           dispatch({
