@@ -22,11 +22,12 @@ const Container = styled.div`
 const TextArea = styled.textarea`
   background-color: transparent;
   border: none;
+  color: #2f2f2f;
   font-size: 15px;
   height: 100%;
   line-height: ${TEXT_AREA_LINE_HEIGHT}px;
   outline: none;
-  padding: 1em;
+  padding: 0.5em;
   resize: none;
   tab-size: 2;
   /* Chrome, Safari and Opera */

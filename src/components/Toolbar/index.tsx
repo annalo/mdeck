@@ -41,7 +41,11 @@ const MenuItem = styled.li`
 
   svg {
     height: 85%;
-    fill: white;
+    fill: #d4d4d4;
+    circle,
+    path {
+      stroke: #2f2f2f;
+    }
   }
 `;
 const MenuItemRight = styled(MenuItem)`
