@@ -36,8 +36,12 @@ module.exports = {
         use: ["style-loader", "css-loader"],
       },
       {
-        test: /\.(png|svg|jpg|gif)$/,
+        test: /\.(png|jpg|gif)$/,
         use: ["file-loader"],
+      },
+      {
+        test: /\.svg$/,
+        use: ["@svgr/webpack"],
       },
     ],
   },
@@ -47,6 +51,7 @@ module.exports = {
       types: path.resolve(__dirname, "src/types/"),
       components: path.resolve(__dirname, "src/components/"),
       contexts: path.resolve(__dirname, "src/contexts/"),
+      icons: path.resolve(__dirname, "src/icons/"),
       utils: path.resolve(__dirname, "src/utils/"),
     },
   },
