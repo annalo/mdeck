@@ -8,7 +8,7 @@ exports[`<Editor /> should render and match the snapshot 1`] = `
   display: -ms-flexbox;
   display: flex;
   height: 100%;
-  padding-bottom: 27px;
+  padding-bottom: NaNpx;
 }
 
 <div
