@@ -1,7 +1,5 @@
 import styled from "styled-components";
 
-const NAVBAR_HEIGHT = 25;
-
 const Navbar = styled.nav`
   * {
     padding: 0;
@@ -11,7 +9,7 @@ const Navbar = styled.nav`
   background-color: #ededed;
   box-shadow: 0px 0px 1.5px ${(props) => props.theme.textColor};
 
-  height: ${NAVBAR_HEIGHT}px;
+  height: ${(props) => props.theme.navBarHeight}px;
   overflow: hidden;
   position: fixed;
   bottom: 0;
@@ -19,4 +17,4 @@ const Navbar = styled.nav`
   padding: 0 10px;
 `;
 
-export { NAVBAR_HEIGHT, Navbar };
+export { Navbar };
