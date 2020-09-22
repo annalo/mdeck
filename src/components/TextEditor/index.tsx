@@ -14,7 +14,7 @@ import { useSyncTextArea } from "./useSyncTextArea";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
 const Container = styled.div`
-  background-color: #fafafa;
+  background-color: ${(props) => props.theme.textAreaBackgroundColor};
   display: flex;
   flex: 1;
   flex-direction: column;

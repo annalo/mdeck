@@ -2,10 +2,10 @@ import styled, { css } from "styled-components";
 
 const iconStyle = css`
   svg {
-    fill: #d4d4d4;
+    fill: ${(props) => props.theme.colorScheme.lightgrey};
     circle,
     path {
-      stroke: #888888;
+      stroke: ${(props) => props.theme.colorScheme.grey};
     }
   }
 `;
@@ -18,11 +18,10 @@ const iconAnimation = css`
   :hover {
     svg {
       transform: scale(1.1);
-
-      fill: #bababa;
+      fill: ${(props) => props.theme.colorScheme.silver};
       circle,
       path {
-        stroke: #2f2f2f;
+        stroke: ${(props) => props.theme.textColor};
       }
     }
   }

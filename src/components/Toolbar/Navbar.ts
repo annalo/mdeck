@@ -9,7 +9,7 @@ const Navbar = styled.nav`
   }
 
   background-color: #ededed;
-  box-shadow: 0px 0px 1.5px #2f2f2f;
+  box-shadow: 0px 0px 1.5px ${(props) => props.theme.textColor};
 
   height: ${NAVBAR_HEIGHT}px;
   overflow: hidden;
