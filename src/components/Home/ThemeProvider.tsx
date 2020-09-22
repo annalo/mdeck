@@ -1,5 +1,5 @@
 import React from "react";
-import { ThemeProvider as StyledThemeProvider } from "styled-components";
+import { ThemeProvider as StyledComponentThemeProvider } from "styled-components";
 
 // light to dark
 const colorScheme = {
@@ -22,7 +22,9 @@ const ThemeProvider = ({
 }: {
   children: React.ReactNode;
 }): React.ReactElement => (
-  <StyledThemeProvider theme={theme}>{children}</StyledThemeProvider>
+  <StyledComponentThemeProvider theme={theme}>
+    {children}
+  </StyledComponentThemeProvider>
 );
 
 export { theme, ThemeProvider };
