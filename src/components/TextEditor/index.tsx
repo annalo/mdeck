@@ -8,33 +8,16 @@ import {
 import { MarkdownContextReducerActionType } from "types/markdown-context-reducer-action";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
+
+import { TEXT_AREA_LINE_HEIGHT, TextArea } from "./TextArea";
 import { useSyncTextArea } from "./useSyncTextArea";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
-const TEXT_AREA_LINE_HEIGHT = 18;
-
 const Container = styled.div`
-  background-color: #fafafa;
+  background-color: ${(props) => props.theme.textAreaBackgroundColor};
   display: flex;
   flex: 1;
   flex-direction: column;
-`;
-const TextArea = styled.textarea`
-  background-color: transparent;
-  border: none;
-  font-size: 15px;
-  height: 100%;
-  line-height: ${TEXT_AREA_LINE_HEIGHT}px;
-  outline: none;
-  padding: 1em;
-  resize: none;
-  tab-size: 2;
-  /* Chrome, Safari and Opera */
-  ::-webkit-scrollbar {
-    display: none;
-  }
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
 `;
 
 const TextEditor = memo(function TextEditor() {

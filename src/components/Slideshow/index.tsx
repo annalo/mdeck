@@ -28,7 +28,6 @@ const Article = styled.article`
       display: grid;
       height: 100%;
       scroll-snap-align: start;
-
       svg {
         margin: auto;
       }
@@ -37,15 +36,10 @@ const Article = styled.article`
 
   &:-webkit-full-screen {
     background-color: rgba(255, 255, 255, 0);
-    height: 100%;
-    scroll-snap-type: y mandatory;
-    width: 100%;
 
     .slide {
       display: grid;
       height: 100%;
-      scroll-snap-align: start;
-
       svg {
         margin: auto;
       }

@@ -8,6 +8,8 @@ import {
   MarkdownContextReducerActionType,
 } from "types/markdown-context-reducer-action";
 
+import { TEXT_AREA_LINE_HEIGHT } from "components/TextEditor/TextArea";
+
 interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
   entries: SlideshowObserver.Entries;
@@ -28,7 +30,10 @@ function useTrackSlideshowScroll({
   const handleScroll = useMemo(
     () =>
       throttle(() => {
-        const withinBounds = R.both(R.gte(R.__, 0), R.lte(R.__, 18));
+        const withinBounds = R.both(
+          R.gte(R.__, 0),
+          R.lte(R.__, TEXT_AREA_LINE_HEIGHT)
+        );
         const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
         const setLineNumber = (lineNumber) =>
           dispatch({

@@ -9,7 +9,8 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
-import { TEXT_AREA_LINE_HEIGHT, TextEditor } from ".";
+import { TextEditor } from ".";
+import { TEXT_AREA_LINE_HEIGHT } from "./TextArea";
 import { useSyncTextArea } from "./useSyncTextArea";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
