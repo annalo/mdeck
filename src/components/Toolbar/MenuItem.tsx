@@ -39,7 +39,7 @@ const MenuItem = styled.li`
 `;
 
 const MenuItemRight = styled(MenuItem)`
-  margin-left: auto;
+  margin-left: auto !important;
 `;
 
 export { MenuItem, MenuItemRight };
