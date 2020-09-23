@@ -54,7 +54,6 @@ module.exports = {
       contexts: path.resolve(__dirname, "src/contexts/"),
       icons: path.resolve(__dirname, "src/icons/"),
       utils: path.resolve(__dirname, "src/utils/"),
-      "test-utils": path.resolve(__dirname, "src/test-utils.tsx"),
     },
   },
   optimization: {
