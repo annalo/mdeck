@@ -6,8 +6,6 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
-import { SlideObserverProvider } from "contexts/SlideObserver";
-import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
 import { Slideshow } from "components/Slideshow";
 import { usePresentation } from "./usePresentation";
@@ -36,16 +34,12 @@ const Preview = memo(function Preview() {
 
   return (
     <Div>
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>
-          <Slideshow
-            ref={slideshowRef}
-            dispatch={dispatch}
-            htmlArray={htmlArray}
-            textLineNumber={textLineNumber}
-          />
-        </CodeLineObserverProvider>
-      </SlideObserverProvider>
+      <Slideshow
+        ref={slideshowRef}
+        dispatch={dispatch}
+        htmlArray={htmlArray}
+        textLineNumber={textLineNumber}
+      />
 
       <FullscreenButton
         disabled={md === MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.md}

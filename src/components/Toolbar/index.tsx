@@ -4,10 +4,10 @@ import SaveIcon from "icons/save.svg";
 import OpenFileIcon from "icons/folder-add-file.svg";
 import PresentationIcon from "icons/video-camera.svg";
 
+import { Header } from "./Header";
 import { Menu } from "./Menu";
 import { MenuIcon } from "./MenuIcon";
 import { MenuItemRight } from "./MenuItem";
-import { Header } from "./Header";
 
 const Toolbar = (): React.ReactElement => (
   <Header>
