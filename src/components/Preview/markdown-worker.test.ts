@@ -1,9 +1,8 @@
-import React from "react";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { act } from "@testing-library/react-hooks";
+import { renderHook } from "test-utils";
 
 import Worker from "worker-loader!./worker"; // eslint-disable-line
 import {
-  MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
@@ -12,19 +11,13 @@ import MarkdownWorker from "./markdown-worker";
 afterEach(() => jest.clearAllMocks());
 
 describe("MarkdownWorker", () => {
-  const wrapper = ({ children }) => (
-    <MarkdownContextProvider>{children}</MarkdownContextProvider>
-  );
   describe("worker", () => {
     test("should initialize with a new web worker", () => {
-      const { result } = renderHook(
-        () => {
-          const dispatch = useMarkdownDispatch();
-          const worker = new MarkdownWorker(dispatch);
-          return worker;
-        },
-        { wrapper }
-      );
+      const { result } = renderHook(() => {
+        const dispatch = useMarkdownDispatch();
+        const worker = new MarkdownWorker(dispatch);
+        return worker;
+      });
 
       expect(Worker).toHaveBeenCalledTimes(1);
       expect(result.current.worker).toBeInstanceOf(Worker);
@@ -32,15 +25,12 @@ describe("MarkdownWorker", () => {
 
     test("should set htmlArray on 'onmessage'", () => {
       const htmlArray = ["test", "test"];
-      const { result } = renderHook(
-        () => {
-          const dispatch = useMarkdownDispatch();
-          const state = useMarkdownState();
-          const markdownWorker = new MarkdownWorker(dispatch);
-          return { state, markdownWorker };
-        },
-        { wrapper }
-      );
+      const { result } = renderHook(() => {
+        const dispatch = useMarkdownDispatch();
+        const state = useMarkdownState();
+        const markdownWorker = new MarkdownWorker(dispatch);
+        return { state, markdownWorker };
+      });
 
       act(() =>
         result.current.markdownWorker.worker.onmessage({ data: htmlArray })
@@ -53,14 +43,11 @@ describe("MarkdownWorker", () => {
   describe("parse/1", () => {
     test("should post a message to worker with argument md", () => {
       const md = "## Title";
-      const { result } = renderHook(
-        () => {
-          const dispatch = useMarkdownDispatch();
-          const worker = new MarkdownWorker(dispatch);
-          return worker;
-        },
-        { wrapper }
-      );
+      const { result } = renderHook(() => {
+        const dispatch = useMarkdownDispatch();
+        const worker = new MarkdownWorker(dispatch);
+        return worker;
+      });
 
       act(() => result.current.parse(md));
 
@@ -73,14 +60,11 @@ describe("MarkdownWorker", () => {
 
   describe("terminate", () => {
     test("should terminate the web worker", () => {
-      const { result } = renderHook(
-        () => {
-          const dispatch = useMarkdownDispatch();
-          const worker = new MarkdownWorker(dispatch);
-          return worker;
-        },
-        { wrapper }
-      );
+      const { result } = renderHook(() => {
+        const dispatch = useMarkdownDispatch();
+        const worker = new MarkdownWorker(dispatch);
+        return worker;
+      });
 
       act(() => result.current.terminate());
 
