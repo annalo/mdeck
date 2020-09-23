@@ -5,7 +5,7 @@ import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownProvider,
+  MarkdownContextProvider,
 } from "contexts/MarkdownContext";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 import { SlideObserverProvider } from "contexts/SlideObserver";
@@ -26,13 +26,13 @@ describe("usePresentationSlideNavigation", () => {
   ];
   const slideEntries = { 1: htmlArray[0], 2: htmlArray[1] };
   const wrapper = ({ children }) => (
-    <MarkdownProvider
+    <MarkdownContextProvider
       initialState={{ ...MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE, htmlArray }}
     >
       <SlideObserverProvider initialEntries={slideEntries}>
         <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
       </SlideObserverProvider>
-    </MarkdownProvider>
+    </MarkdownContextProvider>
   );
 
   test("should start slideNumber on INITIAL_SLIDE_NUMBER", () => {

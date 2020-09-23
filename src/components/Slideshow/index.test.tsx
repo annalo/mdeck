@@ -5,7 +5,7 @@ import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownProvider,
+  MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
@@ -144,11 +144,11 @@ describe("<Slideshow />", () => {
     });
 
     const wrapper = ({ children }) => (
-      <MarkdownProvider>
+      <MarkdownContextProvider>
         <CodeLineObserverProvider initialEntries={initialEntries}>
           {children}
         </CodeLineObserverProvider>
-      </MarkdownProvider>
+      </MarkdownContextProvider>
     );
 
     test("should set slideshowLineNumber to the top most element's data-line if isActive", () => {

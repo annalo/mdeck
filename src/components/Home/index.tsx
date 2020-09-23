@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import { MarkdownProvider } from "contexts/MarkdownContext";
+import { MarkdownContextProvider } from "contexts/MarkdownContext";
 
 import { Toolbar } from "components/Toolbar/Loadable";
 import { Editor } from "components/Editor/Loadable";
@@ -14,11 +14,11 @@ const Container = styled.div`
 const Home: React.FC = () => (
   <ThemeProvider>
     <Container id="main">
-      <MarkdownProvider>
+      <MarkdownContextProvider>
         <Editor />
 
         <Toolbar />
-      </MarkdownProvider>
+      </MarkdownContextProvider>
     </Container>
   </ThemeProvider>
 );

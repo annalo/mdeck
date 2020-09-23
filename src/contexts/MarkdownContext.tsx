@@ -36,7 +36,7 @@ function reducer(state: MarkdownContextState, action: ReducerAction) {
   }
 }
 
-const MarkdownProvider: React.FC<MarkdownContextProviderProps> = ({
+const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = ({
   children,
   initialState, // optional param
 }: MarkdownContextProviderProps) => {
@@ -57,7 +57,7 @@ function useMarkdownDispatch(): React.Dispatch<ReducerAction> {
   const context = useContext(DispatchContext);
   if (context === undefined) {
     throw new Error(
-      "useMarkdownDispatch must be used within a MarkdownProvider"
+      "useMarkdownDispatch must be used within a MarkdownContextProvider"
     );
   }
   return context;
@@ -66,14 +66,16 @@ function useMarkdownDispatch(): React.Dispatch<ReducerAction> {
 function useMarkdownState(): MarkdownContextState {
   const context = useContext(StateContext);
   if (context === undefined) {
-    throw new Error("useMarkdownState must be used within a MarkdownProvider");
+    throw new Error(
+      "useMarkdownState must be used within a MarkdownContextProvider"
+    );
   }
   return context;
 }
 
 export {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownProvider,
+  MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,
 };

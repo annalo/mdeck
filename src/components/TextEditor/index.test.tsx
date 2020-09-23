@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownProvider,
+  MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
@@ -17,7 +17,7 @@ import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 describe("<TextEditor />", () => {
   test("should render and match the snapshot", () => {
     const wrapper = ({ children }) => (
-      <MarkdownProvider>{children}</MarkdownProvider>
+      <MarkdownContextProvider>{children}</MarkdownContextProvider>
     );
     const { asFragment } = render(<TextEditor />, { wrapper });
     expect(asFragment()).toMatchSnapshot();
@@ -25,9 +25,9 @@ describe("<TextEditor />", () => {
 
   test("should set md on textarea change", () => {
     render(
-      <MarkdownProvider>
+      <MarkdownContextProvider>
         <TextEditor />
-      </MarkdownProvider>
+      </MarkdownContextProvider>
     );
     const textarea = screen.getByRole("textbox");
 
@@ -38,9 +38,9 @@ describe("<TextEditor />", () => {
 
   test("should support tabs in textarea", () => {
     render(
-      <MarkdownProvider>
+      <MarkdownContextProvider>
         <TextEditor />
-      </MarkdownProvider>
+      </MarkdownContextProvider>
     );
     const textarea = screen.getByRole("textbox");
 
@@ -90,7 +90,7 @@ describe("<TextEditor />", () => {
     });
 
     const wrapper = ({ children }) => (
-      <MarkdownProvider>{children}</MarkdownProvider>
+      <MarkdownContextProvider>{children}</MarkdownContextProvider>
     );
 
     test("should set textLineNumber to the top most visible line number on scroll if isActive", () => {

@@ -3,13 +3,13 @@ import { renderHook } from "@testing-library/react-hooks";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownProvider,
+  MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,
 } from "./MarkdownContext";
 
 describe("MarkdownContext", () => {
-  describe("<MarkdownProvider />", () => {
+  describe("<MarkdownContextProvider />", () => {
     test("should set MarkdownContext with 'initialState' if provided", () => {
       const initialState = {
         htmlArray: ["1", "2"],
@@ -18,9 +18,9 @@ describe("MarkdownContext", () => {
         textLineNumber: 5,
       };
       const wrapper = ({ children }) => (
-        <MarkdownProvider initialState={initialState}>
+        <MarkdownContextProvider initialState={initialState}>
           {children}
-        </MarkdownProvider>
+        </MarkdownContextProvider>
       );
       const { result } = renderHook(() => useMarkdownState(), { wrapper });
 
@@ -29,10 +29,12 @@ describe("MarkdownContext", () => {
   });
 
   describe("useMarkdownDispatch", () => {
-    test("should return Error if not used within a MarkdownProvider", () => {
+    test("should return Error if not used within a MarkdownContextProvider", () => {
       const { result } = renderHook(() => useMarkdownDispatch());
       expect(result.error).toEqual(
-        Error("useMarkdownDispatch must be used within a MarkdownProvider")
+        Error(
+          "useMarkdownDispatch must be used within a MarkdownContextProvider"
+        )
       );
     });
   });
@@ -40,7 +42,7 @@ describe("MarkdownContext", () => {
   describe("useMarkdownState", () => {
     test("should return state from StateContext", () => {
       const wrapper = ({ children }) => (
-        <MarkdownProvider>{children}</MarkdownProvider>
+        <MarkdownContextProvider>{children}</MarkdownContextProvider>
       );
       const { result } = renderHook(() => useMarkdownState(), { wrapper });
       expect(result.current).toMatchObject(
@@ -48,10 +50,10 @@ describe("MarkdownContext", () => {
       );
     });
 
-    test("should return Error if not used within a MarkdownProvider", () => {
+    test("should return Error if not used within a MarkdownContextProvider", () => {
       const { result } = renderHook(() => useMarkdownState());
       expect(result.error).toEqual(
-        Error("useMarkdownState must be used within a MarkdownProvider")
+        Error("useMarkdownState must be used within a MarkdownContextProvider")
       );
     });
   });

@@ -3,7 +3,7 @@ import { act, renderHook } from "@testing-library/react-hooks";
 
 import Worker from "worker-loader!./worker"; // eslint-disable-line
 import {
-  MarkdownProvider,
+  MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
@@ -13,7 +13,7 @@ afterEach(() => jest.clearAllMocks());
 
 describe("MarkdownWorker", () => {
   const wrapper = ({ children }) => (
-    <MarkdownProvider>{children}</MarkdownProvider>
+    <MarkdownContextProvider>{children}</MarkdownContextProvider>
   );
   describe("worker", () => {
     test("should initialize with a new web worker", () => {

@@ -5,7 +5,7 @@ import screenfull from "screenfull";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownProvider,
+  MarkdownContextProvider,
   useMarkdownDispatch,
 } from "contexts/MarkdownContext";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
@@ -26,11 +26,11 @@ afterEach(() => jest.clearAllMocks());
 
 describe("<Preview />", () => {
   const wrapper = ({ children }) => (
-    <MarkdownProvider>
+    <MarkdownContextProvider>
       <SlideObserverProvider>
         <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
       </SlideObserverProvider>
-    </MarkdownProvider>
+    </MarkdownContextProvider>
   );
   test("should render and match the snapshot", () => {
     const { asFragment } = render(<Preview />, { wrapper });
@@ -47,13 +47,13 @@ describe("<Preview />", () => {
   test("should fullscreen slideshow when fullscreen button is clicked", () => {
     const md = "test test";
     const wrapperWithState = ({ children }) => (
-      <MarkdownProvider
+      <MarkdownContextProvider
         initialState={{ ...MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE, md }}
       >
         <SlideObserverProvider>
           <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
         </SlideObserverProvider>
-      </MarkdownProvider>
+      </MarkdownContextProvider>
     );
     render(<Preview />, { wrapper: wrapperWithState });
 
