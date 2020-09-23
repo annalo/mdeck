@@ -1,7 +1,6 @@
 import React, { memo } from "react";
 import styled from "styled-components";
 
-import { MarkdownProvider } from "contexts/MarkdownContext";
 import { SlideObserverProvider } from "contexts/SlideObserver";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
@@ -17,15 +16,13 @@ const Div = styled.div`
 const Editor = memo(function Editor() {
   return (
     <Div>
-      <MarkdownProvider>
-        <TextEditor />
+      <TextEditor />
 
-        <SlideObserverProvider>
-          <CodeLineObserverProvider>
-            <Preview />
-          </CodeLineObserverProvider>
-        </SlideObserverProvider>
-      </MarkdownProvider>
+      <SlideObserverProvider>
+        <CodeLineObserverProvider>
+          <Preview />
+        </CodeLineObserverProvider>
+      </SlideObserverProvider>
     </Div>
   );
 });

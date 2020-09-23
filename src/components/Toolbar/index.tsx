@@ -15,6 +15,7 @@ const Toolbar = (): React.ReactElement => (
       <MenuIcon tooltip="LOAD">
         <OpenFileIcon />
       </MenuIcon>
+
       <MenuIcon tooltip="SAVE">
         <SaveIcon />
       </MenuIcon>
