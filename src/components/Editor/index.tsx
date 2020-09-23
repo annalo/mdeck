@@ -2,8 +2,6 @@ import React, { memo } from "react";
 import styled from "styled-components";
 
 import { MarkdownProvider } from "contexts/MarkdownContext";
-import { SlideObserverProvider } from "contexts/SlideObserver";
-import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
 import { Toolbar } from "components/Toolbar/Loadable";
 import { TextEditor } from "components/TextEditor/Loadable";
@@ -21,12 +19,7 @@ const Editor = memo(function Editor() {
       <Container>
         <MarkdownProvider>
           <TextEditor />
-
-          <SlideObserverProvider>
-            <CodeLineObserverProvider>
-              <Preview />
-            </CodeLineObserverProvider>
-          </SlideObserverProvider>
+          <Preview />
         </MarkdownProvider>
       </Container>
 

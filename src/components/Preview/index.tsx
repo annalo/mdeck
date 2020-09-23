@@ -6,12 +6,14 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
+import { SlideObserverProvider } from "contexts/SlideObserver";
+import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
 import { Slideshow } from "components/Slideshow";
 import { usePresentation } from "./usePresentation";
 import { useWorker } from "./useWorker";
 
-const Div = styled.div`
+const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -33,13 +35,18 @@ const Preview = memo(function Preview() {
   useWorker({ dispatch, md });
 
   return (
-    <Div>
-      <Slideshow
-        ref={slideshowRef}
-        dispatch={dispatch}
-        htmlArray={htmlArray}
-        textLineNumber={textLineNumber}
-      />
+    <Container>
+      <SlideObserverProvider>
+        <CodeLineObserverProvider>
+          <Slideshow
+            ref={slideshowRef}
+            dispatch={dispatch}
+            htmlArray={htmlArray}
+            textLineNumber={textLineNumber}
+          />
+        </CodeLineObserverProvider>
+      </SlideObserverProvider>
+
       <FullscreenButton
         disabled={md === MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.md}
         onClick={() => requestPresentation()}
@@ -47,7 +54,7 @@ const Preview = memo(function Preview() {
       >
         FULLSCREEN
       </FullscreenButton>
-    </Div>
+    </Container>
   );
 });
 
