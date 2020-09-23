@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 import OpenFileIcon from "icons/folder-add-file.svg";
 
-import { MenuItemWithTooltip } from "./MenuItem";
-import { Tooltip } from "./Tooltip";
+import { MenuItemWithTooltip } from "../MenuItem";
+import { Tooltip } from "../Tooltip";
 
 const FileLoader = styled.input`
   display: none;
 `;
 
-const LoadFile = (): React.ReactElement => {
+const LoadFileMenuItem = (): React.ReactElement => {
   const fileLoaderRef = useRef<HTMLInputElement>(null);
 
   const handleClick = () => fileLoaderRef?.current?.click();
@@ -33,4 +33,4 @@ const LoadFile = (): React.ReactElement => {
   );
 };
 
-export { LoadFile };
+export { LoadFileMenuItem };
