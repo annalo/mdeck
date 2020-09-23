@@ -1,11 +1,6 @@
 import styled from "styled-components";
 
 const Navbar = styled.nav`
-  * {
-    padding: 0;
-    margin: 0;
-  }
-
   background-color: #ededed;
   box-shadow: 0px 0px 1.5px ${(props) => props.theme.textColor};
 
