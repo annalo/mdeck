@@ -1,6 +1,7 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
+import { fireEvent, screen } from "@testing-library/react";
+import { render, renderHook } from "test-utils";
+
 import screenfull from "screenfull";
 
 import {
@@ -25,20 +26,13 @@ jest.mock("screenfull", () => ({
 afterEach(() => jest.clearAllMocks());
 
 describe("<Preview />", () => {
-  const wrapper = ({ children }) => (
-    <MarkdownContextProvider>
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-      </SlideObserverProvider>
-    </MarkdownContextProvider>
-  );
   test("should render and match the snapshot", () => {
-    const { asFragment } = render(<Preview />, { wrapper });
+    const { asFragment } = render(<Preview />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   test("should disable FULLSCREEN button if no markdown string", () => {
-    render(<Preview />, { wrapper });
+    render(<Preview />);
 
     const button = screen.getByRole("button", { name: "FULLSCREEN" });
     expect(button).toBeDisabled();
@@ -67,13 +61,10 @@ describe("<Preview />", () => {
   describe("useWorker", () => {
     test("should instantiate MarkdownWorker just once", () => {
       let md = "## Markdown String";
-      const { rerender } = renderHook(
-        () => {
-          const dispatch = useMarkdownDispatch();
-          useWorker({ dispatch, md });
-        },
-        { wrapper }
-      );
+      const { rerender } = renderHook(() => {
+        const dispatch = useMarkdownDispatch();
+        useWorker({ dispatch, md });
+      });
 
       md = "## Markdown String\n* Bullet 1";
       rerender();
@@ -83,13 +74,10 @@ describe("<Preview />", () => {
 
     test("should parse md with MarkdownWorker", () => {
       let md = "## Markdown String";
-      const { rerender } = renderHook(
-        () => {
-          const dispatch = useMarkdownDispatch();
-          useWorker({ dispatch, md });
-        },
-        { wrapper }
-      );
+      const { rerender } = renderHook(() => {
+        const dispatch = useMarkdownDispatch();
+        useWorker({ dispatch, md });
+      });
 
       md = "## Markdown String\n* Bullet 1";
       rerender();
