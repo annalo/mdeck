@@ -1,6 +1,8 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { act } from "@testing-library/react-hooks";
+import { render, renderHook } from "test-utils";
+
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import {
@@ -9,7 +11,6 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
-import { SlideObserverProvider } from "contexts/SlideObserver";
 import {
   CodeLineObserverProvider,
   useCodeLineEntries,
@@ -29,11 +30,6 @@ describe("<Slideshow />", () => {
       "<svg><h1>Title</h1></svg>",
       "<svg><p>Paragraph</p></svg>",
     ];
-    const wrapper = ({ children }) => (
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-      </SlideObserverProvider>
-    );
     const ref = { current: document.createElement("div") };
     const { asFragment } = render(
       <Slideshow
@@ -41,8 +37,7 @@ describe("<Slideshow />", () => {
         dispatch={jest.fn()}
         htmlArray={htmlArray}
         textLineNumber={0}
-      />,
-      { wrapper }
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -52,11 +47,6 @@ describe("<Slideshow />", () => {
       "<svg><h1>Title</h1></svg>",
       "<svg><p>Paragraph</p></svg>",
     ];
-    const wrapper = ({ children }) => (
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-      </SlideObserverProvider>
-    );
     const ref = { current: document.createElement("div") };
     render(
       <Slideshow
@@ -64,8 +54,7 @@ describe("<Slideshow />", () => {
         dispatch={jest.fn()}
         htmlArray={htmlArray}
         textLineNumber={0}
-      />,
-      { wrapper }
+      />
     );
 
     const article = screen.getByRole("article");

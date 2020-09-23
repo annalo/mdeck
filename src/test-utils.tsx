@@ -27,5 +27,5 @@ const customRender = (ui, options) =>
 const customRenderHook = (hook, options) =>
   renderHook(hook, { wrapper: AllTheProviders, ...options });
 
-// override render method
+// override render and renderHook methods
 export { customRender as render, customRenderHook as renderHook };
