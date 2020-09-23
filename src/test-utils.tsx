@@ -2,6 +2,7 @@
 
 import React from "react";
 import { render } from "@testing-library/react";
+import { renderHook } from "@testing-library/react-hooks";
 
 import { ThemeProvider } from "components/Home/ThemeProvider";
 import { MarkdownContextProvider } from "contexts/MarkdownContext";
@@ -23,8 +24,8 @@ const AllTheProviders = ({ children }) => {
 const customRender = (ui, options) =>
   render(ui, { wrapper: AllTheProviders, ...options });
 
-// re-export everything
-export * from "@testing-library/react";
+const customRenderHook = (hook, options) =>
+  renderHook(hook, { wrapper: AllTheProviders, ...options });
 
 // override render method
-export { customRender as render };
+export { customRender as render, customRenderHook as renderHook };
