@@ -12,7 +12,7 @@ const colorScheme = {
 
 const theme = {
   colorScheme,
-  navBarHeight: 25,
+  toolbarHeight: 25,
   textAreaBackgroundColor: colorScheme.snow,
   textColor: colorScheme.nightrider,
 };

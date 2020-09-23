@@ -13,7 +13,7 @@ import { Slideshow } from "components/Slideshow";
 import { usePresentation } from "./usePresentation";
 import { useWorker } from "./useWorker";
 
-const Container = styled.div`
+const Div = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -35,7 +35,7 @@ const Preview = memo(function Preview() {
   useWorker({ dispatch, md });
 
   return (
-    <Container>
+    <Div>
       <SlideObserverProvider>
         <CodeLineObserverProvider>
           <Slideshow
@@ -54,7 +54,7 @@ const Preview = memo(function Preview() {
       >
         FULLSCREEN
       </FullscreenButton>
-    </Container>
+    </Div>
   );
 });
 
