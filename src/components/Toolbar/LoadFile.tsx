@@ -19,9 +19,9 @@ const LoadFile = (): React.ReactElement => {
     <>
       <FileLoader
         ref={fileLoaderRef}
+        accept=".md,.txt"
         id="fileLoader"
-        name="files"
-        title="Load File"
+        title="Load Markdown File"
         type="file"
       />
 
