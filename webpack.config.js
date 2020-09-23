@@ -1,6 +1,7 @@
 const path = require("path");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 console.log(process.env.NODE_ENV);
 const isProduction = process.env.NODE_ENV === "production";
@@ -65,6 +66,7 @@ module.exports = {
     },
   },
   plugins: [
+    new CleanWebpackPlugin(),
     new ForkTsCheckerWebpackPlugin({
       async: false,
       eslint: {

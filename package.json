@@ -8,7 +8,7 @@
   },
   "scripts": {
     "build": "cross-env NODE_ENV=production webpack",
-    "deploy": "gh-pages -d public",
+    "deploy": "yarn build; gh-pages -d public",
     "start": "cross-env NODE_ENV=development webpack-dev-server",
     "eslint": "eslint --ext js,ts,tsx",
     "lint": "yarn eslint src",
@@ -73,6 +73,7 @@
     "@typescript-eslint/eslint-plugin": "3.10.1",
     "@typescript-eslint/parser": "3.10.1",
     "babel-loader": "8.1.0",
+    "clean-webpack-plugin": "^3.0.0",
     "css-loader": "4.2.2",
     "eslint": "7.7.0",
     "eslint-config-airbnb": "18.2.0",
