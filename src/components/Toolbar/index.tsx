@@ -7,10 +7,10 @@ import PresentationIcon from "icons/video-camera.svg";
 import { Menu } from "./Menu";
 import { MenuIcon } from "./MenuIcon";
 import { MenuItemRight } from "./MenuItem";
-import { Navbar } from "./Navbar";
+import { Header } from "./Header";
 
 const Toolbar = (): React.ReactElement => (
-  <Navbar>
+  <Header>
     <Menu>
       <MenuIcon tooltip="LOAD">
         <OpenFileIcon />
@@ -23,7 +23,7 @@ const Toolbar = (): React.ReactElement => (
         <PresentationIcon />
       </MenuItemRight>
     </Menu>
-  </Navbar>
+  </Header>
 );
 
 export { Toolbar };
