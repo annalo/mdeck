@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { saveAs } from "file-saver";
 
 import { useMarkdownState } from "contexts/MarkdownContext";
 
@@ -13,13 +14,23 @@ const SaveFileMenuItem = (): React.ReactElement => {
 
   const { md } = useMarkdownState();
 
+  const saveFile = (ev) => {
+    ev.preventDefault();
+
+    const text = ev.target.filename.value;
+    const blob = new Blob([md], { type: "text/markdown" });
+    // TODO chain in promises
+    saveAs(blob, text);
+    setFilename(text);
+    toggleSave(false);
+  };
+
   return (
     <MenuItemWithTooltip onClick={() => toggleSave(true)}>
       {save ? (
         <SaveFileForm
           filename={filename}
-          md={md}
-          setFilename={setFilename}
+          saveFile={saveFile}
           toggleSave={toggleSave}
         />
       ) : (

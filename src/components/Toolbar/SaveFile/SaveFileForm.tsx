@@ -1,32 +1,18 @@
 import React from "react";
-import { saveAs } from "file-saver";
 
 interface SaveFileFormProps {
-  md: MarkdownString;
   filename: string;
-  setFilename: (string) => void;
+  saveFile: (event: React.FormEvent) => void;
   toggleSave: (boolean) => void;
 }
 
 const SaveFileForm = ({
-  md,
   filename,
-  setFilename,
+  saveFile,
   toggleSave,
 }: SaveFileFormProps): React.ReactElement => {
-  const handleOnBlur = (e) => {
-    if (e.relatedTarget.type !== "submit") toggleSave(false);
-  };
-
-  const saveFile = (e) => {
-    e.preventDefault();
-
-    const text = e.target.filename.value;
-    const blob = new Blob([md], { type: "text/markdown" });
-    // TODO chain in promises
-    setFilename(text);
-    saveAs(blob, text);
-    toggleSave(false);
+  const handleOnBlur = (ev) => {
+    if (ev.relatedTarget.type !== "submit") toggleSave(false);
   };
 
   return (
