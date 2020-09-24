@@ -1,8 +1,10 @@
 import React, { useRef } from "react";
 import styled from "styled-components";
 
-import OpenFileIcon from "icons/folder-add-file.svg";
+import { useMarkdownDispatch } from "contexts/MarkdownContext";
+import { MarkdownContextReducerActionType } from "types/markdown-context-reducer-action";
 
+import OpenFileIcon from "icons/folder-add-file.svg";
 import { MenuItemWithTooltip } from "../MenuItem";
 import { Tooltip } from "../Tooltip";
 
@@ -10,35 +12,23 @@ const FileLoader = styled.input`
   display: none;
 `;
 
-const readUploadedFileAsText = (inputFile) => {
-  const temporaryFileReader = new FileReader();
-
-  return new Promise((resolve, reject) => {
-    temporaryFileReader.onerror = () => {
-      temporaryFileReader.abort();
-      reject(new DOMException("Problem parsing input file."));
-    };
-
-    temporaryFileReader.onload = () => {
-      resolve(temporaryFileReader.result);
-    };
-    temporaryFileReader.readAsText(inputFile);
-  });
-};
-
 const LoadFileMenuItem = (): React.ReactElement => {
   const fileLoaderRef = useRef<HTMLInputElement>(null);
+  const dispatch = useMarkdownDispatch();
 
   const handleClick = () => fileLoaderRef?.current?.click();
   const handleLoad = async (e) => {
     const file = e.target.files[0];
 
-    try {
-      const fileContents = await readUploadedFileAsText(file);
-      console.log(fileContents);
-    } catch (error) {
-      console.warn(error.message);
-    }
+    file
+      .text()
+      .then((text) =>
+        dispatch({
+          type: MarkdownContextReducerActionType.SetMd,
+          md: text,
+        })
+      )
+      .catch((error) => console.warn(error));
   };
 
   return (
