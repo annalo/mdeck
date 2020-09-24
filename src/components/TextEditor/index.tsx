@@ -39,16 +39,16 @@ const TextEditor = memo(function TextEditor() {
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
   });
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (ev) => {
     dispatch({
       type: MarkdownContextReducerActionType.SetMd,
-      md: e.target.value,
+      md: ev.target.value,
     });
   };
-  const handleKeyDown = (e) => {
+  const handleKeyDown = (ev) => {
     // support tabs
-    if (e.keyCode === 9) {
-      const { target } = e;
+    if (ev.keyCode === 9) {
+      const { target } = ev;
       const val = target.value;
       const start = target.selectionStart;
       const end = target.selectionEnd;
@@ -56,7 +56,7 @@ const TextEditor = memo(function TextEditor() {
       target.value = `${val.substring(0, start)}\t${val.substring(end)}`;
       target.selectionStart = target.selectionEnd = start + 1; // eslint-disable-line no-multi-assign
 
-      e.preventDefault();
+      ev.preventDefault();
     }
   };
 
