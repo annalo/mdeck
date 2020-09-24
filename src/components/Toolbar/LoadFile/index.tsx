@@ -28,7 +28,7 @@ const LoadFileMenuItem = (): React.ReactElement => {
           md: text,
         })
       )
-      .catch((error) => console.warn(error));
+      .catch((error) => console.warn(error)); // TODO handle error message on screen
   };
 
   return (
