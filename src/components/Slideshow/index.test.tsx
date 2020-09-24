@@ -1,15 +1,16 @@
 import React from "react";
-import { fireEvent, render, screen, waitFor } from "@testing-library/react";
-import { act, renderHook } from "@testing-library/react-hooks";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
+import { act } from "@testing-library/react-hooks";
+import { render, renderHook } from "utils/test-utils";
+
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownProvider,
+  MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
-import { SlideObserverProvider } from "contexts/SlideObserver";
 import {
   CodeLineObserverProvider,
   useCodeLineEntries,
@@ -29,11 +30,6 @@ describe("<Slideshow />", () => {
       "<svg><h1>Title</h1></svg>",
       "<svg><p>Paragraph</p></svg>",
     ];
-    const wrapper = ({ children }) => (
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-      </SlideObserverProvider>
-    );
     const ref = { current: document.createElement("div") };
     const { asFragment } = render(
       <Slideshow
@@ -41,8 +37,7 @@ describe("<Slideshow />", () => {
         dispatch={jest.fn()}
         htmlArray={htmlArray}
         textLineNumber={0}
-      />,
-      { wrapper }
+      />
     );
     expect(asFragment()).toMatchSnapshot();
   });
@@ -52,11 +47,6 @@ describe("<Slideshow />", () => {
       "<svg><h1>Title</h1></svg>",
       "<svg><p>Paragraph</p></svg>",
     ];
-    const wrapper = ({ children }) => (
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-      </SlideObserverProvider>
-    );
     const ref = { current: document.createElement("div") };
     render(
       <Slideshow
@@ -64,8 +54,7 @@ describe("<Slideshow />", () => {
         dispatch={jest.fn()}
         htmlArray={htmlArray}
         textLineNumber={0}
-      />,
-      { wrapper }
+      />
     );
 
     const article = screen.getByRole("article");
@@ -144,11 +133,11 @@ describe("<Slideshow />", () => {
     });
 
     const wrapper = ({ children }) => (
-      <MarkdownProvider>
+      <MarkdownContextProvider>
         <CodeLineObserverProvider initialEntries={initialEntries}>
           {children}
         </CodeLineObserverProvider>
-      </MarkdownProvider>
+      </MarkdownContextProvider>
     );
 
     test("should set slideshowLineNumber to the top most element's data-line if isActive", () => {

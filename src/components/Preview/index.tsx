@@ -40,6 +40,7 @@ const Preview = memo(function Preview() {
         htmlArray={htmlArray}
         textLineNumber={textLineNumber}
       />
+
       <FullscreenButton
         disabled={md === MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.md}
         onClick={() => requestPresentation()}

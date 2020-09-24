@@ -1,4 +1,4 @@
-import { renderHook } from "@testing-library/react-hooks";
+import { renderHook } from "utils/test-utils";
 import { usePaneIsActive } from "./usePaneIsActive";
 
 describe("usePaneIsActive", () => {

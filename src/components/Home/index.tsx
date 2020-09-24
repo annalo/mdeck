@@ -1,18 +1,25 @@
 import React from "react";
 import styled from "styled-components";
 
+import { MarkdownContextProvider } from "contexts/MarkdownContext";
+
+import { Toolbar } from "components/Toolbar/Loadable";
 import { Editor } from "components/Editor/Loadable";
 import { ThemeProvider } from "./ThemeProvider";
 
-const Div = styled.div`
+const Container = styled.div`
   height: 100%;
 `;
 
 const Home: React.FC = () => (
   <ThemeProvider>
-    <Div id="main">
-      <Editor />
-    </Div>
+    <Container id="main">
+      <MarkdownContextProvider>
+        <Editor />
+
+        <Toolbar />
+      </MarkdownContextProvider>
+    </Container>
   </ThemeProvider>
 );
 

@@ -19,7 +19,7 @@ interface SlideProps {
 const Slide = memo(function Slide({ htmlString, index }: SlideProps) {
   const ref = useRef<HTMLElement>(null);
 
-  const elements = useElements({ htmlString });
+  const elements = useElements(htmlString);
   useSlideObserve({ ref, slideNumber: index + 1 });
   useCodeLineObserve({ elements, ref });
 

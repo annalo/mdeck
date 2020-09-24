@@ -42,4 +42,14 @@ const MenuItemRight = styled(MenuItem)`
   margin-left: auto;
 `;
 
-export { MenuItem, MenuItemRight };
+const MenuItemWithTooltip = styled(MenuItem)`
+  :hover {
+    svg {
+      transition: opacity 0.4s ease-in-out;
+      opacity: 0.3;
+      transform: none;
+    }
+  }
+`;
+
+export { MenuItem, MenuItemRight, MenuItemWithTooltip };

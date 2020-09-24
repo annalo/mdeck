@@ -1,36 +1,27 @@
 import React from "react";
-import { render } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
+import { render, renderHook } from "utils/test-utils";
 
 import {
   CODE_LINE_CLASS_NAME,
   DATA_LINE_ATTRIBUTE,
 } from "utils/parsePlugins/injectLineNumber";
-import { SlideObserverProvider, useSlideEntries } from "contexts/SlideObserver";
-import {
-  CodeLineObserverProvider,
-  useCodeLineEntries,
-} from "contexts/CodeLineObserver";
+import { useSlideEntries } from "contexts/SlideObserver";
+import { useCodeLineEntries } from "contexts/CodeLineObserver";
 
 import { Slide } from ".";
 import { useSlideObserve } from "./useSlideObserve";
 import { useCodeLineObserve } from "./useCodeLineObserve";
 
-const wrapper = ({ children }) => (
-  <SlideObserverProvider>
-    <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-  </SlideObserverProvider>
-);
 const component = <Slide htmlString="<svg><h1>Title</h1></svg>" index={0} />;
 
 describe("<Slide />", () => {
   test("should render and match the snapshot", () => {
-    const { asFragment } = render(component, { wrapper });
+    const { asFragment } = render(component);
     expect(asFragment()).toMatchSnapshot();
   });
 
   test("should render htmlString as React elements", () => {
-    const { container } = render(component, { wrapper });
+    const { container } = render(component);
 
     expect(container.firstChild).toMatchInlineSnapshot(`
       .c0 svg {
@@ -55,13 +46,10 @@ describe("<Slide />", () => {
     const slideElement = document.createElement("div");
     const ref = { current: slideElement };
 
-    const { result } = renderHook(
-      () => {
-        useSlideObserve({ ref, slideNumber });
-        return useSlideEntries();
-      },
-      { wrapper }
-    );
+    const { result } = renderHook(() => {
+      useSlideObserve({ ref, slideNumber });
+      return useSlideEntries();
+    });
 
     expect(result.current).toMatchObject({ [slideNumber]: slideElement });
   });
@@ -79,13 +67,10 @@ describe("<Slide />", () => {
     const elements = <h1>Title</h1>;
     const ref = { current: div };
 
-    const { result } = renderHook(
-      () => {
-        useCodeLineObserve({ elements, ref });
-        return useCodeLineEntries();
-      },
-      { wrapper }
-    );
+    const { result } = renderHook(() => {
+      useCodeLineObserve({ elements, ref });
+      return useCodeLineEntries();
+    });
 
     expect(result.current).toMatchObject({ [codeLine]: h1 });
   });

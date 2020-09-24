@@ -1,11 +1,12 @@
 import React from "react";
-import { fireEvent, render, screen } from "@testing-library/react";
-import { renderHook } from "@testing-library/react-hooks";
+import { fireEvent, screen } from "@testing-library/react";
+import { render, renderHook } from "utils/test-utils";
+
 import screenfull from "screenfull";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
-  MarkdownProvider,
+  MarkdownContextProvider,
   useMarkdownDispatch,
 } from "contexts/MarkdownContext";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
@@ -25,20 +26,13 @@ jest.mock("screenfull", () => ({
 afterEach(() => jest.clearAllMocks());
 
 describe("<Preview />", () => {
-  const wrapper = ({ children }) => (
-    <MarkdownProvider>
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-      </SlideObserverProvider>
-    </MarkdownProvider>
-  );
   test("should render and match the snapshot", () => {
-    const { asFragment } = render(<Preview />, { wrapper });
+    const { asFragment } = render(<Preview />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   test("should disable FULLSCREEN button if no markdown string", () => {
-    render(<Preview />, { wrapper });
+    render(<Preview />);
 
     const button = screen.getByRole("button", { name: "FULLSCREEN" });
     expect(button).toBeDisabled();
@@ -47,13 +41,13 @@ describe("<Preview />", () => {
   test("should fullscreen slideshow when fullscreen button is clicked", () => {
     const md = "test test";
     const wrapperWithState = ({ children }) => (
-      <MarkdownProvider
+      <MarkdownContextProvider
         initialState={{ ...MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE, md }}
       >
         <SlideObserverProvider>
           <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
         </SlideObserverProvider>
-      </MarkdownProvider>
+      </MarkdownContextProvider>
     );
     render(<Preview />, { wrapper: wrapperWithState });
 
@@ -67,13 +61,10 @@ describe("<Preview />", () => {
   describe("useWorker", () => {
     test("should instantiate MarkdownWorker just once", () => {
       let md = "## Markdown String";
-      const { rerender } = renderHook(
-        () => {
-          const dispatch = useMarkdownDispatch();
-          useWorker({ dispatch, md });
-        },
-        { wrapper }
-      );
+      const { rerender } = renderHook(() => {
+        const dispatch = useMarkdownDispatch();
+        useWorker({ dispatch, md });
+      });
 
       md = "## Markdown String\n* Bullet 1";
       rerender();
@@ -83,13 +74,10 @@ describe("<Preview />", () => {
 
     test("should parse md with MarkdownWorker", () => {
       let md = "## Markdown String";
-      const { rerender } = renderHook(
-        () => {
-          const dispatch = useMarkdownDispatch();
-          useWorker({ dispatch, md });
-        },
-        { wrapper }
-      );
+      const { rerender } = renderHook(() => {
+        const dispatch = useMarkdownDispatch();
+        useWorker({ dispatch, md });
+      });
 
       md = "## Markdown String\n* Bullet 1";
       rerender();
