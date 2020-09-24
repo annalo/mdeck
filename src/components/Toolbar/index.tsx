@@ -7,7 +7,7 @@ import { Menu } from "./Menu";
 import { MenuItemRight } from "./MenuItem";
 
 import { LoadFileMenuItem } from "./LoadFile";
-import { SaveFile as SaveFileMenuItem } from "./SaveFile";
+import { SaveFileMenuItem } from "./SaveFile";
 
 const Toolbar = (): React.ReactElement => (
   <Header>
