@@ -1,6 +1,6 @@
 import React from "react";
 import { fireEvent, screen } from "@testing-library/react";
-import { render, renderHook } from "test-utils";
+import { render, renderHook } from "utils/test-utils";
 
 import screenfull from "screenfull";
 

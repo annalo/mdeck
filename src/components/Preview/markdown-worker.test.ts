@@ -1,5 +1,5 @@
 import { act } from "@testing-library/react-hooks";
-import { renderHook } from "test-utils";
+import { renderHook } from "utils/test-utils";
 
 import Worker from "worker-loader!./worker"; // eslint-disable-line
 import {

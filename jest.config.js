@@ -13,7 +13,6 @@ module.exports = {
     "^contexts(.*)$": "<rootDir>/src/contexts$1",
     "^utils(.*)$": "<rootDir>/src/utils$1",
     "^worker-loader": "<rootDir>/__mocks__/worker.ts",
-    "test-utils": "<rootDir>/src/utils/test-utils.tsx",
     "\\.svg": "<rootDir>/__mocks__/svgrMock.ts",
     "\\.css$": "identity-obj-proxy",
   },

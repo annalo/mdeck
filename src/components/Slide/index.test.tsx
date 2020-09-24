@@ -1,5 +1,5 @@
 import React from "react";
-import { render, renderHook } from "test-utils";
+import { render, renderHook } from "utils/test-utils";
 
 import {
   CODE_LINE_CLASS_NAME,

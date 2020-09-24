@@ -1,7 +1,7 @@
 import React from "react";
 import { fireEvent, screen, waitFor } from "@testing-library/react";
 import { act } from "@testing-library/react-hooks";
-import { render, renderHook } from "test-utils";
+import { render, renderHook } from "utils/test-utils";
 
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 

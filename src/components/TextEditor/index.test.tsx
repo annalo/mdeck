@@ -2,7 +2,7 @@ import React from "react";
 import { fireEvent, screen } from "@testing-library/react";
 import { act } from "@testing-library/react-hooks";
 import userEvent from "@testing-library/user-event";
-import { render, renderHook } from "test-utils";
+import { render, renderHook } from "utils/test-utils";
 
 import {
   MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
