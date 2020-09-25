@@ -38,10 +38,10 @@ function useSlideNavigation(isActive: boolean): SlideNumber {
 
   // Keydown slide navigation
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      e.preventDefault();
+    const handleKeyDown = (ev) => {
+      ev.preventDefault();
 
-      switch (e.keyCode) {
+      switch (ev.keyCode) {
         case 37: // ArrowLeft
         case 38: // ArrowUp
           previousSlide();

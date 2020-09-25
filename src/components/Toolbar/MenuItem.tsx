@@ -1,28 +1,22 @@
 import styled, { css } from "styled-components";
 
 const iconStyle = css`
-  svg {
-    fill: ${(props) => props.theme.colorScheme.lightgrey};
-    circle,
-    path {
-      stroke: ${(props) => props.theme.colorScheme.grey};
-    }
+  fill: ${(props) => props.theme.colorScheme.lightgrey};
+  circle,
+  path {
+    stroke: ${(props) => props.theme.colorScheme.grey};
   }
 `;
 
 const iconAnimation = css`
-  svg {
-    transition: 0.5s ease-in-out;
-  }
+  transition: 0.4s ease-in-out;
 
-  :hover {
-    svg {
-      transform: scale(1.1);
-      fill: ${(props) => props.theme.colorScheme.silver};
-      circle,
-      path {
-        stroke: ${(props) => props.theme.textColor};
-      }
+  &:hover {
+    transform: scale(1.1);
+    fill: ${(props) => props.theme.colorScheme.silver};
+    circle,
+    path {
+      stroke: ${(props) => props.theme.textColor};
     }
   }
 `;
@@ -34,8 +28,9 @@ const MenuItem = styled.li`
   justify-content: center;
   margin: 0 3px;
 
-  ${iconStyle}
-  ${iconAnimation}
+  svg {
+    ${iconStyle}
+  }
 `;
 
 const MenuItemRight = styled(MenuItem)`
@@ -43,7 +38,7 @@ const MenuItemRight = styled(MenuItem)`
 `;
 
 const MenuItemWithTooltip = styled(MenuItem)`
-  :hover {
+  &:hover {
     svg {
       transition: opacity 0.4s ease-in-out;
       opacity: 0.3;
@@ -52,4 +47,4 @@ const MenuItemWithTooltip = styled(MenuItem)`
   }
 `;
 
-export { MenuItem, MenuItemRight, MenuItemWithTooltip };
+export { MenuItem, MenuItemRight, MenuItemWithTooltip, iconAnimation };

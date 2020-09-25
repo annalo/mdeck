@@ -19,7 +19,7 @@ const HoverTooltip = styled.div`
 
   transition: 0.2s ease-in-out;
 
-  :hover {
+  &:hover {
     opacity: 1;
     transform: scale(1.1);
   }

@@ -50,23 +50,6 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
   stroke: #888888;
 }
 
-.c5 svg {
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-}
-
-.c5:hover svg {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-  fill: #bababa;
-}
-
-.c5:hover svg circle,
-.c5:hover svg path {
-  stroke: #2f2f2f;
-}
-
 .c3 {
   cursor: pointer;
   display: -webkit-box;
@@ -91,23 +74,6 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
 .c3 svg circle,
 .c3 svg path {
   stroke: #888888;
-}
-
-.c3 svg {
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-}
-
-.c3:hover svg {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-  fill: #bababa;
-}
-
-.c3:hover svg circle,
-.c3:hover svg path {
-  stroke: #2f2f2f;
 }
 
 .c3:hover svg {
@@ -178,6 +144,7 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="c3"
+        role="button"
       >
         <svgr-mock />
         <div
@@ -189,7 +156,9 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
       <li
         class="c5"
       >
-        <svgr-mock />
+        <svgr-mock
+          classname="sc-fzoLsD jrTAlI"
+        />
       </li>
     </ul>
   </nav>

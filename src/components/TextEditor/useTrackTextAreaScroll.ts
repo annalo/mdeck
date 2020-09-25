@@ -23,14 +23,14 @@ function useTrackTextAreaScroll({
 }: UseTrackTextAreaScrollProps): void {
   const handleScroll = useMemo(
     () =>
-      throttle((e) => {
+      throttle((ev) => {
         const getScrollTop = R.path(["target", "scrollTop"]);
         const calculateLineNumber = R.divide(R.__, textAreaLineHeight);
         const textLineNumber = R.pipe(
           getScrollTop,
           calculateLineNumber,
           Math.floor
-        )(e);
+        )(ev);
 
         dispatch({
           type: MarkdownContextReducerActionType.SetTextLineNumber,

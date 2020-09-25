@@ -17,8 +17,8 @@ const LoadFileMenuItem = (): React.ReactElement => {
   const dispatch = useMarkdownDispatch();
 
   const handleClick = () => fileLoaderRef?.current?.click();
-  const handleLoad = async (e) => {
-    const file = e.target.files[0];
+  const handleLoad = async (ev) => {
+    const file = ev.target.files[0];
 
     file
       .text()
