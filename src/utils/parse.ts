@@ -16,6 +16,7 @@ function parse(markdown: MarkdownString): HtmlArray {
   const marpit = new Marpit({
     inlineSVG: true,
     markdown: {
+      breaks: true,
       highlight: (code, lang) => highlighter(code, lang),
       html: true,
       linkify: true,
