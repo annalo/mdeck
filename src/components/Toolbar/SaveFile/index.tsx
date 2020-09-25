@@ -17,14 +17,11 @@ const SaveFileMenuItem = (): React.ReactElement => {
   const openForm = () => toggleForm(true);
   const closeForm = () => toggleForm(false);
 
-  const saveFile = (ev) => {
-    ev.preventDefault();
-
-    const text = ev.target.filename.value;
+  const saveFile = (name) => {
     const blob = new Blob([md], { type: "text/markdown" });
 
-    saveAs(blob, text);
-    setFilename(text);
+    saveAs(blob, name);
+    setFilename(name);
     closeForm();
   };
 

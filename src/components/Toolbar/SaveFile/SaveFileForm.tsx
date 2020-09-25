@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled, { css } from "styled-components";
 
 import Checkmark from "icons/check-mark.svg";
@@ -8,7 +8,7 @@ import { iconAnimation } from "../MenuItem";
 interface SaveFileFormProps {
   closeForm: () => void;
   filename: string;
-  saveFile: (event: React.FormEvent) => void;
+  saveFile: (name: string | undefined) => void;
 }
 
 const Form = styled.form`
@@ -45,16 +45,27 @@ const SaveFileForm = ({
   filename,
   saveFile,
 }: SaveFileFormProps): React.ReactElement => {
+  const filenameInputRef = useRef<HTMLInputElement>(null);
+
   const handleOnBlur = (ev) => {
     if (ev.relatedTarget?.type !== "submit") closeForm();
   };
   const handleKeyDown = (ev) => {
     if (ev.keyCode === 27) closeForm();
   };
+  const handleSubmit = (ev) => {
+    ev.preventDefault();
+    saveFile(filenameInputRef?.current?.value);
+  };
 
   return (
-    <Form onBlur={handleOnBlur} onKeyDown={handleKeyDown} onSubmit={saveFile}>
+    <Form
+      onBlur={handleOnBlur}
+      onKeyDown={handleKeyDown}
+      onSubmit={handleSubmit}
+    >
       <TextInput
+        ref={filenameInputRef}
         autoFocus // eslint-disable-line jsx-a11y/no-autofocus
         defaultValue={filename}
         name="filename"
