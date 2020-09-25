@@ -31,15 +31,12 @@ const iconStyle = css`
     }
   }
 `;
-const SubmitButton = styled.button`
+const Button = styled.button`
   border: none;
   padding: 0 2px;
   &:focus {
     outline: 0;
   }
-  ${iconStyle}
-`;
-const CancelButton = styled.a`
   ${iconStyle}
 `;
 
@@ -64,12 +61,14 @@ const SaveFileForm = ({
         placeholder="Filename"
         type="text"
       />
-      <SubmitButton type="submit">
+
+      <Button name="submit" type="submit">
         <Checkmark />
-      </SubmitButton>
-      <CancelButton onClick={closeForm}>
+      </Button>
+
+      <Button name="cancel" onClick={closeForm} type="button">
         <Xmark />
-      </CancelButton>
+      </Button>
     </Form>
   );
 };
