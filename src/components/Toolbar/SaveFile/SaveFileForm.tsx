@@ -6,9 +6,9 @@ import Xmark from "icons/x-circle.svg";
 import { iconAnimation } from "../MenuItem";
 
 interface SaveFileFormProps {
+  closeForm: () => void;
   filename: string;
   saveFile: (event: React.FormEvent) => void;
-  toggleSave: (boolean) => void;
 }
 
 const Form = styled.form`
@@ -44,16 +44,19 @@ const CancelButton = styled.a`
 `;
 
 const SaveFileForm = ({
+  closeForm,
   filename,
   saveFile,
-  toggleSave,
 }: SaveFileFormProps): React.ReactElement => {
   const handleOnBlur = (ev) => {
-    if (ev.relatedTarget?.type !== "submit") toggleSave(false);
+    if (ev.relatedTarget?.type !== "submit") closeForm();
+  };
+  const handleKeyDown = (ev) => {
+    if (ev.keyCode === 27) closeForm();
   };
 
   return (
-    <Form onBlur={handleOnBlur} onSubmit={saveFile}>
+    <Form onBlur={handleOnBlur} onKeyDown={handleKeyDown} onSubmit={saveFile}>
       <TextInput
         autoFocus // eslint-disable-line jsx-a11y/no-autofocus
         defaultValue={filename}
@@ -64,7 +67,7 @@ const SaveFileForm = ({
       <SubmitButton type="submit">
         <Checkmark />
       </SubmitButton>
-      <CancelButton onClick={() => toggleSave(false)}>
+      <CancelButton onClick={closeForm}>
         <Xmark />
       </CancelButton>
     </Form>

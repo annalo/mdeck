@@ -9,10 +9,13 @@ import { Tooltip } from "../Tooltip";
 import { SaveFileForm } from "./SaveFileForm";
 
 const SaveFileMenuItem = (): React.ReactElement => {
-  const [save, toggleSave] = useState(false);
+  const [isFormOpen, toggleForm] = useState(false);
   const [filename, setFilename] = useState("");
 
   const { md } = useMarkdownState();
+
+  const openForm = () => toggleForm(true);
+  const closeForm = () => toggleForm(false);
 
   const saveFile = (ev) => {
     ev.preventDefault();
@@ -22,19 +25,19 @@ const SaveFileMenuItem = (): React.ReactElement => {
 
     saveAs(blob, text);
     setFilename(text);
-    toggleSave(false);
+    closeForm();
   };
 
-  return save ? (
+  return isFormOpen ? (
     <MenuItem>
       <SaveFileForm
+        closeForm={closeForm}
         filename={filename}
         saveFile={saveFile}
-        toggleSave={toggleSave}
       />
     </MenuItem>
   ) : (
-    <MenuItemWithTooltip onClick={() => toggleSave(true)}>
+    <MenuItemWithTooltip onClick={openForm}>
       <SaveIcon />
       <Tooltip text="SAVE" />
     </MenuItemWithTooltip>
