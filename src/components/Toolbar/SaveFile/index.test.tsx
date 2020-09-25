@@ -76,7 +76,7 @@ describe("<SaveFileMenuItem />", () => {
       render(<SaveFileMenuItem />);
 
       fireEvent.click(screen.getByRole("button"));
-      fireEvent.click(screen.getByLabelText("cancel"));
+      fireEvent.click(screen.getByLabelText(/cancel/i));
 
       expect(screen.queryByRole("textbox")).not.toBeInTheDocument();
     });

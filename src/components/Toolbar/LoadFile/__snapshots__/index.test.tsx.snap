@@ -39,23 +39,6 @@ exports[`<LoadFileMenuItem /> should render and match the snapshot 1`] = `
   stroke: #888888;
 }
 
-.c0 svg {
-  -webkit-transition: 0.5s ease-in-out;
-  transition: 0.5s ease-in-out;
-}
-
-.c0:hover svg {
-  -webkit-transform: scale(1.1);
-  -ms-transform: scale(1.1);
-  transform: scale(1.1);
-  fill: #bababa;
-}
-
-.c0:hover svg circle,
-.c0:hover svg path {
-  stroke: #2f2f2f;
-}
-
 .c0:hover svg {
   -webkit-transition: opacity 0.4s ease-in-out;
   transition: opacity 0.4s ease-in-out;

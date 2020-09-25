@@ -14,10 +14,11 @@ describe("<LoadFileMenuItem />", () => {
   describe("input file loader", () => {
     test.skip("should load .md files", () => {
       render(<LoadFileMenuItem />);
+
       const file = new File(["(⌐□_□)"], "file.md", {
         type: "text/markdown",
       });
-      const fileLoader = screen.getByTitle("Load Markdown File");
+      const fileLoader = screen.getByTitle(/Load Markdown File/i);
 
       fireEvent.change(fileLoader, { target: { files: [file] } });
     });

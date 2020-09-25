@@ -9,9 +9,9 @@ const iconStyle = css`
 `;
 
 const iconAnimation = css`
-  transition: 0.5s ease-in-out;
+  transition: 0.4s ease-in-out;
 
-  :hover {
+  &:hover {
     transform: scale(1.1);
     fill: ${(props) => props.theme.colorScheme.silver};
     circle,
@@ -38,7 +38,7 @@ const MenuItemRight = styled(MenuItem)`
 `;
 
 const MenuItemWithTooltip = styled(MenuItem)`
-  :hover {
+  &:hover {
     svg {
       transition: opacity 0.4s ease-in-out;
       opacity: 0.3;

@@ -25,10 +25,10 @@ const TextInput = styled.input`
 const iconStyle = css`
   svg {
     fill: none;
+    ${iconAnimation}
     &:hover {
       fill: none;
     }
-    ${iconAnimation}
   }
 `;
 const Button = styled.button`

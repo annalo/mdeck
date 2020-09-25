@@ -34,7 +34,7 @@ describe("<Preview />", () => {
   test("should disable FULLSCREEN button if no markdown string", () => {
     render(<Preview />);
 
-    const button = screen.getByRole("button", { name: "FULLSCREEN" });
+    const button = screen.getByRole("button", { name: /fullscreen/i });
     expect(button).toBeDisabled();
   });
 
@@ -51,7 +51,7 @@ describe("<Preview />", () => {
     );
     render(<Preview />, { wrapper: wrapperWithState });
 
-    const button = screen.getByRole("button", { name: "FULLSCREEN" });
+    const button = screen.getByRole("button", { name: /fullscreen/i });
     fireEvent.click(button);
 
     const slideshow = screen.getByRole("article");
