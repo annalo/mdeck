@@ -73,11 +73,11 @@ const SaveFileForm = ({
         type="text"
       />
 
-      <Button name="submit" type="submit">
+      <Button aria-label="submit" type="submit">
         <Checkmark />
       </Button>
 
-      <Button name="cancel" onClick={closeForm} type="button">
+      <Button aria-label="cancel" onClick={closeForm} type="button">
         <Xmark />
       </Button>
     </Form>
