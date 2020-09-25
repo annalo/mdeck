@@ -17,7 +17,6 @@ const Form = styled.form`
 const TextInput = styled.input`
   background-color: transparent;
   border: none;
-
   &:focus {
     outline: none;
     box-shadow: -8px 10px 0px -7px #4ea6ea, 8px 10px 0px -7px #4ea6ea;
