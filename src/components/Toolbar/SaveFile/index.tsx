@@ -37,7 +37,7 @@ const SaveFileMenuItem = (): React.ReactElement => {
       />
     </MenuItem>
   ) : (
-    <MenuItemWithTooltip onClick={openForm}>
+    <MenuItemWithTooltip onClick={openForm} role="button">
       <SaveIcon />
       <Tooltip text="SAVE" />
     </MenuItemWithTooltip>
