@@ -1,13 +1,11 @@
 import React from "react";
 
-import PresentationIcon from "icons/video-camera.svg";
-
 import { Header } from "./Header";
 import { Menu } from "./Menu";
-import { MenuItemRight } from "./MenuItem";
 
 import { LoadFileMenuItem } from "./LoadFile";
 import { SaveFileMenuItem } from "./SaveFile";
+import { PresentationMode as PresentationModeMenuItem } from "./PresentationMode";
 
 const Toolbar = (): React.ReactElement => (
   <Header>
@@ -15,9 +13,7 @@ const Toolbar = (): React.ReactElement => (
       <LoadFileMenuItem />
       <SaveFileMenuItem />
 
-      <MenuItemRight>
-        <PresentationIcon />
-      </MenuItemRight>
+      <PresentationModeMenuItem />
     </Menu>
   </Header>
 );
