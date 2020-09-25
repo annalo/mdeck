@@ -65,6 +65,7 @@ const TextEditor = memo(function TextEditor() {
       <TextArea
         ref={ref}
         autoFocus
+        name="md"
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         value={md}
