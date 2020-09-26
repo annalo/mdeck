@@ -11,7 +11,7 @@ import { usePaneIsActive } from "utils/usePaneIsActive";
 
 import { TEXT_AREA_LINE_HEIGHT, TextArea } from "./TextArea";
 import { useSyncEditor } from "./useSyncEditor";
-import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
+import { useTrackEditorScroll } from "./useTrackEditorScroll";
 
 const Container = styled.div`
   background-color: ${(props) => props.theme.textAreaBackgroundColor};
@@ -32,7 +32,7 @@ const Editor = memo(function Editor() {
     slideshowLineNumber,
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
   });
-  useTrackTextAreaScroll({
+  useTrackEditorScroll({
     dispatch,
     isActive,
     ref,

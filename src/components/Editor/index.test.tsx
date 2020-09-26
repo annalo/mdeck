@@ -12,7 +12,7 @@ import {
 import { Editor } from ".";
 import { TEXT_AREA_LINE_HEIGHT } from "./TextArea";
 import { useSyncEditor } from "./useSyncEditor";
-import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
+import { useTrackEditorScroll } from "./useTrackEditorScroll";
 
 describe("<Editor />", () => {
   test("should render and match the snapshot", () => {
@@ -62,7 +62,7 @@ describe("<Editor />", () => {
     });
   });
 
-  describe("useTrackTextAreaScroll", () => {
+  describe("useTrackEditorScroll", () => {
     let textarea;
     let lineCount;
     let scrollHeight;
@@ -82,7 +82,7 @@ describe("<Editor />", () => {
       const ref = { current: textarea };
       const { result } = renderHook(() => {
         const dispatch = useMarkdownDispatch();
-        useTrackTextAreaScroll({
+        useTrackEditorScroll({
           dispatch,
           isActive: true,
           ref,
@@ -106,7 +106,7 @@ describe("<Editor />", () => {
       const ref = { current: textarea };
       const { result } = renderHook(() => {
         const dispatch = useMarkdownDispatch();
-        useTrackTextAreaScroll({
+        useTrackEditorScroll({
           dispatch,
           isActive: false,
           ref,
