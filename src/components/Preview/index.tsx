@@ -12,7 +12,7 @@ import { Slide } from "components/Slide/Loadable";
 import { usePaneIsActive } from "utils/usePaneIsActive";
 import { useWorker } from "./useWorker";
 import { useSyncPreview } from "./useSyncPreview";
-import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
+import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
 
 const Container = styled.div`
   display: flex;
@@ -58,7 +58,7 @@ const Preview = memo(function Preview() {
   const entries = useCodeLineEntries();
 
   useSyncPreview({ entries, textLineNumber });
-  useTrackSlideshowScroll({ dispatch, entries, isActive, ref });
+  useTrackPreviewScroll({ dispatch, entries, isActive, ref });
   useWorker({ dispatch, md });
 
   return (

@@ -20,7 +20,7 @@ import { Preview } from ".";
 import MarkdownWorker from "./markdown-worker";
 import { useWorker } from "./useWorker";
 import { useSyncPreview } from "./useSyncPreview";
-import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
+import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
 
 jest.mock("smooth-scroll-into-view-if-needed");
 jest.mock("./markdown-worker");
@@ -120,7 +120,7 @@ describe("<Preview />", () => {
     });
   });
 
-  describe("useTrackSlideshowScroll", () => {
+  describe("useTrackPreviewScroll", () => {
     let slideshow;
     let line;
     let initialEntries;
@@ -166,7 +166,7 @@ describe("<Preview />", () => {
         () => {
           const dispatch = useMarkdownDispatch();
           const entries = useCodeLineEntries();
-          useTrackSlideshowScroll({ dispatch, entries, isActive: true, ref });
+          useTrackPreviewScroll({ dispatch, entries, isActive: true, ref });
           return useMarkdownState();
         },
         { wrapper }
@@ -189,7 +189,7 @@ describe("<Preview />", () => {
         () => {
           const dispatch = useMarkdownDispatch();
           const entries = useCodeLineEntries();
-          useTrackSlideshowScroll({ dispatch, entries, isActive: false, ref });
+          useTrackPreviewScroll({ dispatch, entries, isActive: false, ref });
           return useMarkdownState();
         },
         { wrapper }
