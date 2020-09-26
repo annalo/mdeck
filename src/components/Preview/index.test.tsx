@@ -1,5 +1,5 @@
 import React from "react";
-import { fireEvent } from "@testing-library/react";
+import { fireEvent, screen, waitFor } from "@testing-library/react";
 import { act } from "@testing-library/react-hooks";
 import { render, renderHook } from "utils/test-utils";
 
@@ -11,6 +11,7 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
+import { SlideObserverProvider } from "contexts/SlideObserver";
 import {
   CodeLineObserverProvider,
   useCodeLineEntries,
@@ -33,28 +34,29 @@ describe("<Preview />", () => {
     expect(asFragment()).toMatchSnapshot();
   });
 
-  // test("should render a Slide component for each element in 'htmlArray'", async () => {
-  //   const htmlArray = [
-  //     "<svg><h1>Title</h1></svg>",
-  //     "<svg><p>Paragraph</p></svg>",
-  //   ];
-  //   const ref = { current: document.createElement("div") };
-  //   render(
-  //     <Slideshow
-  //       ref={ref}
-  //       dispatch={jest.fn()}
-  //       htmlArray={htmlArray}
-  //       editorLine={0}
-  //     />
-  //   );
+  test("should render a Slide component for each element in 'htmlArray'", async () => {
+    const htmlArray = [
+      "<svg><h1>Title</h1></svg>",
+      "<svg><p>Paragraph</p></svg>",
+    ];
+    const wrapper = ({ children }) => (
+      <MarkdownContextProvider
+        initialState={{ ...MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE, htmlArray }}
+      >
+        <SlideObserverProvider>
+          <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+        </SlideObserverProvider>
+      </MarkdownContextProvider>
+    );
+    render(<Preview />, { wrapper });
 
-  //   const article = screen.getByRole("article");
-  //   await waitFor(() => {
-  //     expect(article.childElementCount).toBe(htmlArray.length);
-  //     expect(article.children[0].getAttribute("id")).toBe("slide-1");
-  //     expect(article.children[1].getAttribute("id")).toBe("slide-2");
-  //   });
-  // });
+    const article = screen.getByRole("article");
+    await waitFor(() => {
+      expect(article.childElementCount).toBe(htmlArray.length);
+      expect(article.children[0].getAttribute("id")).toBe("slide-1");
+      expect(article.children[1].getAttribute("id")).toBe("slide-2");
+    });
+  });
 
   describe("useWorker", () => {
     test("should instantiate MarkdownWorker just once", () => {
