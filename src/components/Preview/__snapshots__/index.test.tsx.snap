@@ -53,13 +53,6 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
   flex-direction: column;
 }
 
-.c2 {
-  z-index: 10000;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-}
-
 <div
     class="c0"
   >
@@ -67,13 +60,6 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
       class="c1"
       id="slideshow"
     />
-    <button
-      class="c2"
-      disabled=""
-      type="button"
-    >
-      FULLSCREEN
-    </button>
   </div>
 </DocumentFragment>
 `;

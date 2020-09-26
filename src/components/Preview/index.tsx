@@ -2,53 +2,46 @@ import React, { memo, useRef } from "react";
 import styled from "styled-components";
 
 import {
-  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
+import { useCodeLineEntries } from "contexts/CodeLineObserver";
+import { usePaneIsActive } from "utils/usePaneIsActive";
 
-import { Slideshow } from "components/Slideshow";
-import { usePresentation } from "./usePresentation";
-import { useWorker } from "./useWorker";
+import { Slide } from "components/Slide/Loadable";
+import { Slideshow } from "./Slideshow";
 
-const Div = styled.div`
+import { useMarkdownWorker } from "./useMarkdownWorker";
+import { useSyncPreview } from "./useSyncPreview";
+import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
+
+const Container = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
 `;
-const FullscreenButton = styled.button`
-  z-index: 10000;
-  position: absolute;
-  right: 0;
-  bottom: 0;
-`;
 
 const Preview = memo(function Preview() {
-  const slideshowRef = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLElement>(null);
 
   const dispatch = useMarkdownDispatch();
-  const { htmlArray, md, textLineNumber } = useMarkdownState();
+  const { htmlArray, md, editorLine } = useMarkdownState();
 
-  const requestPresentation = usePresentation(slideshowRef);
-  useWorker({ dispatch, md });
+  const isActive = usePaneIsActive({ ref, initialValue: false });
+  const entries = useCodeLineEntries();
+
+  useMarkdownWorker({ dispatch, md });
+  useSyncPreview({ entries, editorLine });
+  useTrackPreviewScroll({ dispatch, entries, isActive, ref });
 
   return (
-    <Div>
-      <Slideshow
-        ref={slideshowRef}
-        dispatch={dispatch}
-        htmlArray={htmlArray}
-        textLineNumber={textLineNumber}
-      />
-
-      <FullscreenButton
-        disabled={md === MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.md}
-        onClick={() => requestPresentation()}
-        type="button"
-      >
-        FULLSCREEN
-      </FullscreenButton>
-    </Div>
+    <Container>
+      <Slideshow ref={ref} id="slideshow">
+        {htmlArray.map((html, i) => (
+          <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
+        ))}
+      </Slideshow>
+    </Container>
   );
 });
 

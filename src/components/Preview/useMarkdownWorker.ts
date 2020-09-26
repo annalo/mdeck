@@ -4,12 +4,12 @@ import type { MarkdownContextReducerAction } from "types/markdown-context-reduce
 
 import MarkdownWorker from "./markdown-worker";
 
-interface UseWorkerProps {
+interface UseMarkdownWorkerProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
   md: MarkdownString;
 }
 
-function useWorker({ dispatch, md }: UseWorkerProps): void {
+function useMarkdownWorker({ dispatch, md }: UseMarkdownWorkerProps): void {
   const workerRef = useRef<MarkdownWorker | null>(null);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ function useWorker({ dispatch, md }: UseWorkerProps): void {
   }, [md]);
 }
 
-export { useWorker };
+export { useMarkdownWorker };

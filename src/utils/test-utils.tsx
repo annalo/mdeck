@@ -3,7 +3,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { renderHook } from "@testing-library/react-hooks";
 
-import { ThemeProvider } from "components/Home/ThemeProvider";
+import { ThemeProvider } from "components/App/ThemeProvider";
 import { MarkdownContextProvider } from "contexts/MarkdownContext";
 import { SlideObserverProvider } from "contexts/SlideObserver";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";

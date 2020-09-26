@@ -7,8 +7,8 @@ import {
 const MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE = {
   htmlArray: [],
   md: "",
-  slideshowLineNumber: 0,
-  textLineNumber: 0,
+  previewCodeLine: 0,
+  editorLine: 0,
 };
 
 const StateContext = createContext<MarkdownContextState | undefined>(undefined);
@@ -24,11 +24,11 @@ function reducer(state: MarkdownContextState, action: ReducerAction) {
     case ReducerActionType.SetMd: {
       return { ...state, md: action.md };
     }
-    case ReducerActionType.SetSlideshowLineNumber: {
-      return { ...state, slideshowLineNumber: action.slideshowLineNumber };
+    case ReducerActionType.SetPreviewCodeLine: {
+      return { ...state, previewCodeLine: action.previewCodeLine };
     }
-    case ReducerActionType.SetTextLineNumber: {
-      return { ...state, textLineNumber: action.textLineNumber };
+    case ReducerActionType.SetEditorLine: {
+      return { ...state, editorLine: action.editorLine };
     }
     default: {
       throw new Error("Unhandled action type");

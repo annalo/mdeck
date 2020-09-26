@@ -2,25 +2,41 @@ import React from "react";
 import styled from "styled-components";
 
 import { MarkdownContextProvider } from "contexts/MarkdownContext";
+import { SlideObserverProvider } from "contexts/SlideObserver";
+import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
-import { Toolbar } from "components/Toolbar/Loadable";
 import { Editor } from "components/Editor/Loadable";
-import { ThemeProvider } from "./ThemeProvider";
+import { Preview } from "components/Preview/Loadable";
+import { Toolbar } from "components/Toolbar/Loadable";
 
 const Container = styled.div`
   height: 100%;
 `;
+const Body = styled.body`
+  display: flex;
+  height: 100%;
+  padding-bottom: ${(props) => props.theme.toolbarHeight + 2}px;
+`;
+
+const ContextProviders = ({ children }) => (
+  <MarkdownContextProvider>
+    <SlideObserverProvider>
+      <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+    </SlideObserverProvider>
+  </MarkdownContextProvider>
+);
 
 const Home: React.FC = () => (
-  <ThemeProvider>
-    <Container id="main">
-      <MarkdownContextProvider>
+  <Container id="main">
+    <ContextProviders>
+      <Body>
         <Editor />
+        <Preview />
+      </Body>
 
-        <Toolbar />
-      </MarkdownContextProvider>
-    </Container>
-  </ThemeProvider>
+      <Toolbar />
+    </ContextProviders>
+  </Container>
 );
 
 export { Home };

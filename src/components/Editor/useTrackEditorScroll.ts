@@ -8,33 +8,29 @@ import {
   MarkdownContextReducerActionType,
 } from "types/markdown-context-reducer-action";
 
-interface UseTrackTextAreaScrollProps {
+interface useTrackEditorScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
   isActive: boolean;
   ref: RefObject<HTMLTextAreaElement>;
   textAreaLineHeight: number;
 }
 
-function useTrackTextAreaScroll({
+function useTrackEditorScroll({
   dispatch,
   isActive,
   ref,
   textAreaLineHeight,
-}: UseTrackTextAreaScrollProps): void {
+}: useTrackEditorScrollProps): void {
   const handleScroll = useMemo(
     () =>
       throttle((ev) => {
         const getScrollTop = R.path(["target", "scrollTop"]);
-        const calculateLineNumber = R.divide(R.__, textAreaLineHeight);
-        const textLineNumber = R.pipe(
-          getScrollTop,
-          calculateLineNumber,
-          Math.floor
-        )(ev);
+        const calculateLine = R.divide(R.__, textAreaLineHeight);
+        const editorLine = R.pipe(getScrollTop, calculateLine, Math.floor)(ev);
 
         dispatch({
-          type: MarkdownContextReducerActionType.SetTextLineNumber,
-          textLineNumber,
+          type: MarkdownContextReducerActionType.SetEditorLine,
+          editorLine,
         });
       }, 200),
     [dispatch, textAreaLineHeight]
@@ -52,4 +48,4 @@ function useTrackTextAreaScroll({
   }, [isActive, handleScroll, ref]);
 }
 
-export { useTrackTextAreaScroll };
+export { useTrackEditorScroll };

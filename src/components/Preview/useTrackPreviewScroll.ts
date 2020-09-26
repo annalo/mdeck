@@ -8,24 +8,24 @@ import {
   MarkdownContextReducerActionType,
 } from "types/markdown-context-reducer-action";
 
-import { TEXT_AREA_LINE_HEIGHT } from "components/TextEditor/TextArea";
+import { TEXT_AREA_LINE_HEIGHT } from "components/Editor/TextArea";
 
-interface UseTrackSlideshowScrollProps {
+interface UseTrackPreviewScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
-  entries: SlideshowObserver.Entries;
+  entries: SlideObserver.Entries;
   isActive: boolean;
   ref: any;
 }
 
-function useTrackSlideshowScroll({
+function useTrackPreviewScroll({
   dispatch,
   entries,
   isActive,
   ref,
-}: UseTrackSlideshowScrollProps): void {
+}: UseTrackPreviewScrollProps): void {
   /*
    * Finds the top most element in view (within 0px - 18px from the top)
-   * IF element THEN set `slideshowLineNumber` to it's data-line number
+   * IF element THEN set `previewCodeLine` to it's data-line number
    */
   const handleScroll = useMemo(
     () =>
@@ -35,16 +35,16 @@ function useTrackSlideshowScroll({
           R.lte(R.__, TEXT_AREA_LINE_HEIGHT)
         );
         const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
-        const setLineNumber = (lineNumber) =>
+        const setPreviewCodeLine = (line) =>
           dispatch({
-            type: MarkdownContextReducerActionType.SetSlideshowLineNumber,
-            slideshowLineNumber: lineNumber,
+            type: MarkdownContextReducerActionType.SetPreviewCodeLine,
+            previewCodeLine: line,
           });
 
         const topElement = Object.entries(entries).find(([, entry]) =>
           isTopElement(entry)
         );
-        if (topElement) setLineNumber(parseInt(topElement[0], 10));
+        if (topElement) setPreviewCodeLine(parseInt(topElement[0], 10));
       }, 100),
     [dispatch, entries]
   );
@@ -61,4 +61,4 @@ function useTrackSlideshowScroll({
   }, [isActive, handleScroll, ref]);
 }
 
-export { useTrackSlideshowScroll };
+export { useTrackPreviewScroll };

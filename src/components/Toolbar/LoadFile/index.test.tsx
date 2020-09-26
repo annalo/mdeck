@@ -3,7 +3,7 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { render } from "utils/test-utils";
 
-import { TextEditor } from "components/TextEditor";
+import { Editor } from "components/Editor";
 import { LoadFileMenuItem } from ".";
 
 describe("<LoadFileMenuItem />", () => {
@@ -30,7 +30,7 @@ describe("<LoadFileMenuItem />", () => {
     test("should load .md files", async () => {
       render(
         <>
-          <TextEditor />
+          <Editor />
           <LoadFileMenuItem />
         </>
       );

@@ -1,8 +1,8 @@
 export enum MarkdownContextReducerActionType {
   SetHtmlArray = "SET_HTML_STRING",
   SetMd = "SET_MD",
-  SetSlideshowLineNumber = "SET_SLIDESHOW_LINE_NUMBER",
-  SetTextLineNumber = "SET_TEXT_LINE_NUMBER",
+  SetPreviewCodeLine = "SET_PREVIEW_CODE_LINE",
+  SetEditorLine = "SET_TEXT_LINE_NUMBER",
 }
 
 export declare type MarkdownContextReducerAction =
@@ -15,10 +15,10 @@ export declare type MarkdownContextReducerAction =
       md: MarkdownString;
     }
   | {
-      type: MarkdownContextReducerActionType.SetSlideshowLineNumber;
-      slideshowLineNumber: LineNumber;
+      type: MarkdownContextReducerActionType.SetPreviewCodeLine;
+      previewCodeLine: LineNumber;
     }
   | {
-      type: MarkdownContextReducerActionType.SetTextLineNumber;
-      textLineNumber: LineNumber;
+      type: MarkdownContextReducerActionType.SetEditorLine;
+      editorLine: LineNumber;
     };
