@@ -10,7 +10,7 @@ import {
 
 import { TEXT_AREA_LINE_HEIGHT } from "components/Editor/TextArea";
 
-interface UseTrackSlideshowScrollProps {
+interface UseTrackPreviewScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
   entries: SlideshowObserver.Entries;
   isActive: boolean;
@@ -22,7 +22,7 @@ function useTrackPreviewScroll({
   entries,
   isActive,
   ref,
-}: UseTrackSlideshowScrollProps): void {
+}: UseTrackPreviewScrollProps): void {
   /*
    * Finds the top most element in view (within 0px - 18px from the top)
    * IF element THEN set `previewCodeLine` to it's data-line number
@@ -37,7 +37,7 @@ function useTrackPreviewScroll({
         const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
         const setLineNumber = (line) =>
           dispatch({
-            type: MarkdownContextReducerActionType.SetSlideshowLineNumber,
+            type: MarkdownContextReducerActionType.SetPreviewCodeLine,
             previewCodeLine: line,
           });
 

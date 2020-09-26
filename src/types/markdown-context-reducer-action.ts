@@ -1,7 +1,7 @@
 export enum MarkdownContextReducerActionType {
   SetHtmlArray = "SET_HTML_STRING",
   SetMd = "SET_MD",
-  SetSlideshowLineNumber = "SET_SLIDESHOW_LINE_NUMBER",
+  SetPreviewCodeLine = "SET_PREVIEW_CODE_LINE",
   SetTextLineNumber = "SET_TEXT_LINE_NUMBER",
 }
 
@@ -15,7 +15,7 @@ export declare type MarkdownContextReducerAction =
       md: MarkdownString;
     }
   | {
-      type: MarkdownContextReducerActionType.SetSlideshowLineNumber;
+      type: MarkdownContextReducerActionType.SetPreviewCodeLine;
       previewCodeLine: LineNumber;
     }
   | {

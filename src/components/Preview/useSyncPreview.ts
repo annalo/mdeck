@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
-interface UseSyncSlideshowProps {
+interface UseSyncPreviewProps {
   entries: SlideshowObserver.Entries;
   textLineNumber: LineNumber;
 }
@@ -9,8 +9,8 @@ interface UseSyncSlideshowProps {
 function useSyncPreview({
   entries,
   textLineNumber,
-}: UseSyncSlideshowProps): void {
-  /* Syncs slideshow when textLineNumber changes */
+}: UseSyncPreviewProps): void {
+  /* Syncs preview when textLineNumber changes */
   useEffect(() => {
     const dataLineElement = entries[textLineNumber];
     if (dataLineElement) scrollIntoView(dataLineElement, { block: "start" });

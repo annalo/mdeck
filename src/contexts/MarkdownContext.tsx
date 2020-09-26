@@ -24,7 +24,7 @@ function reducer(state: MarkdownContextState, action: ReducerAction) {
     case ReducerActionType.SetMd: {
       return { ...state, md: action.md };
     }
-    case ReducerActionType.SetSlideshowLineNumber: {
+    case ReducerActionType.SetPreviewCodeLine: {
       return { ...state, previewCodeLine: action.previewCodeLine };
     }
     case ReducerActionType.SetTextLineNumber: {

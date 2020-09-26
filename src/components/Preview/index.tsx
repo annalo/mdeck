@@ -19,7 +19,7 @@ const Container = styled.div`
   flex: 1;
   flex-direction: column;
 `;
-const Article = styled.article`
+const Slideshow = styled.article`
   height: 100%;
   overflow: auto;
 
@@ -63,11 +63,11 @@ const Preview = memo(function Preview() {
 
   return (
     <Container>
-      <Article ref={ref} id="slideshow">
+      <Slideshow ref={ref} id="slideshow">
         {htmlArray.map((html, i) => (
           <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
         ))}
-      </Article>
+      </Slideshow>
     </Container>
   );
 });
