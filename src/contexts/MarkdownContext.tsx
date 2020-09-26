@@ -4,7 +4,7 @@ import {
   MarkdownContextReducerActionType as ReducerActionType,
 } from "types/markdown-context-reducer-action";
 
-const MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE = {
+const MARKDOWN_CONTEXT_INITIAL_STATE = {
   htmlArray: [],
   md: "",
   previewCodeLine: 0,
@@ -42,7 +42,7 @@ const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = ({
 }: MarkdownContextProviderProps) => {
   const [state, dispatch] = useReducer(
     reducer,
-    initialState || MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE
+    initialState || MARKDOWN_CONTEXT_INITIAL_STATE
   );
   return (
     <StateContext.Provider value={state}>
@@ -74,7 +74,7 @@ function useMarkdownState(): MarkdownContextState {
 }
 
 export {
-  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
+  MARKDOWN_CONTEXT_INITIAL_STATE,
   MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,

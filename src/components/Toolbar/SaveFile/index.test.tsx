@@ -5,7 +5,7 @@ import { fireEvent, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { render } from "utils/test-utils";
 
-import { MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE } from "contexts/MarkdownContext";
+import { MARKDOWN_CONTEXT_INITIAL_STATE } from "contexts/MarkdownContext";
 
 import { SaveFileMenuItem } from ".";
 
@@ -29,7 +29,7 @@ describe("<SaveFileMenuItem />", () => {
   describe("<SaveFileForm />", () => {
     test("should save file with filename", () => {
       const filename = "test-file";
-      const blob = new Blob([MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.md], {
+      const blob = new Blob([MARKDOWN_CONTEXT_INITIAL_STATE.md], {
         type: "text/markdown",
       });
 

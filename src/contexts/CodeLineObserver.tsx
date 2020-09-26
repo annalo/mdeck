@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import * as R from "ramda";
 
-const CODE_LINE_OBSERVER_DEFAULT_INITIAL_STATE = {};
+const CODE_LINE_OBSERVER_INITIAL_STATE = {};
 
 const CodeLineEntriesContext = createContext<
   CodeLineObserver.Entries | undefined
@@ -21,7 +21,7 @@ const CodeLineObserverProvider: React.FC<CodeLineObserver.ProviderProps> = ({
   initialEntries,
 }: CodeLineObserver.ProviderProps) => {
   const [entries, setEntries] = useState(
-    initialEntries || CODE_LINE_OBSERVER_DEFAULT_INITIAL_STATE
+    initialEntries || CODE_LINE_OBSERVER_INITIAL_STATE
   );
   const observe: CodeLineObserver.Observe = useCallback(
     (targetEntries) =>
