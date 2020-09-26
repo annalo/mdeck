@@ -8,7 +8,7 @@ const Icon = styled(PresentationIcon)`
   ${iconAnimation}
 `;
 
-const PresentationMode = (): React.ReactElement => (
+const PresentationMode: React.FC = () => (
   <MenuItemRight>
     <Icon />
   </MenuItemRight>

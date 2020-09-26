@@ -40,11 +40,11 @@ const Button = styled.button`
   ${iconStyle}
 `;
 
-const SaveFileForm = ({
+const SaveFileForm: React.FC<SaveFileFormProps> = ({
   closeForm,
   filename,
   saveFile,
-}: SaveFileFormProps): React.ReactElement => {
+}: SaveFileFormProps) => {
   const filenameInputRef = useRef<HTMLInputElement>(null);
 
   const handleOnBlur = (ev) => {

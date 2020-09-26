@@ -25,7 +25,7 @@ const HoverTooltip = styled.div`
   }
 `;
 
-const Tooltip = ({ text }: TooltipProps): React.ReactElement => (
+const Tooltip: React.FC<TooltipProps> = ({ text }: TooltipProps) => (
   <HoverTooltip>{text}</HoverTooltip>
 );
 

@@ -8,7 +8,7 @@ import { MenuItem, MenuItemWithTooltip } from "../MenuItem";
 import { Tooltip } from "../Tooltip";
 import { SaveFileForm } from "./SaveFileForm";
 
-const SaveFileMenuItem = (): React.ReactElement => {
+const SaveFileMenuItem: React.FC = () => {
   const [isFormOpen, toggleForm] = useState(false);
   const [filename, setFilename] = useState("");
 

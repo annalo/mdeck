@@ -7,7 +7,7 @@ import { LoadFileMenuItem } from "./LoadFile";
 import { SaveFileMenuItem } from "./SaveFile";
 import { PresentationMode as PresentationModeMenuItem } from "./PresentationMode";
 
-const Toolbar = (): React.ReactElement => (
+const Toolbar: React.FC = () => (
   <Header>
     <Menu>
       <LoadFileMenuItem />

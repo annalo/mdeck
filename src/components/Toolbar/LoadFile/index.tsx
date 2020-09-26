@@ -12,7 +12,7 @@ const FileLoader = styled.input`
   display: none;
 `;
 
-const LoadFileMenuItem = (): React.ReactElement => {
+const LoadFileMenuItem: React.FC = () => {
   const fileLoaderRef = useRef<HTMLInputElement>(null);
   const dispatch = useMarkdownDispatch();
 
