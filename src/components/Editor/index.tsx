@@ -14,7 +14,7 @@ import { useSyncEditor } from "./useSyncEditor";
 import { useTrackEditorScroll } from "./useTrackEditorScroll";
 
 const Container = styled.div`
-  background-color: ${(props) => props.theme.textAreaBackgroundColor};
+  background-color: ${(props) => props.theme.editorBackgroundColor};
   display: flex;
   flex: 1;
   flex-direction: column;

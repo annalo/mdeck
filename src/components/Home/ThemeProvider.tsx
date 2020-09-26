@@ -13,7 +13,7 @@ const colorScheme = {
 const theme = {
   colorScheme,
   toolbarHeight: 25,
-  textAreaBackgroundColor: colorScheme.snow,
+  editorBackgroundColor: colorScheme.snow,
   textColor: colorScheme.nightrider,
 };
 
