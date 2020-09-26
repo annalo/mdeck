@@ -14,7 +14,7 @@ describe("MarkdownContext", () => {
       const initialState = {
         htmlArray: ["1", "2"],
         md: "123",
-        slideshowLineNumber: 5,
+        previewCodeLine: 5,
         textLineNumber: 5,
       };
       const wrapper = ({ children }) => (

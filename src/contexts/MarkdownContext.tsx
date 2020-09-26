@@ -7,7 +7,7 @@ import {
 const MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE = {
   htmlArray: [],
   md: "",
-  slideshowLineNumber: 0,
+  previewCodeLine: 0,
   textLineNumber: 0,
 };
 
@@ -25,7 +25,7 @@ function reducer(state: MarkdownContextState, action: ReducerAction) {
       return { ...state, md: action.md };
     }
     case ReducerActionType.SetSlideshowLineNumber: {
-      return { ...state, slideshowLineNumber: action.slideshowLineNumber };
+      return { ...state, previewCodeLine: action.previewCodeLine };
     }
     case ReducerActionType.SetTextLineNumber: {
       return { ...state, textLineNumber: action.textLineNumber };

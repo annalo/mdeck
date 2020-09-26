@@ -23,13 +23,13 @@ const Container = styled.div`
 const Editor = memo(function Editor() {
   const ref = useRef<HTMLTextAreaElement>(null);
   const dispatch = useMarkdownDispatch();
-  const { md, slideshowLineNumber } = useMarkdownState();
+  const { md, previewCodeLine } = useMarkdownState();
 
   const isActive = usePaneIsActive({ ref, initialValue: true });
 
   useSyncEditor({
     ref,
-    slideshowLineNumber,
+    previewCodeLine,
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
   });
   useTrackEditorScroll({

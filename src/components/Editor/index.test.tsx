@@ -43,22 +43,20 @@ describe("<Editor />", () => {
   });
 
   describe("useSyncEditor", () => {
-    test("should sync textarea to slideshowLineNumber corresponding text", () => {
+    test("should sync textarea to previewCodeLine corresponding text", () => {
       const textarea = document.createElement("textarea");
       const ref = { current: textarea };
-      const slideshowLineNumber = 7;
+      const previewCodeLine = 7;
 
       renderHook(() => {
         useSyncEditor({
           ref,
-          slideshowLineNumber,
+          previewCodeLine,
           textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,
         });
       });
 
-      expect(textarea.scrollTop).toBe(
-        TEXT_AREA_LINE_HEIGHT * slideshowLineNumber
-      );
+      expect(textarea.scrollTop).toBe(TEXT_AREA_LINE_HEIGHT * previewCodeLine);
     });
   });
 

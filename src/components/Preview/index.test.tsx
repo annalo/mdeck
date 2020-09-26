@@ -160,7 +160,7 @@ describe("<Preview />", () => {
       </MarkdownContextProvider>
     );
 
-    test("should set slideshowLineNumber to the top most element's data-line if isActive", () => {
+    test("should set previewCodeLine to the top most element's data-line if isActive", () => {
       const ref = { current: slideshow };
       const { result } = renderHook(
         () => {
@@ -172,7 +172,7 @@ describe("<Preview />", () => {
         { wrapper }
       );
 
-      expect(result.current.slideshowLineNumber).toBe(
+      expect(result.current.previewCodeLine).toBe(
         MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
       );
 
@@ -180,10 +180,10 @@ describe("<Preview />", () => {
         fireEvent.scroll(slideshow, { target: { scrollY: 100 } });
       });
 
-      expect(result.current.slideshowLineNumber).toBe(line);
+      expect(result.current.previewCodeLine).toBe(line);
     });
 
-    test("should not set slideshowLineNumber if isActive is false", () => {
+    test("should not set previewCodeLine if isActive is false", () => {
       const ref = { current: slideshow };
       const { result } = renderHook(
         () => {
@@ -199,7 +199,7 @@ describe("<Preview />", () => {
         fireEvent.scroll(slideshow, { target: { scrollY: 100 } });
       });
 
-      expect(result.current.slideshowLineNumber).toBe(
+      expect(result.current.previewCodeLine).toBe(
         MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
       );
     });

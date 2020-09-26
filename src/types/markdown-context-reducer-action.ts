@@ -16,7 +16,7 @@ export declare type MarkdownContextReducerAction =
     }
   | {
       type: MarkdownContextReducerActionType.SetSlideshowLineNumber;
-      slideshowLineNumber: LineNumber;
+      previewCodeLine: LineNumber;
     }
   | {
       type: MarkdownContextReducerActionType.SetTextLineNumber;

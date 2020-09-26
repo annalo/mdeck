@@ -11,6 +11,6 @@ declare interface MarkdownContextProviderProps {
 declare interface MarkdownContextState {
   htmlArray: HtmlArray;
   md: MarkdownString;
-  slideshowLineNumber: LineNumber;
+  previewCodeLine: LineNumber;
   textLineNumber: LineNumber;
 }
