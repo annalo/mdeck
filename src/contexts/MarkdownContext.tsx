@@ -8,7 +8,7 @@ const MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE = {
   htmlArray: [],
   md: "",
   previewCodeLine: 0,
-  textLineNumber: 0,
+  editorLine: 0,
 };
 
 const StateContext = createContext<MarkdownContextState | undefined>(undefined);
@@ -28,7 +28,7 @@ function reducer(state: MarkdownContextState, action: ReducerAction) {
       return { ...state, previewCodeLine: action.previewCodeLine };
     }
     case ReducerActionType.SetTextLineNumber: {
-      return { ...state, textLineNumber: action.textLineNumber };
+      return { ...state, editorLine: action.editorLine };
     }
     default: {
       throw new Error("Unhandled action type");

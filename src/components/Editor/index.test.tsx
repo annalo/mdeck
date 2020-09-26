@@ -76,7 +76,7 @@ describe("<Editor />", () => {
       textarea.value = textValue;
     });
 
-    test("should set textLineNumber to the top most visible line number on scroll if isActive", () => {
+    test("should set editorLine to the top most visible line number on scroll if isActive", () => {
       const ref = { current: textarea };
       const { result } = renderHook(() => {
         const dispatch = useMarkdownDispatch();
@@ -89,18 +89,18 @@ describe("<Editor />", () => {
         return useMarkdownState();
       });
 
-      expect(result.current.textLineNumber).toBe(
-        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
+      expect(result.current.editorLine).toBe(
+        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
       );
 
       act(() => {
         fireEvent.scroll(textarea, { target: { scrollTop: scrollHeight } });
       });
 
-      expect(result.current.textLineNumber).toBe(lineCount);
+      expect(result.current.editorLine).toBe(lineCount);
     });
 
-    test("should not set textLineNumber on scroll if isActive is false", () => {
+    test("should not set editorLine on scroll if isActive is false", () => {
       const ref = { current: textarea };
       const { result } = renderHook(() => {
         const dispatch = useMarkdownDispatch();
@@ -117,8 +117,8 @@ describe("<Editor />", () => {
         fireEvent.scroll(textarea, { target: { scrollTop: scrollHeight } });
       });
 
-      expect(result.current.textLineNumber).toBe(
-        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
+      expect(result.current.editorLine).toBe(
+        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
       );
     });
   });

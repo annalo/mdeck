@@ -15,7 +15,7 @@ describe("MarkdownContext", () => {
         htmlArray: ["1", "2"],
         md: "123",
         previewCodeLine: 5,
-        textLineNumber: 5,
+        editorLine: 5,
       };
       const wrapper = ({ children }) => (
         <MarkdownContextProvider initialState={initialState}>

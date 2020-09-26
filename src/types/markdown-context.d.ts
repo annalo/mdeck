@@ -12,5 +12,5 @@ declare interface MarkdownContextState {
   htmlArray: HtmlArray;
   md: MarkdownString;
   previewCodeLine: LineNumber;
-  textLineNumber: LineNumber;
+  editorLine: LineNumber;
 }

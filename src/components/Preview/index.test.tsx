@@ -44,7 +44,7 @@ describe("<Preview />", () => {
   //       ref={ref}
   //       dispatch={jest.fn()}
   //       htmlArray={htmlArray}
-  //       textLineNumber={0}
+  //       editorLine={0}
   //     />
   //   );
 
@@ -86,10 +86,10 @@ describe("<Preview />", () => {
   });
 
   describe("useSyncPreview", () => {
-    test("should sync slideshow to textLineNumber if there's an element with the data-line", () => {
-      const textLineNumber = 2;
+    test("should sync slideshow to editorLine if there's an element with the data-line", () => {
+      const editorLine = 2;
       const element = { test: "test" };
-      const initialEntries = { [textLineNumber]: element };
+      const initialEntries = { [editorLine]: element };
 
       const wrapper = ({ children }) => (
         <CodeLineObserverProvider initialEntries={initialEntries}>
@@ -99,7 +99,7 @@ describe("<Preview />", () => {
       renderHook(
         () => {
           const entries = useCodeLineEntries();
-          useSyncPreview({ entries, textLineNumber });
+          useSyncPreview({ entries, editorLine });
         },
         {
           wrapper,
@@ -111,10 +111,10 @@ describe("<Preview />", () => {
     });
 
     test("should not do anything if there is no element with the data-line", () => {
-      const textLineNumber = 5;
+      const editorLine = 5;
       const entries = { 2: {} };
 
-      renderHook(() => useSyncPreview({ entries, textLineNumber }));
+      renderHook(() => useSyncPreview({ entries, editorLine }));
 
       expect(scrollIntoView).not.toHaveBeenCalled();
     });
@@ -173,7 +173,7 @@ describe("<Preview />", () => {
       );
 
       expect(result.current.previewCodeLine).toBe(
-        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
+        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
       );
 
       act(() => {
@@ -200,7 +200,7 @@ describe("<Preview />", () => {
       });
 
       expect(result.current.previewCodeLine).toBe(
-        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.textLineNumber
+        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
       );
     });
   });

@@ -53,11 +53,11 @@ const Preview = memo(function Preview() {
   const ref = useRef<HTMLElement>(null);
 
   const dispatch = useMarkdownDispatch();
-  const { htmlArray, md, textLineNumber } = useMarkdownState();
+  const { htmlArray, md, editorLine } = useMarkdownState();
   const isActive = usePaneIsActive({ ref, initialValue: false });
   const entries = useCodeLineEntries();
 
-  useSyncPreview({ entries, textLineNumber });
+  useSyncPreview({ entries, editorLine });
   useTrackPreviewScroll({ dispatch, entries, isActive, ref });
   useWorker({ dispatch, md });
 

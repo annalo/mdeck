@@ -20,5 +20,5 @@ export declare type MarkdownContextReducerAction =
     }
   | {
       type: MarkdownContextReducerActionType.SetTextLineNumber;
-      textLineNumber: LineNumber;
+      editorLine: LineNumber;
     };

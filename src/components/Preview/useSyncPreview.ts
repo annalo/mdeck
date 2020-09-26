@@ -3,18 +3,15 @@ import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 interface UseSyncPreviewProps {
   entries: SlideshowObserver.Entries;
-  textLineNumber: LineNumber;
+  editorLine: LineNumber;
 }
 
-function useSyncPreview({
-  entries,
-  textLineNumber,
-}: UseSyncPreviewProps): void {
-  /* Syncs preview when textLineNumber changes */
+function useSyncPreview({ entries, editorLine }: UseSyncPreviewProps): void {
+  /* Syncs preview when editorLine changes */
   useEffect(() => {
-    const dataLineElement = entries[textLineNumber];
+    const dataLineElement = entries[editorLine];
     if (dataLineElement) scrollIntoView(dataLineElement, { block: "start" });
-  }, [entries, textLineNumber]);
+  }, [entries, editorLine]);
 }
 
 export { useSyncPreview };
