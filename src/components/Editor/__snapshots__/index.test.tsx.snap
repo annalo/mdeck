@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`<TextEditor /> should render and match the snapshot 1`] = `
+exports[`<Editor /> should render and match the snapshot 1`] = `
 <DocumentFragment>
   .c1 {
   background-color: transparent;

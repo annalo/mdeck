@@ -20,7 +20,7 @@ const Container = styled.div`
   flex-direction: column;
 `;
 
-const TextEditor = memo(function TextEditor() {
+const Editor = memo(function Editor() {
   const ref = useRef<HTMLTextAreaElement>(null);
   const dispatch = useMarkdownDispatch();
   const { md, slideshowLineNumber } = useMarkdownState();
@@ -74,4 +74,4 @@ const TextEditor = memo(function TextEditor() {
   );
 });
 
-export { TEXT_AREA_LINE_HEIGHT, TextEditor };
+export { TEXT_AREA_LINE_HEIGHT, Editor };

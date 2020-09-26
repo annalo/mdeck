@@ -7,7 +7,7 @@ import { Toolbar } from "components/Toolbar/Loadable";
 import { SlideObserverProvider } from "contexts/SlideObserver";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
-import { TextEditor } from "components/TextEditor/Loadable";
+import { Editor } from "components/Editor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 
 import { ThemeProvider } from "./ThemeProvider";
@@ -28,7 +28,7 @@ const Home: React.FC = () => (
         <SlideObserverProvider>
           <CodeLineObserverProvider>
             <Body>
-              <TextEditor />
+              <Editor />
               <Preview />
             </Body>
 

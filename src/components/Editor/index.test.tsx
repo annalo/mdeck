@@ -9,19 +9,19 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
-import { TextEditor } from ".";
+import { Editor } from ".";
 import { TEXT_AREA_LINE_HEIGHT } from "./TextArea";
 import { useSyncTextArea } from "./useSyncTextArea";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
-describe("<TextEditor />", () => {
+describe("<Editor />", () => {
   test("should render and match the snapshot", () => {
-    const { asFragment } = render(<TextEditor />);
+    const { asFragment } = render(<Editor />);
     expect(asFragment()).toMatchSnapshot();
   });
 
   test("should set md on textarea change", () => {
-    render(<TextEditor />);
+    render(<Editor />);
     const textarea = screen.getByRole("textbox");
 
     expect(textarea).toHaveValue("");
@@ -30,7 +30,7 @@ describe("<TextEditor />", () => {
   });
 
   test("should support tabs in textarea", () => {
-    render(<TextEditor />);
+    render(<Editor />);
     const textarea = screen.getByRole("textbox");
 
     expect(textarea).toHaveValue("");

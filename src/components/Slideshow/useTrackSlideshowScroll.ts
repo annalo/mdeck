@@ -8,7 +8,7 @@ import {
   MarkdownContextReducerActionType,
 } from "types/markdown-context-reducer-action";
 
-import { TEXT_AREA_LINE_HEIGHT } from "components/TextEditor/TextArea";
+import { TEXT_AREA_LINE_HEIGHT } from "components/Editor/TextArea";
 
 interface UseTrackSlideshowScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
