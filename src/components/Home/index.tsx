@@ -10,8 +10,6 @@ import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 import { Editor } from "components/Editor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 
-import { ThemeProvider } from "./ThemeProvider";
-
 const Container = styled.div`
   height: 100%;
 `;
@@ -22,22 +20,20 @@ const Body = styled.div`
 `;
 
 const Home: React.FC = () => (
-  <ThemeProvider>
-    <Container id="main">
-      <MarkdownContextProvider>
-        <SlideObserverProvider>
-          <CodeLineObserverProvider>
-            <Body>
-              <Editor />
-              <Preview />
-            </Body>
+  <Container id="main">
+    <MarkdownContextProvider>
+      <SlideObserverProvider>
+        <CodeLineObserverProvider>
+          <Body>
+            <Editor />
+            <Preview />
+          </Body>
 
-            <Toolbar />
-          </CodeLineObserverProvider>
-        </SlideObserverProvider>
-      </MarkdownContextProvider>
-    </Container>
-  </ThemeProvider>
+          <Toolbar />
+        </CodeLineObserverProvider>
+      </SlideObserverProvider>
+    </MarkdownContextProvider>
+  </Container>
 );
 
 export { Home };
