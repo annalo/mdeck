@@ -12,7 +12,7 @@ import { TEXT_AREA_LINE_HEIGHT } from "components/Editor/TextArea";
 
 interface UseTrackPreviewScrollProps {
   dispatch: Dispatch<MarkdownContextReducerAction>;
-  entries: SlideshowObserver.Entries;
+  entries: SlideObserver.Entries;
   isActive: boolean;
   ref: any;
 }

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 interface UseSyncPreviewProps {
-  entries: SlideshowObserver.Entries;
+  entries: SlideObserver.Entries;
   editorLine: LineNumber;
 }
 
