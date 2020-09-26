@@ -5,7 +5,7 @@ import * as R from "ramda";
 interface useSyncEditorProps {
   ref: RefObject<HTMLTextAreaElement>;
   previewCodeLine: LineNumber;
-  textAreaLineHeight: LineNumber;
+  textAreaLineHeight: number;
 }
 
 function useSyncEditor({

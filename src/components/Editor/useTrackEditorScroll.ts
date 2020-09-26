@@ -25,12 +25,8 @@ function useTrackEditorScroll({
     () =>
       throttle((ev) => {
         const getScrollTop = R.path(["target", "scrollTop"]);
-        const calculateLineNumber = R.divide(R.__, textAreaLineHeight);
-        const editorLine = R.pipe(
-          getScrollTop,
-          calculateLineNumber,
-          Math.floor
-        )(ev);
+        const calculateLine = R.divide(R.__, textAreaLineHeight);
+        const editorLine = R.pipe(getScrollTop, calculateLine, Math.floor)(ev);
 
         dispatch({
           type: MarkdownContextReducerActionType.SetEditorLine,

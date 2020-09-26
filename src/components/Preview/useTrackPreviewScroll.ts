@@ -35,7 +35,7 @@ function useTrackPreviewScroll({
           R.lte(R.__, TEXT_AREA_LINE_HEIGHT)
         );
         const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
-        const setLineNumber = (line) =>
+        const setPreviewCodeLine = (line) =>
           dispatch({
             type: MarkdownContextReducerActionType.SetPreviewCodeLine,
             previewCodeLine: line,
@@ -44,7 +44,7 @@ function useTrackPreviewScroll({
         const topElement = Object.entries(entries).find(([, entry]) =>
           isTopElement(entry)
         );
-        if (topElement) setLineNumber(parseInt(topElement[0], 10));
+        if (topElement) setPreviewCodeLine(parseInt(topElement[0], 10));
       }, 100),
     [dispatch, entries]
   );
