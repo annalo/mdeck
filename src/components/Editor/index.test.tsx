@@ -11,7 +11,7 @@ import {
 } from "contexts/MarkdownContext";
 import { Editor } from ".";
 import { TEXT_AREA_LINE_HEIGHT } from "./TextArea";
-import { useSyncTextArea } from "./useSyncTextArea";
+import { useSyncEditor } from "./useSyncEditor";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
 describe("<Editor />", () => {
@@ -42,14 +42,14 @@ describe("<Editor />", () => {
     expect(textarea).toHaveValue("Hello\tWorld!");
   });
 
-  describe("useSyncTextArea", () => {
+  describe("useSyncEditor", () => {
     test("should sync textarea to slideshowLineNumber corresponding text", () => {
       const textarea = document.createElement("textarea");
       const ref = { current: textarea };
       const slideshowLineNumber = 7;
 
       renderHook(() => {
-        useSyncTextArea({
+        useSyncEditor({
           ref,
           slideshowLineNumber,
           textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,

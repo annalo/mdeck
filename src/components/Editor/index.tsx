@@ -10,7 +10,7 @@ import { MarkdownContextReducerActionType } from "types/markdown-context-reducer
 import { usePaneIsActive } from "utils/usePaneIsActive";
 
 import { TEXT_AREA_LINE_HEIGHT, TextArea } from "./TextArea";
-import { useSyncTextArea } from "./useSyncTextArea";
+import { useSyncEditor } from "./useSyncEditor";
 import { useTrackTextAreaScroll } from "./useTrackTextAreaScroll";
 
 const Container = styled.div`
@@ -27,7 +27,7 @@ const Editor = memo(function Editor() {
 
   const isActive = usePaneIsActive({ ref, initialValue: true });
 
-  useSyncTextArea({
+  useSyncEditor({
     ref,
     slideshowLineNumber,
     textAreaLineHeight: TEXT_AREA_LINE_HEIGHT,

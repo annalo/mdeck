@@ -2,17 +2,17 @@ import { useEffect } from "react";
 import type { RefObject } from "react";
 import * as R from "ramda";
 
-interface UseSyncTextAreaProps {
+interface useSyncEditorProps {
   ref: RefObject<HTMLTextAreaElement>;
   slideshowLineNumber: LineNumber;
   textAreaLineHeight: LineNumber;
 }
 
-function useSyncTextArea({
+function useSyncEditor({
   ref,
   slideshowLineNumber,
   textAreaLineHeight,
-}: UseSyncTextAreaProps): void {
+}: useSyncEditorProps): void {
   /* Syncs text when slideshowLineNumber changes */
   useEffect(() => {
     const getNode = R.prop("current");
@@ -29,4 +29,4 @@ function useSyncTextArea({
   }, [ref, slideshowLineNumber, textAreaLineHeight]);
 }
 
-export { useSyncTextArea };
+export { useSyncEditor };
