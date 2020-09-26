@@ -22,6 +22,7 @@ const Container = styled.div`
 
 const Editor = memo(function Editor() {
   const ref = useRef<HTMLTextAreaElement>(null);
+
   const dispatch = useMarkdownDispatch();
   const { md, previewCodeLine } = useMarkdownState();
 

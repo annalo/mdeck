@@ -13,7 +13,7 @@ import { usePaneIsActive } from "utils/usePaneIsActive";
 
 import { Slideshow } from "./Slideshow";
 
-import { useWorker } from "./useWorker";
+import { useMarkdownWorker } from "./useMarkdownWorker";
 import { useSyncPreview } from "./useSyncPreview";
 import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
 
@@ -32,7 +32,7 @@ const Preview = memo(function Preview() {
   const isActive = usePaneIsActive({ ref, initialValue: false });
   const entries = useCodeLineEntries();
 
-  useWorker({ dispatch, md });
+  useMarkdownWorker({ dispatch, md });
   useSyncPreview({ entries, editorLine });
   useTrackPreviewScroll({ dispatch, entries, isActive, ref });
 
