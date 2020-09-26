@@ -2,7 +2,7 @@ export enum MarkdownContextReducerActionType {
   SetHtmlArray = "SET_HTML_STRING",
   SetMd = "SET_MD",
   SetPreviewCodeLine = "SET_PREVIEW_CODE_LINE",
-  SetTextLineNumber = "SET_TEXT_LINE_NUMBER",
+  SetEditorLine = "SET_TEXT_LINE_NUMBER",
 }
 
 export declare type MarkdownContextReducerAction =
@@ -19,6 +19,6 @@ export declare type MarkdownContextReducerAction =
       previewCodeLine: LineNumber;
     }
   | {
-      type: MarkdownContextReducerActionType.SetTextLineNumber;
+      type: MarkdownContextReducerActionType.SetEditorLine;
       editorLine: LineNumber;
     };

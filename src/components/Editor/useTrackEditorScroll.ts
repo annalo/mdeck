@@ -33,7 +33,7 @@ function useTrackEditorScroll({
         )(ev);
 
         dispatch({
-          type: MarkdownContextReducerActionType.SetTextLineNumber,
+          type: MarkdownContextReducerActionType.SetEditorLine,
           editorLine,
         });
       }, 200),

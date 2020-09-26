@@ -27,7 +27,7 @@ function reducer(state: MarkdownContextState, action: ReducerAction) {
     case ReducerActionType.SetPreviewCodeLine: {
       return { ...state, previewCodeLine: action.previewCodeLine };
     }
-    case ReducerActionType.SetTextLineNumber: {
+    case ReducerActionType.SetEditorLine: {
       return { ...state, editorLine: action.editorLine };
     }
     default: {
