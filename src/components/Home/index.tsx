@@ -19,20 +19,24 @@ const Body = styled.div`
   padding-bottom: ${(props) => props.theme.toolbarHeight + 2}px;
 `;
 
+const ContextProviderWrapper = ({ children }) => (
+  <MarkdownContextProvider>
+    <SlideObserverProvider>
+      <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+    </SlideObserverProvider>
+  </MarkdownContextProvider>
+);
+
 const Home: React.FC = () => (
   <Container id="main">
-    <MarkdownContextProvider>
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>
-          <Body>
-            <Editor />
-            <Preview />
-          </Body>
+    <ContextProviderWrapper>
+      <Body>
+        <Editor />
+        <Preview />
+      </Body>
 
-          <Toolbar />
-        </CodeLineObserverProvider>
-      </SlideObserverProvider>
-    </MarkdownContextProvider>
+      <Toolbar />
+    </ContextProviderWrapper>
   </Container>
 );
 
