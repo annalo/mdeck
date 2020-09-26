@@ -12,7 +12,7 @@ import { Toolbar } from "components/Toolbar/Loadable";
 const Container = styled.div`
   height: 100%;
 `;
-const Body = styled.div`
+const Body = styled.body`
   display: flex;
   height: 100%;
   padding-bottom: ${(props) => props.theme.toolbarHeight + 2}px;
