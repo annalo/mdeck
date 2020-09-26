@@ -6,7 +6,7 @@ interface UseSyncSlideshowProps {
   textLineNumber: LineNumber;
 }
 
-function useSyncSlideshow({
+function useSyncPreview({
   entries,
   textLineNumber,
 }: UseSyncSlideshowProps): void {
@@ -17,4 +17,4 @@ function useSyncSlideshow({
   }, [entries, textLineNumber]);
 }
 
-export { useSyncSlideshow };
+export { useSyncPreview };

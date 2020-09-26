@@ -19,7 +19,7 @@ import {
 import { Preview } from ".";
 import MarkdownWorker from "./markdown-worker";
 import { useWorker } from "./useWorker";
-import { useSyncSlideshow } from "./useSyncSlideshow";
+import { useSyncPreview } from "./useSyncPreview";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 
 jest.mock("smooth-scroll-into-view-if-needed");
@@ -85,7 +85,7 @@ describe("<Preview />", () => {
     });
   });
 
-  describe("useSyncSlideshow", () => {
+  describe("useSyncPreview", () => {
     test("should sync slideshow to textLineNumber if there's an element with the data-line", () => {
       const textLineNumber = 2;
       const element = { test: "test" };
@@ -99,7 +99,7 @@ describe("<Preview />", () => {
       renderHook(
         () => {
           const entries = useCodeLineEntries();
-          useSyncSlideshow({ entries, textLineNumber });
+          useSyncPreview({ entries, textLineNumber });
         },
         {
           wrapper,
@@ -114,7 +114,7 @@ describe("<Preview />", () => {
       const textLineNumber = 5;
       const entries = { 2: {} };
 
-      renderHook(() => useSyncSlideshow({ entries, textLineNumber }));
+      renderHook(() => useSyncPreview({ entries, textLineNumber }));
 
       expect(scrollIntoView).not.toHaveBeenCalled();
     });

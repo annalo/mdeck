@@ -11,7 +11,7 @@ import { Slide } from "components/Slide/Loadable";
 
 import { usePaneIsActive } from "utils/usePaneIsActive";
 import { useWorker } from "./useWorker";
-import { useSyncSlideshow } from "./useSyncSlideshow";
+import { useSyncPreview } from "./useSyncPreview";
 import { useTrackSlideshowScroll } from "./useTrackSlideshowScroll";
 
 const Container = styled.div`
@@ -57,7 +57,7 @@ const Preview = memo(function Preview() {
   const isActive = usePaneIsActive({ ref, initialValue: false });
   const entries = useCodeLineEntries();
 
-  useSyncSlideshow({ entries, textLineNumber });
+  useSyncPreview({ entries, textLineNumber });
   useTrackSlideshowScroll({ dispatch, entries, isActive, ref });
   useWorker({ dispatch, md });
 
