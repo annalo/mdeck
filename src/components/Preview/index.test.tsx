@@ -19,7 +19,7 @@ import {
 
 import { Preview } from ".";
 import MarkdownWorker from "./markdown-worker";
-import { useWorker } from "./useWorker";
+import { useMarkdownWorker } from "./useMarkdownWorker";
 import { useSyncPreview } from "./useSyncPreview";
 import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
 
@@ -58,12 +58,12 @@ describe("<Preview />", () => {
     });
   });
 
-  describe("useWorker", () => {
+  describe("useMarkdownWorker", () => {
     test("should instantiate MarkdownWorker just once", () => {
       let md = "## Markdown String";
       const { rerender } = renderHook(() => {
         const dispatch = useMarkdownDispatch();
-        useWorker({ dispatch, md });
+        useMarkdownWorker({ dispatch, md });
       });
 
       md = "## Markdown String\n* Bullet 1";
@@ -76,7 +76,7 @@ describe("<Preview />", () => {
       let md = "## Markdown String";
       const { rerender } = renderHook(() => {
         const dispatch = useMarkdownDispatch();
-        useWorker({ dispatch, md });
+        useMarkdownWorker({ dispatch, md });
       });
 
       md = "## Markdown String\n* Bullet 1";
@@ -181,7 +181,6 @@ describe("<Preview />", () => {
       act(() => {
         fireEvent.scroll(slideshow, { target: { scrollY: 100 } });
       });
-
       expect(result.current.previewCodeLine).toBe(line);
     });
 
@@ -200,7 +199,6 @@ describe("<Preview />", () => {
       act(() => {
         fireEvent.scroll(slideshow, { target: { scrollY: 100 } });
       });
-
       expect(result.current.previewCodeLine).toBe(
         MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
       );

@@ -96,7 +96,6 @@ describe("<Editor />", () => {
       act(() => {
         fireEvent.scroll(textarea, { target: { scrollTop: scrollHeight } });
       });
-
       expect(result.current.editorLine).toBe(lineCount);
     });
 
@@ -116,7 +115,6 @@ describe("<Editor />", () => {
       act(() => {
         fireEvent.scroll(textarea, { target: { scrollTop: scrollHeight } });
       });
-
       expect(result.current.editorLine).toBe(
         MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
       );

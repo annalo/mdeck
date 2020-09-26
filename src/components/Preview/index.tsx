@@ -6,11 +6,9 @@ import {
   useMarkdownState,
 } from "contexts/MarkdownContext";
 import { useCodeLineEntries } from "contexts/CodeLineObserver";
-
-import { Slide } from "components/Slide/Loadable";
-
 import { usePaneIsActive } from "utils/usePaneIsActive";
 
+import { Slide } from "components/Slide/Loadable";
 import { Slideshow } from "./Slideshow";
 
 import { useMarkdownWorker } from "./useMarkdownWorker";
