@@ -102,7 +102,7 @@ describe("<Slideshow />", () => {
 
   describe("useTrackSlideshowScroll", () => {
     let slideshow;
-    let lineNumber;
+    let line;
     let initialEntries;
     function mockBoundingClientRect(top) {
       return jest.fn(() => ({
@@ -128,8 +128,8 @@ describe("<Slideshow />", () => {
       h2.getBoundingClientRect = mockBoundingClientRect(2);
       h3.getBoundingClientRect = mockBoundingClientRect(50);
 
-      lineNumber = 2;
-      initialEntries = { 0: h1, 50: h3, [lineNumber]: h2 };
+      line = 2;
+      initialEntries = { 0: h1, 50: h3, [line]: h2 };
     });
 
     const wrapper = ({ children }) => (
@@ -160,7 +160,7 @@ describe("<Slideshow />", () => {
         fireEvent.scroll(slideshow, { target: { scrollY: 100 } });
       });
 
-      expect(result.current.slideshowLineNumber).toBe(lineNumber);
+      expect(result.current.slideshowLineNumber).toBe(line);
     });
 
     test("should not set slideshowLineNumber if isActive is false", () => {

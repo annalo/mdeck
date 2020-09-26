@@ -4,20 +4,37 @@ import styled from "styled-components";
 import { MarkdownContextProvider } from "contexts/MarkdownContext";
 
 import { Toolbar } from "components/Toolbar/Loadable";
-import { Editor } from "components/Editor/Loadable";
+import { SlideObserverProvider } from "contexts/SlideObserver";
+import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
+
+import { TextEditor } from "components/TextEditor/Loadable";
+import { Preview } from "components/Preview/Loadable";
+
 import { ThemeProvider } from "./ThemeProvider";
 
 const Container = styled.div`
   height: 100%;
+`;
+const Body = styled.div`
+  display: flex;
+  height: 100%;
+  padding-bottom: ${(props) => props.theme.toolbarHeight + 2}px;
 `;
 
 const Home: React.FC = () => (
   <ThemeProvider>
     <Container id="main">
       <MarkdownContextProvider>
-        <Editor />
+        <SlideObserverProvider>
+          <CodeLineObserverProvider>
+            <Body>
+              <TextEditor />
+              <Preview />
+            </Body>
 
-        <Toolbar />
+            <Toolbar />
+          </CodeLineObserverProvider>
+        </SlideObserverProvider>
       </MarkdownContextProvider>
     </Container>
   </ThemeProvider>

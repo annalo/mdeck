@@ -35,10 +35,10 @@ function useTrackSlideshowScroll({
           R.lte(R.__, TEXT_AREA_LINE_HEIGHT)
         );
         const isTopElement = (e) => withinBounds(e.getBoundingClientRect().top);
-        const setLineNumber = (lineNumber) =>
+        const setLineNumber = (line) =>
           dispatch({
             type: MarkdownContextReducerActionType.SetSlideshowLineNumber,
-            slideshowLineNumber: lineNumber,
+            slideshowLineNumber: line,
           });
 
         const topElement = Object.entries(entries).find(([, entry]) =>
