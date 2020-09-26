@@ -2,7 +2,20 @@
 
 exports[`<Preview /> should render and match the snapshot 1`] = `
 <DocumentFragment>
-  .c1 {
+  .c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c1 {
   height: 100%;
   overflow: auto;
 }
@@ -38,19 +51,6 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
 
 .c1:-webkit-full-screen .slide svg {
   margin: auto;
-}
-
-.c0 {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 <div
