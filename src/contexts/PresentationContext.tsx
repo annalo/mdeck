@@ -11,10 +11,11 @@ const PresentationActionsContext = createContext<
 
 const PresentationContextProvider: React.FC<PresentationContext.ProviderProps> = ({
   children,
+  initialState,
 }: PresentationContext.ProviderProps) => {
   const [isPresented, setIsPresented] = useState<
     PresentationContext.IsPresented
-  >(PRESENTATION_DEFAULT_STATE);
+  >(initialState || PRESENTATION_DEFAULT_STATE);
 
   const dismiss = () => setIsPresented(false);
   const present = () => setIsPresented(true);

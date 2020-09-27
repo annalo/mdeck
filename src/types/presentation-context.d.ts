@@ -10,5 +10,6 @@ declare namespace PresentationContext {
 
   declare interface ProviderProps {
     children: ReactNode;
+    initialState?: isPresented;
   }
 }
