@@ -3,7 +3,7 @@ import { act, renderHook } from "@testing-library/react-hooks";
 import {
   PresentationContextProvider,
   usePresentationState,
-  useTogglePresentation,
+  usePresentationActions,
 } from "./PresentationContext";
 
 describe("PresentationContext", () => {
@@ -27,30 +27,48 @@ describe("PresentationContext", () => {
     });
   });
 
-  describe("useTogglePresentation", () => {
-    test("should toggle isPresented", () => {
-      const { result } = renderHook(
-        () => {
-          const isPresented = usePresentationState();
-          const togglePresentation = useTogglePresentation();
+  describe("usePresentationActions", () => {
+    describe("present", () => {
+      test("should set isPresented to true", () => {
+        const { result } = renderHook(
+          () => {
+            const isPresented = usePresentationState();
+            const { present } = usePresentationActions();
 
-          return { isPresented, togglePresentation };
-        },
-        { wrapper }
-      );
+            return { isPresented, present };
+          },
+          { wrapper }
+        );
 
-      act(() => result.current.togglePresentation(true));
-      expect(result.current.isPresented).toBeTruthy();
+        expect(result.current.isPresented).not.toBeTruthy();
+        act(() => result.current.present());
+        expect(result.current.isPresented).toBeTruthy();
+      });
+    });
 
-      act(() => result.current.togglePresentation(false));
-      expect(result.current.isPresented).not.toBeTruthy();
+    describe("dismiss", () => {
+      test("should toggle isPresented", () => {
+        const { result } = renderHook(
+          () => {
+            const isPresented = usePresentationState();
+            const { dismiss, present } = usePresentationActions();
+            return { isPresented, dismiss, present };
+          },
+          { wrapper }
+        );
+
+        act(() => result.current.present());
+        expect(result.current.isPresented).toBeTruthy();
+        act(() => result.current.dismiss());
+        expect(result.current.isPresented).not.toBeTruthy();
+      });
     });
 
     test("should return Error if not used within a PresentationContextProvider", () => {
-      const { result } = renderHook(() => useTogglePresentation());
+      const { result } = renderHook(() => usePresentationActions());
       expect(result.error).toEqual(
         Error(
-          "useTogglePresentation must be used within a PresentationContextProvider"
+          "usePresentationActions must be used within a PresentationContextProvider"
         )
       );
     });
