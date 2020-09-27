@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import { MarkdownContextProvider } from "contexts/MarkdownContext";
+import { PresentationContextProvider } from "contexts/PresentationContext";
 import { SlideObserverProvider } from "contexts/SlideObserver";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
@@ -20,9 +21,11 @@ const Body = styled.body`
 
 const ContextProviders = ({ children }) => (
   <MarkdownContextProvider>
-    <SlideObserverProvider>
-      <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-    </SlideObserverProvider>
+    <PresentationContextProvider>
+      <SlideObserverProvider>
+        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+      </SlideObserverProvider>
+    </PresentationContextProvider>
   </MarkdownContextProvider>
 );
 
