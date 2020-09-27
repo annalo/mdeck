@@ -4,6 +4,7 @@ import { act } from "@testing-library/react-hooks";
 import { render, renderHook } from "utils/test-utils";
 
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
+import screenfull from "screenfull";
 
 import {
   MARKDOWN_CONTEXT_INITIAL_STATE,
@@ -11,6 +12,7 @@ import {
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
+import { PresentationContextProvider } from "contexts/PresentationContext";
 import { SlideObserverProvider } from "contexts/SlideObserver";
 import {
   CodeLineObserverProvider,
@@ -25,6 +27,11 @@ import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
 
 jest.mock("smooth-scroll-into-view-if-needed");
 jest.mock("./markdown-worker");
+jest.mock("screenfull", () => ({
+  request: jest.fn(),
+  off: jest.fn(),
+  on: jest.fn(),
+}));
 
 afterEach(() => jest.clearAllMocks());
 
@@ -43,9 +50,11 @@ describe("<Preview />", () => {
       <MarkdownContextProvider
         initialState={{ ...MARKDOWN_CONTEXT_INITIAL_STATE, htmlArray }}
       >
-        <SlideObserverProvider>
-          <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-        </SlideObserverProvider>
+        <PresentationContextProvider>
+          <SlideObserverProvider>
+            <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+          </SlideObserverProvider>
+        </PresentationContextProvider>
       </MarkdownContextProvider>
     );
     render(<Preview />, { wrapper });
@@ -202,6 +211,27 @@ describe("<Preview />", () => {
       expect(result.current.previewCodeLine).toBe(
         MARKDOWN_CONTEXT_INITIAL_STATE.editorLine
       );
+    });
+  });
+
+  describe("usePresentation/1", () => {
+    test("should fullscreen slideshow when isPresented", () => {
+      const md = "test test";
+      const wrapperWithState = ({ children }) => (
+        <MarkdownContextProvider
+          initialState={{ ...MARKDOWN_CONTEXT_INITIAL_STATE, md }}
+        >
+          <PresentationContextProvider initialState>
+            <SlideObserverProvider>
+              <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+            </SlideObserverProvider>
+          </PresentationContextProvider>
+        </MarkdownContextProvider>
+      );
+      render(<Preview />, { wrapper: wrapperWithState });
+
+      const slideshow = screen.getByRole("article");
+      expect(screenfull.request).toHaveBeenNthCalledWith(1, slideshow);
     });
   });
 });

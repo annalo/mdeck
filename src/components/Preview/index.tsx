@@ -14,6 +14,7 @@ import { Slideshow } from "./Slideshow";
 import { useMarkdownWorker } from "./useMarkdownWorker";
 import { useSyncPreview } from "./useSyncPreview";
 import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
+import { usePresentation } from "./usePresentation";
 
 const Container = styled.div`
   display: flex;
@@ -33,6 +34,7 @@ const Preview = memo(function Preview() {
   useMarkdownWorker({ dispatch, md });
   useSyncPreview({ entries, editorLine });
   useTrackPreviewScroll({ dispatch, entries, isActive, ref });
+  usePresentation(ref);
 
   return (
     <Container>
