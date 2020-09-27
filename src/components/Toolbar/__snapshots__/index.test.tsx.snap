@@ -155,6 +155,7 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
       </li>
       <li
         class="c5"
+        role="button"
       >
         <svgr-mock
           classname="sc-fzoLsD jrTAlI"
