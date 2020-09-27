@@ -5,22 +5,26 @@ const PRESENTATION_DEFAULT_STATE = false;
 const PresentationStateContext = createContext<
   PresentationContext.IsPresented | undefined
 >(undefined);
-const TogglePresentationContext = createContext<
-  PresentationContext.TogglePresentation | undefined
+const PresentationActionsContext = createContext<
+  PresentationContext.PresentationActions | undefined
 >(undefined);
 
 const PresentationContextProvider: React.FC<PresentationContext.ProviderProps> = ({
   children,
 }: PresentationContext.ProviderProps) => {
-  const [isPresented, togglePresentation] = useState<
+  const [isPresented, setIsPresented] = useState<
     PresentationContext.IsPresented
   >(PRESENTATION_DEFAULT_STATE);
 
+  const dismiss = () => setIsPresented(false);
+  const present = () => setIsPresented(true);
+  const presentationActions = { dismiss, present };
+
   return (
     <PresentationStateContext.Provider value={isPresented}>
-      <TogglePresentationContext.Provider value={togglePresentation}>
+      <PresentationActionsContext.Provider value={presentationActions}>
         {children}
-      </TogglePresentationContext.Provider>
+      </PresentationActionsContext.Provider>
     </PresentationStateContext.Provider>
   );
 };
@@ -35,11 +39,11 @@ function usePresentationState(): PresentationContext.IsPresented {
   return context;
 }
 
-function useTogglePresentation(): PresentationContext.TogglePresentation {
-  const context = useContext(TogglePresentationContext);
+function usePresentationActions(): PresentationContext.PresentationActions {
+  const context = useContext(PresentationActionsContext);
   if (context === undefined) {
     throw new Error(
-      "useTogglePresentation must be used within a PresentationContextProvider"
+      "usePresentationActions must be used within a PresentationContextProvider"
     );
   }
   return context;
@@ -48,5 +52,5 @@ function useTogglePresentation(): PresentationContext.TogglePresentation {
 export {
   PresentationContextProvider,
   usePresentationState,
-  useTogglePresentation,
+  usePresentationActions,
 };
