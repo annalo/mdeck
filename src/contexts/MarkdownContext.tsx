@@ -39,7 +39,7 @@ function reducer(state: MarkdownContextState, action: ReducerAction) {
 const MarkdownContextProvider: React.FC<MarkdownContextProviderProps> = ({
   children,
   initialState, // optional param
-}: MarkdownContextProviderProps) => {
+}) => {
   const [state, dispatch] = useReducer(
     reducer,
     initialState || MARKDOWN_CONTEXT_INITIAL_STATE

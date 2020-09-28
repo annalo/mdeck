@@ -19,7 +19,7 @@ const SlideObserverContext = createContext<SlideObserver.Observer | undefined>(
 const SlideObserverProvider: React.FC<SlideObserver.ProviderProps> = ({
   children,
   initialEntries,
-}: SlideObserver.ProviderProps) => {
+}) => {
   const [entries, setEntries] = useState<SlideObserver.Entries>(
     initialEntries || SLIDE_ENTRIES_INITIAL_STATE
   );

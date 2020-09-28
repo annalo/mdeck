@@ -12,7 +12,7 @@ const PresentationActionsContext = createContext<
 const PresentationContextProvider: React.FC<PresentationContext.ProviderProps> = ({
   children,
   initialState,
-}: PresentationContext.ProviderProps) => {
+}) => {
   const [isPresented, setIsPresented] = useState<
     PresentationContext.IsPresented
   >(initialState || PRESENTATION_DEFAULT_STATE);

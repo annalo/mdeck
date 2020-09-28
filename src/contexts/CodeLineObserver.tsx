@@ -19,7 +19,7 @@ const CodeLineObserverContext = createContext<
 const CodeLineObserverProvider: React.FC<CodeLineObserver.ProviderProps> = ({
   children,
   initialEntries,
-}: CodeLineObserver.ProviderProps) => {
+}) => {
   const [entries, setEntries] = useState(
     initialEntries || CODE_LINE_OBSERVER_INITIAL_STATE
   );

@@ -44,7 +44,7 @@ const SaveFileForm: React.FC<SaveFileFormProps> = ({
   closeForm,
   filename,
   saveFile,
-}: SaveFileFormProps) => {
+}) => {
   const filenameInputRef = useRef<HTMLInputElement>(null);
 
   const handleOnBlur = (ev) => {
