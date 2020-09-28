@@ -51,7 +51,7 @@ function useTrackPreviewScroll({
 
   /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
-    const node = ref.current;
+    const node = ref?.current;
 
     isActive
       ? node?.addEventListener("scroll", handleScroll, { passive: true })

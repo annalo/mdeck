@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
 import { MarkdownContextProvider } from "contexts/MarkdownContext";
@@ -18,11 +18,6 @@ const Container = styled.div`
   height: 100%;
   padding-bottom: ${(props) => props.theme.toolbarHeight + 2}px;
 `;
-const Column = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-`;
 
 const ContextProviders = ({ children }) => (
   <MarkdownContextProvider>
@@ -34,21 +29,21 @@ const ContextProviders = ({ children }) => (
   </MarkdownContextProvider>
 );
 
-const Home: React.FC = () => (
-  <Body id="main">
-    <ContextProviders>
-      <Container>
-        <Column>
-          <Editor />
-        </Column>
-        <Column>
-          <Preview />
-        </Column>
-      </Container>
+const Home: React.FC = () => {
+  const slideshowRef = useRef<HTMLElement>(null);
 
-      <Toolbar />
-    </ContextProviders>
-  </Body>
-);
+  return (
+    <Body id="main">
+      <ContextProviders>
+        <Container>
+          <Editor />
+          <Preview ref={slideshowRef} />
+        </Container>
+
+        <Toolbar />
+      </ContextProviders>
+    </Body>
+  );
+};
 
 export { Home };

@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import type { RefObject } from "react";
 import screenfull, { Screenfull } from "screenfull";
 
 import {
@@ -8,7 +7,7 @@ import {
 } from "contexts/PresentationContext";
 import { useSlideNavigation } from "./usePresentationSlideNavigation";
 
-function usePresentation(slideshowRef: RefObject<HTMLElement>): void {
+function usePresentation(slideshowRef: any): void {
   const isPresented = usePresentationState();
   const { dismiss, present } = usePresentationActions();
 
@@ -20,8 +19,8 @@ function usePresentation(slideshowRef: RefObject<HTMLElement>): void {
   // }, [slideshowRef]);
 
   useEffect(() => {
-    if (slideshowRef.current && isPresented)
-      (screenfull as Screenfull).request(slideshowRef.current);
+    const node = slideshowRef?.current;
+    if (node && isPresented) (screenfull as Screenfull).request(node);
   }, [isPresented, slideshowRef]);
 
   useEffect(() => {

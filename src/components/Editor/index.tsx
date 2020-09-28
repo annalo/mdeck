@@ -13,6 +13,12 @@ import { TEXT_AREA_LINE_HEIGHT, TextArea } from "./TextArea";
 import { useSyncEditor } from "./useSyncEditor";
 import { useTrackEditorScroll } from "./useTrackEditorScroll";
 
+const Column = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+`;
+
 const Editor = memo(function Editor() {
   const ref = useRef<HTMLTextAreaElement>(null);
 
@@ -55,14 +61,17 @@ const Editor = memo(function Editor() {
   };
 
   return (
-    <TextArea
-      ref={ref}
-      autoFocus
-      name="md"
-      onChange={handleInputChange}
-      onKeyDown={handleKeyDown}
-      value={md}
-    />
+    <Column id="editor">
+      <TextArea
+        ref={ref}
+        autoFocus
+        id="md-textarea"
+        name="md"
+        onChange={handleInputChange}
+        onKeyDown={handleKeyDown}
+        value={md}
+      />
+    </Column>
   );
 });
 

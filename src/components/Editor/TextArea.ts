@@ -9,7 +9,6 @@ const TextArea = styled.textarea`
   font-size: 15px;
   height: 100%;
   line-height: ${TEXT_AREA_LINE_HEIGHT}px;
-  margin-bottom: 0.3em;
   outline: none;
   padding: 0.5em;
   resize: none;
