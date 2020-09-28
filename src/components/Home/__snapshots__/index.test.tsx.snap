@@ -6,9 +6,22 @@ exports[`<Home /> should render and match the snapshot 1`] = `
   height: 100%;
 }
 
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  padding-bottom: 27px;
+}
+
 <div
     class="c0"
     id="main"
-  />
+  >
+    <div
+      class="c1"
+    />
+  </div>
 </DocumentFragment>
 `;
