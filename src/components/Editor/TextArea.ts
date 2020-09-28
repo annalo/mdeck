@@ -3,17 +3,16 @@ import styled from "styled-components";
 const TEXT_AREA_LINE_HEIGHT = 18;
 
 const TextArea = styled.textarea`
-  background-color: transparent;
+  background-color: ${(props) => props.theme.editorBackgroundColor};
   border: none;
-  height: 100%;
-  outline: none;
-  resize: none;
-
   color: ${(props) => props.theme.textColor};
   font-size: 15px;
-  margin-bottom: 0.3em;
+  height: 100%;
   line-height: ${TEXT_AREA_LINE_HEIGHT}px;
+  margin-bottom: 0.3em;
+  outline: none;
   padding: 0.5em;
+  resize: none;
   tab-size: 2;
 
   ::-webkit-scrollbar {

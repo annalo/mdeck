@@ -16,12 +16,6 @@ import { useSyncPreview } from "./useSyncPreview";
 import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
 import { usePresentation } from "./usePresentation";
 
-const Container = styled.div`
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-`;
-
 const Preview = memo(function Preview() {
   const ref = useRef<HTMLElement>(null);
 
@@ -37,13 +31,11 @@ const Preview = memo(function Preview() {
   usePresentation(ref);
 
   return (
-    <Container>
-      <Slideshow ref={ref} id="slideshow">
-        {htmlArray.map((html, i) => (
-          <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
-        ))}
-      </Slideshow>
-    </Container>
+    <Slideshow ref={ref} id="slideshow">
+      {htmlArray.map((html, i) => (
+        <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
+      ))}
+    </Slideshow>
   );
 });
 

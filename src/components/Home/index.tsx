@@ -10,13 +10,18 @@ import { Editor } from "components/Editor/Loadable";
 import { Preview } from "components/Preview/Loadable";
 import { Toolbar } from "components/Toolbar/Loadable";
 
-const Container = styled.div`
+const Body = styled.div`
   height: 100%;
 `;
-const Body = styled.div`
+const Container = styled.div`
   display: flex;
   height: 100%;
   padding-bottom: ${(props) => props.theme.toolbarHeight + 2}px;
+`;
+const Column = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 `;
 
 const ContextProviders = ({ children }) => (
@@ -30,16 +35,20 @@ const ContextProviders = ({ children }) => (
 );
 
 const Home: React.FC = () => (
-  <Container id="main">
+  <Body id="main">
     <ContextProviders>
-      <Body>
-        <Editor />
-        <Preview />
-      </Body>
+      <Container>
+        <Column>
+          <Editor />
+        </Column>
+        <Column>
+          <Preview />
+        </Column>
+      </Container>
 
       <Toolbar />
     </ContextProviders>
-  </Container>
+  </Body>
 );
 
 export { Home };
