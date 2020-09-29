@@ -4,9 +4,8 @@
 
 import { loadable } from "utils/loadable";
 
-const Editor = loadable(
-  () => import("./index"),
-  (module) => module.Editor
+const Editor = loadable(() =>
+  import("./index").then((module) => ({ default: module.Editor }))
 );
 
 export { Editor };

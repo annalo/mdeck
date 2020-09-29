@@ -4,9 +4,8 @@
 
 import { loadable } from "utils/loadable";
 
-const Toolbar = loadable(
-  () => import("./index"),
-  (module) => module.Toolbar
+const Toolbar = loadable(() =>
+  import("./index").then((module) => ({ default: module.Toolbar }))
 );
 
 export { Toolbar };
