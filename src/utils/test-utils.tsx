@@ -6,7 +6,6 @@ import { renderHook } from "@testing-library/react-hooks";
 import { ThemeProvider } from "components/App/ThemeProvider";
 
 import { MarkdownContextProvider } from "contexts/MarkdownContext";
-import { PresentationContextProvider } from "contexts/PresentationContext";
 import { SlideObserverProvider } from "contexts/SlideObserver";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
@@ -14,11 +13,9 @@ const AllTheProviders = ({ children }) => {
   return (
     <ThemeProvider>
       <MarkdownContextProvider>
-        <PresentationContextProvider>
-          <SlideObserverProvider>
-            <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-          </SlideObserverProvider>
-        </PresentationContextProvider>
+        <SlideObserverProvider>
+          <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+        </SlideObserverProvider>
       </MarkdownContextProvider>
     </ThemeProvider>
   );

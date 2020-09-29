@@ -2,7 +2,6 @@ import * as React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 import { MarkdownContextProvider } from "contexts/MarkdownContext";
-import { PresentationContextProvider } from "contexts/PresentationContext";
 import { SlideObserverProvider } from "contexts/SlideObserver";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
@@ -12,11 +11,9 @@ import { GlobalStyle } from "./GlobalStyle";
 
 const ContextProviders = ({ children }) => (
   <MarkdownContextProvider>
-    <PresentationContextProvider>
-      <SlideObserverProvider>
-        <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-      </SlideObserverProvider>
-    </PresentationContextProvider>
+    <SlideObserverProvider>
+      <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+    </SlideObserverProvider>
   </MarkdownContextProvider>
 );
 
