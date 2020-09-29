@@ -1,27 +1,26 @@
-import { useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import screenfull, { Screenfull } from "screenfull";
 
-import {
-  usePresentationState,
-  usePresentationActions,
-} from "contexts/PresentationContext";
 import { useSlideNavigation } from "./usePresentationSlideNavigation";
 
-function usePresentation(slideshowRef: any): void {
-  const isPresented = usePresentationState();
-  const { dismiss, present } = usePresentationActions();
+type RequestPresentation = () => void;
+
+function usePresentation(slideshowRef: any): RequestPresentation {
+  const [isPresented, setIsPresented] = useState(false);
+  const dismiss = useCallback(() => setIsPresented(false), []);
+  const present = useCallback(() => setIsPresented(true), []);
 
   useSlideNavigation(isPresented);
 
-  // const requestPresentation = useCallback(() => {
-  //   if (slideshowRef.current)
-  //     (screenfull as Screenfull).request(slideshowRef.current);
-  // }, [slideshowRef]);
-
-  useEffect(() => {
+  const requestPresentation = useCallback(() => {
     const node = slideshowRef?.current;
-    if (node && isPresented) (screenfull as Screenfull).request(node);
-  }, [isPresented, slideshowRef]);
+    if (node) (screenfull as Screenfull).request(node);
+  }, [slideshowRef]);
+
+  // useEffect(() => {
+  //   const node = slideshowRef?.current;
+  //   if (node && isPresented) (screenfull as Screenfull).request(node);
+  // }, [isPresented, slideshowRef]);
 
   useEffect(() => {
     const sf = screenfull as Screenfull; // for Typescript
@@ -31,7 +30,7 @@ function usePresentation(slideshowRef: any): void {
     return () => sf.off("change", togglePresentation);
   }, [dismiss, present]);
 
-  // return requestPresentation;
+  return requestPresentation;
 }
 
 export { usePresentation };
