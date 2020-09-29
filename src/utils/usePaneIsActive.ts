@@ -8,10 +8,9 @@ interface UsePaneIsActiveProps {
 
 function usePaneIsActive({ ref, initialValue }: UsePaneIsActiveProps): boolean {
   const [isActive, setIsActive] = useState<boolean>(initialValue);
+  const node = ref?.current;
 
   useEffect(() => {
-    const node = ref?.current;
-
     const debounceSetIsActive = debounce((value) => setIsActive(value), 300);
     const handleMouseEnter = () => debounceSetIsActive(true);
     const handleMouseLeave = () => debounceSetIsActive(false);
@@ -23,7 +22,7 @@ function usePaneIsActive({ ref, initialValue }: UsePaneIsActiveProps): boolean {
       node?.removeEventListener("mouseenter", handleMouseEnter);
       node?.removeEventListener("mouseleave", handleMouseLeave);
     };
-  }, [ref, setIsActive]);
+  }, [node, setIsActive]);
 
   return isActive;
 }

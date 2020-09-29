@@ -2,7 +2,6 @@ import { useEffect, useMemo } from "react";
 import * as R from "ramda";
 import throttle from "lodash/throttle";
 
-import type { Dispatch } from "react";
 import {
   MarkdownContextReducerAction,
   MarkdownContextReducerActionType,
@@ -11,7 +10,7 @@ import {
 import { TEXT_AREA_LINE_HEIGHT } from "components/Editor/TextArea";
 
 interface UseTrackPreviewScrollProps {
-  dispatch: Dispatch<MarkdownContextReducerAction>;
+  dispatch: React.Dispatch<MarkdownContextReducerAction>;
   entries: SlideObserver.Entries;
   isActive: boolean;
   ref: any;
@@ -49,16 +48,15 @@ function useTrackPreviewScroll({
     [dispatch, entries]
   );
 
+  const node = ref?.current;
   /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
   useEffect(() => {
-    const node = ref?.current;
-
     isActive
       ? node?.addEventListener("scroll", handleScroll, { passive: true })
       : node?.removeEventListener("scroll", handleScroll);
 
     return () => node?.removeEventListener("scroll", handleScroll);
-  }, [isActive, handleScroll, ref]);
+  }, [isActive, handleScroll, node]);
 }
 
 export { useTrackPreviewScroll };

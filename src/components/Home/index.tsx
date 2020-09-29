@@ -7,7 +7,7 @@ import { SlideObserverProvider } from "contexts/SlideObserver";
 import { CodeLineObserverProvider } from "contexts/CodeLineObserver";
 
 import { Editor } from "components/Editor/Loadable";
-import { Preview } from "components/Preview/Loadable";
+import { Preview } from "components/Preview";
 import { Toolbar } from "components/Toolbar/Loadable";
 
 const Body = styled.div`
