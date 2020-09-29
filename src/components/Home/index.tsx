@@ -5,6 +5,8 @@ import { Editor } from "components/Editor/Loadable";
 import { Preview } from "components/Preview";
 import { Toolbar } from "components/Toolbar/Loadable";
 
+import { usePresentation } from "./usePresentation";
+
 const Body = styled.div`
   height: 100%;
 `;
@@ -16,6 +18,7 @@ const Container = styled.div`
 
 const Home: React.FC = () => {
   const slideshowRef = useRef<HTMLElement>(null);
+  const requestPresentation = usePresentation(slideshowRef);
 
   return (
     <Body id="main">
@@ -24,7 +27,7 @@ const Home: React.FC = () => {
         <Preview ref={slideshowRef} />
       </Container>
 
-      <Toolbar />
+      <Toolbar requestPresentation={requestPresentation} />
     </Body>
   );
 };

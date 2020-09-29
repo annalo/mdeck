@@ -3,8 +3,6 @@ import screenfull, { Screenfull } from "screenfull";
 
 import { useSlideNavigation } from "./usePresentationSlideNavigation";
 
-type RequestPresentation = () => void;
-
 function usePresentation(slideshowRef: any): RequestPresentation {
   const [isPresented, setIsPresented] = useState(false);
   const dismiss = useCallback(() => setIsPresented(false), []);

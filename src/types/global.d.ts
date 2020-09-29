@@ -4,3 +4,5 @@ declare module "*.svg" {
 }
 
 declare type SlideContentElements = ReactNode;
+
+declare type RequestPresentation = () => void;
