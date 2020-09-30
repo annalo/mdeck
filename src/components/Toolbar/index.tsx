@@ -23,7 +23,11 @@ const Toolbar: React.FC<ToolbarProps> = ({ requestPresentation }) => (
       <LoadFileMenuItem />
       <SaveFileMenuItem />
 
-      <MenuItemRight onClick={requestPresentation} role="button">
+      <MenuItemRight
+        aria-label="request-presentation"
+        onClick={requestPresentation}
+        role="button"
+      >
         <PresentationIcon />
       </MenuItemRight>
     </Menu>

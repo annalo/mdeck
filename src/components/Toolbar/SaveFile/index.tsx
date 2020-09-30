@@ -34,7 +34,11 @@ const SaveFileMenuItem: React.FC = () => {
       />
     </MenuItem>
   ) : (
-    <MenuItemWithTooltip onClick={openForm} role="button">
+    <MenuItemWithTooltip
+      aria-label="save-file"
+      onClick={openForm}
+      role="button"
+    >
       <SaveIcon />
       <Tooltip text="SAVE" />
     </MenuItemWithTooltip>

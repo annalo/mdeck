@@ -15,11 +15,6 @@ function usePresentation(slideshowRef: any): RequestPresentation {
     if (node) (screenfull as Screenfull).request(node);
   }, [slideshowRef]);
 
-  // useEffect(() => {
-  //   const node = slideshowRef?.current;
-  //   if (node && isPresented) (screenfull as Screenfull).request(node);
-  // }, [isPresented, slideshowRef]);
-
   useEffect(() => {
     const sf = screenfull as Screenfull; // for Typescript
     const togglePresentation = () => (sf.isFullscreen ? present() : dismiss());

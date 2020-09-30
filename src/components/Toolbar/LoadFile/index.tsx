@@ -42,7 +42,11 @@ const LoadFileMenuItem: React.FC = () => {
         type="file"
       />
 
-      <MenuItemWithTooltip onClick={handleClick}>
+      <MenuItemWithTooltip
+        aria-label="load-file"
+        onClick={handleClick}
+        role="button"
+      >
         <OpenFileIcon />
         <Tooltip text="LOAD" />
       </MenuItemWithTooltip>
