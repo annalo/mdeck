@@ -1,9 +1,9 @@
 import React, { useRef } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 import Checkmark from "icons/check-mark.svg";
 import Xmark from "icons/x-circle.svg";
-import { iconAnimation } from "../MenuItem";
+import { BasicIcon } from "../Icon";
 
 interface SaveFileFormProps {
   closeForm: () => void;
@@ -22,29 +22,19 @@ const TextInput = styled.input`
     box-shadow: -8px 10px 0px -7px #4ea6ea, 8px 10px 0px -7px #4ea6ea;
   }
 `;
-const iconStyle = css`
-  svg {
-    fill: none;
-    ${iconAnimation}
-    &:hover {
-      fill: none;
-    }
-  }
-`;
 const Button = styled.button`
   border: none;
   padding: 0 2px;
   &:focus {
     outline: 0;
   }
-  ${iconStyle}
 `;
 
-const SaveFileForm = ({
+const SaveFileForm: React.FC<SaveFileFormProps> = ({
   closeForm,
   filename,
   saveFile,
-}: SaveFileFormProps): React.ReactElement => {
+}) => {
   const filenameInputRef = useRef<HTMLInputElement>(null);
 
   const handleOnBlur = (ev) => {
@@ -74,11 +64,15 @@ const SaveFileForm = ({
       />
 
       <Button aria-label="submit" type="submit">
-        <Checkmark />
+        <BasicIcon>
+          <Checkmark />
+        </BasicIcon>
       </Button>
 
       <Button aria-label="cancel" onClick={closeForm} type="button">
-        <Xmark />
+        <BasicIcon>
+          <Xmark />
+        </BasicIcon>
       </Button>
     </Form>
   );

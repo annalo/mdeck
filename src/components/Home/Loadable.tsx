@@ -4,9 +4,8 @@
 
 import { loadable } from "utils/loadable";
 
-const Home = loadable(
-  () => import("./index"),
-  (module) => module.Home
+const Home = loadable(() =>
+  import("./index").then((module) => ({ default: module.Home }))
 );
 
 export { Home };

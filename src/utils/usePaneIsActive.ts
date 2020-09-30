@@ -7,8 +7,8 @@ interface UsePaneIsActiveProps {
 }
 
 function usePaneIsActive({ ref, initialValue }: UsePaneIsActiveProps): boolean {
-  const node = ref.current;
   const [isActive, setIsActive] = useState<boolean>(initialValue);
+  const node = ref?.current;
 
   useEffect(() => {
     const debounceSetIsActive = debounce((value) => setIsActive(value), 300);

@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import type { RefObject } from "react";
 import * as R from "ramda";
 
 interface useSyncEditorProps {
-  ref: RefObject<HTMLTextAreaElement>;
+  ref: React.RefObject<HTMLTextAreaElement>;
   previewCodeLine: LineNumber;
   textAreaLineHeight: number;
 }

@@ -2,18 +2,18 @@ declare type CodeLine = LineNumber;
 declare type CodeLineElement = Element;
 
 declare namespace CodeLineObserver {
-  declare interface Entries {
+  interface Entries {
     [codeLine: CodeLine]: CodeLineElement;
   }
 
-  declare type Observe = (targetEntries: Entries) => void;
+  type Observe = (targetEntries: Entries) => void;
 
-  declare interface ProviderProps {
+  interface ProviderProps {
     children: React.ReactNode;
     initialEntries?: Entries;
   }
 
-  declare interface Observer {
+  interface Observer {
     observe: Observe;
   }
 }

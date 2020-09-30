@@ -1,9 +1,8 @@
 import { useEffect } from "react";
-import type { RefObject } from "react";
 import { useSlideObserver } from "contexts/SlideObserver";
 
 interface UseSlideObserveProps {
-  ref: RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLElement>;
   slideNumber: number;
 }
 

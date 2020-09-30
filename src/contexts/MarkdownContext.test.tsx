@@ -2,7 +2,7 @@ import React from "react";
 import { renderHook } from "@testing-library/react-hooks";
 
 import {
-  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
+  MARKDOWN_CONTEXT_INITIAL_STATE,
   MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,
@@ -45,9 +45,7 @@ describe("MarkdownContext", () => {
         <MarkdownContextProvider>{children}</MarkdownContextProvider>
       );
       const { result } = renderHook(() => useMarkdownState(), { wrapper });
-      expect(result.current).toMatchObject(
-        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE
-      );
+      expect(result.current).toMatchObject(MARKDOWN_CONTEXT_INITIAL_STATE);
     });
 
     test("should return Error if not used within a MarkdownContextProvider", () => {

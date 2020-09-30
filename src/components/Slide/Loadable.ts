@@ -4,9 +4,8 @@
 
 import { loadable } from "utils/loadable";
 
-const Slide = loadable(
-  () => import("./index"),
-  (module) => module.Slide
+const Slide = loadable(() =>
+  import("./index").then((module) => ({ default: module.Slide }))
 );
 
 export { Slide };

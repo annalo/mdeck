@@ -17,11 +17,11 @@ const theme = {
   textColor: colorScheme.nightrider,
 };
 
-const ThemeProvider = ({
+const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }: {
   children: React.ReactNode;
-}): React.ReactElement => (
+}) => (
   <StyledComponentThemeProvider theme={theme}>
     {children}
   </StyledComponentThemeProvider>

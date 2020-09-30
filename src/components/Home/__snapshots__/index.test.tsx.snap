@@ -2,13 +2,87 @@
 
 exports[`<Home /> should render and match the snapshot 1`] = `
 <DocumentFragment>
-  .c0 {
+  .c3 {
   height: 100%;
+  overflow: auto;
+}
+
+.c3:fullscreen {
+  -webkit-scroll-snap-type: y mandatory;
+  -moz-scroll-snap-type: y mandatory;
+  -ms-scroll-snap-type: y mandatory;
+  scroll-snap-type: y mandatory;
+}
+
+.c3:fullscreen .slide {
+  display: grid;
+  height: 100%;
+  -webkit-scroll-snap-align: start;
+  -moz-scroll-snap-align: start;
+  -ms-scroll-snap-align: start;
+  scroll-snap-align: start;
+}
+
+.c3:fullscreen .slide svg {
+  margin: auto;
+}
+
+.c3:-webkit-full-screen {
+  background-color: rgba(255,255,255,0);
+}
+
+.c3:-webkit-full-screen .slide {
+  display: grid;
+  height: 100%;
+}
+
+.c3:-webkit-full-screen .slide svg {
+  margin: auto;
+}
+
+.c2 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+
+.c0 {
+  height: 100%;
+}
+
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  padding-bottom: 27px;
 }
 
 <div
     class="c0"
     id="main"
-  />
+  >
+    <div
+      class="c1"
+    >
+      <div
+        class="c2"
+        id="preview"
+      >
+        <article
+          class="c3"
+          id="slideshow"
+        />
+      </div>
+    </div>
+  </div>
 </DocumentFragment>
 `;

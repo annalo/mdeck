@@ -23,33 +23,6 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
   padding: 0;
 }
 
-.c5 {
-  cursor: pointer;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
-  margin: 0 3px;
-  margin-left: auto;
-}
-
-.c5 svg {
-  fill: #d4d4d4;
-}
-
-.c5 svg circle,
-.c5 svg path {
-  stroke: #888888;
-}
-
 .c3 {
   cursor: pointer;
   display: -webkit-box;
@@ -67,16 +40,94 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
   margin: 0 3px;
 }
 
-.c3 svg {
-  fill: #d4d4d4;
+.c6 {
+  cursor: pointer;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin: 0 3px;
+  opacity: 0.4;
+  pointer-events: none;
+  margin-left: auto;
 }
 
-.c3 svg circle,
-.c3 svg path {
+.c7 svg {
+  fill: #d4d4d4;
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+}
+
+.c7 svg circle,
+.c7 svg path {
   stroke: #888888;
 }
 
-.c3:hover svg {
+.c7 svg:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.c7 svg:hover {
+  fill: #bababa;
+}
+
+.c7 svg:hover circle,
+.c7 svg:hover path {
+  stroke: #2f2f2f;
+}
+
+.c4 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+.c4 svg {
+  fill: #d4d4d4;
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+}
+
+.c4 svg circle,
+.c4 svg path {
+  stroke: #888888;
+}
+
+.c4 svg:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.c4 svg:hover {
+  fill: #bababa;
+}
+
+.c4 svg:hover circle,
+.c4 svg:hover path {
+  stroke: #2f2f2f;
+}
+
+.c4:hover svg {
   -webkit-transition: opacity 0.4s ease-in-out;
   transition: opacity 0.4s ease-in-out;
   opacity: 0.3;
@@ -85,7 +136,7 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
   transform: none;
 }
 
-.c4 {
+.c5 {
   position: absolute;
   height: 100%;
   display: -webkit-box;
@@ -108,7 +159,7 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
   transition: 0.2s ease-in-out;
 }
 
-.c4:hover {
+.c5:hover {
   opacity: 1;
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -122,7 +173,7 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
 <nav
     class="c0"
   >
-    <ul
+    <div
       class="c1"
     >
       <input
@@ -133,34 +184,50 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
         type="file"
       />
       <li
-        class="c3"
-      >
-        <svgr-mock />
-        <div
-          class="c4"
-        >
-          LOAD
-        </div>
-      </li>
-      <li
+        aria-label="load-file"
         class="c3"
         role="button"
       >
-        <svgr-mock />
         <div
           class="c4"
         >
-          SAVE
+          <svgr-mock />
+          <div
+            class="c5"
+          >
+            LOAD
+          </div>
         </div>
       </li>
       <li
-        class="c5"
+        aria-label="save-file"
+        class="c3"
+        role="button"
       >
-        <svgr-mock
-          classname="sc-fzoLsD jrTAlI"
-        />
+        <div
+          class="c4"
+        >
+          <svgr-mock />
+          <div
+            class="c5"
+          >
+            SAVE
+          </div>
+        </div>
       </li>
-    </ul>
+      <li
+        aria-label="request-presentation"
+        class="c6"
+        disabled=""
+        role="button"
+      >
+        <div
+          class="c7"
+        >
+          <svgr-mock />
+        </div>
+      </li>
+    </div>
   </nav>
 </DocumentFragment>
 `;

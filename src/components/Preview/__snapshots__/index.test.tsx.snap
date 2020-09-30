@@ -55,6 +55,7 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
 
 <div
     class="c0"
+    id="preview"
   >
     <article
       class="c1"

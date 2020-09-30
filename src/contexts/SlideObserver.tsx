@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import * as R from "ramda";
 
-const SLIDE_ENTRIES_DEFAULT_INITIAL_STATE = {};
+const SLIDE_ENTRIES_INITIAL_STATE = {};
 
 const SlideEntriesContext = createContext<SlideObserver.Entries | undefined>(
   undefined
@@ -19,9 +19,9 @@ const SlideObserverContext = createContext<SlideObserver.Observer | undefined>(
 const SlideObserverProvider: React.FC<SlideObserver.ProviderProps> = ({
   children,
   initialEntries,
-}: SlideObserver.ProviderProps) => {
+}) => {
   const [entries, setEntries] = useState<SlideObserver.Entries>(
-    initialEntries || SLIDE_ENTRIES_DEFAULT_INITIAL_STATE
+    initialEntries || SLIDE_ENTRIES_INITIAL_STATE
   );
   const observe: SlideObserver.Observe = useCallback(
     (slideNumber, targetElement) =>

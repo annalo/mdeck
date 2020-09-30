@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { render, renderHook } from "utils/test-utils";
 
 import {
-  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
+  MARKDOWN_CONTEXT_INITIAL_STATE,
   useMarkdownDispatch,
   useMarkdownState,
 } from "contexts/MarkdownContext";
@@ -90,7 +90,7 @@ describe("<Editor />", () => {
       });
 
       expect(result.current.editorLine).toBe(
-        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
+        MARKDOWN_CONTEXT_INITIAL_STATE.editorLine
       );
 
       act(() => {
@@ -116,7 +116,7 @@ describe("<Editor />", () => {
         fireEvent.scroll(textarea, { target: { scrollTop: scrollHeight } });
       });
       expect(result.current.editorLine).toBe(
-        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
+        MARKDOWN_CONTEXT_INITIAL_STATE.editorLine
       );
     });
   });

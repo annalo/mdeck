@@ -3,12 +3,13 @@ import { saveAs } from "file-saver";
 
 import { useMarkdownState } from "contexts/MarkdownContext";
 
-import SaveIcon from "icons/save.svg";
-import { MenuItem, MenuItemWithTooltip } from "../MenuItem";
+import SaveSvg from "icons/save.svg";
+import { MenuItem } from "../MenuItem";
+import { IconWithTooltip } from "../Icon";
 import { Tooltip } from "../Tooltip";
 import { SaveFileForm } from "./SaveFileForm";
 
-const SaveFileMenuItem = (): React.ReactElement => {
+const SaveFileMenuItem: React.FC = () => {
   const [isFormOpen, toggleForm] = useState(false);
   const [filename, setFilename] = useState("");
 
@@ -34,10 +35,12 @@ const SaveFileMenuItem = (): React.ReactElement => {
       />
     </MenuItem>
   ) : (
-    <MenuItemWithTooltip onClick={openForm} role="button">
-      <SaveIcon />
-      <Tooltip text="SAVE" />
-    </MenuItemWithTooltip>
+    <MenuItem aria-label="save-file" onClick={openForm} role="button">
+      <IconWithTooltip>
+        <SaveSvg />
+        <Tooltip text="SAVE" />
+      </IconWithTooltip>
+    </MenuItem>
   );
 };
 

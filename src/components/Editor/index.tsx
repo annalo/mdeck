@@ -13,8 +13,7 @@ import { TEXT_AREA_LINE_HEIGHT, TextArea } from "./TextArea";
 import { useSyncEditor } from "./useSyncEditor";
 import { useTrackEditorScroll } from "./useTrackEditorScroll";
 
-const Container = styled.div`
-  background-color: ${(props) => props.theme.editorBackgroundColor};
+const Column = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -62,16 +61,17 @@ const Editor = memo(function Editor() {
   };
 
   return (
-    <Container>
+    <Column id="editor">
       <TextArea
         ref={ref}
         autoFocus
+        id="md-textarea"
         name="md"
         onChange={handleInputChange}
         onKeyDown={handleKeyDown}
         value={md}
       />
-    </Container>
+    </Column>
   );
 });
 

@@ -2,16 +2,15 @@ import { useEffect, useMemo } from "react";
 import * as R from "ramda";
 import throttle from "lodash/throttle";
 
-import type { Dispatch, RefObject } from "react";
 import {
   MarkdownContextReducerAction,
   MarkdownContextReducerActionType,
 } from "types/markdown-context-reducer-action";
 
 interface useTrackEditorScrollProps {
-  dispatch: Dispatch<MarkdownContextReducerAction>;
+  dispatch: React.Dispatch<MarkdownContextReducerAction>;
   isActive: boolean;
-  ref: RefObject<HTMLTextAreaElement>;
+  ref: React.RefObject<HTMLTextAreaElement>;
   textAreaLineHeight: number;
 }
 

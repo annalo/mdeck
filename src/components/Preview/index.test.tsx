@@ -6,7 +6,7 @@ import { render, renderHook } from "utils/test-utils";
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
 import {
-  MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE,
+  MARKDOWN_CONTEXT_INITIAL_STATE,
   MarkdownContextProvider,
   useMarkdownDispatch,
   useMarkdownState,
@@ -41,7 +41,7 @@ describe("<Preview />", () => {
     ];
     const wrapper = ({ children }) => (
       <MarkdownContextProvider
-        initialState={{ ...MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE, htmlArray }}
+        initialState={{ ...MARKDOWN_CONTEXT_INITIAL_STATE, htmlArray }}
       >
         <SlideObserverProvider>
           <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
@@ -175,7 +175,7 @@ describe("<Preview />", () => {
       );
 
       expect(result.current.previewCodeLine).toBe(
-        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
+        MARKDOWN_CONTEXT_INITIAL_STATE.editorLine
       );
 
       act(() => {
@@ -200,7 +200,7 @@ describe("<Preview />", () => {
         fireEvent.scroll(slideshow, { target: { scrollY: 100 } });
       });
       expect(result.current.previewCodeLine).toBe(
-        MARKDOWN_CONTEXT_DEFAULT_INITIAL_STATE.editorLine
+        MARKDOWN_CONTEXT_INITIAL_STATE.editorLine
       );
     });
   });

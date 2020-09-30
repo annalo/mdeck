@@ -1,4 +1,4 @@
-import React, { memo, useRef } from "react";
+import React, { forwardRef, memo } from "react";
 import styled from "styled-components";
 
 import {
@@ -15,34 +15,34 @@ import { useMarkdownWorker } from "./useMarkdownWorker";
 import { useSyncPreview } from "./useSyncPreview";
 import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
 
-const Container = styled.div`
+const Column = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
 `;
 
-const Preview = memo(function Preview() {
-  const ref = useRef<HTMLElement>(null);
+const Preview = memo(
+  forwardRef<HTMLElement>(function Preview(_props, ref) {
+    const dispatch = useMarkdownDispatch();
+    const { htmlArray, md, editorLine } = useMarkdownState();
 
-  const dispatch = useMarkdownDispatch();
-  const { htmlArray, md, editorLine } = useMarkdownState();
+    const isActive = usePaneIsActive({ ref, initialValue: false });
+    const entries = useCodeLineEntries();
 
-  const isActive = usePaneIsActive({ ref, initialValue: false });
-  const entries = useCodeLineEntries();
+    useMarkdownWorker({ dispatch, md });
+    useSyncPreview({ entries, editorLine });
+    useTrackPreviewScroll({ dispatch, entries, isActive, ref });
 
-  useMarkdownWorker({ dispatch, md });
-  useSyncPreview({ entries, editorLine });
-  useTrackPreviewScroll({ dispatch, entries, isActive, ref });
-
-  return (
-    <Container>
-      <Slideshow ref={ref} id="slideshow">
-        {htmlArray.map((html, i) => (
-          <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
-        ))}
-      </Slideshow>
-    </Container>
-  );
-});
+    return (
+      <Column id="preview">
+        <Slideshow ref={ref} id="slideshow">
+          {htmlArray.map((html, i) => (
+            <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
+          ))}
+        </Slideshow>
+      </Column>
+    );
+  })
+);
 
 export { Preview };

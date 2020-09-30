@@ -1,5 +1,4 @@
 import { useEffect } from "react";
-import type { RefObject } from "react";
 
 import { useCodeLineObserver } from "contexts/CodeLineObserver";
 import {
@@ -9,7 +8,7 @@ import {
 
 interface UseCodeLineObserveProps {
   elements: SlideContentElements;
-  ref: RefObject<HTMLElement>;
+  ref: React.RefObject<HTMLElement>;
 }
 
 function useCodeLineObserve({ elements, ref }: UseCodeLineObserveProps): void {
