@@ -1,17 +1,17 @@
 import React from "react";
-import styled from "styled-components";
 
-import PresentationIconSvg from "icons/video-camera.svg";
+import PresentationSvg from "icons/video-camera.svg";
 import { Header } from "./Header";
 import { Menu } from "./Menu";
-import { MenuItemRight, iconAnimation } from "./MenuItem";
+import { MenuItemRight } from "./MenuItem";
+import { Icon } from "./Icon";
 
 import { LoadFileMenuItem } from "./LoadFile";
 import { SaveFileMenuItem } from "./SaveFile";
 
-const PresentationIcon = styled(PresentationIconSvg)`
-  ${iconAnimation}
-`;
+// const PresentationIcon = styled(PresentationSvg)`
+//   ${iconAnimation}
+// `;
 
 interface ToolbarProps {
   requestPresentation: RequestPresentation;
@@ -28,7 +28,9 @@ const Toolbar: React.FC<ToolbarProps> = ({ requestPresentation }) => (
         onClick={requestPresentation}
         role="button"
       >
-        <PresentationIcon />
+        <Icon>
+          <PresentationSvg />
+        </Icon>
       </MenuItemRight>
     </Menu>
   </Header>

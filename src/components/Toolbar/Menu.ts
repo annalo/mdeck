@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const Menu = styled.ul`
+const Menu = styled.div`
   display: flex;
   height: ${(props) => props.theme.toolbarHeight}px;
   margin: 0;
