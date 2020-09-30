@@ -1,6 +1,7 @@
 import React from "react";
 
 import PresentationSvg from "icons/video-camera.svg";
+
 import { Header } from "./Header";
 import { Menu } from "./Menu";
 import { MenuItemRight } from "./MenuItem";
@@ -8,10 +9,6 @@ import { Icon } from "./Icon";
 
 import { LoadFileMenuItem } from "./LoadFile";
 import { SaveFileMenuItem } from "./SaveFile";
-
-// const PresentationIcon = styled(PresentationSvg)`
-//   ${iconAnimation}
-// `;
 
 interface ToolbarProps {
   requestPresentation: RequestPresentation;
@@ -24,6 +21,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ requestPresentation }) => (
       <SaveFileMenuItem />
 
       <MenuItemRight
+        disabled
         aria-label="request-presentation"
         onClick={requestPresentation}
         role="button"
