@@ -27,7 +27,7 @@ describe("<SaveFileMenuItem />", () => {
   });
 
   describe("<SaveFileForm />", () => {
-    test("should save file with filename", () => {
+    test("should save file with filename and md file extension", () => {
       const filename = "test-file";
       const blob = new Blob([MARKDOWN_CONTEXT_INITIAL_STATE.md], {
         type: "text/markdown",
@@ -38,7 +38,35 @@ describe("<SaveFileMenuItem />", () => {
       fireEvent.click(screen.getByRole("button"));
       userEvent.type(screen.getByRole("textbox"), `${filename}{enter}`);
 
+      expect(saveAs).toHaveBeenNthCalledWith(1, blob, `${filename}.md`);
+    });
+
+    test("should not append file extension if user input it", () => {
+      const filename = "test-file.md";
+      const blob = new Blob([MARKDOWN_CONTEXT_INITIAL_STATE.md], {
+        type: "text/markdown",
+      });
+
+      render(<SaveFileMenuItem />);
+
+      fireEvent.click(screen.getByRole("button"));
+      userEvent.type(screen.getByRole("textbox"), `${filename}{enter}`);
+
       expect(saveAs).toHaveBeenNthCalledWith(1, blob, filename);
+    });
+
+    test("should save file as download.md if no file name", () => {
+      const filename = "";
+      const blob = new Blob([MARKDOWN_CONTEXT_INITIAL_STATE.md], {
+        type: "text/markdown",
+      });
+
+      render(<SaveFileMenuItem />);
+
+      fireEvent.click(screen.getByRole("button"));
+      userEvent.type(screen.getByRole("textbox"), `${filename}{enter}`);
+
+      expect(saveAs).toHaveBeenNthCalledWith(1, blob, "download.md");
     });
 
     test("should persist last saved filename", () => {
