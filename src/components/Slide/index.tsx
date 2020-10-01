@@ -6,11 +6,18 @@ import { useSlideObserve } from "./useSlideObserve";
 import { useCodeLineObserve } from "./useCodeLineObserve";
 
 const Section = styled.section`
-  background-color: white;
-  border: 1px solid ${(props) => props.theme.colorScheme.lightgrey};
-  box-shadow: 0px 1px 2px 1px ${(props) => props.theme.colorScheme.lightgrey}70;
   margin: 0.5em;
-  padding: 1em;
+
+  svg {
+    background-color: white;
+    border: 1px solid ${(props) => props.theme.colorScheme.lightgrey};
+    box-shadow: 0px 1px 2px 1px
+      ${(props) => props.theme.colorScheme.lightgrey}70;
+  }
+
+  foreignObject {
+    padding: 2em;
+  }
 `;
 
 interface SlideProps {

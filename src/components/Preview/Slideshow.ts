@@ -8,14 +8,14 @@ const Slideshow = styled.article`
     scroll-snap-type: y mandatory;
 
     .slide {
-      border: none;
-      box-shadow: none;
       display: grid;
       height: 100%;
       margin: 0;
       scroll-snap-align: start;
 
       svg {
+        border: none;
+        box-shadow: none;
         margin: auto;
       }
     }
@@ -26,14 +26,14 @@ const Slideshow = styled.article`
     scroll-snap-type: y mandatory;
 
     .slide {
-      border: none;
-      box-shadow: none;
       display: grid;
       height: 100%;
       margin: 0;
       scroll-snap-align: start;
 
       svg {
+        border: none;
+        box-shadow: none;
         margin: auto;
       }
     }
