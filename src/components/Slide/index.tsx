@@ -6,6 +6,10 @@ import { useSlideObserve } from "./useSlideObserve";
 import { useCodeLineObserve } from "./useCodeLineObserve";
 
 const Section = styled.section`
+  border: 1px solid ${(props) => props.theme.colorScheme.lightgrey};
+  box-shadow: 0px 1px 2px 2px ${(props) => props.theme.colorScheme.lightgrey}70;
+  margin: 0.5em;
+  padding: 1em;
   svg {
     background-color: white;
   }
