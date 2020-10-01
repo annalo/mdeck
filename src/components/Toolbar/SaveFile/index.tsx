@@ -9,6 +9,11 @@ import { IconWithTooltip } from "../Icon";
 import { Tooltip } from "../Tooltip";
 import { SaveFileForm } from "./SaveFileForm";
 
+const appendFileExtension = (name) => {
+  if (name === "") return "download.md";
+  return name.endsWith(".md") ? name : `${name}.md`;
+};
+
 const SaveFileMenuItem: React.FC = () => {
   const [isFormOpen, toggleForm] = useState(false);
   const [filename, setFilename] = useState("");
@@ -21,7 +26,7 @@ const SaveFileMenuItem: React.FC = () => {
   const saveFile = (name) => {
     const blob = new Blob([md], { type: "text/markdown" });
 
-    saveAs(blob, name);
+    saveAs(blob, appendFileExtension(name));
     setFilename(name);
     closeForm();
   };
