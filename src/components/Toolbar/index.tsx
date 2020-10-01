@@ -2,7 +2,7 @@ import React from "react";
 
 import { useMarkdownState } from "contexts/MarkdownContext";
 
-import PresentationSvg from "icons/video-camera.svg";
+import VideoCameraSvg from "icons/video-camera.svg";
 
 import { Header } from "./Header";
 import { Menu } from "./Menu";
@@ -31,7 +31,7 @@ const Toolbar: React.FC<ToolbarProps> = ({ requestPresentation }) => {
           role="button"
         >
           <Icon>
-            <PresentationSvg />
+            <VideoCameraSvg />
           </Icon>
         </MenuItemRight>
       </Menu>

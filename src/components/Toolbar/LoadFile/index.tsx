@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useMarkdownDispatch } from "contexts/MarkdownContext";
 import { MarkdownContextReducerActionType } from "types/markdown-context-reducer-action";
 
-import OpenFileSvg from "icons/folder-add-file.svg";
+import FileSvg from "icons/folder-file.svg";
 import { MenuItem } from "../MenuItem";
 import { IconWithTooltip } from "../Icon";
 import { Tooltip } from "../Tooltip";
@@ -45,7 +45,7 @@ const LoadFileMenuItem: React.FC = () => {
 
       <MenuItem aria-label="load-file" onClick={handleClick} role="button">
         <IconWithTooltip>
-          <OpenFileSvg />
+          <FileSvg />
           <Tooltip text="LOAD" />
         </IconWithTooltip>
       </MenuItem>
