@@ -12,8 +12,6 @@ const disabled = css`
 const MenuItem = styled.li<MenuItemProps>`
   cursor: pointer;
   display: flex;
-  align-items: center;
-  justify-content: center;
   margin: 0 3px;
 
   ${(props) => props.disabled && disabled};

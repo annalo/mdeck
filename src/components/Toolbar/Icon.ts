@@ -8,12 +8,16 @@ const iconAnimation = css`
 `;
 
 const BasicIcon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   svg {
     ${iconAnimation}
   }
 `;
 
-const Icon = styled.div`
+const Icon = styled(BasicIcon)`
   svg {
     fill: ${(props) => props.theme.colorScheme.lightgrey};
     circle,
@@ -34,10 +38,6 @@ const Icon = styled.div`
 `;
 
 const IconWithTooltip = styled(Icon)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
   &:hover {
     svg {
       transition: opacity 0.4s ease-in-out;
