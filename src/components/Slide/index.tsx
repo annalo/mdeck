@@ -1,23 +1,17 @@
 import React, { memo, useRef } from "react";
 import styled from "styled-components";
 
+import { slideStyle } from "./slide-style";
 import { useElements } from "./useElements";
 import { useSlideObserve } from "./useSlideObserve";
 import { useCodeLineObserve } from "./useCodeLineObserve";
 
-const Section = styled.section`
+const SlideContainer = styled.div`
   margin: 0.5em;
+  border: 1px solid ${(props) => props.theme.colorScheme.lightgrey};
+  box-shadow: 0px 1px 2px 1px ${(props) => props.theme.colorScheme.lightgrey}70;
 
-  svg {
-    background-color: white;
-    border: 1px solid ${(props) => props.theme.colorScheme.lightgrey};
-    box-shadow: 0px 1px 2px 1px
-      ${(props) => props.theme.colorScheme.lightgrey}70;
-  }
-
-  foreignObject {
-    padding: 2em;
-  }
+  ${slideStyle}
 `;
 
 interface SlideProps {
@@ -26,16 +20,16 @@ interface SlideProps {
 }
 
 const Slide = memo(function Slide({ htmlString, index }: SlideProps) {
-  const ref = useRef<HTMLElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
 
   const elements = useElements(htmlString);
   useSlideObserve({ ref, slideNumber: index + 1 });
   useCodeLineObserve({ elements, ref });
 
   return (
-    <Section ref={ref} className="slide" id={`slide-${index + 1}`}>
+    <SlideContainer ref={ref} className="slide" id={`slide-${index + 1}`}>
       {elements}
-    </Section>
+    </SlideContainer>
   );
 });
 
