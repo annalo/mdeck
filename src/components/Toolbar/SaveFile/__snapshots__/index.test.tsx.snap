@@ -19,16 +19,48 @@ exports[`<SaveFileMenuItem /> should render and match the snapshot 1`] = `
   margin: 0 3px;
 }
 
-.c0 svg {
-  fill: #d4d4d4;
+.c1 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
 }
 
-.c0 svg circle,
-.c0 svg path {
+.c1 svg {
+  fill: #d4d4d4;
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+}
+
+.c1 svg circle,
+.c1 svg path {
   stroke: #888888;
 }
 
-.c0:hover svg {
+.c1 svg:hover {
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+.c1 svg:hover {
+  fill: #bababa;
+}
+
+.c1 svg:hover circle,
+.c1 svg:hover path {
+  stroke: #2f2f2f;
+}
+
+.c1:hover svg {
   -webkit-transition: opacity 0.4s ease-in-out;
   transition: opacity 0.4s ease-in-out;
   opacity: 0.3;
@@ -37,7 +69,7 @@ exports[`<SaveFileMenuItem /> should render and match the snapshot 1`] = `
   transform: none;
 }
 
-.c1 {
+.c2 {
   position: absolute;
   height: 100%;
   display: -webkit-box;
@@ -60,7 +92,7 @@ exports[`<SaveFileMenuItem /> should render and match the snapshot 1`] = `
   transition: 0.2s ease-in-out;
 }
 
-.c1:hover {
+.c2:hover {
   opacity: 1;
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -68,14 +100,19 @@ exports[`<SaveFileMenuItem /> should render and match the snapshot 1`] = `
 }
 
 <li
+    aria-label="save-file"
     class="c0"
     role="button"
   >
-    <svgr-mock />
     <div
       class="c1"
     >
-      SAVE
+      <svgr-mock />
+      <div
+        class="c2"
+      >
+        SAVE
+      </div>
     </div>
   </li>
 </DocumentFragment>
