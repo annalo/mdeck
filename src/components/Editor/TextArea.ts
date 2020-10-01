@@ -11,6 +11,7 @@ const TextArea = styled.textarea`
   line-height: ${TEXT_AREA_LINE_HEIGHT}px;
   outline: none;
   padding: 0.5em;
+  padding-bottom: 90vh;
   resize: none;
   tab-size: 2;
 
