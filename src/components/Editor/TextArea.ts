@@ -11,10 +11,14 @@ const TextArea = styled.textarea`
   line-height: ${TEXT_AREA_LINE_HEIGHT}px;
   outline: none;
   padding: 0.5em;
-  padding-bottom: 90vh;
   resize: none;
   tab-size: 2;
+  width: 100%;
 
+  /* firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=748518 */
+  @supports not (-moz-appearance: none) {
+    padding-bottom: 90vh;
+  }
   ::-webkit-scrollbar {
     display: none;
   }
