@@ -3,7 +3,7 @@ import { css } from "styled-components";
 const blockquoteStyle = css`
   blockquote {
     border-left: 0.25em solid #d4d4d450;
-    margin: 0;
+    margin-left: 0;
     padding: 0 1em;
   }
 `;
@@ -40,6 +40,23 @@ const paragraphStyle = css`
 `;
 const tableStyle = css`
   table {
+    border-collapse: collapse;
+    width: 80%;
+
+    tr:nth-child(even) {
+      background-color: ${(props) => props.theme.colorScheme.lightgrey}40;
+    }
+
+    th,
+    td {
+      padding: 0.3em;
+    }
+  }
+
+  table,
+  th,
+  td {
+    border: 1px solid ${(props) => props.theme.colorScheme.lightgrey};
   }
 `;
 
