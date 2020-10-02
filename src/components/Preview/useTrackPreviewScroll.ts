@@ -13,7 +13,7 @@ interface UseTrackPreviewScrollProps {
   dispatch: React.Dispatch<MarkdownContextReducerAction>;
   entries: SlideObserver.Entries;
   isActive: boolean;
-  ref: any;
+  ref: React.RefObject<HTMLElement>;
 }
 
 function useTrackPreviewScroll({
@@ -48,8 +48,8 @@ function useTrackPreviewScroll({
     [dispatch, entries]
   );
 
-  const node = ref?.current;
   /* Adds/Removes event listener on 'scroll' depending on pane `isActive` */
+  const node = ref?.current;
   useEffect(() => {
     isActive
       ? node?.addEventListener("scroll", handleScroll, { passive: true })

@@ -3,7 +3,9 @@ import screenfull, { Screenfull } from "screenfull";
 
 import { useSlideNavigation } from "./usePresentationSlideNavigation";
 
-function usePresentation(slideshowRef: any): RequestPresentation {
+function usePresentation(
+  slideshowRef: React.RefObject<HTMLElement>
+): RequestPresentation {
   const [isPresented, setIsPresented] = useState(false);
   const dismiss = useCallback(() => setIsPresented(false), []);
   const present = useCallback(() => setIsPresented(true), []);

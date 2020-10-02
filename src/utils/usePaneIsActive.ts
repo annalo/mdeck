@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import debounce from "lodash/debounce";
 
 interface UsePaneIsActiveProps {
-  ref: any;
+  ref: React.RefObject<HTMLElement>;
   initialValue: boolean;
 }
 
