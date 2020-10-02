@@ -2,11 +2,95 @@
 
 exports[`<Slide /> should render and match the snapshot 1`] = `
 <DocumentFragment>
-  .c0 svg {
-  background-color: white;
+  .c0 {
+  margin: 0.5em;
+  border: 1px solid #d4d4d4;
+  box-shadow: 0px 1px 2px 1px #d4d4d470;
 }
 
-<section
+.c0 section {
+  -webkit-align-items: stretch;
+  -webkit-box-align: stretch;
+  -ms-flex-align: stretch;
+  align-items: stretch;
+  background-color: white;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  font-size: 25px;
+  height: 100%;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  padding: 3em;
+  width: 100%;
+}
+
+.c0 section * {
+  margin-top: 0;
+}
+
+.c0 section *:last-child {
+  margin-bottom: 0 !important;
+}
+
+.c0 section blockquote {
+  border-left: 0.25em solid #d4d4d450;
+  margin-left: 0;
+  padding: 0 1em;
+}
+
+.c0 section pre {
+  background-color: #d4d4d420;
+  border: 1px solid grey;
+  border-radius: 3px;
+  line-height: 1em;
+  overflow: visible;
+  padding: 0.5em;
+}
+
+.c0 section ul.contains-task-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.c0 section ul.contains-task-list .task-list-item-checkbox {
+  margin-left: 0.6em;
+  margin-right: 0.3em;
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+}
+
+.c0 section table {
+  border-collapse: collapse;
+  width: 80%;
+}
+
+.c0 section table tr:nth-child(even) {
+  background-color: #d4d4d440;
+}
+
+.c0 section table th,
+.c0 section table td {
+  padding: 0.3em;
+}
+
+.c0 section table,
+.c0 section th,
+.c0 section td {
+  border: 1px solid #d4d4d4;
+}
+
+<div
     class="c0 slide"
     id="slide-1"
   >
@@ -15,6 +99,6 @@ exports[`<Slide /> should render and match the snapshot 1`] = `
         Title
       </h1>
     </svg>
-  </section>
+  </div>
 </DocumentFragment>
 `;

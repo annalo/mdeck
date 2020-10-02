@@ -11,9 +11,9 @@ exports[`<Editor /> should render and match the snapshot 1`] = `
   line-height: 18px;
   outline: none;
   padding: 0.5em;
-  padding-bottom: 90vh;
   resize: none;
   tab-size: 2;
+  width: 100%;
   -ms-overflow-style: none;
   -webkit-scrollbar-width: none;
   -moz-scrollbar-width: none;
@@ -36,6 +36,13 @@ exports[`<Editor /> should render and match the snapshot 1`] = `
   -webkit-flex-direction: column;
   -ms-flex-direction: column;
   flex-direction: column;
+  overflow-y: scroll;
+}
+
+@supports not (-moz-appearance:none) {
+  .c1 {
+    padding-bottom: 90vh;
+  }
 }
 
 <div
