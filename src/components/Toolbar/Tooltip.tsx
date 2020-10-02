@@ -13,7 +13,7 @@ const HoverTooltip = styled.div`
   justify-content: center;
 
   opacity: 0;
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.iconColor};
   font-weight: bolder;
   font-size: 8px;
 

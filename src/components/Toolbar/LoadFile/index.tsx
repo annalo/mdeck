@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { useMarkdownDispatch } from "contexts/MarkdownContext";
 import { MarkdownContextReducerActionType } from "types/markdown-context-reducer-action";
 
-import FileSvg from "icons/folder-file.svg";
+import FileSvg from "icons/file.svg";
 import { MenuItem } from "../MenuItem";
 import { IconWithTooltip } from "../Icon";
 import { Tooltip } from "../Tooltip";

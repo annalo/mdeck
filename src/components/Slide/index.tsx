@@ -8,8 +8,8 @@ import { useCodeLineObserve } from "./useCodeLineObserve";
 
 const SlideContainer = styled.div`
   margin: 0.5em;
-  border: 1px solid ${(props) => props.theme.colorScheme.lightgrey};
-  box-shadow: 0px 1px 2px 1px ${(props) => props.theme.colorScheme.lightgrey}70;
+  border: 1px solid ${(props) => props.theme.colors.gallery};
+  box-shadow: 0px 1px 2px 1px ${(props) => props.theme.colors.gallery}70;
 
   ${slideStyle}
 `;

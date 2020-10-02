@@ -13,7 +13,7 @@ const Body = styled.div`
 const Container = styled.div`
   display: flex;
   height: 100%;
-  padding-bottom: ${(props) => props.theme.toolbarHeight + 2}px;
+  padding-bottom: ${(props) => props.theme.toolbarHeight}px;
 `;
 
 const Home: React.FC = () => {

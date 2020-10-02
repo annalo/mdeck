@@ -31,6 +31,11 @@ exports[`<SaveFileMenuItem /> should render and match the snapshot 1`] = `
   transition: 0.4s ease-in-out;
 }
 
+.c1 svg circle,
+.c1 svg path {
+  stroke: #b5c2c7;
+}
+
 .c1 svg:hover {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -38,14 +43,8 @@ exports[`<SaveFileMenuItem /> should render and match the snapshot 1`] = `
 }
 
 .c1 svg {
-  fill: #d4d4d4;
   -webkit-transition: 0.4s ease-in-out;
   transition: 0.4s ease-in-out;
-}
-
-.c1 svg circle,
-.c1 svg path {
-  stroke: #888888;
 }
 
 .c1 svg:hover {
@@ -55,18 +54,13 @@ exports[`<SaveFileMenuItem /> should render and match the snapshot 1`] = `
 }
 
 .c1 svg:hover {
-  fill: #bababa;
-}
-
-.c1 svg:hover circle,
-.c1 svg:hover path {
-  stroke: #2f2f2f;
+  fill: #b5c2c7;
 }
 
 .c1:hover svg {
   -webkit-transition: opacity 0.4s ease-in-out;
   transition: opacity 0.4s ease-in-out;
-  opacity: 0.3;
+  opacity: 0.5;
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
@@ -88,7 +82,7 @@ exports[`<SaveFileMenuItem /> should render and match the snapshot 1`] = `
   -ms-flex-pack: center;
   justify-content: center;
   opacity: 0;
-  color: #2f2f2f;
+  color: #b5c2c7;
   font-weight: bolder;
   font-size: 8px;
   -webkit-transition: 0.2s ease-in-out;

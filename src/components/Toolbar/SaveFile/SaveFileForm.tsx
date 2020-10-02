@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 import Checkmark from "icons/check-mark.svg";
-import Xmark from "icons/x-circle.svg";
+import Xmark from "icons/x-mark.svg";
 import { BasicIcon } from "../Icon";
 
 interface SaveFileFormProps {
@@ -12,18 +12,25 @@ interface SaveFileFormProps {
 }
 
 const Form = styled.form`
+  align-items: center;
+  display: flex;
   font-size: 12px;
+  justify-content: center;
 `;
 const TextInput = styled.input`
   background-color: transparent;
   border: none;
+  color: ${(props) => props.theme.iconColor};
   &:focus {
     outline: none;
-    box-shadow: -8px 10px 0px -7px #4ea6ea, 8px 10px 0px -7px #4ea6ea;
+    box-shadow: -8px 10px 0px -7px ${(props) => props.theme.iconColor},
+      8px 10px 0px -7px ${(props) => props.theme.iconColor};
   }
 `;
 const Button = styled.button`
+  background-color: transparent;
   border: none;
+  cursor: pointer;
   padding: 0 2px;
   &:focus {
     outline: 0;

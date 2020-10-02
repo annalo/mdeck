@@ -26,8 +26,8 @@ describe("<Slide />", () => {
     expect(container.firstChild).toMatchInlineSnapshot(`
       .c0 {
         margin: 0.5em;
-        border: 1px solid #d4d4d4;
-        box-shadow: 0px 1px 2px 1px #d4d4d470;
+        border: 1px solid #ededed;
+        box-shadow: 0px 1px 2px 1px #ededed70;
       }
 
       .c0 section {
@@ -35,7 +35,8 @@ describe("<Slide />", () => {
         -webkit-box-align: stretch;
         -ms-flex-align: stretch;
         align-items: stretch;
-        background-color: white;
+        background-color: #fefefe;
+        color: #292929;
         display: -webkit-box;
         display: -webkit-flex;
         display: -ms-flexbox;
@@ -98,7 +99,7 @@ describe("<Slide />", () => {
       }
 
       .c0 section table tr:nth-child(even) {
-        background-color: #d4d4d440;
+        background-color: #d6d6d640;
       }
 
       .c0 section table th,
@@ -109,7 +110,7 @@ describe("<Slide />", () => {
       .c0 section table,
       .c0 section th,
       .c0 section td {
-        border: 1px solid #d4d4d4;
+        border: 1px solid #d6d6d6;
       }
 
       <div

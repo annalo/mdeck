@@ -3,7 +3,7 @@ import styled from "styled-components";
 const TEXT_AREA_LINE_HEIGHT = 18;
 
 const TextArea = styled.textarea`
-  background-color: ${(props) => props.theme.editorBackgroundColor};
+  background-color: ${(props) => props.theme.editorColor};
   border: none;
   color: ${(props) => props.theme.textColor};
   font-size: 15px;

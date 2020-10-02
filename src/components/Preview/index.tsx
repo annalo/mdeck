@@ -16,6 +16,7 @@ import { useSyncPreview } from "./useSyncPreview";
 import { useTrackPreviewScroll } from "./useTrackPreviewScroll";
 
 const Column = styled.div`
+  background-color: ${(props) => props.theme.previewColor};
   display: flex;
   flex: 1;
   flex-direction: column;

@@ -3,14 +3,14 @@
 exports[`<Toolbar /> should render and match the snapshot 1`] = `
 <DocumentFragment>
   .c0 {
-  background-color: #ededed;
-  box-shadow: 0px 0px 1.5px #2f2f2f;
+  background-color: #455954;
+  box-shadow: 0px 0px 1.5px #455954;
   height: 25px;
   overflow: hidden;
   position: fixed;
   bottom: 0;
   width: 100%;
-  padding: 0 10px;
+  padding: 0 5px;
 }
 
 .c1 {
@@ -64,6 +64,11 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
   transition: 0.4s ease-in-out;
 }
 
+.c7 svg circle,
+.c7 svg path {
+  stroke: #b5c2c7;
+}
+
 .c7 svg:hover {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -71,14 +76,8 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
 }
 
 .c7 svg {
-  fill: #d4d4d4;
   -webkit-transition: 0.4s ease-in-out;
   transition: 0.4s ease-in-out;
-}
-
-.c7 svg circle,
-.c7 svg path {
-  stroke: #888888;
 }
 
 .c7 svg:hover {
@@ -88,12 +87,7 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
 }
 
 .c7 svg:hover {
-  fill: #bababa;
-}
-
-.c7 svg:hover circle,
-.c7 svg:hover path {
-  stroke: #2f2f2f;
+  fill: #b5c2c7;
 }
 
 .c4 {
@@ -116,6 +110,11 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
   transition: 0.4s ease-in-out;
 }
 
+.c4 svg circle,
+.c4 svg path {
+  stroke: #b5c2c7;
+}
+
 .c4 svg:hover {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
@@ -123,14 +122,8 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
 }
 
 .c4 svg {
-  fill: #d4d4d4;
   -webkit-transition: 0.4s ease-in-out;
   transition: 0.4s ease-in-out;
-}
-
-.c4 svg circle,
-.c4 svg path {
-  stroke: #888888;
 }
 
 .c4 svg:hover {
@@ -140,18 +133,13 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
 }
 
 .c4 svg:hover {
-  fill: #bababa;
-}
-
-.c4 svg:hover circle,
-.c4 svg:hover path {
-  stroke: #2f2f2f;
+  fill: #b5c2c7;
 }
 
 .c4:hover svg {
   -webkit-transition: opacity 0.4s ease-in-out;
   transition: opacity 0.4s ease-in-out;
-  opacity: 0.3;
+  opacity: 0.5;
   -webkit-transform: none;
   -ms-transform: none;
   transform: none;
@@ -173,7 +161,7 @@ exports[`<Toolbar /> should render and match the snapshot 1`] = `
   -ms-flex-pack: center;
   justify-content: center;
   opacity: 0;
-  color: #2f2f2f;
+  color: #b5c2c7;
   font-weight: bolder;
   font-size: 8px;
   -webkit-transition: 0.2s ease-in-out;
