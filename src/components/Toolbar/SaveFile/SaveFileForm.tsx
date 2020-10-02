@@ -20,9 +20,11 @@ const Form = styled.form`
 const TextInput = styled.input`
   background-color: transparent;
   border: none;
+  color: ${(props) => props.theme.iconColor};
   &:focus {
     outline: none;
-    box-shadow: -8px 10px 0px -7px #4ea6ea, 8px 10px 0px -7px #4ea6ea;
+    box-shadow: -8px 10px 0px -7px ${(props) => props.theme.iconColor},
+      8px 10px 0px -7px ${(props) => props.theme.iconColor};
   }
 `;
 const Button = styled.button`

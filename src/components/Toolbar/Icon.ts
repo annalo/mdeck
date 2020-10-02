@@ -8,31 +8,27 @@ const iconAnimation = css`
 `;
 
 const BasicIcon = styled.div`
+  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
 
   svg {
+    circle,
+    path {
+      stroke: ${(props) => props.theme.iconColor};
+    }
+
     ${iconAnimation}
   }
 `;
 
 const Icon = styled(BasicIcon)`
   svg {
-    fill: ${(props) => props.theme.colorScheme.lightgrey};
-    circle,
-    path {
-      stroke: ${(props) => props.theme.colorScheme.grey};
-    }
-
     ${iconAnimation}
 
     &:hover {
-      fill: ${(props) => props.theme.colorScheme.silver};
-      circle,
-      path {
-        stroke: ${(props) => props.theme.textColor};
-      }
+      fill: ${(props) => props.theme.iconColor};
     }
   }
 `;
@@ -41,7 +37,7 @@ const IconWithTooltip = styled(Icon)`
   &:hover {
     svg {
       transition: opacity 0.4s ease-in-out;
-      opacity: 0.3;
+      opacity: 0.5;
       transform: none;
     }
   }

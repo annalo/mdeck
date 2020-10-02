@@ -52,7 +52,7 @@ const tableStyle = css`
     width: 80%;
 
     tr:nth-child(even) {
-      background-color: ${(props) => props.theme.colorScheme.lightgrey}40;
+      background-color: ${(props) => props.theme.colors.lightgrey}40;
     }
 
     th,
@@ -64,14 +64,15 @@ const tableStyle = css`
   table,
   th,
   td {
-    border: 1px solid ${(props) => props.theme.colorScheme.lightgrey};
+    border: 1px solid ${(props) => props.theme.colors.lightgrey};
   }
 `;
 
 const slideStyle = css`
   section {
     align-items: stretch;
-    background-color: white;
+    background-color: ${(props) => props.theme.editorColor};
+    color: ${(props) => props.theme.textColor};
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
