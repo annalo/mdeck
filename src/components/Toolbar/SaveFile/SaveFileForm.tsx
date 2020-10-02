@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 
 import Checkmark from "icons/check-mark.svg";
-import Xmark from "icons/x-circle.svg";
+import Xmark from "icons/x-mark.svg";
 import { BasicIcon } from "../Icon";
 
 interface SaveFileFormProps {
@@ -30,6 +30,7 @@ const TextInput = styled.input`
 const Button = styled.button`
   background-color: transparent;
   border: none;
+  cursor: pointer;
   padding: 0 2px;
   &:focus {
     outline: 0;
