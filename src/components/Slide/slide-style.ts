@@ -31,7 +31,15 @@ const linkStyle = css`
   }
 `;
 const listStyle = css`
-  ul {
+  ul.contains-task-list {
+    list-style-type: none;
+    padding-left: 0;
+
+    .task-list-item-checkbox {
+      margin-left: 0.6em;
+      margin-right: 0.3em;
+      transform: scale(1.5);
+    }
   }
 `;
 const paragraphStyle = css`
