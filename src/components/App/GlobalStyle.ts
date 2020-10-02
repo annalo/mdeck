@@ -3,6 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   html,
   body {
+    font-size: 16px;
     height: 100%;
     width: 100%;
     scroll-behavior: smooth;
@@ -15,11 +16,6 @@ const GlobalStyle = createGlobalStyle`
   #root {
     height: 100%;
     width: 100%;
-  }
-
-  p,
-  label {
-    line-height: 1.25em;
   }
 
   input, select {
