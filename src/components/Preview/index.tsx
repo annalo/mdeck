@@ -1,4 +1,4 @@
-import React, { forwardRef, memo } from "react";
+import React, { forwardRef, memo, useRef } from "react";
 import styled from "styled-components";
 
 import {
@@ -6,6 +6,7 @@ import {
   useMarkdownState,
 } from "contexts/MarkdownContext";
 import { useCodeLineEntries } from "contexts/CodeLineObserver";
+import { useCombinedRefs } from "utils/useCombinedRefs";
 import { usePaneIsActive } from "utils/usePaneIsActive";
 
 import { Slide } from "components/Slide/Loadable";
@@ -22,8 +23,11 @@ const Column = styled.div`
   flex-direction: column;
 `;
 
-const Preview = memo(
-  forwardRef<HTMLElement>(function Preview(_props, ref) {
+const PreviewForwardRefComponent = forwardRef<HTMLElement>(
+  (_props, forwardedRef) => {
+    const myRef = useRef<HTMLElement>(null);
+    const ref = useCombinedRefs(forwardedRef, myRef);
+
     const dispatch = useMarkdownDispatch();
     const { htmlArray, md, editorLine } = useMarkdownState();
 
@@ -45,7 +49,8 @@ const Preview = memo(
         )}
       </Column>
     );
-  })
+  }
 );
+const Preview = memo(PreviewForwardRefComponent);
 
 export { Preview };
