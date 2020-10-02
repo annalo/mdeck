@@ -12,7 +12,10 @@ interface SaveFileFormProps {
 }
 
 const Form = styled.form`
+  align-items: center;
+  display: flex;
   font-size: 12px;
+  justify-content: center;
 `;
 const TextInput = styled.input`
   background-color: transparent;
@@ -23,6 +26,7 @@ const TextInput = styled.input`
   }
 `;
 const Button = styled.button`
+  background-color: transparent;
   border: none;
   padding: 0 2px;
   &:focus {
