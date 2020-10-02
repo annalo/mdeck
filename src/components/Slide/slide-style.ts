@@ -2,13 +2,44 @@ import { css } from "styled-components";
 
 const blockquoteStyle = css`
   blockquote {
-    border-left: 0.25em solid lightgrey;
+    border-left: 0.25em solid #d4d4d450;
+    margin: 0;
     padding: 0 1em;
   }
 `;
 const codeStyle = css`
   pre {
+    background-color: #d4d4d420;
+    border: 1px solid grey;
+    border-radius: 3px;
+    line-height: 1em;
     overflow: visible;
+    padding: 0.5em;
+  }
+`;
+const headingStyle = css`
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+  }
+`;
+const linkStyle = css`
+  a {
+  }
+`;
+const listStyle = css`
+  ul {
+  }
+`;
+const paragraphStyle = css`
+  p {
+  }
+`;
+const tableStyle = css`
+  table {
   }
 `;
 
@@ -22,11 +53,23 @@ const slideStyle = css`
     font-size: 25px;
     height: 100%;
     justify-content: center;
-    padding: 5em;
+    padding: 3em;
     width: 100%;
+
+    * {
+      margin-top: 0;
+      &:last-child {
+        margin-bottom: 0 !important;
+      }
+    }
 
     ${blockquoteStyle}
     ${codeStyle}
+    ${headingStyle}
+    ${linkStyle}
+    ${listStyle}
+    ${paragraphStyle}
+    ${tableStyle}
   }
 `;
 
