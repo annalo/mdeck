@@ -35,11 +35,13 @@ const Preview = memo(
 
     return (
       <Column id="preview">
-        <Slideshow ref={ref} id="slideshow">
-          {htmlArray.map((html, i) => (
-            <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
-          ))}
-        </Slideshow>
+        {md === "" ? null : (
+          <Slideshow ref={ref} id="slideshow">
+            {htmlArray.map((html, i) => (
+              <Slide key={`slide-${i + 1}`} htmlString={html} index={i} />
+            ))}
+          </Slideshow>
+        )}
       </Column>
     );
   })

@@ -13,7 +13,12 @@ const TextArea = styled.textarea`
   padding: 0.5em;
   resize: none;
   tab-size: 2;
+  width: 100%;
 
+  /* firefox bug https://bugzilla.mozilla.org/show_bug.cgi?id=748518 */
+  @supports not (-moz-appearance: none) {
+    padding-bottom: 90vh;
+  }
   ::-webkit-scrollbar {
     display: none;
   }

@@ -5,6 +5,7 @@ import { render, renderHook } from "utils/test-utils";
 
 import scrollIntoView from "smooth-scroll-into-view-if-needed";
 
+import { ThemeProvider } from "components/App/ThemeProvider";
 import {
   MARKDOWN_CONTEXT_INITIAL_STATE,
   MarkdownContextProvider,
@@ -35,18 +36,21 @@ describe("<Preview />", () => {
   });
 
   test("should render a Slide component for each element in 'htmlArray'", async () => {
+    const md = "test";
     const htmlArray = [
       "<svg><h1>Title</h1></svg>",
       "<svg><p>Paragraph</p></svg>",
     ];
     const wrapper = ({ children }) => (
-      <MarkdownContextProvider
-        initialState={{ ...MARKDOWN_CONTEXT_INITIAL_STATE, htmlArray }}
-      >
-        <SlideObserverProvider>
-          <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
-        </SlideObserverProvider>
-      </MarkdownContextProvider>
+      <ThemeProvider>
+        <MarkdownContextProvider
+          initialState={{ ...MARKDOWN_CONTEXT_INITIAL_STATE, md, htmlArray }}
+        >
+          <SlideObserverProvider>
+            <CodeLineObserverProvider>{children}</CodeLineObserverProvider>
+          </SlideObserverProvider>
+        </MarkdownContextProvider>
+      </ThemeProvider>
     );
     render(<Preview />, { wrapper });
 

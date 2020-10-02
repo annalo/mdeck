@@ -2,45 +2,7 @@
 
 exports[`<Preview /> should render and match the snapshot 1`] = `
 <DocumentFragment>
-  .c1 {
-  height: 100%;
-  overflow: auto;
-}
-
-.c1:fullscreen {
-  -webkit-scroll-snap-type: y mandatory;
-  -moz-scroll-snap-type: y mandatory;
-  -ms-scroll-snap-type: y mandatory;
-  scroll-snap-type: y mandatory;
-}
-
-.c1:fullscreen .slide {
-  display: grid;
-  height: 100%;
-  -webkit-scroll-snap-align: start;
-  -moz-scroll-snap-align: start;
-  -ms-scroll-snap-align: start;
-  scroll-snap-align: start;
-}
-
-.c1:fullscreen .slide svg {
-  margin: auto;
-}
-
-.c1:-webkit-full-screen {
-  background-color: rgba(255,255,255,0);
-}
-
-.c1:-webkit-full-screen .slide {
-  display: grid;
-  height: 100%;
-}
-
-.c1:-webkit-full-screen .slide svg {
-  margin: auto;
-}
-
-.c0 {
+  .c0 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -56,11 +18,6 @@ exports[`<Preview /> should render and match the snapshot 1`] = `
 <div
     class="c0"
     id="preview"
-  >
-    <article
-      class="c1"
-      id="slideshow"
-    />
-  </div>
+  />
 </DocumentFragment>
 `;

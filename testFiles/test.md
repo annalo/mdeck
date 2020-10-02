@@ -1,7 +1,14 @@
 # Title Slide
 
-```
-  code
+```js
+var a = "test";
+
+function sumFunction(arg1, arg2) {
+  const sum = arg1 + arg2;
+  return sum;
+}
+
+console.log(a);
 ```
 
 https://google.com
@@ -11,7 +18,6 @@ asdfasdfasdf
 asdfasdfasdf
 asdfasdfasdfdasdfasdfasdfasdfasdfasfasdf
 asdfasdfasdfddddddd
-asdfasdfasdf
 
 ---
 
@@ -69,11 +75,13 @@ see [how to change output](https://github.com/markdown-it/markdown-it-emoji#chan
 
 - [x] first
 - [ ] second
-- [ ] third
+
+* bullet
+* bullet
 
 ---
 
 ## Images
 
 ![width:50px](https://octodex.github.com/images/minion.png)
-![100px](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")
+![width:100px](https://octodex.github.com/images/stormtroopocat.jpg "The Stormtroopocat")

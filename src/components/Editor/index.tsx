@@ -17,6 +17,7 @@ const Column = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
+  overflow-y: scroll;
 `;
 
 const Editor = memo(function Editor() {

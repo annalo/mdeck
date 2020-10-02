@@ -1,7 +1,6 @@
 import React from "react";
 import { ThemeProvider as StyledComponentThemeProvider } from "styled-components";
 
-// light to dark
 const colorScheme = {
   snow: "#fafafa",
   lightgrey: "#d4d4d4",

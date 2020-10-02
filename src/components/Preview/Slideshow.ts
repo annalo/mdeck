@@ -8,9 +8,13 @@ const Slideshow = styled.article`
     scroll-snap-type: y mandatory;
 
     .slide {
+      border: none;
+      box-shadow: none;
       display: grid;
       height: 100%;
+      margin: 0;
       scroll-snap-align: start;
+
       svg {
         margin: auto;
       }
@@ -19,10 +23,16 @@ const Slideshow = styled.article`
 
   &:-webkit-full-screen {
     background-color: rgba(255, 255, 255, 0);
+    scroll-snap-type: y mandatory;
 
     .slide {
+      border: none;
+      box-shadow: none;
       display: grid;
       height: 100%;
+      margin: 0;
+      scroll-snap-align: start;
+
       svg {
         margin: auto;
       }
