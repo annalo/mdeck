@@ -1,10 +1,7 @@
 import { useEffect } from "react";
 
 import { useCodeLineObserver } from "contexts/CodeLineObserver";
-import {
-  CODE_LINE_CLASS_NAME,
-  DATA_LINE_ATTRIBUTE,
-} from "utils/parsePlugins/injectLineNumber";
+import { DATA_LINE_ATTRIBUTE } from "utils/parsePlugins/injectLineNumber";
 
 interface UseCodeLineObserveProps {
   elements: SlideContentElements;
@@ -19,7 +16,7 @@ function useCodeLineObserve({ elements, ref }: UseCodeLineObserveProps): void {
     if (node) {
       const entries = {};
       const codeLineElements: NodeListOf<Element> = node?.querySelectorAll(
-        `.${CODE_LINE_CLASS_NAME}`
+        `[${DATA_LINE_ATTRIBUTE}]`
       );
 
       codeLineElements.forEach((element) => {
